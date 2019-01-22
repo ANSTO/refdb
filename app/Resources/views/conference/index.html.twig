@@ -1,0 +1,36 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+
+    <a href="{{ path('conference_new') }}" class="float-right btn btn-success"><i class="fas fa-plus"></i> Add Conference</a>
+    <h2>Conferences list</h2>
+
+    <br />
+    <table class="table table-striped">
+        <thead>
+            <tr>
+                <th>Name</th>
+                <th>Code</th>
+                <th>Location</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for conference in conferences %}
+            <tr>
+                <td>{{ conference.name }}</td>
+                <td>{{ conference.code }}</td>
+                <td>{{ conference.location }}</td>
+                <td>
+                    <a href="{{ path('conference_show', { 'id': conference.id }) }}">Show</a> |
+                    <a href="{{ path('conference_edit', { 'id': conference.id }) }}">Edit</a>
+                </td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+
+
+
+{% endblock %}

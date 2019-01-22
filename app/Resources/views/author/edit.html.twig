@@ -1,0 +1,19 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    <h2>Edit Author</h2>
+
+    {{ form_start(edit_form) }}
+    {{ form_widget(edit_form) }}
+    <input type="submit" class="btn btn-primary" value="Edit" />
+    {{ form_end(edit_form) }}
+
+
+    <a href="{{ path('author_index') }}" class="btn btn-default">Back to the list</a>
+
+
+    {{ form_start(delete_form) }}
+    <input type="submit" class="btn btn-danger" value="Delete">
+    {{ form_end(delete_form) }}
+
+{% endblock %}

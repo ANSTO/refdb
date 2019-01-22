@@ -1,0 +1,21 @@
+.header {
+  background-color:#0088CC;
+  padding:10px 0 0 0;
+  margin-bottom: 20px;
+  a, h1 {
+    color:#FFFFFF;
+    text-decoration: none;
+  }
+}
+.navbar {
+  padding-bottom:0;
+  .active {
+    .nav-link {
+      background-color:#FFFFFF;
+      color:#0088CC;
+    }
+  }
+  .nav-link { padding: 10px 20px; }
+
+}
+

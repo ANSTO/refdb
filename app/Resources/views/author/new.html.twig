@@ -1,0 +1,14 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    <h2>Add Author</h2>
+
+    {{ form_start(form) }}
+    {{ form_widget(form) }}
+    <input type="submit" class="btn btn-primary" value="Create" />
+    {{ form_end(form) }}
+
+    <br />
+    <a href="{{ path('author_index') }}" class="btn btn-default">Back to the list</a>
+
+{% endblock %}

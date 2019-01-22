@@ -1,0 +1,51 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    <h2>References list</h2>
+
+    <table class="table table-striped">
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>Override</th>
+                <th>Title</th>
+                <th>Author</th>
+                <th>Isbn</th>
+                <th>Doi</th>
+                <th>Position</th>
+                <th>Inproc</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for reference in references %}
+            <tr>
+                <td><a href="{{ path('reference_show', { 'id': reference.id }) }}">{{ reference.id }}</a></td>
+                <td>{{ reference.override }}</td>
+                <td>{{ reference.title }}</td>
+                <td>{{ reference.author }}</td>
+                <td>{{ reference.isbn }}</td>
+                <td>{{ reference.doi }}</td>
+                <td>{{ reference.position }}</td>
+                <td>{% if reference.inProc %}Yes{% else %}No{% endif %}</td>
+                <td>
+                    <ul>
+                        <li>
+                            <a href="{{ path('reference_show', { 'id': reference.id }) }}">show</a>
+                        </li>
+                        <li>
+                            <a href="{{ path('reference_edit', { 'id': reference.id }) }}">edit</a>
+                        </li>
+                    </ul>
+                </td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+    <ul>
+        <li>
+            <a href="{{ path('reference_new') }}">Create a new reference</a>
+        </li>
+    </ul>
+{% endblock %}

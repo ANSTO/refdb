@@ -1,0 +1,28 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    <a class="float-right btn btn-success" href="{{ path('author_new') }}">Add Author</a>
+    <h2>Authors</h2>
+    <br />
+    <table class="table table-striped">
+        <thead>
+        <tr>
+            <th>Name</th>
+            <th>Actions</th>
+        </tr>
+        </thead>
+        <tbody>
+        {% for author in authors %}
+            <tr>
+                <td>{{ author.name }}</td>
+                <td>
+                    <a href="{{ path('author_show', { 'id': author.id }) }}">Show</a>
+                    |
+                    <a href="{{ path('author_edit', { 'id': author.id }) }}">Edit</a>
+                </td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+{% endblock %}
