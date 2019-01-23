@@ -4,8 +4,8 @@ namespace AppBundle\Controller;
 
 use AppBundle\Entity\Author;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
-use Sensio\Bundle\FrameworkExtraBundle\Configuration\Method;
-use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;use Symfony\Component\HttpFoundation\Request;
+use Symfony\Component\Routing\Annotation\Route;
+use Symfony\Component\HttpFoundation\Request;
 
 /**
  * Author controller.
@@ -14,28 +14,33 @@ use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;use Symfony\Component
  */
 class AuthorController extends Controller
 {
+
     /**
      * Lists all author entities.
-     *
      * @Route("/", name="author_index")
-     * @Method("GET")
      */
-    public function indexAction()
+    public function indexAction(Request $request)
     {
-        $em = $this->getDoctrine()->getManager();
+        $manager    = $this->getDoctrine()->getManager();
+        $query = $manager->getRepository(Author::class)
+            ->createQueryBuilder("a")
+            ->getQuery();
 
-        $authors = $em->getRepository('AppBundle:Author')->findAll();
+        $paginator  = $this->get('knp_paginator');
+        $pagination = $paginator->paginate(
+            $query,
+            $request->query->getInt('page', 1),
+            10
+        );
 
-        return $this->render('author/index.html.twig', array(
-            'authors' => $authors,
-        ));
+        // parameters to template
+        return $this->render('author/index.html.twig', array('pagination' => $pagination));
     }
 
     /**
      * Creates a new author entity.
      *
      * @Route("/new", name="author_new")
-     * @Method({"GET", "POST"})
      */
     public function newAction(Request $request)
     {
@@ -60,8 +65,7 @@ class AuthorController extends Controller
     /**
      * Finds and displays a author entity.
      *
-     * @Route("/{id}", name="author_show")
-     * @Method("GET")
+     * @Route("/show/{id}", name="author_show")
      */
     public function showAction(Author $author)
     {
@@ -76,8 +80,7 @@ class AuthorController extends Controller
     /**
      * Displays a form to edit an existing author entity.
      *
-     * @Route("/{id}/edit", name="author_edit")
-     * @Method({"GET", "POST"})
+     * @Route("/edit/{id}", name="author_edit")
      */
     public function editAction(Request $request, Author $author)
     {
@@ -101,8 +104,7 @@ class AuthorController extends Controller
     /**
      * Deletes a author entity.
      *
-     * @Route("/{id}", name="author_delete")
-     * @Method("DELETE")
+     * @Route("/delete/{id}", name="author_delete")
      */
     public function deleteAction(Request $request, Author $author)
     {

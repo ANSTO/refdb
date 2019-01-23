@@ -6,25 +6,24 @@ use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 
-class ReferenceType extends AbstractType
+class SearchType extends AbstractType
 {
     /**
      * {@inheritdoc}
      */
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
-        $builder->add('override')
-            ->add('title'
-            )->add('author')
-            ->add("paperId")
-            ->add('isbn')->add('doi')->add('position')->add('inProc')->add('conference');
+        $builder
+            ->add('paper')
+            ->add('author', null, array("label"=>"Author(s)"))
+            ->add('conference');
     }/**
      * {@inheritdoc}
      */
     public function configureOptions(OptionsResolver $resolver)
     {
         $resolver->setDefaults(array(
-            'data_class' => 'AppBundle\Entity\Reference'
+            'data_class' => null
         ));
     }
 
@@ -33,7 +32,7 @@ class ReferenceType extends AbstractType
      */
     public function getBlockPrefix()
     {
-        return 'appbundle_reference';
+        return 'appbundle_search';
     }
 
 

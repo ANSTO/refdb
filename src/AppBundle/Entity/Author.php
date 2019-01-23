@@ -68,5 +68,40 @@ class Author
     {
         return $this->name;
     }
-}
 
+    public function addReference($reference) {
+        $this->references->add($reference);
+    }
+    /**
+     * @return ArrayCollection
+     */
+    public function getReferences()
+    {
+        return $this->references;
+    }
+
+    /**
+     * @param ArrayCollection $references
+     */
+    public function setReferences($references)
+    {
+        $this->references = $references;
+    }
+    /**
+     * Constructor
+     */
+    public function __construct()
+    {
+        $this->references = new \Doctrine\Common\Collections\ArrayCollection();
+    }
+
+    /**
+     * Remove reference
+     *
+     * @param \AppBundle\Entity\Reference $reference
+     */
+    public function removeReference(\AppBundle\Entity\Reference $reference)
+    {
+        $this->references->removeElement($reference);
+    }
+}

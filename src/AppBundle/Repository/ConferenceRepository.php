@@ -10,4 +10,5 @@ namespace AppBundle\Repository;
  */
 class ConferenceRepository extends \Doctrine\ORM\EntityRepository
 {
+
 }

@@ -1,0 +1,45 @@
+
+<script>
+    function addStar() {
+        var val = $("#filterValue").val();
+        if (!val.endsWith('*'))
+            val = val + "*" ;
+
+        if (!val.startsWith('*'))
+            val = "*" + val;
+
+        $("#filterValue").val(val);
+    }
+
+</script>
+
+<form method="get" action="{{ action }}" onsubmit="addStar()" enctype="application/x-www-form-urlencoded">
+    <div class="row align-items-end">
+        <div class="col">
+            <strong>Search By</strong>
+            <select class="form-control" name="{{ filterFieldName }}">
+                {% for field, label in fields %}
+                    <option value="{{ field }}"{% if selectedField == field %} selected="selected"{% endif %}>{{ label }}</option>
+                {% endfor %}
+            </select>
+        </div>
+        <div class="col">
+            <strong>Value</strong> (Wildcard is *)
+            <input class="form-control" type="text" id="filterValue" value="{{ selectedValue }}" name="{{ filterValueName }}" />
+        </div>
+
+        <div class="col ">
+            <button class="btn btn-primary btn-block" type="submit"><i class="fas fa-filter"></i> {{ options.button }}</button>
+        </div>
+        {% if selectedValue != '' %}
+            <div class="col">
+                <script>
+                    function resetInputValue() {
+                        $("#filterValue").val("").closest("form").submit();
+                    }
+                </script>
+                <button class="btn btn-danger btn-block" type="button" onclick="resetInputValue()">Remove Filter</button>
+            </div>
+        {% endif %}
+    </div>
+</form>

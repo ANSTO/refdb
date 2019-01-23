@@ -1,21 +1,27 @@
 {% extends 'base.html.twig' %}
 
 {% block body %}
-    <h2>Reference edit</h2>
+    <div class="float-right btn-group">
+        <button class="btn btn-danger" type="button" data-href="{{ path('reference_delete', { 'id': reference.id }) }}"><i class="fas fa-trash"></i> Delete</button>
+    </div>
 
+    <h2>Edit Reference</h2>
+    <br />
     {{ form_start(edit_form) }}
-        {{ form_widget(edit_form) }}
-        <input type="submit" value="Edit" />
+        {{ form_row(edit_form.override) }}
+    {{ form_row(edit_form.title) }}
+    {{ form_row(edit_form.author) }}
+    {% if reference.etAl %}
+        <p><a href="http://www.jacow.org/Authors/FormattingCitations"><strong>This citation may have more than six authors and is configured to show the suffix <em>et al.</em></strong></a></p>
+    {% endif %}
+    {{ form_rest(edit_form) }}
+    <br />
+        <input type="submit" value="Save Changes" class="btn btn-primary btn-lg btn-block" />
     {{ form_end(edit_form) }}
+    <br />
 
-    <ul>
-        <li>
-            <a href="{{ path('reference_index') }}">Back to the list</a>
-        </li>
-        <li>
-            {{ form_start(delete_form) }}
-                <input type="submit" value="Delete">
-            {{ form_end(delete_form) }}
-        </li>
-    </ul>
+    <a class="btn btn-default" href="{{ path('reference_index') }}"><i class="fas fa-arrow-left"></i> Back to the list</a>
+
+
+    <br /><br />
 {% endblock %}

@@ -1,19 +1,23 @@
 {% extends 'base.html.twig' %}
 
 {% block body %}
+    <div class="float-right btn-group">
+        <button class="btn btn-danger" type="button" data-href="{{ path('author_delete', { 'id': author.id }) }}"><i class="fas fa-trash"></i> Delete</button>
+    </div>
+
     <h2>Edit Author</h2>
 
+    <br />
     {{ form_start(edit_form) }}
     {{ form_widget(edit_form) }}
-    <input type="submit" class="btn btn-primary" value="Edit" />
+    <br />
+    <input type="submit" class="btn btn-primary btn-lg btn-block" value="Save Changes" />
     {{ form_end(edit_form) }}
 
+    <br />
 
-    <a href="{{ path('author_index') }}" class="btn btn-default">Back to the list</a>
+    <a href="{{ path('author_index') }}" class="btn btn-default"><i class="fas fa-arrow-left"></i> Back to the list</a>
 
-
-    {{ form_start(delete_form) }}
-    <input type="submit" class="btn btn-danger" value="Delete">
-    {{ form_end(delete_form) }}
+    <br /><br />
 
 {% endblock %}

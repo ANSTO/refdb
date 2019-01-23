@@ -4,8 +4,8 @@ namespace AppBundle\Controller;
 
 use AppBundle\Entity\Reference;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
-use Sensio\Bundle\FrameworkExtraBundle\Configuration\Method;
-use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;use Symfony\Component\HttpFoundation\Request;
+use Symfony\Component\Routing\Annotation\Route;
+use Symfony\Component\HttpFoundation\Request;
 
 /**
  * Reference controller.
@@ -16,26 +16,30 @@ class ReferenceController extends Controller
 {
     /**
      * Lists all reference entities.
-     * @Route("/", name="homepage")
      * @Route("/", name="reference_index")
-     * @Method("GET")
      */
-    public function indexAction()
+    public function indexAction(Request $request)
     {
-        $em = $this->getDoctrine()->getManager();
+        $manager    = $this->getDoctrine()->getManager();
+        $query = $manager->getRepository(Reference::class)
+            ->createQueryBuilder("r")
+            ->getQuery();
 
-        $references = $em->getRepository('AppBundle:Reference')->findAll();
+        $paginator  = $this->get('knp_paginator');
+        $pagination = $paginator->paginate(
+            $query,
+            $request->query->getInt('page', 1),
+            10
+        );
 
-        return $this->render('reference/index.html.twig', array(
-            'references' => $references,
-        ));
+        // parameters to template
+        return $this->render('reference/index.html.twig', array('pagination' => $pagination));
     }
 
     /**
      * Creates a new reference entity.
      *
      * @Route("/new", name="reference_new")
-     * @Method({"GET", "POST"})
      */
     public function newAction(Request $request)
     {
@@ -60,8 +64,7 @@ class ReferenceController extends Controller
     /**
      * Finds and displays a reference entity.
      *
-     * @Route("/{id}", name="reference_show")
-     * @Method("GET")
+     * @Route("/show/{id}", name="reference_show")
      */
     public function showAction(Reference $reference)
     {
@@ -76,8 +79,7 @@ class ReferenceController extends Controller
     /**
      * Displays a form to edit an existing reference entity.
      *
-     * @Route("/{id}/edit", name="reference_edit")
-     * @Method({"GET", "POST"})
+     * @Route("/edit/{id}", name="reference_edit")
      */
     public function editAction(Request $request, Reference $reference)
     {
@@ -88,7 +90,7 @@ class ReferenceController extends Controller
         if ($editForm->isSubmitted() && $editForm->isValid()) {
             $this->getDoctrine()->getManager()->flush();
 
-            return $this->redirectToRoute('reference_edit', array('id' => $reference->getId()));
+            return $this->redirectToRoute('reference_show', array('id' => $reference->getId()));
         }
 
         return $this->render('reference/edit.html.twig', array(
@@ -101,8 +103,7 @@ class ReferenceController extends Controller
     /**
      * Deletes a reference entity.
      *
-     * @Route("/{id}", name="reference_delete")
-     * @Method("DELETE")
+     * @Route("/delete/{id}", name="reference_delete")
      */
     public function deleteAction(Request $request, Reference $reference)
     {

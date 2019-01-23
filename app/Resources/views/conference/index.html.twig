@@ -3,34 +3,59 @@
 {% block body %}
 
     <a href="{{ path('conference_new') }}" class="float-right btn btn-success"><i class="fas fa-plus"></i> Add Conference</a>
-    <h2>Conferences list</h2>
+    <h2>Conferences</h2>
 
+    <br />
+    {% set filters = {'c.name': 'Name','c.code': 'Code','c.location': 'Location','c.year': 'Date'} %}
+
+    {{ knp_pagination_filter(pagination, filters) }}
+
+    {% set filtered = 0 %}
+    {% if pagination.params.filterField is defined and pagination.params.filterField in filters|keys %}
+        {% set filtered = 1 %}
+        {% set label = filters[pagination.params.filterField] %}
+        {% set field = pagination.params.filterField|slice(2) %}
+    {% endif %}
     <br />
     <table class="table table-striped">
         <thead>
-            <tr>
-                <th>Name</th>
-                <th>Code</th>
-                <th>Location</th>
-                <th>Actions</th>
-            </tr>
+        <tr>
+            <th>Name</th>
+            {% if filtered %}
+                <th>{{ label }}</th>
+            {% endif %}
+            <th class="text-center">Actions</th>
+        </tr>
         </thead>
         <tbody>
-        {% for conference in conferences %}
+        {% for conference in pagination %}
             <tr>
-                <td>{{ conference.name }}</td>
-                <td>{{ conference.code }}</td>
-                <td>{{ conference.location }}</td>
+                <td><a href="{{ path('conference_show', { 'id': conference.id }) }}">
+                        {{ conference|latin }}
+                    </a>
+                </td>
+                {% if filtered == 1 %}
                 <td>
-                    <a href="{{ path('conference_show', { 'id': conference.id }) }}">Show</a> |
-                    <a href="{{ path('conference_edit', { 'id': conference.id }) }}">Edit</a>
+                    {{ attribute(conference, field)|latin }}
+                </td>
+                {% endif %}
+                <td class="text-center" width="150">
+                    <a href="{{ path('conference_edit', { 'id': conference.id }) }}"><i class="fas fa-edit"></i> Edit</a>
                 </td>
             </tr>
         {% endfor %}
         </tbody>
     </table>
 
+    <div class="d-flex justify-content-between">
+        <div class="p-2 total align-self-center">
+            {{ pagination.getTotalItemCount }} results
+        </div>
 
+        <div class="navigation p-2 align-self-center">
+            {{ knp_pagination_render(pagination) }}
+        </div>
+    </div>
 
 
 {% endblock %}

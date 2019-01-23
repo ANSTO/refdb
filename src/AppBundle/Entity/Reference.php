@@ -24,6 +24,12 @@ class Reference
 
     /**
      * @var string
+     * @ORM\Column(type="string", length=255, nullable=true)
+     */
+    private $paperId;
+
+    /**
+     * @var string
      *
      * @ORM\Column(name="full", type="string", length=4000, nullable=true)
      */
@@ -39,18 +45,18 @@ class Reference
     /**
      * @var string
      *
-     * @ORM\Column(name="author", type="string", length=255)
+     * @ORM\Column(name="author", type="string", length=4000)
      */
     private $author;
 
     /**
-     * @ORM\ManyToMany(targetEntity="AppBundle\Entity\Reference")
+     * @ORM\ManyToMany(targetEntity="AppBundle\Entity\Author")
      * @var ArrayCollection
      */
     private $authors;
 
     /**
-     * @var string
+     * @var Conference
      *
      * @ORM\ManyToOne(targetEntity="AppBundle\Entity\Conference", inversedBy="references")
      */
@@ -83,6 +89,20 @@ class Reference
      * @ORM\Column(name="in_proc", type="boolean", nullable=true)
      */
     private $inProc;
+    /**
+     * @var bool
+     *
+     * @ORM\Column(name="et_al", type="boolean", nullable=true)
+     */
+
+    private $etAl;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="cache", type="string", length=4000, nullable=true)
+     */
+    private $cache;
 
 
     /**
@@ -160,7 +180,7 @@ class Reference
     /**
      * Get conference
      *
-     * @return string
+     * @return Conference
      */
     public function getConference()
     {
@@ -215,29 +235,6 @@ class Reference
         return $this->position;
     }
 
-    /**
-     * Set available
-     *
-     * @param boolean $available
-     *
-     * @return Reference
-     */
-    public function setAvailable($available)
-    {
-        $this->available = $available;
-
-        return $this;
-    }
-
-    /**
-     * Get available
-     *
-     * @return bool
-     */
-    public function getAvailable()
-    {
-        return $this->available;
-    }
 
     /**
      * @return string
@@ -271,21 +268,7 @@ class Reference
         $this->inProc = $inProc;
     }
 
-    /**
-     * @return string
-     */
-    public function getFull()
-    {
-        return $this->full;
-    }
 
-    /**
-     * @param string $full
-     */
-    public function setFull($full)
-    {
-        $this->full = $full;
-    }
 
     /**
      * @return ArrayCollection
@@ -318,5 +301,147 @@ class Reference
     {
         $this->override = $override;
     }
-}
 
+    /**
+     * @return string
+     */
+    public function getAuthorStr() {
+        $author = $this->getAuthor();
+        if ($author === null) {
+            $authors = $this->getAuthors();
+            if (count($authors) >= 6) {
+                return $authors[0] . "<em>et al.</em>";
+            } else {
+                return implode(", ", $authors);
+            }
+        }
+        return $author;
+    }
+
+    public function __toString()
+    {
+        if ($this->getOverride() !== null) {
+            return $this->getOverride();
+        } else {
+            $author = $this->getAuthorStr();
+            $title = $this->getTitle();
+
+            if ($this->isInProc()) {
+                $inProc = "in <em>Proc. ";
+            } else {
+                $inProc = "<em>presented at the ";
+            }
+
+            $conference = $this->getConference();
+
+            $position = "";
+            if ($this->getPosition() !== null) {
+                $position = " pp. " . $this->getPosition();
+            }
+
+            $paper = "";
+            if ($this->getPaperId() !== null) {
+                $paper = " paper " . $this->getPaperId() . ", ";
+            }
+
+            return $author . " “" . $title . "” " . $inProc . " " . $conference . "</em>, " . $conference->getLocation() . ", " . $conference->getYear() . "," . $paper . $position;
+        }
+    }
+
+    /**
+     * @return string
+     */
+    public function getPaperId()
+    {
+        return $this->paperId;
+    }
+
+    /**
+     * @param string $paperId
+     */
+    public function setPaperId($paperId)
+    {
+        $this->paperId = $paperId;
+    }
+    /**
+     * Constructor
+     */
+    public function __construct()
+    {
+        $this->authors = new \Doctrine\Common\Collections\ArrayCollection();
+    }
+
+    /**
+     * Get inProc
+     *
+     * @return boolean
+     */
+    public function getInProc()
+    {
+        return $this->inProc;
+    }
+
+    /**
+     * Add author
+     *
+     * @param \AppBundle\Entity\Author $author
+     *
+     * @return Reference
+     */
+    public function addAuthor(\AppBundle\Entity\Author $author)
+    {
+        $this->authors[] = $author;
+
+        return $this;
+    }
+
+    /**
+     * Remove author
+     *
+     * @param \AppBundle\Entity\Author $author
+     */
+    public function removeAuthor(\AppBundle\Entity\Author $author)
+    {
+        $this->authors->removeElement($author);
+    }
+
+    /**
+     * Set etAl
+     *
+     * @param boolean $etAl
+     *
+     * @return Reference
+     */
+    public function setEtAl($etAl)
+    {
+        $this->etAl = $etAl;
+
+        return $this;
+    }
+
+    /**
+     * Get etAl
+     *
+     * @return boolean
+     */
+    public function getEtAl()
+    {
+        return $this->etAl;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getCache()
+    {
+        return $this->cache;
+    }
+
+    /**
+     * @param mixed $cache
+     */
+    public function setCache($cache)
+    {
+        $this->cache = $cache;
+    }
+}

@@ -1,24 +1,25 @@
 {% extends 'base.html.twig' %}
 
 {% block body %}
-    <h2>Author</h2>
+    <div class="float-right btn-group">
+        <a class=" btn btn-primary" href="{{ path('author_edit', { 'id': author.id }) }}"><i class="fas fa-edit"></i> Edit</a>
+        <button class="btn btn-danger" type="button" data-href="{{ path('author_delete', { 'id': author.id }) }}"><i class="fas fa-trash"></i> Delete</button>
+    </div>
+    <h2>{{ author.name }}</h2>
 
-    <table class="table table-striped">
-        <tbody>
-        <tr>
-            <th>Name</th>
-            <td>{{ author.name }}</td>
-        </tr>
-        </tbody>
-    </table>
 
-<br />
-    <a href="{{ path('author_index') }}" class="btn btn-default">Back to the list</a>
-    <br /> <br />
-    <a href="{{ path('author_edit', { 'id': author.id }) }}" class="btn btn-primary">Edit</a>
-    <br /> <br />
-    {{ form_start(delete_form) }}
-    <input type="submit" value="Delete" class="btn btn-danger">
-    {{ form_end(delete_form) }}
+    <br />
+    <h3>References</h3>
+    {% if author.references|length == 0 %}
+        <p><em>No references found for this author.</em></p>
+    {% endif %}
+    {% for reference in author.references %}
+        {{ reference|latin }}
+        <br /><br />
+    {% endfor %}
+
+    <br />
+
+    <a href="{{ path('author_index') }}" class="btn btn-default"><i class="fas fa-arrow-left"></i> Back to the list</a>
 
 {% endblock %}

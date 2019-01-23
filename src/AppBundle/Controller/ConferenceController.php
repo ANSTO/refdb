@@ -4,8 +4,8 @@ namespace AppBundle\Controller;
 
 use AppBundle\Entity\Conference;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
-use Sensio\Bundle\FrameworkExtraBundle\Configuration\Method;
-use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;use Symfony\Component\HttpFoundation\Request;
+use Symfony\Component\Routing\Annotation\Route;
+use Symfony\Component\HttpFoundation\Request;
 
 /**
  * Conference controller.
@@ -16,26 +16,30 @@ class ConferenceController extends Controller
 {
     /**
      * Lists all conference entities.
-     *
      * @Route("/", name="conference_index")
-     * @Method("GET")
      */
-    public function indexAction()
+    public function indexAction(Request $request)
     {
-        $em = $this->getDoctrine()->getManager();
+        $manager    = $this->getDoctrine()->getManager();
+        $query = $manager->getRepository(Conference::class)
+            ->createQueryBuilder("c")
+            ->getQuery();
 
-        $conferences = $em->getRepository('AppBundle:Conference')->findAll();
+        $paginator  = $this->get('knp_paginator');
+        $pagination = $paginator->paginate(
+            $query,
+            $request->query->getInt('page', 1),
+            10
+        );
 
-        return $this->render('conference/index.html.twig', array(
-            'conferences' => $conferences,
-        ));
+        // parameters to template
+        return $this->render('conference/index.html.twig', array('pagination' => $pagination));
     }
 
     /**
      * Creates a new conference entity.
      *
      * @Route("/new", name="conference_new")
-     * @Method({"GET", "POST"})
      */
     public function newAction(Request $request)
     {
@@ -60,8 +64,7 @@ class ConferenceController extends Controller
     /**
      * Finds and displays a conference entity.
      *
-     * @Route("/{id}", name="conference_show")
-     * @Method("GET")
+     * @Route("/show/{id}", name="conference_show")
      */
     public function showAction(Conference $conference)
     {
@@ -76,8 +79,7 @@ class ConferenceController extends Controller
     /**
      * Displays a form to edit an existing conference entity.
      *
-     * @Route("/{id}/edit", name="conference_edit")
-     * @Method({"GET", "POST"})
+     * @Route("/edit/{id}", name="conference_edit")
      */
     public function editAction(Request $request, Conference $conference)
     {
@@ -101,8 +103,7 @@ class ConferenceController extends Controller
     /**
      * Deletes a conference entity.
      *
-     * @Route("/{id}", name="conference_delete")
-     * @Method("DELETE")
+     * @Route("/delete/{id}", name="conference_delete")
      */
     public function deleteAction(Request $request, Conference $conference)
     {

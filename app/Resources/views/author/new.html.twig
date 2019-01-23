@@ -3,12 +3,14 @@
 {% block body %}
     <h2>Add Author</h2>
 
+    <br />
     {{ form_start(form) }}
     {{ form_widget(form) }}
-    <input type="submit" class="btn btn-primary" value="Create" />
+    <br />
+    <input type="submit" class="btn btn-primary btn-lg btn-block" value="Create" />
     {{ form_end(form) }}
 
     <br />
-    <a href="{{ path('author_index') }}" class="btn btn-default">Back to the list</a>
-
+    <a href="{{ path('author_index') }}" class="btn btn-default"><i class="fas fa-arrow-left"></i> Back to the list</a>
+    <br /><br />
 {% endblock %}

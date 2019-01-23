@@ -1,56 +1,18 @@
 {% extends 'base.html.twig' %}
 
 {% block body %}
+    <div class="float-right btn-group">
+        <a class=" btn btn-primary" href="{{ path('reference_edit', { 'id': reference.id }) }}"><i class="fas fa-edit"></i> Edit</a>
+        <button class="btn btn-danger" type="button" data-href="{{ path('reference_delete', { 'id': reference.id }) }}"><i class="fas fa-trash"></i> Delete</button>
+    </div>
     <h2>Reference</h2>
 
-    <table class="table table-striped">
-        <tbody>
-            <tr>
-                <th>Id</th>
-                <td>{{ reference.id }}</td>
-            </tr>
-            <tr>
-                <th>Override</th>
-                <td>{{ reference.override }}</td>
-            </tr>
-            <tr>
-                <th>Title</th>
-                <td>{{ reference.title }}</td>
-            </tr>
-            <tr>
-                <th>Author</th>
-                <td>{{ reference.author }}</td>
-            </tr>
-            <tr>
-                <th>Isbn</th>
-                <td>{{ reference.isbn }}</td>
-            </tr>
-            <tr>
-                <th>Doi</th>
-                <td>{{ reference.doi }}</td>
-            </tr>
-            <tr>
-                <th>Position</th>
-                <td>{{ reference.position }}</td>
-            </tr>
-            <tr>
-                <th>Inproc</th>
-                <td>{% if reference.inProc %}Yes{% else %}No{% endif %}</td>
-            </tr>
-        </tbody>
-    </table>
+    <br />
+    <p>{{ reference|latin }}</p>
 
-    <ul>
-        <li>
-            <a href="{{ path('reference_index') }}">Back to the list</a>
-        </li>
-        <li>
-            <a href="{{ path('reference_edit', { 'id': reference.id }) }}">Edit</a>
-        </li>
-        <li>
-            {{ form_start(delete_form) }}
-                <input type="submit" value="Delete">
-            {{ form_end(delete_form) }}
-        </li>
-    </ul>
+
+    <br />
+    <a class="btn btn-default" href="{{ path('reference_index') }}"><i class="fas fa-arrow-left"></i> Back to the list</a>
+
+
 {% endblock %}

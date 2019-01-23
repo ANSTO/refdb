@@ -1,21 +1,19 @@
 {% extends 'base.html.twig' %}
 
 {% block body %}
-    <h2>Conference edit</h2>
+    <div class="float-right btn-group">
+        <button class="btn btn-danger" type="button" data-href="{{ path('conference_delete', { 'id': conference.id }) }}"><i class="fas fa-trash"></i> Delete</button>
+    </div>
+    <h2>Edit Conference</h2>
 
+    <br />
     {{ form_start(edit_form) }}
-        {{ form_widget(edit_form) }}
-        <input type="submit" value="Edit" />
+    {{ form_widget(edit_form) }}
+    <br />
+    <input type="submit" class="btn btn-primary btn-lg btn-block" value="Save Changes" />
     {{ form_end(edit_form) }}
 
-    <ul>
-        <li>
-            <a href="{{ path('conference_index') }}">Back to the list</a>
-        </li>
-        <li>
-            {{ form_start(delete_form) }}
-                <input type="submit" value="Delete">
-            {{ form_end(delete_form) }}
-        </li>
-    </ul>
+    <br />
+    <a href="{{ path('conference_index') }}" class="btn btn-default"><i class="fas fa-arrow-left"></i> Back to the list</a>
+    <br /><br />
 {% endblock %}

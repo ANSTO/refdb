@@ -1,0 +1,21 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+   <div class="row">
+      <div class="col">
+         <h2>Search by</h2>
+
+         {{ form_start(form) }}
+
+         {{ form_widget(form) }}
+
+         <button type="submit" class="btn btn-primary btn-block btn-lg">Search</button>
+         {{ form_end(form) }}
+      </div>
+      <div class="col">
+         <h2>Results</h2>
+
+         <em>No results found.</em>
+      </div>
+   </div>
+{% endblock %}

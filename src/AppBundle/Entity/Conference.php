@@ -26,7 +26,7 @@ class Conference
     /**
      * @var string
      *
-     * @ORM\Column(name="name", type="string", length=2000, unique=true)
+     * @ORM\Column(name="name", type="string", length=4000, nullable=true)
      */
     private $name;
 
@@ -209,5 +209,45 @@ class Conference
     {
         $this->references = $references;
     }
-}
 
+    public function __toString()
+    {
+        if ($this->getName() !== null) {
+            return $this->getName() . " (" . $this->getCode() . ")";
+        } else {
+            return $this->getCode();
+        }
+
+    }
+    /**
+     * Constructor
+     */
+    public function __construct()
+    {
+        $this->references = new \Doctrine\Common\Collections\ArrayCollection();
+    }
+
+    /**
+     * Add reference
+     *
+     * @param \AppBundle\Entity\Reference $reference
+     *
+     * @return Conference
+     */
+    public function addReference(\AppBundle\Entity\Reference $reference)
+    {
+        $this->references[] = $reference;
+
+        return $this;
+    }
+
+    /**
+     * Remove reference
+     *
+     * @param \AppBundle\Entity\Reference $reference
+     */
+    public function removeReference(\AppBundle\Entity\Reference $reference)
+    {
+        $this->references->removeElement($reference);
+    }
+}
