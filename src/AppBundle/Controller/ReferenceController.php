@@ -2,6 +2,7 @@
 
 namespace AppBundle\Controller;
 
+use AppBundle\Entity\Conference;
 use AppBundle\Entity\Reference;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\Routing\Annotation\Route;
@@ -39,11 +40,15 @@ class ReferenceController extends Controller
     /**
      * Creates a new reference entity.
      *
-     * @Route("/new", name="reference_new")
+     * @Route("/new/{id}", name="reference_new", defaults={"id": null})
+     * @param Request $request
+     * @param Conference|null $conference
+     * @return \Symfony\Component\HttpFoundation\RedirectResponse|\Symfony\Component\HttpFoundation\Response
      */
-    public function newAction(Request $request)
+    public function newAction(Request $request, Conference $conference = null)
     {
         $reference = new Reference();
+        $reference->setConference($conference);
         $form = $this->createForm('AppBundle\Form\ReferenceType', $reference);
         $form->handleRequest($request);
 

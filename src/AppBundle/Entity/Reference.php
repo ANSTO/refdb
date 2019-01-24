@@ -11,7 +11,7 @@ use Doctrine\ORM\Mapping as ORM;
  * @ORM\Table(name="reference")
  * @ORM\Entity(repositoryClass="AppBundle\Repository\ReferenceRepository")
  */
-class Reference
+class Reference implements \JsonSerializable
 {
     /**
      * @var int
@@ -50,8 +50,8 @@ class Reference
     private $author;
 
     /**
-     * @ORM\ManyToMany(targetEntity="AppBundle\Entity\Author")
-     * @var ArrayCollection
+     * @ORM\ManyToMany(targetEntity="AppBundle\Entity\Author", inversedBy="references")
+     * @ORM\JoinTable()
      */
     private $authors;
 
@@ -443,5 +443,13 @@ class Reference
     public function setCache($cache)
     {
         $this->cache = $cache;
+    }
+
+    public function jsonSerialize()
+    {
+        return [
+            "id" => $this->getId(),
+            "name" => $this->getCache()
+        ];
     }
 }

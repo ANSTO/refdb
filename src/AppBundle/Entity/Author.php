@@ -11,7 +11,7 @@ use Doctrine\ORM\Mapping as ORM;
  * @ORM\Table(name="author")
  * @ORM\Entity(repositoryClass="AppBundle\Repository\AuthorRepository")
  */
-class Author
+class Author implements \JsonSerializable
 {
     /**
      * @var int
@@ -30,7 +30,7 @@ class Author
     private $name;
 
     /**
-     * @ORM\ManyToMany(targetEntity="AppBundle\Entity\Reference")
+     * @ORM\ManyToMany(targetEntity="AppBundle\Entity\Reference", mappedBy="authors")
      * @var ArrayCollection
      */
     private $references;
@@ -57,6 +57,11 @@ class Author
         $this->name = $name;
 
         return $this;
+    }
+
+    public function __toString()
+    {
+        return $this->getName();
     }
 
     /**
@@ -103,5 +108,20 @@ class Author
     public function removeReference(\AppBundle\Entity\Reference $reference)
     {
         $this->references->removeElement($reference);
+    }
+
+    /**
+     * Specify data which should be serialized to JSON
+     * @link https://php.net/manual/en/jsonserializable.jsonserialize.php
+     * @return mixed data which can be serialized by <b>json_encode</b>,
+     * which is a value of any type other than a resource.
+     * @since 5.4.0
+     */
+    public function jsonSerialize()
+    {
+        return [
+            "id"=>$this->getId(),
+            "name"=>$this->getName()
+        ];
     }
 }

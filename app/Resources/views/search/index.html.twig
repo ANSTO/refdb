@@ -1,5 +1,25 @@
 {% extends 'base.html.twig' %}
 
+{% block javascripts %}
+   {{ parent() }}
+
+   <script>
+      $("form input").change(function() {
+         $.post(Routing.generate('search'), $("form").serialize(), function(content){
+            var results = $("#results");
+
+            results.empty();
+            $.each(content, function(key,item) {
+               results.append("<li>" + item.name + "</li>");
+            })
+
+            $("#no-results").toggle(content.length == 0)
+         },"json");
+      });
+
+
+   </script>
+{% endblock %}
 {% block body %}
    <div class="row">
       <div class="col">
@@ -14,8 +34,20 @@
       </div>
       <div class="col">
          <h2>Results</h2>
+         <br />
+         <em id="no-results"
+                 {% if references|length != 0 %}
+            style="display:none"
+                 {% endif %}>No results found.</em>
 
-         <em>No results found.</em>
+
+         <ul id="results">
+            {% for reference in references %}
+               <li>{{ reference.cache|latin }}</li>
+            {% endfor %}
+         </ul>
+
+
       </div>
    </div>
 {% endblock %}

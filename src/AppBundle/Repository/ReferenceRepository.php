@@ -2,6 +2,9 @@
 
 namespace AppBundle\Repository;
 
+use AppBundle\Entity\Search;
+use Doctrine\ORM\Query\Expr\Join;
+
 /**
  * ReferenceRepository
  *
@@ -10,4 +13,48 @@ namespace AppBundle\Repository;
  */
 class ReferenceRepository extends \Doctrine\ORM\EntityRepository
 {
+    public function search(Search $search) {
+
+        $query = $this->createQueryBuilder("r");
+
+        $query
+            ->join("r.conference","c");
+
+        if ($search->getConference() !== null) {
+            $query
+                ->andWhere("c.code LIKE :conf")
+                ->orWhere("c.name LIKE :conf")
+                ->setParameter("conf", "%" . $search->getConference() . "%");
+        }
+
+        if ($search->getLocation() !== null) {
+            $query->andWhere("c.location LIKE :location")
+                ->setParameter("location", "%" . $search->getLocation() . "%");
+        }
+
+        if ($search->getDate() !== null) {
+            $query->andWhere("c.year LIKE :year")
+                ->setParameter("year", "%" . $search->getDate() . "%");
+        }
+
+        if ($search->getPaperId() !== null) {
+            $query->andWhere("r.paperId LIKE :paperId")
+                ->setParameter("paperId", "%" . $search->getPaperId() . "%");
+        }
+
+        if ($search->getTitle() !== null) {
+            $query->andWhere("r.title LIKE :title")
+                ->setParameter("title", "%" . $search->getTitle() . "%");
+        }
+        if ($search->getAuthor() !== null) {
+            $query->innerJoin("r.authors","a", Join::WITH, "a.name LIKE :author")
+                ->setParameter("author", "%" . $search->getAuthor() . "%");
+        }
+
+
+        return $query
+            ->setMaxResults(10)
+            ->getQuery()
+            ->getResult();
+    }
 }

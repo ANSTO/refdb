@@ -217,7 +217,10 @@ class Conference
         } else {
             return $this->getCode();
         }
+    }
 
+    public function getPlain() {
+        return strip_tags($this->__toString());
     }
     /**
      * Constructor

@@ -19,4 +19,11 @@
   padding: 10px 20px;
 }
 
+#results {
+  margin-top: 0;
+}
+#results li {
+  margin: 10px 0 20px 0;
+}
+
 /*# sourceMappingURL=website.css.map */
