@@ -38,6 +38,15 @@
 
     {% block body %}
     {% endblock %}
+
+
+    <div class="modal fade ajaxModal" id="ajaxModal" tabindex="-1" role="dialog" aria-labelledby="ajaxModal">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+
+            </div>
+        </div>
+    </div>
 </div>
 {% block javascripts %}
     <script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
@@ -45,6 +54,7 @@
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
     <script src="{{ asset('bundles/fosjsrouting/js/router.min.js') }}"></script>
     <script src="{{ path('fos_js_routing_js', { callback: 'fos.Router.setData' }) }}"></script>
+    <script src="{{ asset("js/global.js") }}"></script>
 {% endblock %}
 </body>
 </html>

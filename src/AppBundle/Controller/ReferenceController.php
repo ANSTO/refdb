@@ -5,6 +5,7 @@ namespace AppBundle\Controller;
 use AppBundle\Entity\Conference;
 use AppBundle\Entity\Reference;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
+use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Component\HttpFoundation\Request;
 
@@ -69,7 +70,7 @@ class ReferenceController extends Controller
     /**
      * Finds and displays a reference entity.
      *
-     * @Route("/show/{id}", name="reference_show")
+     * @Route("/show/{id}", name="reference_show", options={"expose"=true})
      */
     public function showAction(Reference $reference)
     {
@@ -119,10 +120,14 @@ class ReferenceController extends Controller
             $em = $this->getDoctrine()->getManager();
             $em->remove($reference);
             $em->flush();
+            return new JsonResponse([
+                "success" => true,
+                "redirect" => $this->generateUrl("reference_index")]);
         }
 
-        return $this->redirectToRoute('reference_index');
+        return $this->render("reference/delete.html.twig", array("delete_form"=>$form->createView()));
     }
+
 
     /**
      * Creates a form to delete a reference entity.

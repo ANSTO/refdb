@@ -50,7 +50,7 @@ class Reference implements \JsonSerializable
     private $author;
 
     /**
-     * @ORM\ManyToMany(targetEntity="AppBundle\Entity\Author", inversedBy="references")
+     * @ORM\ManyToMany(targetEntity="AppBundle\Entity\Author", mappedBy="references")
      * @ORM\JoinTable()
      */
     private $authors;

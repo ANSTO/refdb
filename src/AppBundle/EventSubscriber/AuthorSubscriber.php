@@ -41,7 +41,7 @@ class AuthorSubscriber implements EventSubscriber
                 $entity->setEtAl(false);
             }
 
-            preg_match_all("/(((([A-Z]{1}\.[ ]?){1,2}) ([A-Z]{1}[a-z]+))( [\(\[][^\)\]]+\)\]?)?)/",$src, $matches);
+            preg_match_all("/(((([A-Z]{1}\.[ ]?){1,2}) ([A-Z]{1}[a-z\-]+)*)( [\(\[][^\)\]]+\)\]?)?)/",$src, $matches);
 
             $authors = $matches[2];
             $manager = $args->getObjectManager();
@@ -54,7 +54,7 @@ class AuthorSubscriber implements EventSubscriber
                     $author = substr($author, 0, 4);
                 }
 
-                if (preg_match_all("/^(([A-Z]{1}\.[ ]?){1,2}) ([A-Z]{1}[a-z]+)$/",$author, $matches) == true) {
+                if (preg_match_all("/^(([A-Z]{1}\.[ ]?){1,2}) ([A-Z]{1}[a-z\-]+)*$/",$author, $matches) == true) {
 
 
                     $count++;
@@ -62,12 +62,27 @@ class AuthorSubscriber implements EventSubscriber
                     if ($firstAuthor == "") {
                         $firstAuthor = $author;
                     }
-                    $auth = $repo->findOneBy(['name'=>$author]);
 
-                    if ($auth === null) {
+                    $auths = $repo->findBy(['name'=>$author]);
+
+
+                    if (count($auths) == 0) {
                         $auth = new Author();
                         $auth->setName($author);
                         $manager->persist($auth);
+                    } else {
+                        $auth = $auths[0];
+                        if (count($auths) > 1) {
+                            /** @var Author[] $other_auths */
+                            $other_auths = array_slice($auths, 1);
+                            foreach ($other_auths as $other_auth) {
+                                foreach ($other_auth->getReferences() as $other_auth_ref) {
+                                    $auth->addReference($other_auth_ref);
+
+                                }
+                                $manager->remove($other_auth);
+                            }
+                        }
                     }
 
                     if ($auth->getReferences()->contains($entity) == false) {

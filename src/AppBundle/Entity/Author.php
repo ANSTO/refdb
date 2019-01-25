@@ -30,7 +30,7 @@ class Author implements \JsonSerializable
     private $name;
 
     /**
-     * @ORM\ManyToMany(targetEntity="AppBundle\Entity\Reference", mappedBy="authors")
+     * @ORM\ManyToMany(targetEntity="AppBundle\Entity\Reference", inversedBy="authors", orphanRemoval=true)
      * @var ArrayCollection
      */
     private $references;
@@ -74,7 +74,7 @@ class Author implements \JsonSerializable
         return $this->name;
     }
 
-    public function addReference($reference) {
+    public function addReference(Reference $reference) {
         $this->references->add($reference);
     }
     /**

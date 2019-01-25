@@ -39,13 +39,6 @@ class Conference
 
     /**
      * @var string
-     *
-     * @ORM\Column(name="folder", type="string", length=255, nullable=true)
-     */
-    private $folder;
-
-    /**
-     * @var string
      * @Assert\Regex("/^[A-Z]{1}[a-z]{2} [0-9]{4}$/", message="Please format the time held in the format MMM YYYY")
      * @ORM\Column(name="year", type="string", length=255)
      */
@@ -120,30 +113,6 @@ class Conference
     public function getCode()
     {
         return $this->code;
-    }
-
-    /**
-     * Set folder
-     *
-     * @param string $folder
-     *
-     * @return Conference
-     */
-    public function setFolder($folder)
-    {
-        $this->folder = $folder;
-
-        return $this;
-    }
-
-    /**
-     * Get folder
-     *
-     * @return string
-     */
-    public function getFolder()
-    {
-        return $this->folder;
     }
 
     /**

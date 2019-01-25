@@ -10,7 +10,7 @@
 
             results.empty();
             $.each(content, function(key,item) {
-               results.append("<li>" + item.name + "</li>");
+               results.append("<li><a href='" + Routing.generate("reference_show", {"id": item.id }) + "'>" + item.name + "</a></li>");
             })
 
             $("#no-results").toggle(content.length == 0)
@@ -43,7 +43,7 @@
 
          <ul id="results">
             {% for reference in references %}
-               <li>{{ reference.cache|latin }}</li>
+               <li><a href="{{ path("reference_show", {"id": reference.id }) }}">{{ reference.cache|latin }}</a></li>
             {% endfor %}
          </ul>
 

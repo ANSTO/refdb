@@ -15,7 +15,6 @@ class ConferenceType extends AbstractType
     {
         $builder->add('name')
             ->add('code', null, array("label"=>"Conference Code (format ACRONYM'YY)"))
-            ->add('folder')
             ->add('year',null,array("label"=>"Month Year (format MMM YYYY)"))
             ->add('location', null, array("label"=>"City, State (if USA), Country"));
     }/**

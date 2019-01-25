@@ -4,6 +4,7 @@ namespace AppBundle\Controller;
 
 use AppBundle\Entity\Author;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
+use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Component\HttpFoundation\Request;
 
@@ -115,9 +116,12 @@ class AuthorController extends Controller
             $em = $this->getDoctrine()->getManager();
             $em->remove($author);
             $em->flush();
+            return new JsonResponse([
+                "success" => true,
+                "redirect" => $this->generateUrl("author_index")]);
         }
 
-        return $this->redirectToRoute('author_index');
+        return $this->render("author/delete.html.twig", array("delete_form"=>$form->createView()));
     }
 
     /**

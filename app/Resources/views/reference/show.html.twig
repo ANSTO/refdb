@@ -3,13 +3,19 @@
 {% block body %}
     <div class="float-right btn-group">
         <a class=" btn btn-primary" href="{{ path('reference_edit', { 'id': reference.id }) }}"><i class="fas fa-edit"></i> Edit</a>
-        <button class="btn btn-danger" type="button" data-href="{{ path('reference_delete', { 'id': reference.id }) }}"><i class="fas fa-trash"></i> Delete</button>
+        <button class="btn btn-danger btn-modal" type="button" data-href="{{ path('reference_delete', { 'id': reference.id }) }}"><i class="fas fa-trash"></i> Delete</button>
     </div>
     <h2>Reference</h2>
 
     <br />
+    <h3>Word</h3>
+    <br />
     <p>{{ reference|latin }}</p>
 
+    <br />
+    <h3>LaTeX</h3>
+    <br />
+    <p> <textarea class="form-control">N/A</textarea></p>
 
     <br />
     <a class="btn btn-default" href="{{ path('reference_index') }}"><i class="fas fa-arrow-left"></i> Back to the list</a>

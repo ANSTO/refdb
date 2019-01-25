@@ -20,7 +20,10 @@ class ReferenceRepository extends \Doctrine\ORM\EntityRepository
         $query
             ->join("r.conference","c");
 
+        $searching = false;
+
         if ($search->getConference() !== null) {
+            $searching = true;
             $query
                 ->andWhere("c.code LIKE :conf")
                 ->orWhere("c.name LIKE :conf")
@@ -28,32 +31,41 @@ class ReferenceRepository extends \Doctrine\ORM\EntityRepository
         }
 
         if ($search->getLocation() !== null) {
+            $searching = true;
             $query->andWhere("c.location LIKE :location")
                 ->setParameter("location", "%" . $search->getLocation() . "%");
         }
 
         if ($search->getDate() !== null) {
+            $searching = true;
             $query->andWhere("c.year LIKE :year")
                 ->setParameter("year", "%" . $search->getDate() . "%");
         }
 
         if ($search->getPaperId() !== null) {
+            $searching = true;
             $query->andWhere("r.paperId LIKE :paperId")
                 ->setParameter("paperId", "%" . $search->getPaperId() . "%");
         }
 
         if ($search->getTitle() !== null) {
+            $searching = true;
             $query->andWhere("r.title LIKE :title")
                 ->setParameter("title", "%" . $search->getTitle() . "%");
         }
         if ($search->getAuthor() !== null) {
+            $searching = true;
             $query->innerJoin("r.authors","a", Join::WITH, "a.name LIKE :author")
                 ->setParameter("author", "%" . $search->getAuthor() . "%");
         }
 
+        if ($searching == false) {
+            return [];
+        }
+
 
         return $query
-            ->setMaxResults(10)
+            ->setMaxResults(5)
             ->getQuery()
             ->getResult();
     }

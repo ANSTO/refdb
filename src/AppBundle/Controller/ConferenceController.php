@@ -4,6 +4,7 @@ namespace AppBundle\Controller;
 
 use AppBundle\Entity\Conference;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
+use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Component\HttpFoundation\Request;
 
@@ -114,9 +115,12 @@ class ConferenceController extends Controller
             $em = $this->getDoctrine()->getManager();
             $em->remove($conference);
             $em->flush();
+            return new JsonResponse([
+                "success" => true,
+                "redirect" => $this->generateUrl("conference_index")]);
         }
 
-        return $this->redirectToRoute('conference_index');
+        return $this->render("conference/delete.html.twig", array("delete_form"=>$form->createView()));
     }
 
     /**
@@ -132,6 +136,6 @@ class ConferenceController extends Controller
             ->setAction($this->generateUrl('conference_delete', array('id' => $conference->getId())))
             ->setMethod('DELETE')
             ->getForm()
-        ;
+            ;
     }
 }
