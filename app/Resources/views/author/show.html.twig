@@ -16,7 +16,7 @@
         <p><em>No references found for this author.</em></p>
     {% endif %}
     {% for reference in author.references %}
-        {{ reference|latin }}
+        <a href="{{ path('reference_show', {'id': reference.id }) }}">{{ reference|latin }}</a>
         <br /><br />
     {% endfor %}
 
