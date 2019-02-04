@@ -15,7 +15,7 @@
         <p><em>No references found for this conference.</em></p>
     {% endif %}
     {% for reference in conference.references %}
-        {{ reference|latin }}<br /><br />
+        <a href="{{ path('reference_show', {'id': reference.id }) }}">{{ reference|latin }}</a><br /><br />
     {% endfor %}
     <br />
     <a class="btn btn-default" href="{{ path('conference_index') }}"><i class="fas fa-arrow-left"></i> Back to the list</a>
