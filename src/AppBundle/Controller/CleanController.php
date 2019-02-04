@@ -19,6 +19,22 @@ class CleanController extends Controller
 
     /**
      * Lists all author entities.
+     * @Route("/author/list", name="reference_author_clean")
+     */
+    public function authorListAction(Request $request)
+    {
+        $manager = $this->getDoctrine()->getManager();
+        $references = $manager->getRepository(Reference::class)->findBy([]);
+        /** @var Reference $ref */
+        foreach ($references as $ref) {
+            $ref->setAuthor($ref->getAuthor() . " ");
+        }
+        $manager->flush();
+
+        return $this->redirectToRoute("author_clean");
+    }
+    /**
+     * Lists all author entities.
      * @Route("/authors", name="author_clean")
      */
     public function authorAction(Request $request)
@@ -53,12 +69,12 @@ class CleanController extends Controller
 
         }
 
-        echo $removed . " excess authors removed";
+        //echo $removed . " excess authors removed";
 
         $manager->flush();
 
 
-        return new Response("");
+        return $this->redirectToRoute("cache_clean");
     }
 
 
@@ -85,11 +101,11 @@ class CleanController extends Controller
 
         }
 
-        echo $cleaned . " total adjustments made";
+        //echo $cleaned . " total adjustments made";
         $manager->flush();
 
 
-        return new Response("");
+        return $this->redirectToRoute("upload_index");
     }
 
 

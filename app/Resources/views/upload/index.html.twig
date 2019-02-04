@@ -1,0 +1,15 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+
+   <h2>Upload Conference</h2>
+
+   <br />
+   {{ form_start(form) }}
+      {{ form_row(form.conference) }}
+      {{ form_row(form.file) }}
+      {{ form_rest(form) }}
+      <br />
+      <button type="submit" class="btn btn-primary btn-lg btn-block">Upload</button>
+   {{ form_end(form) }}
+{% endblock %}

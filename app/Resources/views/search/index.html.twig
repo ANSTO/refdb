@@ -5,19 +5,26 @@
 
    <script>
       $("form input").change(function() {
+         triggerSearch();
+      });
+
+      $("form").submit(function() {
+         triggerSearch();
+         return false;
+      });
+
+      function triggerSearch() {
          $.post(Routing.generate('search'), $("form").serialize(), function(content){
             var results = $("#results");
 
             results.empty();
             $.each(content, function(key,item) {
                results.append("<li><a href='" + Routing.generate("reference_show", {"id": item.id }) + "'>" + item.name + "</a></li>");
-            })
+            });
 
             $("#no-results").toggle(content.length == 0)
          },"json");
-      });
-
-
+      }
    </script>
 {% endblock %}
 {% block body %}
@@ -25,11 +32,13 @@
       <div class="col">
          <h2>Search by</h2>
 
+         <br />
          {{ form_start(form) }}
 
          {{ form_widget(form) }}
-
+         <br />
          <button type="submit" class="btn btn-primary btn-block btn-lg">Search</button>
+         <button type="reset" class="btn btn-light btn-block btn-lg">Clear Filters</button>
          {{ form_end(form) }}
       </div>
       <div class="col">
@@ -39,7 +48,6 @@
                  {% if references|length != 0 %}
             style="display:none"
                  {% endif %}>No results found.</em>
-
 
          <ul id="results">
             {% for reference in references %}

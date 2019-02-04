@@ -29,6 +29,7 @@ class AuthorSubscriber implements EventSubscriber
 
     public function index(LifecycleEventArgs $args)
     {
+        $accChars = "àèìòùÀÈÌÒÙáéíóúýÁÉÍÓÚÝâêîôûÂÊÎÔÛãñõÃÑÕäëïöüÿÄËÏÖÜŸçÇßØøÅåÆæœ";
         $entity = $args->getObject();
         if ($entity instanceof Reference) {
             $entityManager = $args->getObjectManager();
@@ -41,22 +42,28 @@ class AuthorSubscriber implements EventSubscriber
                 $entity->setEtAl(false);
             }
 
-            preg_match_all("/(((([A-Z]{1}\.[ ]?){1,2}) ([A-Z]{1}[a-z\-]+)*)( [\(\[][^\)\]]+\)\]?)?)/",$src, $matches);
+            preg_match_all("/((((([A-Z" . $accChars . "]{1}\.[ ]?){1,2}) ([A-Z" . $accChars . "]{1}[a-z" . $accChars . "\-]+)*))( [\(\[][^\)\]]+\)\]?)?)/",$src, $matches);
 
-            $authors = $matches[2];
+            if (count($matches[1]) == 0) {
+                return;
+            }
+            $authors = $matches[1];
             $manager = $args->getObjectManager();
             $repo = $manager->getRepository(Author::class);
             $count = 0;
             $firstAuthor = "";
+            $outputAuths = [];
             foreach ($authors as $author) {
+
+
                 $author = trim($author);
                 if (substr($author, 0, 4) == "and ") {
                     $author = substr($author, 0, 4);
                 }
 
-                if (preg_match_all("/^(([A-Z]{1}\.[ ]?){1,2}) ([A-Z]{1}[a-z\-]+)*$/",$author, $matches) == true) {
+                $outputAuths[] = $author;
 
-
+                if (preg_match_all("/^(([A-Z" . $accChars . "]{1}\.[ ]?){1,2}) ([A-Z" . $accChars . "]{1}[a-z" . $accChars . "\-]+)*$/",$author, $matches) == true) {
                     $count++;
                     $author = str_replace(" ", "", $matches[1][0]) . " " . $matches[3][0];
                     if ($firstAuthor == "") {
@@ -92,9 +99,15 @@ class AuthorSubscriber implements EventSubscriber
                 }
             }
 
-            if ($count > 6) {
+            if ($count > 6 || $entity->getEtAl()) {
                 $entity->setAuthor($firstAuthor . " et al.");
                 $entity->setEtAl(true);
+            } else {
+                if (count($outputAuths) <= 2) {
+                    $entity->setAuthor(implode(" and ", $outputAuths));
+                } else {
+                    $entity->setAuthor(implode(', ', array_slice($outputAuths, 0, -1)) . ', and ' . end($outputAuths));
+                }
             }
         }
     }

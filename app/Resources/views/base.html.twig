@@ -29,12 +29,24 @@
                     <li class="nav-item {{ "conference" in app.request.uri ? "active" : "" }}">
                         <a class="nav-link" href="{{ path("conference_index") }}">Conferences</a>
                     </li>
+                    <li class="nav-item {{ "report" in app.request.uri ? "active" : "" }}">
+                        <a class="nav-link" href="{{ path("report_index") }}">Reports</a>
+                    </li>
+                    <li class="nav-item {{ "upload" in app.request.uri ? "active" : "" }}">
+                        <a class="nav-link" href="{{ path("upload_index") }}">Upload</a>
+                    </li>
                 </ul>
             </div>
         </div>
     </div>
 </div>
 <div class="container">
+
+    {% for message in app.flashes('notice') %}
+        <div class="flash-notice alert alert-info" role="alert">
+            {{ message }}
+        </div>
+    {% endfor %}
 
     {% block body %}
     {% endblock %}
