@@ -39,7 +39,7 @@ class Conference
 
     /**
      * @var string
-     * @Assert\Regex("/^[A-Z]{1}[a-z]{2} [0-9]{4}$/", message="Please format the time held in the format MMM YYYY")
+     * Assert\Regex("/^[A-Z]{1}[a-z]{2} [0-9]{4}$/", message="Please format the time held in the format MMM YYYY")
      * @ORM\Column(name="year", type="string", length=255)
      */
     private $year;
