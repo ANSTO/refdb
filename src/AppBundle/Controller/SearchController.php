@@ -27,6 +27,9 @@ class SearchController extends Controller
 
         $references = [];
         if ($form->isSubmitted() && $form->isValid()) {
+            $manager = $this->getDoctrine()->getManager();
+            $manager->persist($search);
+            $manager->flush();
             $references = $this->getDoctrine()->getManager()
                 ->getRepository(Reference::class)->search($search);
         }
@@ -53,6 +56,9 @@ class SearchController extends Controller
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
+            $manager = $this->getDoctrine()->getManager();
+            $manager->persist($search);
+            $manager->flush();
             $response = $this->getDoctrine()->getManager()
                 ->getRepository(Reference::class)->search($search);
         }

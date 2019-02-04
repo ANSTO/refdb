@@ -5,6 +5,7 @@ namespace AppBundle\Controller;
 use AppBundle\Entity\Author;
 use AppBundle\Entity\Conference;
 use AppBundle\Entity\Reference;
+use AppBundle\Entity\Search;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
@@ -61,6 +62,14 @@ class ReportController extends Controller
             ->getQuery()
             ->getArrayResult();
 
+
+        // malformed authors
+        $searches = $manager->getRepository(Search::class)
+            ->createQueryBuilder("s")
+            ->select("count(s)")
+            ->getQuery()
+            ->getSingleScalarResult();
+
         $malformed = 0;
         $malformedIds = [];
         foreach ($authorList as $ref) {
@@ -72,12 +81,17 @@ class ReportController extends Controller
         }
 
 
+        $emptyConference = $manager->getRepository(Conference::class)->findEmpty();
+
+
         return $this->render("report/index.html.twig", array(
                 "references" => $references,
                 "authors" => $authors,
                 "conferences" => $conferences,
                 "pages" => $missingPages,
                 "malformed" => $malformed,
+                "searches" => $searches,
+                "empty" => $emptyConference,
                 "malformedIds" => $malformedIds)
         );
     }
