@@ -53,6 +53,10 @@
                         <li class="nav-item {{ "register" in app.request.uri ? "active" : "" }}">
                             <a class="nav-link" href="{{ path("fos_user_registration_register") }}">Register</a>
                         </li>
+                    {% else %}
+                        <li class="nav-item">
+                            <a class="nav-link" href="{{ path("fos_user_security_logout") }}">Logout</a>
+                        </li>
                     {% endif %}
                 </ul>
             </div>
