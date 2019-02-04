@@ -13,22 +13,18 @@
                 <li>Total references: {{ references }}</li>
                 <li>Total conferences: {{ conferences }}</li>
                 <li>Total authors: {{ authors }}</li>
-                <li>Total searches performed: TBA</li>
-                <li>Total community adjustments: TBA</li>
+                <li>Total searches performed: {{ searches }}</li>
             </ul>
         </div>
         <div class="col">
             <h3>Negatives</h3>
             <br />
             <ul>
-
                 <li><a href="{{ path("pages_report") }}">References Missing pages: {{ pages }} ({{ (pages / references * 100)|round(0) }}%)</a></li>
                 <li><a href="{{ path("id_report", {"filter": malformedIds|join(",") }) }}">References Malformed Authors: {{ malformed }} ({{ (malformed / references * 100)|round(0) }}%)</a></li>
-                <li>Conferences with no references: TBA</li>
-                <li>Missing ISBN: TBA</li>
-                <li>Missing DOI: TBA</li>
-                <li>Unregistered DOI: TBA</li>
-                <li>Conferences with pages missing: TBA</li>
+                <li><a href="{{ path("id_conference", {"filter": emptyIds|join(",") }) }}">Conferences with no references: {{ empty }} ({{ (empty / conferences * 100)|round(0) }}%)</a></li>
+                {#<li>Unregistered DOI: TBA</li>#}
+                {#<li>Conferences with pages missing: TBA</li>#}
             </ul>
         </div>
     </div>

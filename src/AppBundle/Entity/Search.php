@@ -53,7 +53,7 @@ class Search
 
     /**
      * @var string
-     * @ORM\Column(type="string", length=255, nullable=true)
+     * @ORM\Column(type="string", name="searchby_date", length=255, nullable=true)
      */
     private $date;
 
