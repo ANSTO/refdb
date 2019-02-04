@@ -1,27 +1,33 @@
 {% extends 'base.html.twig' %}
 
 {% block body %}
-    <a class="float-right btn btn-success" href="{{ path('author_new') }}"><i class="fas fa-plus"></i> Add Author</a>
+    {% if is_granted("ROLE_ADMIN") %}
+        <a class="float-right btn btn-success" href="{{ path('author_new') }}"><i class="fas fa-plus"></i> Add Author</a>
+    {% endif %}
     <h2>Authors</h2>
     <br />
     <div>
-    {{ knp_pagination_filter(pagination, {'a.name': 'Name'}) }}
+        {{ knp_pagination_filter(pagination, {'a.name': 'Name'}) }}
     </div>
     <br />
     <table class="table table-striped">
         <thead>
         <tr>
             <th{% if pagination.isSorted('a.name') %} class="sorted"{% endif %}>{{ knp_pagination_sortable(pagination, 'Name', 'a.name') }}</th>
-            <th class="text-center">Actions</th>
+            {% if is_granted("ROLE_ADMIN") %}
+                <th class="text-center">Actions</th>
+            {% endif %}
         </tr>
         </thead>
         <tbody>
         {% for author in pagination %}
             <tr>
                 <td><a href="{{ path('author_show', { 'id': author.id }) }}">{{ author.name }}</a></td>
-                <td class="text-center" width="150">
-                    <a href="{{ path('author_edit', { 'id': author.id }) }}"><i class="fas fa-edit"></i> Edit</a>
-                </td>
+                {% if is_granted("ROLE_ADMIN") %}
+                    <td class="text-center" width="150">
+                        <a href="{{ path('author_edit', { 'id': author.id }) }}"><i class="fas fa-edit"></i> Edit</a>
+                    </td>
+                {% endif %}
             </tr>
         {% endfor %}
         </tbody>
