@@ -1,8 +1,9 @@
 {% extends 'base.html.twig' %}
 
 {% block body %}
-
+    {% if is_granted("ROLE_ADMIN") %}
     <a href="{{ path('conference_new') }}" class="float-right btn btn-success"><i class="fas fa-plus"></i> Add Conference</a>
+    {% endif %}
     <h2>Conferences</h2>
 
     <br />
@@ -24,7 +25,9 @@
             {% if filtered %}
                 <th>{{ label }}</th>
             {% endif %}
+            {% if is_granted("ROLE_ADMIN") %}
             <th class="text-center">Actions</th>
+            {% endif %}
         </tr>
         </thead>
         <tbody>
@@ -39,9 +42,11 @@
                     {{ attribute(conference, field)|latin }}
                 </td>
                 {% endif %}
+                {% if is_granted("ROLE_ADMIN") %}
                 <td class="text-center" width="150">
                     <a href="{{ path('conference_edit', { 'id': conference.id }) }}"><i class="fas fa-edit"></i> Edit</a>
                 </td>
+                {% endif %}
             </tr>
         {% endfor %}
         </tbody>
