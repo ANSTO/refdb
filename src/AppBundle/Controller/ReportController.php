@@ -83,6 +83,13 @@ class ReportController extends Controller
 
         $emptyConference = $manager->getRepository(Conference::class)->findEmpty();
 
+        $empty = count($emptyConference);
+        $emptyIds = [];
+        /** @var Conference $conf */
+        foreach ($emptyConference as $conf) {
+            $emptyIds[] = $conf->getId();
+        }
+
 
         return $this->render("report/index.html.twig", array(
                 "references" => $references,
@@ -91,7 +98,8 @@ class ReportController extends Controller
                 "pages" => $missingPages,
                 "malformed" => $malformed,
                 "searches" => $searches,
-                "empty" => $emptyConference,
+                "empty" => $empty,
+                "emptyIds" => $emptyIds,
                 "malformedIds" => $malformedIds)
         );
     }
@@ -99,7 +107,7 @@ class ReportController extends Controller
 
     /**
      * Lists all author entities.
-     * @Route("/id", name="id_report")
+     * @Route("/ref/id", name="id_report")
      */
     public function reportAction(Request $request)
     {
@@ -120,6 +128,31 @@ class ReportController extends Controller
 
         // parameters to template
         return $this->render('report/reference.html.twig', array('pagination' => $pagination));
+    }
+
+    /**
+     * Lists all author entities.
+     * @Route("/conf/id", name="id_conference")
+     */
+    public function conferenceAction(Request $request)
+    {
+        $ids = explode(",", $request->get("filter"));
+        $manager = $this->getDoctrine()->getManager();
+        $query = $manager->getRepository(Conference::class)
+            ->createQueryBuilder("c")
+            ->select("c")
+            ->where("c.id IN (:ids)")
+            ->setParameter("ids", $ids);
+
+        $paginator  = $this->get('knp_paginator');
+        $pagination = $paginator->paginate(
+            $query,
+            $request->query->getInt('page', 1),
+            10
+        );
+
+        // parameters to template
+        return $this->render('report/conference.html.twig', array('pagination' => $pagination));
     }
 
 

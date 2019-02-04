@@ -12,8 +12,8 @@ class ConferenceRepository extends \Doctrine\ORM\EntityRepository
 {
     public function findEmpty() {
         $em = $this->getEntityManager();
-        $query = $em->createQuery("SELECT count(c) FROM AppBundle:Conference c WHERE 0 = (SELECT count(r) FROM AppBundle:Reference r WHERE c = r.conference)");
+        $query = $em->createQuery("SELECT c FROM AppBundle:Conference c WHERE 0 = (SELECT count(r) FROM AppBundle:Reference r WHERE c = r.conference)");
 
-        return $query->getSingleScalarResult();
+        return $query->getResult();
     }
 }
