@@ -1,10 +1,12 @@
 {% extends 'base.html.twig' %}
 
 {% block body %}
-    <div class="float-right btn-group">
-        <a class=" btn btn-primary" href="{{ path('reference_edit', { 'id': reference.id }) }}"><i class="fas fa-edit"></i> Edit</a>
-        <button class="btn btn-danger btn-modal" type="button" data-href="{{ path('reference_delete', { 'id': reference.id }) }}"><i class="fas fa-trash"></i> Delete</button>
-    </div>
+    {% if is_granted("ROLE_ADMIN") %}
+        <div class="float-right btn-group">
+            <a class=" btn btn-primary" href="{{ path('reference_edit', { 'id': reference.id }) }}"><i class="fas fa-edit"></i> Edit</a>
+            <button class="btn btn-danger btn-modal" type="button" data-href="{{ path('reference_delete', { 'id': reference.id }) }}"><i class="fas fa-trash"></i> Delete</button>
+        </div>
+    {% endif %}
     <h2>Reference</h2>
 
     <br />

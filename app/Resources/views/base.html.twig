@@ -39,9 +39,11 @@
                     <li class="nav-item {{ "report" in app.request.uri ? "active" : "" }}">
                         <a class="nav-link" href="{{ path("report_index") }}">Reports</a>
                     </li>
+                    {% if is_granted("ROLE_ADMIN") %}
                     <li class="nav-item {{ "upload" in app.request.uri ? "active" : "" }}">
                         <a class="nav-link" href="{{ path("upload_index") }}">Upload</a>
                     </li>
+                    {% endif %}
                 </ul>
             </div>
         </div>
