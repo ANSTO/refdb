@@ -1,19 +1,35 @@
 .header {
-  background-color: #0088CC;
   padding: 10px 0 0 0;
-  margin-bottom: 20px;
 }
 .header a, .header h1 {
+  color: #000000;
+  text-decoration: none;
+}
+
+.nav-area {
+  background-color: #0066ff;
+  margin-bottom: 20px;
+}
+.nav-area a, .nav-area h1 {
   color: #FFFFFF;
   text-decoration: none;
 }
 
+h1, h2, h3, h4, h5, h6 {
+  font-family: "Fira Sans", Helvetica, Arial, sans-serif;
+}
+
+body {
+  font-family: "Poppins", sans-serif;
+}
+
 .navbar {
+  padding-top: 0;
   padding-bottom: 0;
 }
 .navbar .active .nav-link {
   background-color: #FFFFFF;
-  color: #0088CC;
+  color: #0066ff;
 }
 .navbar .nav-link {
   padding: 10px 20px;
