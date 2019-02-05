@@ -39,14 +39,14 @@ class Conference
 
     /**
      * @var string
-     * Assert\Regex("/^[A-Z]{1}[a-z]{2} [0-9]{4}$/", message="Please format the time held in the format MMM YYYY")
+     * @Assert\Regex("/^((?!May. )(May|[A-Z]{1}[a-z]{2}\.)(\-(?!May. )(May|[A-Z]{1}[a-z]{2}\.))?) [0-9]{4}$/", message="Please the correct format the date held in the format MMM YYYY")
      * @ORM\Column(name="year", type="string", length=255)
      */
     private $year;
 
     /**
      * @var string
-     *
+     * @Assert\Regex("/^([A-Za-zàèìòùÀÈÌÒÙáéíóúýÁÉÍÓÚÝâêîôûÂÊÎÔÛãñõÃÑÕäëïöüÿÄËÏÖÜŸçÇßØøÅåÆæœ]+, (?!USA)[A-Za-zàèìòùÀÈÌÒÙáéíóúýÁÉÍÓÚÝâêîôûÂÊÎÔÛãñõÃÑÕäëïöüÿÄËÏÖÜŸçÇßØøÅåÆæœ]+|[A-Za-zàèìòùÀÈÌÒÙáéíóúýÁÉÍÓÚÝâêîôûÂÊÎÔÛãñõÃÑÕäëïöüÿÄËÏÖÜŸçÇßØøÅåÆæœ]+, [A-Za-zàèìòùÀÈÌÒÙáéíóúýÁÉÍÓÚÝâêîôûÂÊÎÔÛãñõÃÑÕäëïöüÿÄËÏÖÜŸçÇßØøÅåÆæœ]+, USA)$/")
      * @ORM\Column(name="location", type="string", length=2000)
      */
     private $location;
