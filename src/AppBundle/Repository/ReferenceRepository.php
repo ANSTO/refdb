@@ -25,38 +25,38 @@ class ReferenceRepository extends \Doctrine\ORM\EntityRepository
         if ($search->getConference() !== null) {
             $searching = true;
             $query
-                ->andWhere("c.code LIKE :conf")
-                ->orWhere("c.name LIKE :conf")
-                ->setParameter("conf", "%" . $search->getConference() . "%");
+                ->andWhere("LOWER(c.code) LIKE :conf")
+                ->orWhere("LOWER(c.name) LIKE :conf")
+                ->setParameter("conf", "%" . mb_strtolower($search->getConference()) . "%");
         }
 
         if ($search->getLocation() !== null) {
             $searching = true;
-            $query->andWhere("c.location LIKE :location")
-                ->setParameter("location", "%" . $search->getLocation() . "%");
+            $query->andWhere("LOWER(c.location) LIKE :location")
+                ->setParameter("location", "%" . mb_strtolower($search->getLocation()) . "%");
         }
 
         if ($search->getDate() !== null) {
             $searching = true;
-            $query->andWhere("c.year LIKE :year")
-                ->setParameter("year", "%" . $search->getDate() . "%");
+            $query->andWhere("LOWER(c.year) LIKE :year")
+                ->setParameter("year", "%" . mb_strtolower($search->getDate()) . "%");
         }
 
         if ($search->getPaperId() !== null) {
             $searching = true;
-            $query->andWhere("r.paperId LIKE :paperId")
-                ->setParameter("paperId", "%" . $search->getPaperId() . "%");
+            $query->andWhere("LOWER(r.paperId) LIKE :paperId")
+                ->setParameter("paperId", "%" . mb_strtolower($search->getPaperId()) . "%");
         }
 
         if ($search->getTitle() !== null) {
             $searching = true;
-            $query->andWhere("r.title LIKE :title")
-                ->setParameter("title", "%" . $search->getTitle() . "%");
+            $query->andWhere("LOWER(r.title) LIKE :title")
+                ->setParameter("title", "%" . mb_strtolower($search->getTitle()) . "%");
         }
         if ($search->getAuthor() !== null) {
             $searching = true;
-            $query->innerJoin("r.authors","a", Join::WITH, "a.name LIKE :author")
-                ->setParameter("author", "%" . $search->getAuthor() . "%");
+            $query->innerJoin("r.authors","a", Join::WITH, "LOWER(a.name) LIKE :author")
+                ->setParameter("author", "%" . mb_strtolower($search->getAuthor()) . "%");
         }
 
         if ($searching == false) {
