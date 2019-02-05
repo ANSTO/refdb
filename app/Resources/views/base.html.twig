@@ -15,15 +15,19 @@
 <div class="header">
     <div class="container">
         <a href="{{ path("homepage") }}">
-            <img class="float-right" height="50" src="{{ asset("images/jacow_image.png") }}" border="0">
+            <img class="float-md-right" height="50" src="{{ asset("images/jacow_image.png") }}" border="0">
             <h1>Citation Search</h1>
         </a>
     </div>
 </div>
 <div class="nav-area">
-<div class="container">
-        <div class="navbar row">
-                <ul class="navbar-nav flex-row mr-auto">
+    <div class="container">
+        <div class="navbar navbar-expand-lg">
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarContent" aria-controls="navbarContent" aria-expanded="false" aria-label="Toggle navigation">
+                <i class="fas fa-bars"></i>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarContent">
+                <ul class="navbar-nav mr-auto">
                     <li class="nav-item {{ url("homepage") == app.request.uri ? "active" : "" }}">
                         <a class="nav-link" href="{{ path("homepage") }}">Search</a>
                     </li>
@@ -40,9 +44,9 @@
                         <a class="nav-link" href="{{ path("report_index") }}">Reports</a>
                     </li>
                     {% if is_granted("ROLE_ADMIN") %}
-                    <li class="nav-item {{ "upload" in app.request.uri ? "active" : "" }}">
-                        <a class="nav-link" href="{{ path("upload_index") }}">Upload</a>
-                    </li>
+                        <li class="nav-item {{ "upload" in app.request.uri ? "active" : "" }}">
+                            <a class="nav-link" href="{{ path("upload_index") }}">Upload</a>
+                        </li>
                     {% endif %}
                 </ul>
                 <ul class="navbar-nav flex-row ml-auto">

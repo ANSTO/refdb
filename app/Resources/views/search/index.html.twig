@@ -13,8 +13,6 @@
       var date = new Date();
       var lastInput = date.getTime();
       var lastSearch = date.getTime();
-
-
       var searchContent;
 
       $("form input").on("keyup", function(){
@@ -23,17 +21,13 @@
          }
          date = new Date();
          lastInput = date.getTime();
-      });
-
-      $("form input").on("change", function(){
+      }).on("change", function(){
          if ($("form").serialize() !== searchContent) {
             adjustedText = true;
          }
          date = new Date();
          lastInput = date.getTime();
-      });
-
-      $("form input").on("blur", function(){
+      }).on("blur", function(){
          if ($("form").serialize() !== searchContent) {
             adjustedText = true;
          }
@@ -69,7 +63,7 @@
 {% endblock %}
 {% block body %}
    <div class="row">
-      <div class="col">
+      <div class="col-sm">
          <h2>Search by</h2>
 
          <br />
@@ -81,7 +75,7 @@
          <button type="reset" class="btn btn-light btn-block btn-lg">Clear Filters</button>
          {{ form_end(form) }}
       </div>
-      <div class="col">
+      <div class="col-sm">
          <h2>Results</h2>
          <br />
          <em style="display:none;" id="searching"><i class="fa fa-spinner fa-spin"></i> Searching</em>

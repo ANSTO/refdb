@@ -34,14 +34,34 @@ body {
       color:#0066ff;
     }
   }
-  .nav-link { padding: 10px 20px; }
+  .navbar-nav { .nav-link { padding: 10px 20px; } }
 
 }
+.navbar-toggler {
+  font-size:28px;
+}
 
+.navbar-toggler {
+  color:#FFFFFF;
+}
 
 #results {
   margin-top:0;
   li {
     margin:10px 0 20px 0;
   }
+}
+
+
+@media (max-width: 991px) {
+
+  .navbar-collapse.show {
+    display:block;
+  }
+  .navbar-collapsing {
+    display:block;
+  }
+}
+.navbar-expand-lg {
+  margin:0 -16px;
 }
