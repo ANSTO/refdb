@@ -15,7 +15,8 @@ class ConferenceType extends AbstractType
     {
         $builder->add('name')
             ->add('code', null, array("label"=>"Conference Code (format ACRONYM'YY)"))
-            ->add('year',null,array("label"=>"Month Year (format MMM YYYY)"))
+            ->add('year',null,array(
+                "label"=>"Month Year (format May 2018, Jun.-Jul. 2019 or Jun. 2019)"))
             ->add('location', null, array("label"=>"City, State (if USA), Country"));
     }/**
      * {@inheritdoc}

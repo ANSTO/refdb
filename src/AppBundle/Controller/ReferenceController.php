@@ -2,8 +2,10 @@
 
 namespace AppBundle\Controller;
 
+use AppBundle\Entity\Author;
 use AppBundle\Entity\Conference;
 use AppBundle\Entity\Reference;
+use AppBundle\Form\Type\TagsAsInputType;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\Routing\Annotation\Route;
@@ -89,12 +91,39 @@ class ReferenceController extends Controller
      */
     public function editAction(Request $request, Reference $reference)
     {
+        $manager = $this->getDoctrine()->getManager();
         $deleteForm = $this->createDeleteForm($reference);
-        $editForm = $this->createForm('AppBundle\Form\ReferenceType', $reference);
+        $originalAuthors = clone $reference->getAuthors();
+
+        $editForm = $this->createForm('AppBundle\Form\ReferenceType', $reference)
+
+
+            ->add('authors', TagsAsInputType::class, ["entity_class"=>Author::class, "data_source" => "author_search"]);
+
+
+
         $editForm->handleRequest($request);
 
         if ($editForm->isSubmitted() && $editForm->isValid()) {
-            $this->getDoctrine()->getManager()->flush();
+            $newAuthors = $reference->getAuthors();
+
+            /** @var Author $author */
+            foreach ($originalAuthors as $author) {
+                if ($newAuthors->contains($author) == false) {
+                    $linkedAuthor = $manager->getRepository(Author::class)->find($author->getId());
+                    $linkedAuthor->removeReference($reference);
+                }
+            }
+
+            /** @var Author $author */
+            foreach ($newAuthors as $author) {
+                if ($originalAuthors->contains($author) == false) {
+                    $author->addReference($reference);
+                    $manager->persist($author);
+                }
+            }
+
+            $manager->flush();
 
             return $this->redirectToRoute('reference_show', array('id' => $reference->getId()));
         }

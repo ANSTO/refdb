@@ -30,7 +30,7 @@ class Author implements \JsonSerializable
     private $name;
 
     /**
-     * @ORM\ManyToMany(targetEntity="AppBundle\Entity\Reference", inversedBy="authors", orphanRemoval=true)
+     * @ORM\ManyToMany(targetEntity="AppBundle\Entity\Reference", inversedBy="authors", cascade={"persist"})
      * @var ArrayCollection
      */
     private $references;
@@ -97,15 +97,15 @@ class Author implements \JsonSerializable
      */
     public function __construct()
     {
-        $this->references = new \Doctrine\Common\Collections\ArrayCollection();
+        $this->references = new ArrayCollection();
     }
 
     /**
      * Remove reference
      *
-     * @param \AppBundle\Entity\Reference $reference
+     * @param Reference $reference
      */
-    public function removeReference(\AppBundle\Entity\Reference $reference)
+    public function removeReference(Reference $reference)
     {
         $this->references->removeElement($reference);
     }

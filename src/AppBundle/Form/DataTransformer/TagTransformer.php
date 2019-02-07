@@ -29,7 +29,12 @@ class TagTransformer implements DataTransformerInterface {
             return '';
         }
 
-        return json_encode($entities);
+        $response = [];
+        foreach ($entities as $entity) {
+            $response[] = $entity;
+        }
+
+        return json_encode($response);
     }
 
     /**

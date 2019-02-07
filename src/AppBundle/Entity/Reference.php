@@ -50,8 +50,7 @@ class Reference implements \JsonSerializable
     private $author;
 
     /**
-     * @ORM\ManyToMany(targetEntity="AppBundle\Entity\Author", mappedBy="references")
-     * @ORM\JoinTable()
+     * @ORM\ManyToMany(targetEntity="AppBundle\Entity\Author", mappedBy="references", fetch="EAGER")
      */
     private $authors;
 
@@ -104,6 +103,14 @@ class Reference implements \JsonSerializable
      */
     private $cache;
 
+
+    /**
+     * Constructor
+     */
+    public function __construct()
+    {
+        $this->authors = new ArrayCollection();
+    }
 
     /**
      * Get id
@@ -363,13 +370,7 @@ class Reference implements \JsonSerializable
     {
         $this->paperId = $paperId;
     }
-    /**
-     * Constructor
-     */
-    public function __construct()
-    {
-        $this->authors = new \Doctrine\Common\Collections\ArrayCollection();
-    }
+
 
     /**
      * Get inProc
