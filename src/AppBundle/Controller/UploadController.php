@@ -50,8 +50,8 @@ class UploadController extends Controller
 
         if ($form->isSubmitted() && $form->isValid()) {
 
-            ini_set('memory_limit','1G');
-            ini_set('max_execution_time', 300);
+            ini_set('memory_limit','2G');
+            ini_set('max_execution_time', 600);
 
             $imported = 0;
             $format = 0;
@@ -93,13 +93,14 @@ class UploadController extends Controller
                     $manager->persist($reference);
                     $imported++;
                 }
+
+                $manager->flush();
+                $manager->clear($reference);
             }
 
             $this->addFlash("notice", $imported . " entries imported");
             $this->addFlash("notice", $format . " entries ignored due to incorrect format " . implode(", ", $errors));
             $this->addFlash("notice", $duplicate . " entries are duplicates");
-
-            $manager->flush();
 
             return $this->redirectToRoute("author_clean");
 
