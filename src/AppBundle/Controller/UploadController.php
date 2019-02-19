@@ -51,6 +51,7 @@ class UploadController extends Controller
         if ($form->isSubmitted() && $form->isValid()) {
 
             ini_set('memory_limit','1G');
+            ini_set('max_execution_time', 300);
 
             $imported = 0;
             $format = 0;
