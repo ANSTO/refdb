@@ -49,6 +49,10 @@ class UploadController extends Controller
 
 
         if ($form->isSubmitted() && $form->isValid()) {
+
+            ini_set('memory_limit','2G');
+            ini_set('max_execution_time', 600);
+
             $imported = 0;
             $format = 0;
             $duplicate = 0;
@@ -63,6 +67,7 @@ class UploadController extends Controller
             $conference = $data["conference"];
 
             /** @var Reference $reference */
+            $i = 0;
             foreach ($references as $reference) {
 
 
@@ -75,27 +80,35 @@ class UploadController extends Controller
                     $errors[] = $reference->getPaperId();
                 }
 
-                $exists = $manager->getRepository(Reference::class)->findBy([
-                    "conference"=>$conference,
-                    "paperId"=>$reference->getPaperId()]);
-
-                if (count($exists) > 0) {
-                    $valid = false;
-                    $duplicate++;
-                }
+//                $exists = $manager->getRepository(Reference::class)->findBy([
+//                    "conference"=>$conference,
+//                    "paperId"=>$reference->getPaperId()]);
+//
+//                if (count($exists) > 0) {
+//                    $valid = false;
+//                    $duplicate++;
+//                }
 
                 if ($valid) {
                     $reference->setConference($conference);
                     $manager->persist($reference);
                     $imported++;
                 }
+
+                $i++;
+                if ($i % 500 == 499) {
+                    $manager->flush();
+                    $manager->clear();
+                }
             }
+
+            $manager->flush();
 
             $this->addFlash("notice", $imported . " entries imported");
             $this->addFlash("notice", $format . " entries ignored due to incorrect format " . implode(", ", $errors));
             $this->addFlash("notice", $duplicate . " entries are duplicates");
 
-            $manager->flush();
+
 
             return $this->redirectToRoute("author_clean");
 
