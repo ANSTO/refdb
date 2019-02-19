@@ -22,7 +22,7 @@ class AuthorController extends Controller
      */
     public function indexAction(Request $request)
     {
-        $manager    = $this->getDoctrine()->getManager();
+        $manager = $this->getDoctrine()->getManager();
         $query = $manager->getRepository(Author::class)
             ->createQueryBuilder("a")
             ->getQuery();
@@ -138,5 +138,13 @@ class AuthorController extends Controller
             ->setMethod('DELETE')
             ->getForm()
         ;
+    }
+
+    /**
+     * @Route("/search/{query}", name="author_search", options={"expose"=true})
+     */
+    public function searchAction($query) {
+        $results = $this->getDoctrine()->getManager()->getRepository(Author::class)->search($query);
+        return new JsonResponse($results);
     }
 }

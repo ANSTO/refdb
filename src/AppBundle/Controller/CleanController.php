@@ -3,6 +3,7 @@
 namespace AppBundle\Controller;
 
 use AppBundle\Entity\Author;
+use AppBundle\Entity\Conference;
 use AppBundle\Entity\Reference;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\Response;
@@ -19,12 +20,12 @@ class CleanController extends Controller
 
     /**
      * Lists all author entities.
-     * @Route("/author/list", name="reference_author_clean")
+     * @Route("/author/list/{id}", name="reference_author_clean")
      */
-    public function authorListAction(Request $request)
+    public function authorListAction(Request $request, Conference $conference)
     {
         $manager = $this->getDoctrine()->getManager();
-        $references = $manager->getRepository(Reference::class)->findBy([]);
+        $references = $manager->getRepository(Reference::class)->findBy(["conference"=>$conference]);
         /** @var Reference $ref */
         foreach ($references as $ref) {
             $ref->setAuthor($ref->getAuthor() . " ");

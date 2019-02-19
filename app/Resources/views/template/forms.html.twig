@@ -1,0 +1,6 @@
+{% use "bootstrap_4_layout.html.twig" %}
+
+{% block entity_tags_widget -%}
+ {% set attr = attr|merge({class: (attr.class|default('') ~ ' entity-tags')|trim}) %}
+ {{- block('form_widget_simple') -}}
+{%- endblock entity_tags_widget %}
