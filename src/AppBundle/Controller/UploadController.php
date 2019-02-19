@@ -97,6 +97,8 @@ class UploadController extends Controller
 
             $manager->flush();
 
+            return $this->redirectToRoute("author_clean");
+
         }
 
         return $this->render("upload/index.html.twig", ["form"=>$form->createView()]);
