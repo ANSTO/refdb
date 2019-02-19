@@ -38,14 +38,14 @@ class Reference implements \JsonSerializable
     /**
      * @var string
      *
-     * @ORM\Column(name="title", type="string", length=2000)
+     * @ORM\Column(name="title", type="string", length=2000, nullable=true)
      */
     private $title;
 
     /**
      * @var string
      *
-     * @ORM\Column(name="author", type="string", length=4000)
+     * @ORM\Column(name="author", type="string", length=4000, nullable=true)
      */
     private $author;
 
@@ -103,6 +103,22 @@ class Reference implements \JsonSerializable
      */
     private $cache;
 
+    /**
+     * @var boolean
+     *
+     * @ORM\Column(type="boolean", nullable=true)
+     */
+    private $publicSubmission;
+
+    /**
+     * @ORM\ManyToOne(targetEntity="AppBundle\Entity\Reference", inversedBy="replacements")
+     */
+    private $replaces;
+
+    /**
+     * @ORM\OneToMany(targetEntity="AppBundle\Entity\Reference", mappedBy="replaces")
+     */
+    private $replacements;
 
     /**
      * Constructor
@@ -318,7 +334,7 @@ class Reference implements \JsonSerializable
             $authors = $this->getAuthors();
             if (count($authors) >= 6) {
                 return $authors[0] . "<em>et al.</em>";
-            } else {
+            } elseif (count($authors) > 0) {
                 return implode(", ", $authors);
             }
         }
@@ -330,29 +346,40 @@ class Reference implements \JsonSerializable
         if ($this->getOverride() !== null) {
             return $this->getOverride();
         } else {
-            $author = $this->getAuthorStr();
-            $title = $this->getTitle();
-
-            if ($this->isInProc()) {
-                $inProc = "in <em>Proc. ";
-            } else {
-                $inProc = "<em>presented at the ";
-            }
-
-            $conference = $this->getConference();
-
-            $position = "";
-            if ($this->getPosition() !== null) {
-                $position = " pp. " . $this->getPosition();
-            }
-
-            $paper = "";
-            if ($this->getPaperId() !== null) {
-                $paper = " paper " . $this->getPaperId() . ", ";
-            }
-
-            return $author . " “" . $title . "” " . $inProc . " " . $conference . "</em>, " . $conference->getLocation() . ", " . $conference->getYear() . "," . $paper . $position;
+            return $this->getTitleSection() . "" . $this->getConferenceSection()  . "," . $this->getPaperSection();
         }
+    }
+
+    public function getConferenceSection() {
+        return "<em>" . $this->conference . "</em>, " . $this->conference->getLocation() . ", " . $this->conference->getYear();
+    }
+
+    public function getTitleSection() {
+        $author = $this->getAuthorStr();
+        $title = $this->getTitle();
+
+        if ($this->isInProc()) {
+            $inProc = "in <em>Proc. </em>";
+        } else {
+            $inProc = "<em>presented at the </em>";
+        }
+
+
+        return $author . " “" . $title . "” " . $inProc;
+    }
+
+    public function getPaperSection() {
+        $position = "";
+        if ($this->getPosition() !== null) {
+            $position = " pp. " . $this->getPosition();
+        }
+
+        $paper = "";
+        if ($this->getPaperId() !== null) {
+            $paper = " paper " . $this->getPaperId() . ", ";
+        }
+
+        return $paper . $position;
     }
 
     /**
@@ -452,5 +479,87 @@ class Reference implements \JsonSerializable
             "id" => $this->getId(),
             "name" => $this->getCache()
         ];
+    }
+
+    /**
+     * Set publicSubmission
+     *
+     * @param boolean $publicSubmission
+     *
+     * @return Reference
+     */
+    public function setPublicSubmission($publicSubmission)
+    {
+        $this->publicSubmission = $publicSubmission;
+
+        return $this;
+    }
+
+    /**
+     * Get publicSubmission
+     *
+     * @return boolean
+     */
+    public function getPublicSubmission()
+    {
+        return $this->publicSubmission;
+    }
+
+    /**
+     * Set replaces
+     *
+     * @param \AppBundle\Entity\Reference $replaces
+     *
+     * @return Reference
+     */
+    public function setReplaces(\AppBundle\Entity\Reference $replaces = null)
+    {
+        $this->replaces = $replaces;
+
+        return $this;
+    }
+
+    /**
+     * Get replaces
+     *
+     * @return \AppBundle\Entity\Reference
+     */
+    public function getReplaces()
+    {
+        return $this->replaces;
+    }
+
+    /**
+     * Add replacement
+     *
+     * @param \AppBundle\Entity\Reference $replacement
+     *
+     * @return Reference
+     */
+    public function addReplacement(\AppBundle\Entity\Reference $replacement)
+    {
+        $this->replacements[] = $replacement;
+
+        return $this;
+    }
+
+    /**
+     * Remove replacement
+     *
+     * @param \AppBundle\Entity\Reference $replacement
+     */
+    public function removeReplacement(\AppBundle\Entity\Reference $replacement)
+    {
+        $this->replacements->removeElement($replacement);
+    }
+
+    /**
+     * Get replacements
+     *
+     * @return \Doctrine\Common\Collections\Collection
+     */
+    public function getReplacements()
+    {
+        return $this->replacements;
     }
 }

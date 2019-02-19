@@ -6,6 +6,10 @@
             <a class=" btn btn-primary" href="{{ path('reference_edit', { 'id': reference.id }) }}"><i class="fas fa-edit"></i> Edit</a>
             <button class="btn btn-danger btn-modal" type="button" data-href="{{ path('reference_delete', { 'id': reference.id }) }}"><i class="fas fa-trash"></i> Delete</button>
         </div>
+    {% elseif not app.user %}
+        <div class="float-right btn-group">
+            <button class="btn btn-default btn-modal" data-href="{{ path('fix_landing', { 'id': reference.id }) }}"><i class="fas fa fa-question-circle"></i> Fix a problem</button>
+        </div>
     {% endif %}
     <h2>Reference</h2>
 

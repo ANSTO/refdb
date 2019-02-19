@@ -43,6 +43,7 @@ class TagTransformer implements DataTransformerInterface {
      * @param string $value
      * @return ArrayCollection
      * @throws TransformationFailedException
+     * @throws Exception
      */
     public function reverseTransform($value) {
         if(!$value) {

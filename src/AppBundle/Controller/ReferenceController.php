@@ -96,11 +96,10 @@ class ReferenceController extends Controller
         $originalAuthors = clone $reference->getAuthors();
 
         $editForm = $this->createForm('AppBundle\Form\ReferenceType', $reference)
-
-
-            ->add('authors', TagsAsInputType::class, ["entity_class"=>Author::class, "data_source" => "author_search"]);
-
-
+            ->add('authors', TagsAsInputType::class, [
+                "entity_class"=> Author::class,
+                "data_source" => "author_search",
+                "label"=> "Associated Authors (un-ordered)"]);
 
         $editForm->handleRequest($request);
 

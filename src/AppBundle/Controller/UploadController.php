@@ -4,6 +4,7 @@ namespace AppBundle\Controller;
 
 use AppBundle\Entity\Conference;
 use AppBundle\Entity\Reference;
+use Doctrine\ORM\EntityRepository;
 use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\Form\Extension\Core\Type\FileType;
@@ -16,6 +17,22 @@ use Symfony\Component\HttpFoundation\Request;
  */
 class UploadController extends Controller
 {
+    private function getRows($filename) {
+        $references = [];
+        if (($handle = fopen($filename, "r")) !== FALSE) {
+            while (($data = fgetcsv($handle, 8000, ",")) !== FALSE) {
+                $reference = new Reference();
+                $reference->setAuthor(trim($data[1]));
+                $reference->setTitle(trim($data[2]));
+                $reference->setPaperId(trim(strtoupper($data[0])));
+                $reference->setInProc(true);
+                $reference->setPosition(trim(str_replace(" ", "-",$data[3])));
+                $references[] = $reference;
+            }
+        }
+        return $references;
+    }
+
     /**
      * @Route("/", name="upload_index")
      */
@@ -24,7 +41,9 @@ class UploadController extends Controller
         $manager = $this->getDoctrine()->getManager();
         $form = $this->createFormBuilder()
             ->add("file",FileType::class)
-            ->add("conference", EntityType::class, array("class"=>Conference::class))
+            ->add("conference", EntityType::class, array("class"=>Conference::class, "query_builder"=>function(EntityRepository $er) {
+                return $er->createQueryBuilder('c')->orderBy('c.code', 'ASC');
+            }))
             ->getForm();
         $form->handleRequest($request);
 
@@ -39,40 +58,26 @@ class UploadController extends Controller
             /** @var UploadedFile $uploaded */
             $uploaded = $data["file"];
 
-            $contents = file($uploaded->getPathname());
+            $references = $this->getRows($uploaded->getPathname());
 
-            $lines = count($contents);
+            $conference = $data["conference"];
 
-            $papers = floor($lines / 4);
+            /** @var Reference $reference */
+            foreach ($references as $reference) {
 
-            $conference = $data['conference'];
-
-            $errors = [];
-            for ($p = 0; $p < $papers; $p++) {
-                $l = $p * 4;
-                $reference = new Reference();
-
-
-
-                $paperId = trim(strtoupper($contents[$l]));
-                $authors = trim($contents[$l+1]);
-                $title = trim($contents[$l+2]);
-                $position = trim(str_replace(" ", "-",$contents[$l+3]));
-
-                // check valid input
 
                 $valid = true;
-                if (preg_match("/^\d+\-\d+$/", $position) != true ||
-                    preg_match("/^[A-Za-z0-9]+$/", $paperId) != true ||
-                    $paperId == "" || $authors == "" || $title == "" || $position == "") {
+                if (preg_match("/^\d+\-\d+$/", $reference->getPosition()) != true ||
+                    preg_match("/^[A-Za-z0-9]+$/", $reference->getPaperId()) != true ||
+                    $reference->getPaperId() == "" || $reference->getAuthor() == "" || $reference->getTitle() == "" || $reference->getPosition() == "") {
                     $valid = false;
                     $format++;
-                    $errors[] = $paperId;
+                    $errors[] = $reference->getPaperId();
                 }
 
                 $exists = $manager->getRepository(Reference::class)->findBy([
                     "conference"=>$conference,
-                    "paperId"=>$paperId]);
+                    "paperId"=>$reference->getPaperId()]);
 
                 if (count($exists) > 0) {
                     $valid = false;
@@ -80,12 +85,7 @@ class UploadController extends Controller
                 }
 
                 if ($valid) {
-                    $reference->setPaperId($paperId);
-                    $reference->setAuthor($authors);
-                    $reference->setTitle($title);
-                    $reference->setPosition($position);
                     $reference->setConference($conference);
-                    $reference->setInProc(true);
                     $manager->persist($reference);
                     $imported++;
                 }
@@ -101,4 +101,6 @@ class UploadController extends Controller
 
         return $this->render("upload/index.html.twig", ["form"=>$form->createView()]);
     }
+
+
 }
