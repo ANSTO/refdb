@@ -29,7 +29,12 @@ class TagTransformer implements DataTransformerInterface {
             return '';
         }
 
-        return json_encode($entities);
+        $response = [];
+        foreach ($entities as $entity) {
+            $response[] = $entity;
+        }
+
+        return json_encode($response);
     }
 
     /**
@@ -38,6 +43,7 @@ class TagTransformer implements DataTransformerInterface {
      * @param string $value
      * @return ArrayCollection
      * @throws TransformationFailedException
+     * @throws Exception
      */
     public function reverseTransform($value) {
         if(!$value) {

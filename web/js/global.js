@@ -1,5 +1,7 @@
 // Ajax modal window
-$(document).on("click", "button.btn-modal", function() {
+$(document).on("click", ".btn-modal", function() {
+
+
     var $ajaxModal = $("#ajaxModal");
 
     if($(this).hasClass("btn-modal-lg")) {
@@ -8,9 +10,20 @@ $(document).on("click", "button.btn-modal", function() {
         $ajaxModal.find(".modal-dialog").removeClass("modal-lg");
     }
 
-    $ajaxModal.data("href", $(this).data("href"));
+    if ($(this)[0].tagName == "A") {
+        console.log($(this).attr("href"));
+        $ajaxModal.data("href", $(this).attr("href"));
+    } else {
+        $ajaxModal.data("href", $(this).data("href"));
+    }
+
     $ajaxModal.data("reload", $(this).data("reload"));
-    $ajaxModal.modal('show');
+
+    if (($ajaxModal.data('bs.modal') || {})._isShown) {
+        ajaxModalShow($ajaxModal);
+    } else {
+        $ajaxModal.modal('show');
+    }
 
     return false;
 });

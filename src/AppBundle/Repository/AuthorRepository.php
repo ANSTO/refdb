@@ -10,4 +10,17 @@ namespace AppBundle\Repository;
  */
 class AuthorRepository extends \Doctrine\ORM\EntityRepository
 {
+
+    public function search($term) {
+        $query = $this->createQueryBuilder("a");
+
+        $query
+            ->where("LOWER(a.name) LIKE :query")
+            ->setParameter("query", "%" . mb_strtolower($term) . "%");
+
+        return $query
+            ->setMaxResults(5)
+            ->getQuery()
+            ->getResult();
+    }
 }

@@ -1,86 +1,210 @@
-"57th ICFA Advanced Beam Dynamics Workshop on High-Intensity and High-Brightness Hadron Beams","HB'16","Malmö, Sweden","Jul 2016"
-"54th ICFA Advanced Beam Dynamics Workshop on High-Intensity and High-Brightness Hadron Beams","HB'14","East Lansing, MI, USA","Nov 2014"
-"52nd ICFA Advanced Beam Dynamics Workshop on High-Intensity and High-Brightness Hadron Beams","HB'12","Beijing, China","Sep 2012"
-"46th ICFA Advanced Beam Dynamics Workshop on High-Intensity and High-Brightness Hadron Beams","HB'10","Morschach, Switzerland","Sep-Oct 2010"
-"42nd ICFA Advanced Beam Dynamics Workshop on High-Intensity and High-Brightness Hadron Beams","HB'08","Nashville, TN, USA","Aug 2008"
-"39th ICFA Advanced Beam Dynamics Workshop on High-Intensity and High-Brightness Hadron Beams","HB'06","Tsukuba, Japan","May-Jun 2006"
-"8th Int. Particle Accelerator Conf.","IPAC'17","Co-penhagen, Denmark","May 2017"
-"7th Int. Particle Accelerator Conf.","IPAC'16","Busan, Korea","May 2016"
-"6th Int. Particle Accelerator Conf.","IPAC'15","Richmond, VA, USA","May 2015"
-"5th Int. Particle Accelerator Conf.","IPAC'14","Dres-den, Germany","Jun 2014"
-"4th Int. Particle Accelerator Conf.","IPAC'13","Shanghai, China","May 2013"
-"3rd Int. Particle Accelerator Conf.","IPAC'12","New Orleans, LA, USA","May 2012"
-"2nd Int. Particle Accelerator Conf.","IPAC'11","San Sebastian, Spain","Sep 2011"
-"1st Int. Particle Accelerator Conf.","IPAC'10","Kyo-to, Japan","May 2010"
-"North American Particle Accelerator Conf.","NA-PAC'16","Chicago, IL, USA","Oct 2016"
-"North American Particle Accelerator Conf.","NA-PAC'13","Pasadena, CA, USA","Sep-Oct 2013"
-"2011 Particle Accelerator Conf.","PAC'11","New York, NY, USA","Mar-Apr 2011"
-"23rd Particle Accelerator Conf.","PAC'09","Vancouver, Canada","May 2009"
-"22nd Particle Accelerator Conf.","PAC'07","Albuquerque, NM, USA","Jun 2007"
-"2005 Particle Accelerator Conf.","PAC'05","Knoxville, TN, USA","May 2005"
-"2003 Particle Accelerator Conf.","PAC'03","Portland, OR, USA","May 2003"
-"2001 Particle Accelerator Conf.","PAC'01","Chicago, IL, USA","Jun 2001"
-"11th European Particle Accelerator Conf.","EPAC'08","Genoa, Italy","Jun 2008"
-"10th European Particle Accelerator Conf.","EPAC'06","Edinburgh, UK","Jun 2006"
-"9th European Particle Accelerator Conf.","EPAC'04","Lucerne, Switzerland","Jul 2004"
-"8th European Particle Accelerator Conf.","EPAC'02","Paris, France","Jun 2002"
-"7th European Particle Accelerator Conf.","EPAC'00","Vienna, Austria","Jun 2000"
-"4th Asian Particle Accelerator Conf.","APAC'07","Indore, India","Jan-Feb 2007"
-"3rd Asian Particle Accelerator Conf.","APAC'04","Gyeongju, Korea","Mar 2004"
-"2nd Asian Particle Accelerator Conf.","APAC'01","Beijing, China","Sep 2001"
-"38th Int. Free Electron Laser Conf.","FEL'17","Santa Fe, NM, USA","Aug 2017"
-"37th Int. Free Electron Laser Conf.","FEL'15","Daejeon, Korea","Aug 2015"
-"36th Int. Free Electron Laser Conf.","FEL'14","Basel, Switzerland","Aug 2014"
-"35th Int. Free Electron Laser Conf.","FEL'13","New York, NY, USA","Aug 2013"
-"34th Int. Free Electron Laser Conf.","FEL'12","Nara, Japan","Aug 2012"
-"33rd Int. Free Electron Laser Conf.","FEL'11","Shanghai, China","Aug 2011"
-"32nd Int. Free Electron Laser Conf.","FEL'10","Malmö, Sweden","Aug 2010"
-"31st Int. Free Electron Laser Conf.","FEL'09","Liv-erpool, UK","Aug 2009"
-"30th Int. Free Electron Laser Conf.","FEL'08","Gyeongju, Korea","Aug 2008"
-"29th Int. Free Electron Laser Conf.","FEL'07","No-vosibirsk, Russia","Aug 2007"
-"28th Linear Accelerator Conf.","LINAC'16","East Lansing, MI, USA","Sep 2016"
-"27th Linear Accelerator Conf.","LINAC'14","Geneva, Switzerland","Aug-Sep 2014"
-"26th Linear Accelerator Conf.","LINAC'12","Tel Aviv, Israel","Sep 2012"
-"25th Linear Accelerator Conf.","LINAC'10","Tsuku-ba, Japan","Sep 2010"
-"24th Linear Accelerator Conf.","LINAC'08","Victoria, Canada","Sep-Oct 2008"
-"23rd Linear Accelerator Conf.","LINAC'06","Knox-ville, TN, USA","Aug 2006"
-"22nd Linear Accelerator Conf.","LINAC'04","Lübeck, Germany","Aug 2004"
-"21st Linear Accelerator Conf.","LINAC'02","Gyeongju, Korea","Aug 2002"
-"20th Linear Accelerator Conf.","LINAC'00","Monte-rey, CA, USA","Aug 2000"
-"6th Int. Beam Instrumentation Conf.","IBIC'17","Grand Rapids, MI, USA","Aug 2017"
-"5th Int. Beam Instrumentation Conf.","IBIC'16","Barcelona, Spain","Sep 2016"
-"4th Int. Beam Instrumentation Conf.","IBIC'15","Melbourne, Australia","Sep 2015"
-"3rd Int. Beam Instrumentation Conf.","IBIC'14","Monterey, CA, USA","Sep 2014"
-"2nd Int. Beam Instrumentation Conf.","IBIC'13","Oxford, UK","Sep 2013"
-"1st Int. Beam Instrumentation Conf.","IBIC'12","Tsukuba, Japan","Oct 2012"
-"10th European Workshop on Beam Diagnostics and Instrumentation for Particle Accelerators","DIPAC'11","Ham-burg, Germany","May 2011"
-"9th European Workshop on Beam Diagnostics and Instrumentation for Particle Accelerators","DIPAC'09","Basel, Switzerland","May 2009"
-"8th European Workshop on Beam Diagnostics and Instrumentation for Particle Accelerators","DIPAC'07","Ven-ice, Italy","May 2007"
-"7th European Workshop on Beam Diagnostics and Instrumentation for Particle Accelerators","DIPAC'05","Lyon, France","Jun 2005"
-"6th European Workshop on Beam Diagnostics and Instrumentation for Particle Accelerators","DIPAC'03","Mainz, Germany","May 2003"
-"5th European Workshop on Beam Diagnostics and Instrumentation","DIPAC'01","Grenoble, France","May 2001"
-"21st Int. Conf. on Cyclotrons and their Applications","CYCLOTRONS'16","Zurich, Switzerland","Sep 2016"
-"20th Int. Conf. on Cyclotrons and their Applications","CYCLOTRONS'13","Vancouver, Canada","Sep 2013"
-"19th Int. Conf. on Cyclotrons and their Applications","CYCLOTRONS'10","Lanzhou, China","Sep 2010"
-"18th Int. Conf. on Cyclotrons and their Applications","CYCLOTRONS'07","Giardini Naxos, Italy","Oct 2007"
-"17th Int. Conf. on Cyclotrons and their Applications","CYCLOTRONS'04","Tokyo, Japan","Sep 2004"
-"16th Int. Conf. on Cyclotrons and their Applications","CYCLOTRONS'01","East Lansing, MI, USA","May 2001"
-"18th Int. Conf. RF Superconductivity","SRF'17","Lanzhou, China","Jul 2017"
-"17th Int. Conf. RF Superconductivity","SRF'15","Whistler, Canada","Sep 2015"
-"16th Int. Conf. RF Superconductivity","SRF'13","Paris, France","Sep 2013"
-"15th Int. Conf. RF Superconductivity","SRF'11","Chi-cago, IL, USA","Jul 2011"
-"14th Int. Conf. RF Superconductivity","SRF'09","Berlin, Germany","Sep 2009"
-"13th Int. Conf. RF Superconductivity","SRF'07","Beijing, China","Oct 2007"
-"12th Int. Conf. RF Superconductivity","SRF'05","Ithaca, NY, USA","Jul 2005"
-"11th Workshop RF Superconductivity","SRF'03","Lübeck, Germany","Sep 2003"
-"10th Workshop RF Superconductivity","SRF'01","Tsukuba, Japan","Sep 2001"
-"16th Int. Conf. on Accelerator and Large Experi-mental Control Systems","ICALEPCS'17","Barcelona, Spain","Oct 2017"
-"15th Int. Conf. on Accelerator and Large Experi-mental Control Systems","ICALEPCS'15","Melbourne, Australia","Oct 2015"
-"14th Int. Conf. on Accelerator and Large Experi-mental Control Systems","ICALEPCS'13","San Francisco, CA, USA","Oct 2013"
-"13th Int. Conf. on Accelerator and Large Experi-mental Control Systems","ICALEPCS'11","Grenoble, France","Oct 2011"
-"12th Int. Conf. on Accelerator and Large Experi-mental Control Systems","ICALEPCS'09","Kobe, Japan","Oct 2007"
-"11th Int. Conf. on Accelerator and Large Experi-mental Control Systems","ICALEPCS'07","Oak Ridge, TN, USA","Oct 2007"
-"10th Int. Conf. on Accelerator and Large Experi-mental Control Systems","ICALEPCS'05","Geneva, Switzerland","Oct 2005"
-"9th Int. Conf. on Accelerator and Large Experi-mental Control Systems","ICALEPCS'03","Gyeongju, Korea","Oct 2003"
-"8th Int. Conf. on Accelerator and Large Experi-mental Control Systems","ICALEPCS'01","San Jose, CA, USA","Nov 2001"
-"7th Int. Conf. on Accelerator and Large Experi-mental Control Systems","ICALEPCS'99","Trieste, Italy","Nov 1999"
+5th European Particle Accelerator Conf.,EPAC'96,"Sitges, Spain",Jun. 1996,e96
+6th European Particle Accelerator Conf.,EPAC'98,"Stockholm, Sweden",Jun. 1998,e98
+1st Asian Particle Accelerator Conf.,APAC'98,"Tsukuba, Japan",Mar. 1998,a98
+18th Particle Accelerator Conf.,PAC'99,"New York, NY, USA",Mar. 1999,p99
+17th Particle Accelerator Conf.,PAC'97,"Vancouver, Canada",May 1997,pac97
+19th Int. Linac Conf.,LINAC'98,"Chicago, IL, USA",Aug. 1998,l98
+7th European Particle Accelerator Conf.,EPAC'00,"Vienna, Austria",Jun. 2000,e00
+7th Int. Conf. on Accelerator and Large Experimental Control Systems,ICALEPCS'99,"Trieste, Italy",Oct. 1999,ica99
+19th Particle Accelerator Conf.,PAC'01,"Chicago, IL, USA",Jun. 2001,p01
+20th Linear Accelerator Conf.,LINAC'00,"Monterey, CA, USA",Aug. 2000,l00
+8th European Particle Accelerator Conf.,EPAC'02,"Paris, France",Jun. 2002,e02
+14th Particle Accelerator Conf.,PAC'91,"San Francisco, CA, USA",May 1991,p91
+15th Particle Accelerator Conf.,PAC'93,"Washington D.C., USA",Mar. 1993,p93
+2nd Asian Particle Accelerator Conf.,APAC'01,"Beijing, China",Sep. 2001,a01
+12th Particle Accelerator Conf.,PAC'87,"Washington D.C., USA",Mar. 1987,p87
+13th Particle Accelerator Conf.,PAC'89,"Chicago, IL, USA",Mar. 1989,p89
+8th Int. Conf. on Accelerator and Large Experimental Control Systems,ICALEPCS'01,"San Jose, CA, USA",Nov. 2001,ica01
+2nd Particle Accelerator Conf.,PAC'67,"Washington D.C., USA",Mar. 1967,p67
+16th Int. Conf. on Cyclotrons and Their Applications,Cyclotrons'01,"East Lansing, MI, USA",May 2001,c01
+18th Int. Linear Accelerator Conf.,LINAC'96,"Geneva, Switzerland",Aug. 1996,l96
+20th Particle Accelerator Conf.,PAC'03,"Portland, OR, USA",May 2003,p03
+21st Linear Accelerator Conf.,LINAC'02,"Gyeongju, Korea",Aug. 2002,l02
+5th European Workshop on Beam Diagnostics and Instrumentation for Particle Accelerators,DIPAC'01,"Grenoble, France",May 2001,d01
+6th European Workshop on Beam Diagnostics and Instrumentation for Particle Accelerators,DIPAC'03,"Mainz, Germany",May 2003,d03
+1st Particle Accelerator Conf.,PAC'65,"Washington D.C., USA",Mar. 1965,p65
+3rd Particle Accelerator Conf.,PAC'69,"Washington D.C., USA",Mar. 1969,p69
+6th Particle Accelerator Conf.,PAC'75,"Washington D.C., USA",Mar. 1975,p75
+5th Particle Accelerator Conf.,PAC'73,"San Francisco, CA, USA",Mar. 1973,p73
+9th Particle Accelerator Conf.,PAC'81,"Washington D.C., USA",Mar. 1981,p81
+10th Particle Accelerator Conf.,PAC'83,"Santa Fe, NM, USA",Mar. 1983,p83
+11th Particle Accelerator Conf.,PAC'85,"Vancouver, Canada",May 1985,p85
+19th Russian Particle Accelerator Conf.,RuPAC'04,"Dubna, Russia",Oct. 2004,r04
+9th Int. Conf. on Accelerator and Large Experimental Control Systems,ICALEPCS'03,"Gyeongju, Korea",Oct. 2003,ica03
+9th European Particle Accelerator Conf.,EPAC'04,"Lucerne, Switzerland",Jul. 2004,e04
+7th Particle Accelerator Conf.,PAC'77,"Chicago, IL, USA",Mar. 1977,p77
+4th Particle Accelerator Conf.,PAC'71,"Chicago, IL, USA",Mar. 1971,p71
+4th European Workshop on Beam Diagnostics and Instrumentation for Particle Accelerators,DIPAC'99,"Chester, UK",May 1999,d99
+26th Int. Free Electron Laser Conf. & 11th FEL Users Workshop,FEL'04,"Trieste, Italy",Aug.-Sep. 2004,f04
+8th Particle Accelerator Conf.,PAC'79,"San Francisco, CA, USA",Mar. 1979,p79
+22nd Linear Accelerator Conf.,LINAC'04,"Lübeck, Germany",Aug. 2004,l04
+16th Particle Accelerator Conf.,PAC'95,"Dallas, TX, USA",May 1995,p95
+17th Int. Conf. on Cyclotrons and Their Applications,Cyclotrons'04,"Tokyo, Japan",Oct. 2004,c04
+3rd European Particle Accelerator Conf.,EPAC'92,"Berlin, Germany",Mar. 1992,e92
+4th European Particle Accelerator Conf.,EPAC'94,"London, UK",Jun.-Jul. 1994,e94
+21st Particle Accelerator Conf.,PAC'05,"Knoxville, TN, USA",May 2005,p05
+27th Int. Free Electron Laser Conf.,FEL'05,"Palo Alto, CA, USA",Aug. 2005,f05
+3rd Asian Particle Accelerator Conf.,APAC'04,"Gyeongju, Korea",Mar. 2004,a04
+7th European Workshop on Beam Diagnostics and Instrumentation for Particle Accelerators,DIPAC'05,"Lyon, France",Jun. 2005,d05
+1st European Particle Accelerator Conf.,EPAC'88,"Rome, Italy",Jun. 1988,e88
+2nd European Particle Accelerator Conf.,EPAC'90,"Nice, France",Jun. 1990,e90
+10th Int. Conf. on Accelerator and Large Experimental Control Systems,ICALEPCS'05,"Geneva, Switzerland",Oct. 2005,ica05
+10th European Particle Accelerator Conf.,EPAC'06,"Edinburgh, UK",Jun. 2006,e06
+37th ICFA Advanced Beam Dynamics Workshop on Future Light Sources,FLS'06,"Hamburg, Germany",May 2006,fls06
+28th Int. Free Electron Laser Conf.,FEL'06,"Berlin, Germany",Aug.-Sep. 2006,f06
+23rd Linear Accelerator Conf.,LINAC'06,"Knoxville, TN, USA",Aug. 2006,l06
+9th Int. Computational Accelerator Physics Conf.,ICAP'06,"Chamonix, Switzerland",Oct. 2006,icap06
+39th ICFA Advanced Beam Dynamics Workshop on High-Intensity and High-Brightness Hadron Beams,HB'06,"Tsukuba, Japan",May-Jun. 2006,abdwhb06
+20th Russian Particle Accelerator Conf. on Charged Particle Accelerators,RuPAC'06,"Novosibirsk, Russia",Sep. 2006,r06
+22nd Particle Accelerator Conf.,PAC'07,"Albuquerque, NM, USA",Jun. 2007,p07
+4th Asian Particle Accelerator Conf.,APAC'07,"Indore, India",Jan.-Feb. 2007,a07
+6th Workshop on Beam Cooling and Related Topics,COOL'07,"Bad Kreuznach, Germany",Sep. 2007,cl07
+11th Int. Conf. on Accelerator and Large Experimental Control Systems,ICALEPCS'07,"Oak Ridge, TN, USA",Oct. 2007,ica07
+29th Int. Free Electron Laser Conf.,FEL'07,"Novosibirsk, Russia",Aug. 2007,f07
+11th European Particle Accelerator Conf.,EPAC'08,"Genoa, Italy",Jun. 2008,e08
+21st Russian Particle Accelerator Conf.,RuPAC'08,"Zvenigorod, Russia",Sep.-Oct. 2008,r08
+18th Int. Conf. on Cyclotrons and Their Applications,Cyclotrons'07,"Giardini-Naxos, Italy",Oct. 2007,c07
+41st Advanced ICFA Beam Dynamics Workshop on Energy Recovery Linacs,ERL'07,"Daresbury, UK",May 2007,erl07
+7th Int. Workshop on Personal Computers and Particle Accelerator Controls,PCaPAC'08,"Ljbuljana, Slovenia",Oct. 2008,pc08
+8th European Workshop on Beam Diagnostics and Instrumentation for Particle Accelerators,DIPAC'07,"Venice, Italy",May 2007,d07
+1st Int. Conf. RF Superconductivity,SRF'80,"Karlsruhe, Germany",Jul. 1980,srf80
+2nd Int. Conf. RF Superconductivity,SRF'84,"Geneva, Switzerland",Jul. 1984,srf84
+40th ICFA Advanced Beam Dynamics Workshop on High Luminosity e+e- Factories,Factories'08,"Novosibirsk, Russia",Apr. 2008,fac08
+18th Int. Workshop on ECR Ion Sources,ECRIS'08,"Chicago, IL, USA",Sep. 2008,ecris08
+30th Int. Free Electron Laser Conf.,FEL'08,"Gyeongju, Korea",Aug. 2008,FEL2008
+13th Int. Conf. RF Superconductivity,SRF'07,"Beijing, China",Oct. 2007,srf2007
+Int. Conf. on Isochronous Cyclotrons,Cyclotrons'66,"Gatlinburg, TN, USA",Aug. 1966,c66
+3rd Int. Conf. RF Superconductivity,SRF'87,"Lemont, IL, USA",Sep. 1987,srf87
+9th European Workshop on Beam Diagnostics and Instrumentation for Particle Accelerators,DIPAC'09,"Basel, Switzerland",May 2009,d09
+42nd ICFA Advanced Beam Dynamics Workshop on High-Intensity and High-Brightness Hadron Beams,HB'08,"Nashville, TN, USA",Aug. 2008,HB2008
+14th Int. Conf. RF Superconductivity,SRF'09,"Berlin, Germany",Sep. 2009,SRF2009
+10th Workshop RF Superconductivity,SRF'01,"Tsukuba, Japan",Sep. 2001,srf01
+24th Linear Accelerator Conf.,LINAC'08,"Victoria, Canada",Sep.-Oct. 2008,LINAC08
+5th Int. Cyclotron Conf.,Cyclotrons'69,"Oxford, UK",Sep. 1969,c69
+13th Beam Instrumentation Workshop,BIW'08,"Lake Tahoe, CA, USA",May 2008,BIW2008
+31st Int. Free Electron Laser Conf.,FEL'09,"Liverpool, UK",Aug. 2009,FEL2009
+Int. Conf. on Sector-Focused Cyclotrons and Meson Factories,Cyclotrons'63,"Geneva, Switzerland",Apr. 1963,c63
+8th Int. Conf. RF Superconductivity,SRF'97,"Padova, Italy",Oct. 1997,SRF97
+6th Int. Conf. RF Superconductivity,SRF'93,"Newport News, VA, USA",Oct. 1993,SRF93
+1st Int. Particle Accelerator Conf.,IPAC'10,"Kyoto, Japan",May 2010,IPAC10
+11th Int. Conf. on Heavy Ion Accelerator Technology,HIAT'09,"Venice, Italy",Jun. 2009,HIAT2009
+12th Int. Conf. on Accelerator and Large Experimental Control Systems,ICALEPCS'09,"Kobe, Japan",Oct. 2009,icalepcs2009
+45th ICFA Advanced Beam Dynamics Workshop on  Energy Recovery LINAC Workshop,ERL'09,"Ithaca, NY, USA",Jun. 2009,ERL2009
+11th Workshop RF Superconductivity,SRF'03,"Lübeck, Germany",Sep. 2003,SRF2003
+5th Int. Conf. RF Superconductivity,SRF'91,"Hamburg, Germany",Aug. 1991,SRF91
+22nd Russian Particle Accelerator Conf.,RuPAC'10,"Protvino, Russia",Sep.-Oct. 2010,r10
+8th Int. Workshop on Personal Computers and Particle Accelerator Controls,PCaPAC'10,"Saskatoon, Canada",Oct. 2010,pcapac2010
+7th Workshop on Beam Cooling and Related Topics,COOL'09,"Lanzhou, China",Aug.-Sep. 2009,COOL2009
+4th Int. Conf. RF Superconductivity,SRF'89,"Tsukuba, Japan",Aug. 1989,SRF89
+14th Beam Instrumentation Workshop,BIW'10,"Santa Fe, NM, USA",May 2010,BIW2010
+23rd Particle Accelerator Conf.,PAC'09,"Vancouver, Canada",May 2009,PAC2009
+Conf. on Sector-Focused Cyclotrons,Cyclotrons'59,"Oak Ridge, TN, USA",Jul. 1959,c59
+10th Int. Computational Accelerator Physics Conf.,ICAP'09,"San Francisco, CA, USA",Aug.-Sep. 2009,ICAP2009
+46th ICFA Advanced Beam Dynamics Workshop on High-Intensity and High-Brightness Hadron Beams,HB'10,"Morschach, Switzerland",Sep.-Oct. 2010,HB2010
+9th Int. Conf. RF Superconductivity,SRF'99,"Santa Fe, NM, USA",Nov. 1999,SRF99
+7th Int. Conf. RF Superconductivity,SRF'95,"Gif-sur-Yvette, France",Oct. 1995,SRF95
+32nd Int. Free Electron Laser Conf.,FEL'10,"Malmö, Sweden",Aug. 2010,FEL2010
+25th Linear Accelerator Conf.,LINAC'10,"Tsukuba, Japan",Sep. 2010,LINAC2010
+12th Int. Conf. RF Superconductivity,SRF'05,"Ithaca, NY, USA",Jul. 2005,SRF2005
+19th Int. Workshop on ECR Ion Sources,ECRIS'10,"Grenoble, France",Aug. 2010,ECRIS2010
+2nd Int. Particle Accelerator Conf.,IPAC'11,"San Sebastian, Spain",Sep. 2011,IPAC2011
+24th Particle Accelerator Conf.,PAC'11,"New York, NY, USA",Mar.-Apr. 2011,PAC2011
+8th Workshop on Beam Cooling and Related Topics,COOL'11,"Alushta, Ukraine",Sep. 2011,COOL2011
+10th European Workshop on Beam Diagnostics and Instrumentation for Particle Accelerators,DIPAC'11,"Hamburg, Germany",May 2011,DIPAC2011
+13th Int. Conf. on Accelerator and Large Experimental Control Systems,ICALEPCS'11,"Grenoble, France",Oct. 2011,icalepcs2011
+19th Int. Conf. on Cyclotrons and their Applications,Cyclotrons'10,"Lanzhou, China",Sep. 2010,Cyclotrons2010
+6th Int. Cyclotron Conf.,Cyclotrons'72,"Vancouver, Canada",Jul. 1972,c72
+15th Int. Conf. RF Superconductivity,SRF'11,"Chicago, IL, USA",Jul. 2011,SRF2011
+33rd Int. Free Electron Laser Conf.,FEL'11,"Shanghai, China",Aug. 2011,FEL2011
+3rd Int. Particle Accelerator Conf.,IPAC'12,"New Orleans, LA, USA",,IPAC2012
+11th Int. Computational Accelerator Physics Conf.,ICAP'12,"Rostock-Warnemunde, Germany",Aug. 2012,ICAP2012
+12th Int. Conf. on Heavy Ion Accelerator Technology,HIAT'12,"Chicago, IL, USA",Jun. 2012,HIAT2012
+23rd Russian Particle Accelerator Conf.,RuPAC'12,"St. Petersburg, Russia",Sep. 2012,rupac2012
+15th Beam Instrumentation Workshop,BIW'12,"Newport News, VA, USA",Apr. 2012,BIW2012
+1988 Linear Accelerator Conf.,LINAC'88,"Newport News, VA, USA",Oct. 1988,l88
+1976 Proton Linear Accelerator Conf.,LINAC'76,"Chalk River, Canada",Sep. 1976,l76
+1992 Linear Accelerator Conf.,LINAC'92,"Ottawa, Canada",Aug. 1992,l92
+26th Linear Accelerator Conf.,LINAC'12,"Tel Aviv, Israel",Sep. 2012,LINAC2012
+50th Advanced ICFA Beam Dynamics Workshop on Energy Recovery Linacs,ERL'11,"Tsukuba, Japan",Oct. 2011,ERL2011
+1984 Linear Accelerator Conf.,LINAC'84,"Seeheim, Germany",May 1984,l84
+9th Int. Workshop on Personal Computers and Particle Accelerator Controls,PCaPAC'12,"Kolkata, India",Dec. 2012,pcapac2012
+34th Int. Free Electron Laser Conf.,FEL'12,"Nara, Japan",Aug. 2012,FEL2012
+52nd ICFA Advanced Beam Dynamics Workshop on High-Intensity and High-Brightness Hadron Beams,HB'12,"Beijing, China",Sep. 2012,HB2012
+4th Int. Particle Accelerator Conf.,IPAC'13,"Shanghai, China",May 2013,IPAC2013
+1966 Linear Accelerator Conf.,LINAC'66,"Los Alamos, NM, USA",Oct. 1966,l66
+1981 Linear Accelerator Conf.,LINAC'81,"Santa Fe, NM, USA",Oct. 1981,l81
+1st Int. Beam Instrumentation Conf.,IBIC'12,"Tsukuba, Japan",Oct. 2012,IBIC2012
+49th ICFA Advanced Beam Dynamics Workshop on Electron Cloud Physics,ECLOUD'10,"Ithaca, NY, USA",Oct. 2010,ECLOUD2010
+1972 Proton Linear Accelerator Conf.,LINAC'72,"Los Alamos, NM, USA",Oct. 1972,l72
+1990 Linear Accelerator Conf.,LINAC'90,"Albuquerque, NM, USA",Sep. 1990,l90
+7th Int. Cyclotron Conf.,Cyclotrons'75,"Zurich, Switzerland",Aug. 1975,c75
+13th Int. Cyclotron Conf. and Their Applications,Cyclotrons'92,"Vancouver, Canada",Jul. 1992,c92
+9th Int. Cyclotron Conf. and Their Applications,Cyclotrons'81,"Caen, France",Sep. 1981,c81
+15th Int. Cyclotron Conf. and Their Applications,Cyclotrons'98,"Caen, France",Jun. 1998,c98
+35th Int. Free Electron Laser Conf.,FEL'13,"New York, NY, USA",Aug. 2013,FEL2013
+9th Workshop on Beam Cooling and Related Topics,COOL'13,"Mürren, Switzerland",Jun. 2013,COOL2013
+53th Advanced ICFA Beam Dynamics Workshop on Energy Recovery Linacs,ERL'13,"Novosibirsk, Russia",Sep. 2013,ERL2013
+North American Particle Accelerator Conf.,NA-PAC-2013,"Pasadena, CA, USA",Sep.-Oct. 2013,NA-PAC'13
+2nd Int. Beam Instrumentation Conf.,IBIC'13,"Oxford, UK",Sep. 2013,IBIC2013
+20th Int. Workshop on ECR Ion Sources,ECRIS'12,"Sydney, Australia",Sep. 2012,ECRIS2012
+14th Int. Conf. on Accelerator and Large Experimental Control Systems,ICALEPCS'13,"San Francisco, CA, USA",Oct. 2013,ICALEPCS2013
+8th Int. Cyclotron Conf. and Their Applications,Cyclotrons'78,"Bloomington, IN, USA",Sep. 1978,c78
+10th Int. Cyclotron Conf. and Their Applications,Cyclotrons'84,"East Lansing, MI, USA",Apr.-May 1984,c84
+11th Int. Cyclotron Conf. and Their Applications,Cyclotrons'86,"Tokyo, Japan",Oct. 1986,c86
+12th Int. Cyclotron Conf. and Their Applications,Cyclotrons'89,"Berlin, Germany",May 1989,c89
+14th Int. Cyclotron Conf. and Their Applications,Cyclotrons'95,"Cape Town, South Africa",Oct. 1995,c95
+20th Int. Conf. on Cyclotrons and their Applications,Cyclotrons'13,"Vancouver, Canada",Sep. 2013,CYCLOTRONS2013
+5th Int. Particle Accelerator Conf.,IPAC'14,"Dresden, Germany",Jun. 2014,IPAC2014
+16th Int. Conf. RF Superconductivity,SRF'13,"Paris, France",Sep. 2013,SRF2013
+24th Russian Particle Accelerator Conf.,RuPAC'14,"Obninsk, Russia",Oct. 2014,rupac2014
+27th Linear Accelerator Conf.,LINAC'14,"Geneva, Switzerland",Aug.-Sep. 2014,LINAC2014
+12th Symposium on Accelerator Physics,SAP'14,"Lanzhou, China",Aug. 2014,SAP2014
+36th Int. Free Electron Laser Conf.,FEL'14,"Basel, Switzerland",Aug. 2014,FEL2014
+54th ICFA Advanced Beam Dynamics Workshop on High-Intensity and High-Brightness Hadron Beams,HB'14,"East Lansing, MI, USA",Nov. 2014,HB2014
+21st Int. Workshop on ECR Ion Sources,ECRIS'14,"Nizhny Novgorod, Russia",Aug. 2014,ECRIS2014
+55th ICFA Advanced Beam Dynamics Workshop on High Luminosity Circular e+e- Colliders - Higgs Factory,HF'14,"Beijing, China",Oct. 2014,HF2014
+10th Int. Workshop on Personal Computers and Particle Accelerator Controls,PCaPAC'14,"Karlsruhe, Germany",Oct. 2014,PCaPAC2014
+1994 Linear Accelerator Conf.,LINAC'94,"Tsukuba, Japan",Aug. 1994,l94
+3rd Int. Beam Instrumentation Conf.,IBIC'14,"Monterey, CA, USA",Sep. 2014,IBIC2014
+6th Int. Particle Accelerator Conf.,IPAC'15,"Richmond, VA, USA",May 2015,IPAC2015
+56th Advanced ICFA Beam Dynamics Workshop on Energy Recovery Linacs,ERL'15,"Stony Brook, NY, USA",Jun. 2015,ERL2015
+37th Int. Free Electron Laser Conf.,FEL'15,"Daejeon, Korea",Aug. 2015,FEL2015
+13th Int. Conf. on Heavy Ion Accelerator Technology,HIAT'15,"Yokohama, Japan",Sep. 2015,HIAT2015
+12th Int. Computational Accelerator Physics Conf.,ICAP'15,"Shanghai, China",Oct. 2015,ICAP2015
+15th Int. Conf. on Accelerator and Large Experimental Control Systems,ICALEPCS'15,"Melbourne, Australia",Oct. 2015,ICALEPCS2015
+17th Int. Conf. RF Superconductivity,SRF'15,"Whistler, Canada",Sep. 2015,SRF2015
+4th Int. Beam Instrumentation Conf.,IBIC'15,"Melbourne, Australia",Sep. 2015,IBIC2015
+1986 Linear Accelerator Conf.,LINAC'86,"Stanford, CA, USA",Jun. 1986,l86
+7th Int. Particle Accelerator Conf.,IPAC'16,"Busan, Korea",May 2016,ipac2016
+57th ICFA Advanced Beam Dynamics Workshop on High-Intensity and High-Brightness Hadron Beams,HB'16,"Malmö, Sweden",Jul. 2016,hb2016
+1964 Linear Accelerator Conf.,LINAC'64,"Madison, WI, USA",Jul. 1964,l64
+21th Int. Conf. on Cyclotrons and their Applications,Cyclotrons'16,"Zurich, Switzerland",Sep. 2016,cyclotrons2016
+10th Workshop on Beam Cooling and Related Topics,COOL'15,"Newport News, VA, USA",Sep.-Oct. 2015,cool2015
+25th Russian Particle Accelerator Conf.,RuPAC'16,"St. Petersburg, Russia",Nov. 2016,rupac2016
+5th Int. Beam Instrumentation Conf.,IBIC'16,"Barcelona, Spain",Sep. 2016,ibic2016
+1970 Linear Accelerator Conf.,LINAC'70,"Batavia, IL, USA",Sep.-Oct. 1970,l70
+1979 Linear Accelerator Conf.,LINAC'79,"Montauk, NY, USA",Sep. 1979,l79
+1961 Conf. on Linear Accelerators,LINAC'61,"Long Island, NY, USA",Apr. 1961,l61
+1962 Conf. on Linear Accelerators for High Energies,LINAC'62,"Long Island, NY, USA",Aug. 1962,l62
+1963 Conf. on Proton Linear Accelerators,LINAC'63,"New Heaven, CT, USA",Oct. 1963,l63
+1968 Proton Linear Accelerator Conf.,LINAC'68,"Long Island, NY, USA",May 1968,l68
+28th Linear Accelerator Conf.,LINAC'16,"East Lansing, MI, USA",Sep. 2016,linac2016
+8th Int. Particle Accelerator Conf.,IPAC'17,"Copenhagen, Denmark",May 2017,ipac2017
+North American Particle Accelerator Conf.,NA-PAC-2016,"Chicago, IL, USA",Oct. 2016,napac2016
+9th Mechanical Engineering Design of Synchrotron Radiation Equipment and Instrumentation Int. Conf.,MEDSI'16,"Barcelona, Spain",Sep. 2016,medsi2016
+58th ICFA Advanced Beam Dynamics Workshop on High Luminosity Circular e+e- Colliders,eeFACT'16,"Daresbury, UK",Oct. 2016,eefact2016
+22nd  Int. Workshop on ECR Ion Sources,ECRIS'16,"Busan, Korea",Aug.-Sep. 2016,ecris2016
+11th Int. Workshop on Personal Computers and Particle Accelerator Controls,PCaPAC'16,"Campinas, Brazil",Oct. 2016,pcapac2016
+11th Workshop on Beam Cooling and Related Topics,COOL'17,"Bonn, Germany",Sep. 2017,cool2017
+13th Symposium on Accelerator Physics,SAP'17,"Jishou, China",Aug. 2017,sap2017
+16th Int. Conf. on Accelerator and Large Experimental Control Systems,ICALEPCS'17,"Barcelona, Spain",Oct. 2017,icalepcs2017
+18th Int. Conf. RF Superconductivity,SRF'17,"Lanzhou, China",Jul. 2017,srf2017
+38th Int. Free Electron Laser Conf.,FEL'17,"Santa Fe, NM, USA",Aug. 2017,fel2017
+6th Int. Beam Instrumentation Conf.,IBIC'17,"Grand Rapids, MI, USA",Aug. 2017,ibic2017
+60th ICFA Advanced Beam Dynamics Workshop on Future Light Sources,FLS'18,"Shanghai, China",Mar. 2018,fls2018
+61st ICFA Advanced Beam Dynamics Workshop on High-Intensity and High-Brightness Hadron Beams,HB'18,"Daejeon, Korea",Jun. 2018,hb2018
+9th Int. Particle Accelerator Conf.,IPAC'18,"Vancouver, Canada",Apr.-May 2018,ipac2018
+59th Advanced ICFA Beam Dynamics Workshop on Energy Recovery Linacs,ERL'17,"Geneva, Switzerland",Jun. 2017,erl2017
+26th Russian Particle Accelerator Conf.,RuPAC'18,"Protvino, Russia",Oct. 2018,rupac2018
+10th Mechanical Engineering Design of Synchrotron Radiation Equipment and Instrumentation Int. Conf.,MEDSI'18,"Paris, France",Jun. 2018,medsi2018
+29th Linear Accelerator Conf.,LINAC'18,"Beijing, China",Sep. 2018,linac2018

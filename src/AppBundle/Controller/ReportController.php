@@ -51,7 +51,7 @@ class ReportController extends Controller
             ->createQueryBuilder("r")
             ->select("count(r)")
             ->where("r.position = :position")
-            ->setParameter("position", "99-99")
+            ->setParameter("position", "99-98")
             ->getQuery()
             ->getSingleScalarResult();
 
@@ -168,7 +168,7 @@ class ReportController extends Controller
             ->createQueryBuilder("r")
             ->select("r")
             ->where("r.position = :position")
-            ->setParameter("position", "99-99");
+            ->setParameter("position", "99-98");
 
 
         $paginator  = $this->get('knp_paginator');
