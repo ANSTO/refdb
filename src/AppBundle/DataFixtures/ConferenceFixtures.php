@@ -20,6 +20,9 @@ class ConferenceFixtures extends Fixture
 
     public function load(ObjectManager $manager)
     {
+        ini_set('memory_limit','2G');
+        ini_set('max_execution_time', 600);
+
         $path = $this->kernel->getRootDir() . "/../src/AppBundle/DataFixtures/Import/";
         $filename = $path . "conferences.csv";
 
