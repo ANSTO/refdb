@@ -50,7 +50,7 @@ class Reference implements \JsonSerializable
     private $author;
 
     /**
-     * @ORM\ManyToMany(targetEntity="AppBundle\Entity\Author", mappedBy="references", fetch="EAGER")
+     * @ORM\ManyToMany(targetEntity="AppBundle\Entity\Author", mappedBy="references")
      */
     private $authors;
 
@@ -68,12 +68,6 @@ class Reference implements \JsonSerializable
      */
     private $isbn;
 
-    /**
-     * @var string
-     *
-     * @ORM\Column(name="doi", type="string", length=255, nullable=true)
-     */
-    private $doi;
 
     /**
      * @var string
@@ -260,22 +254,6 @@ class Reference implements \JsonSerializable
 
 
     /**
-     * @return string
-     */
-    public function getDoi()
-    {
-        return $this->doi;
-    }
-
-    /**
-     * @param string $doi
-     */
-    public function setDoi($doi)
-    {
-        $this->doi = $doi;
-    }
-
-    /**
      * @return bool
      */
     public function isInProc()
@@ -346,7 +324,15 @@ class Reference implements \JsonSerializable
         if ($this->getOverride() !== null) {
             return $this->getOverride();
         } else {
-            return $this->getTitleSection() . "" . $this->getConferenceSection()  . "," . $this->getPaperSection();
+            $output = $this->getTitleSection() . "" . $this->getConferenceSection()  . "," . $this->getPaperSection();
+
+            $doi = $this->doi();
+
+            if ($doi !== false) {
+                $output .= ", " . $doi;
+            }
+
+            return $output;
         }
     }
 
@@ -366,6 +352,14 @@ class Reference implements \JsonSerializable
 
 
         return $author . " “" . $title . "” " . $inProc;
+    }
+
+    public function doi() {
+        if ($this->getConference()->isUseDoi()) {
+            return 'https://doi.org/10.18429/JACoW-' . $this->getConference()->getDoiCode() . '-' . $this->getPaperId();
+        } else {
+            return false;
+        }
     }
 
     public function getPaperSection() {
