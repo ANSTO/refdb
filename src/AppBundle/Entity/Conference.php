@@ -46,6 +46,19 @@ class Conference
 
     /**
      * @var string
+     *
+     * @ORM\Column(type="string", length=255, nullable=true)
+     */
+    private $doiCode;
+
+    /**
+     * @ORM\Column(type="boolean", nullable=true)
+     * @var boolean
+     */
+    private $useDoi;
+
+    /**
+     * @var string
      * @Assert\Regex("/^([A-Za-zàèìòùÀÈÌÒÙáéíóúýÁÉÍÓÚÝâêîôûÂÊÎÔÛãñõÃÑÕäëïöüÿÄËÏÖÜŸçÇßØøÅåÆæœ '\-]+, (?!USA)[A-Za-zàèìòùÀÈÌÒÙáéíóúýÁÉÍÓÚÝâêîôûÂÊÎÔÛãñõÃÑÕäëïöüÿÄËÏÖÜŸçÇßØøÅåÆæœ '\-]+|[A-Za-zàèìòùÀÈÌÒÙáéíóúýÁÉÍÓÚÝâêîôûÂÊÎÔÛãñõÃÑÕäëïöüÿÄËÏÖÜŸçÇßØøÅåÆæœ '\-]+, [A-Za-zàèìòùÀÈÌÒÙáéíóúýÁÉÍÓÚÝâêîôûÂÊÎÔÛãñõÃÑÕäëïöüÿÄËÏÖÜŸçÇßØøÅåÆæœ '\-]+, USA)$/")
      * @ORM\Column(name="location", type="string", length=2000)
      */
@@ -320,5 +333,37 @@ class Conference
     public function getReplacements()
     {
         return $this->replacements;
+    }
+
+    /**
+     * @return bool
+     */
+    public function isUseDoi()
+    {
+        return $this->useDoi;
+    }
+
+    /**
+     * @param bool $useDoi
+     */
+    public function setUseDoi($useDoi)
+    {
+        $this->useDoi = $useDoi;
+    }
+
+    /**
+     * @return string
+     */
+    public function getDoiCode()
+    {
+        return $this->doiCode;
+    }
+
+    /**
+     * @param string $doiCode
+     */
+    public function setDoiCode($doiCode)
+    {
+        $this->doiCode = $doiCode;
     }
 }

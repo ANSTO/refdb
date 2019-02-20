@@ -1,5 +1,6 @@
 {% extends 'base.html.twig' %}
 
+
 {% block body %}
     {% if is_granted("ROLE_ADMIN") %}
         <div class="float-right btn-group">
@@ -16,12 +17,27 @@
     <br />
     <h3>Word</h3>
     <br />
-    <p>{{ reference|latin }}</p>
+    <p class="wordbib">{{ reference|latin }}</p>
 
     <br />
     <h3>LaTeX</h3>
     <br />
-    <p> <textarea class="form-control">N/A</textarea></p>
+    <p> <textarea class="form-control" rows="5">{% spaceless %}
+    \bibitem
+   {{ reference.author }}
+   \textquotedblleft{{ '{' ~ reference.title ~ '}' }}\textquotedblright,
+   in \emph{{ '{' ~ reference.conference ~ '}'}},
+   {{ reference.conference.location }}, {{ reference.conference.year }}, paper {{ reference.paperId }}, pp. {{ reference.position|replace("-","--") }}
+        {% endspaceless %}</textarea></p>
+
+
+    {#<br />#}
+    {#<h3>Associated Authors</h3>#}
+    {#<ul>#}
+    {#{% for author in reference.authors %}#}
+    {#<li><a href="{{ path("author_show", {"id": author.id }) }}">{{ author }}</a></li>#}
+    {#{% endfor %}#}
+    {#</ul>#}
 
     <br />
     <a class="btn btn-default" href="{{ path('reference_index') }}"><i class="fas fa-arrow-left"></i> Back to the list</a>
