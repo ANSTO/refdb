@@ -2,6 +2,12 @@
 
 
 {% block body %}
+    {% if warning %}
+        <div class="text-center alert alert-danger">
+            <strong>Warning</strong> This reference does not appear to be formatted correctly, or is missing required information.
+        </div>
+    {% endif %}
+
     {% if is_granted("ROLE_ADMIN") %}
         <div class="float-right btn-group">
             <a class=" btn btn-primary" href="{{ path('reference_edit', { 'id': reference.id }) }}"><i class="fas fa-edit"></i> Edit</a>
@@ -13,6 +19,7 @@
         </div>
     {% endif %}
     <h2>Reference</h2>
+
 
     <br />
     <h3>Word</h3>

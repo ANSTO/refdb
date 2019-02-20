@@ -76,10 +76,15 @@ class ReferenceController extends Controller
      */
     public function showAction(Reference $reference)
     {
+        $warning = false;
+        if (preg_match_all("/[\[\(\/]+/",$reference->getAuthor(), $matches) || count($reference->getAuthors()) == 0 || $reference->getPosition() == "99-98") {
+            $warning = true;
+        }
         $deleteForm = $this->createDeleteForm($reference);
 
         return $this->render('reference/show.html.twig', array(
             'reference' => $reference,
+            'warning' => $warning,
             'delete_form' => $deleteForm->createView(),
         ));
     }
