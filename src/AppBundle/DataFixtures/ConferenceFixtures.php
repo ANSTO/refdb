@@ -38,10 +38,9 @@ class ConferenceFixtures extends Fixture
                 $manager->persist($conference);
                 $manager->flush();
 
-                $conferenceFile = $path . "/" . $data[4] . ".csv";
+                /*$conferenceFile = $path . "/" . $data[4] . ".csv";
                 if (file_exists($conferenceFile)) {
                     $references = $this->getRows($conferenceFile);
-                    /** @var Reference $reference */
                     echo "Importing " . count($references) . " references\r\n";
                     foreach ($references as $reference) {
                         $reference->setConference($conference);
@@ -52,7 +51,7 @@ class ConferenceFixtures extends Fixture
                     $manager->clear();
 
                     $this->cleanDuplicates($manager);
-                }
+                }*/
 
 
             }
