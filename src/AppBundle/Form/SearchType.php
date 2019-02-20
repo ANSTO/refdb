@@ -15,12 +15,12 @@ class SearchType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder
-            ->add('paperId', null, array("label"=>"Paper ID"))
             ->add('title')
             ->add('author')
-            ->add('conference')
-            ->add('location')
-            ->add('date');
+            ->add('paperId', null, array("label"=>"Paper ID"))
+            ->add('conference', null, ['label'=>"Conference Name"])
+            ->add('location', null, ["label"=>"Conference Location"])
+            ->add('date', null,["label"=>"Conference Date"]);
     }/**
      * {@inheritdoc}
      */
