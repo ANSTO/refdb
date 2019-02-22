@@ -1,12 +1,37 @@
 {% extends 'base.html.twig' %}
 
-
 {% block body %}
     {% if warning %}
         <div class="text-center alert alert-danger">
-            <strong>Warning</strong> This reference does not appear to be formatted correctly, or is missing required information.
+            <strong>Warning</strong> {{ warning }}
         </div>
     {% endif %}
+
+    {% if not reference.conference.published %}
+        {% if current_conference.hasCurrent and current_conference.current == reference.conference %}
+            {% if not current_conference.understand %}
+                <div class="text-center alert alert-info alert-dismissible">
+                    <a href="{{ path('conference_dismiss', {"ref": path("reference_show", {"id": reference.id })}) }}" class="close">&times;</a>
+                    You have indicated that you are creating references for {{ reference.conference.code }}. <br />If this is no longer the case, please indicate this by selecting the "Not for use for this conference"
+                </div>
+            {% endif %}
+            <div class="float-right btn-group">
+                &nbsp; <a class="btn btn-info" href="{{ path('conference_current_clear', {"ref": path("reference_show", {"id": reference.id })}) }}">Not for use for this conference</a>
+            </div>
+        {% else %}
+            {% if not current_conference.understand %}
+                <div class="text-center alert alert-warning alert-dismissible">
+                    <a href="{{ path('conference_dismiss', {"ref": path("reference_show", {"id": reference.id })}) }}" class="close">&times;</a>
+                    If you would like to reference this paper at the same conference. <br />Please indicate if you are referencing this paper at the same conference, by selecting the "For use at same conference".
+                </div>
+            {% endif %}
+            <div class="float-right btn-group">
+                &nbsp; <a class="btn btn-warning" href="{{ path('conference_current', { 'id': reference.conference.id, "ref": path("reference_show", {"id": reference.id })}) }}">For use at same conference</a>
+            </div>
+        {% endif %}
+    {% endif %}
+
+
 
     {% if is_granted("ROLE_ADMIN") %}
         <div class="float-right btn-group">
@@ -18,32 +43,38 @@
             <button class="btn btn-default btn-modal" data-href="{{ path('fix_landing', { 'id': reference.id }) }}"><i class="fas fa fa-question-circle"></i> Fix a problem</button>
         </div>
     {% endif %}
+
+
+
+
     <h2>Reference</h2>
-
-
     <br />
     <h3>For Word</h3>
 
     <div class="card">
-        <div class="card-body wordbib">
-            {{ reference|latin }}
+        <div class="card-body">
+            <pre class="wordbib">[n]{{ "\t" }}{{ reference|latin }}</pre>
         </div>
     </div>
     <br />
     <h3>For LaTeX</h3>
 
     <p>{% spaceless %}
-            <textarea class="form-control" rows="6">
+            <textarea class="form-control latex-ref" rows="6">
 %\cite{{ '{' ~ reference.id ~ '}' }}
-\bibitem{{ '{' ~ reference.id ~ '}' }}
-   {{ reference.author }}
+\bibitem{{ '{' ~ reference.id ~ '}' }}{{ "\n   " ~ reference.author }}
    \textquotedblleft{{ '{' ~ reference.title ~ '}' }}\textquotedblright,
-   in \emph{{ '{' ~ reference.conference ~ '}'}},
-   {{ reference.conference.location }}, {{ reference.conference.year }}, {{ reference.paperSection|replace({"-": "--"}) }}</textarea>
+   in \emph{{ '{' ~ reference.conference ~ '}'}}, {{ reference.conference.location }}, {{ reference.conference.year -}},
+
+                {%- if current_conference.hasCurrent and reference.conference == current_conference.current -%}
+                    {{ reference.paperSection|replace({"unpublished": "this conference"}) }}.
+                {%- else -%}
+                    {{ reference.paperSection|replace({"-": "--"}) }}.
+                {%- endif -%}
+
+            </textarea>
         {% endspaceless %}
     </p>
-
-
 
     <br />
     <h3>Metadata</h3>
@@ -55,7 +86,12 @@
                 Paper Title: {{ reference.title }}<br />
                 Conference: <a href="{{ path("conference_show", {"id": reference.conference.id }) }}">{{ reference.conference }}</a><br />
                 Paper ID: {{ reference.paperId }}<br />
-                Location in proceedings: {{ reference.position }}<br />
+                {% if reference.conference.published %}
+                    Location in proceedings: {{ reference.position }}<br />
+                {% endif %}
+                {% if reference.originalAuthors is not null %}
+                    Original Author String: {{ reference.originalAuthors }}
+                {% endif %}
             </p>
             <h4>Associated Authors</h4>
             <ul>

@@ -7,6 +7,7 @@ use AppBundle\Entity\Conference;
 use AppBundle\Entity\Reference;
 use AppBundle\Entity\Search;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
+use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Component\HttpFoundation\Request;
@@ -18,7 +19,6 @@ use Symfony\Component\HttpFoundation\Request;
  */
 class ReportController extends Controller
 {
-
     /**
      * Lists all author entities.
      * @Route("/", name="report_index")

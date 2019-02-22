@@ -32,6 +32,7 @@ class ConferenceFixtures extends Fixture
                 $conference = new Conference();
                 $conference->setName($data[0]);
                 $conference->setCode($data[1]);
+                $conference->setIsPublished(true);
                 $conference->setLocation($data[2]);
                 $conference->setYear($data[3]);
                 echo "Persisting: " . $conference->getName() . "\r\n";

@@ -6,6 +6,7 @@ use AppBundle\Entity\Author;
 use AppBundle\Entity\Conference;
 use AppBundle\Entity\Reference;
 use AppBundle\Form\Type\TagsAsInputType;
+use AppBundle\Service\DoiService;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\Routing\Annotation\Route;
@@ -18,6 +19,7 @@ use Symfony\Component\HttpFoundation\Request;
  */
 class ReferenceController extends Controller
 {
+
     /**
      * Lists all reference entities.
      * @Route("/", name="reference_index")
@@ -77,9 +79,27 @@ class ReferenceController extends Controller
     public function showAction(Reference $reference)
     {
         $warning = false;
-        if (preg_match_all("/[\[\(\/]+/",$reference->getAuthor(), $matches) || count($reference->getAuthors()) == 0 || $reference->getPosition() == "99-98") {
-            $warning = true;
+
+        if ($reference->getConference()->isUseDoi() && !$reference->isDoiVerified()) {
+            $doiService = new DoiService();
+            $valid = $doiService->check($reference);
+            if (!$valid) {
+                $warning = "This references DOI could not be verified, so it has been removed.";
+            } else {
+                $reference->setDoiVerified(true);
+                $reference->setCache($reference->__toString());
+                $this->getDoctrine()->getManager()->flush();
+            }
         }
+
+        if (preg_match_all("/[\[\(\/]+/",$reference->getAuthor(), $matches) || count($reference->getAuthors()) == 0) {
+            $warning = "There is a problem with this papers authors";
+        }
+        if ($reference->getPosition() == "99-98") {
+            $warning = "The page number (position in proceedings) is not included in this reference. 99-98 is a placeholder for missing data.";
+        }
+
+
         $deleteForm = $this->createDeleteForm($reference);
 
         return $this->render('reference/show.html.twig', array(

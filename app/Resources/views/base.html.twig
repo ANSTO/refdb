@@ -60,6 +60,11 @@
                             <a class="nav-link" href="{{ path("fos_user_registration_register") }}">Register</a>
                         </li>
                     {% else %}
+                        {% if is_granted("ROLE_ADMIN") %}
+                            <li class="nav-item">
+                                <a class="nav-link" href="{{ path("user_index") }}">Users</a>
+                            </li>
+                        {% endif %}
                         <li class="nav-item">
                             <a class="nav-link" href="{{ path("fos_user_security_logout") }}">Logout</a>
                         </li>

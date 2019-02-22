@@ -1,0 +1,63 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    <h2>User Administration</h2>
+
+    <br />
+    {% if pending|length != 0 %}
+        <h3>Pending Promotion</h3>
+
+        <p>Below are a list of users pending promotion.</p>
+
+        <div class="card">
+            <table class="table table-striped">
+                <thead>
+                <tr>
+                    <th>Email</th>
+                    <th width="100">Actions</th>
+                </tr>
+                </thead>
+                <tbody>
+                {% for user in pending %}
+                    <tr>
+                        <td>{{ user.email }}</td>
+                        <td>
+
+                            <div class="btn-group">
+                                <a class="btn btn-success btn-modal" href="{{ path('user_promote', { 'id': user.id }) }}">Promote</a>
+
+                                <button class="btn btn-danger btn-modal" data-href="{{ path('user_delete', { 'id': user.id }) }}">Reject</button>
+                            </div>
+                        </td>
+                    </tr>
+                {% endfor %}
+                </tbody>
+            </table>
+        </div>
+        <br />
+    {% endif %}
+
+    <h3>Current Admins</h3>
+    <div class="card">
+        <table class="table table-striped">
+            <thead>
+            <tr>
+                <th>Email</th>
+                <th width="100">Actions</th>
+            </tr>
+            </thead>
+            <tbody>
+            {% for user in admins %}
+                <tr>
+                    <td>{{ user.email }}</td>
+                    <td>
+                        <div class="btn-group">
+                            <button class="btn btn-danger btn-modal" data-href="{{ path('user_delete', { 'id': user.id }) }}">Delete</button>
+                        </div>
+                    </td>
+                </tr>
+            {% endfor %}
+            </tbody>
+        </table>
+    </div>
+{% endblock %}

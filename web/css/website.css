@@ -15,12 +15,22 @@
   text-decoration: none;
 }
 
-.wordbib {
+pre.wordbib {
   font-family: "Times New Roman", Times, serif;
   font-size: 9pt;
   font-style: normal;
   text-align: justify;
   text-decoration: none;
+  margin-bottom: 0;
+  white-space: pre-wrap;
+  white-space: -moz-pre-wrap;
+  white-space: -o-pre-wrap;
+  word-wrap: break-word;
+}
+
+.latex-ref {
+  font-family: monospace;
+  padding: 1.25rem;
 }
 
 h1, h2, h3, h4, h5, h6 {

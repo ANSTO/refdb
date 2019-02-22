@@ -6,6 +6,7 @@ use AppBundle\Entity\Conference;
 use AppBundle\Entity\Reference;
 use AppBundle\Form\SwitchConferenceType;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
+use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Component\HttpFoundation\Request;
 
@@ -30,10 +31,19 @@ class FixController extends Controller
 
     /**
      * Lists all reference entities.
-     * @Route("/conference/{id}", name="fix_conference")
+     * @Route("/conference", name="fix_conference")
      */
-    public function conferenceAction(Request $request, Reference $reference) {
-        return $this->render('fix/conference.html.twig', array('reference' => $reference));
+    public function conferenceAction(Request $request) {
+
+        $manager = $this->getDoctrine()->getManager();
+        /** @var Conference $conference */
+        foreach ($manager->getRepository(Conference::class)->findAll() as $conference) {
+            $conference->setIsPublished(true);
+        }
+
+        $manager->flush();
+
+        return new Response("Fixed");
     }
 
     /**

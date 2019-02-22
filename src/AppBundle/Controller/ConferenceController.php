@@ -5,6 +5,7 @@ namespace AppBundle\Controller;
 use AppBundle\Entity\Author;
 use AppBundle\Entity\Conference;
 use AppBundle\Entity\Reference;
+use AppBundle\Service\CurrentConferenceService;
 use Doctrine\ORM\Query\Expr\Join;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\JsonResponse;
@@ -18,6 +19,39 @@ use Symfony\Component\HttpFoundation\Request;
  */
 class ConferenceController extends Controller
 {
+    /**
+     * Make this conference my current conference
+     *
+     * @Route("/dismiss", name="conference_dismiss")
+     * @param Request $request
+     * @param CurrentConferenceService $currentConferenceService
+     * @return \Symfony\Component\HttpFoundation\RedirectResponse
+     */
+    public function dismissAction(Request $request, CurrentConferenceService $currentConferenceService) {
+        $currentConferenceService->dismiss();
+        return $this->redirect($request->get('ref'));
+    }
+
+    /**
+     * Make this conference my current conference
+     *
+     * @Route("/clear/current", name="conference_current_clear")
+     */
+    public function clearAction(Request $request, CurrentConferenceService $currentConferenceService) {
+        $currentConferenceService->clearCurrent();
+        return $this->redirect($request->get('ref'));
+    }
+
+    /**
+     * Make this conference my current conference
+     *
+     * @Route("/current/{id}", name="conference_current")
+     */
+    public function currentAction(Request $request, CurrentConferenceService $currentConferenceService, Conference $conference) {
+        $currentConferenceService->setCurrent($conference);
+        return $this->redirect($request->get('ref'));
+    }
+
     /**
      * Lists all conference entities.
      * @Route("/", name="conference_index")

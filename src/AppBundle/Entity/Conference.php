@@ -88,6 +88,20 @@ class Conference
     private $replacements;
 
     /**
+     * @var boolean
+     *
+     * @ORM\Column(type="boolean", nullable=true)
+     */
+    private $isPublished;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(type="string", length=2000, nullable=true)
+     */
+    private $importUrl;
+
+    /**
      * Get id
      *
      * @return int
@@ -365,5 +379,38 @@ class Conference
     public function setDoiCode($doiCode)
     {
         $this->doiCode = $doiCode;
+    }
+
+
+    /**
+     * @return string
+     */
+    public function getImportUrl()
+    {
+        return $this->importUrl;
+    }
+
+    /**
+     * @param string $importUrl
+     */
+    public function setImportUrl($importUrl)
+    {
+        $this->importUrl = $importUrl;
+    }
+
+    /**
+     * @return bool
+     */
+    public function isPublished()
+    {
+        return $this->isPublished;
+    }
+
+    /**
+     * @param bool $isPublished
+     */
+    public function setIsPublished($isPublished)
+    {
+        $this->isPublished = $isPublished;
     }
 }

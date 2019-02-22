@@ -24,6 +24,12 @@ class Reference implements \JsonSerializable
 
     /**
      * @var string
+     * @ORM\Column(type="string", length=4000, nullable=true)
+     */
+    private $originalAuthors;
+
+    /**
+     * @var string
      * @ORM\Column(type="string", length=255, nullable=true)
      */
     private $paperId;
@@ -72,7 +78,7 @@ class Reference implements \JsonSerializable
     /**
      * @var string
      *
-     * @ORM\Column(name="position", type="string", length=255)
+     * @ORM\Column(name="position", type="string", length=255, nullable=true)
      */
     private $position;
 
@@ -113,6 +119,20 @@ class Reference implements \JsonSerializable
      * @ORM\OneToMany(targetEntity="AppBundle\Entity\Reference", mappedBy="replaces")
      */
     private $replacements;
+
+    /**
+     * @var boolean
+     *
+     * @ORM\Column(type="boolean", nullable=true)
+     */
+    private $doiVerified;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="url", type="string", length=2000, nullable=true)
+     */
+    private $url;
 
     /**
      * Constructor
@@ -328,10 +348,11 @@ class Reference implements \JsonSerializable
 
             $doi = $this->doi();
 
-            if ($doi !== false) {
+            if ($doi !== false && $this->isDoiVerified()) {
                 $output .= ", " . $doi;
+            } else {
+                $output .= ".";
             }
-
             return $output;
         }
     }
@@ -344,12 +365,11 @@ class Reference implements \JsonSerializable
         $author = $this->getAuthorStr();
         $title = $this->getTitle();
 
-        if ($this->isInProc()) {
+        if ($this->isInProc() && $this->getConference()->isPublished()) {
             $inProc = "in <em>Proc. </em>";
         } else {
             $inProc = "<em>presented at the </em>";
         }
-
 
         return $author . " “" . $title . "” " . $inProc;
     }
@@ -363,11 +383,16 @@ class Reference implements \JsonSerializable
     }
 
     public function getPaperSection() {
-        $position = "";
-        if ($this->getPosition() !== null) {
-            $position = " pp. " . $this->getPosition();
-        }
 
+        $position = "";
+
+        if ($this->getConference()->isPublished()) {
+            if ($this->getPosition() !== null) {
+                $position = "pp. " . $this->getPosition();
+            }
+        } else {
+            $position = "unpublished";
+        }
         $paper = "";
         if ($this->getPaperId() !== null) {
             $paper = " paper " . $this->getPaperId() . ", ";
@@ -555,5 +580,53 @@ class Reference implements \JsonSerializable
     public function getReplacements()
     {
         return $this->replacements;
+    }
+
+    /**
+     * @return bool
+     */
+    public function isDoiVerified()
+    {
+        return $this->doiVerified;
+    }
+
+    /**
+     * @param bool $doiVerified
+     */
+    public function setDoiVerified($doiVerified)
+    {
+        $this->doiVerified = $doiVerified;
+    }
+
+    /**
+     * @return string
+     */
+    public function getUrl()
+    {
+        return $this->url;
+    }
+
+    /**
+     * @param string $url
+     */
+    public function setUrl($url)
+    {
+        $this->url = $url;
+    }
+
+    /**
+     * @return string
+     */
+    public function getOriginalAuthors()
+    {
+        return $this->originalAuthors;
+    }
+
+    /**
+     * @param string $originalAuthors
+     */
+    public function setOriginalAuthors($originalAuthors)
+    {
+        $this->originalAuthors = $originalAuthors;
     }
 }
