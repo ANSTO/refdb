@@ -99,5 +99,5 @@ fos_user:
     service:
         mailer: fos_user.mailer.twig_swift
     from_email:
-        address: noreply@ansto.gov.au
-        sender_name: noreply
+        address: "%from_address%"
+        sender_name: "%from_address%"
