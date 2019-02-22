@@ -9,7 +9,7 @@ use Symfony\Component\Validator\Constraints as Assert;
 /**
  * Conference
  *
- * @ORM\Table(name="conference")
+ * @ORM\Table(name="conference",indexes={@ORM\Index(name="conference_code_idx", columns={"code"})}))
  * @ORM\Entity(repositoryClass="AppBundle\Repository\ConferenceRepository")
  */
 class Conference implements \JsonSerializable
