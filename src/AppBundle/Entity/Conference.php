@@ -12,7 +12,7 @@ use Symfony\Component\Validator\Constraints as Assert;
  * @ORM\Table(name="conference")
  * @ORM\Entity(repositoryClass="AppBundle\Repository\ConferenceRepository")
  */
-class Conference
+class Conference implements \JsonSerializable
 {
     /**
      * @var int
@@ -312,5 +312,21 @@ class Conference
     public function setIsPublished($isPublished)
     {
         $this->isPublished = $isPublished;
+    }
+
+    /**
+     * Specify data which should be serialized to JSON
+     * @link https://php.net/manual/en/jsonserializable.jsonserialize.php
+     * @return mixed data which can be serialized by <b>json_encode</b>,
+     * which is a value of any type other than a resource.
+     * @since 5.4.0
+     */
+    public function jsonSerialize()
+    {
+        return ["name"=> $this->getName(),
+            "code" => $this->getCode(),
+            "location" => $this->getLocation(),
+            "date" => $this->getYear(),
+            "id"=>$this->getId()];
     }
 }

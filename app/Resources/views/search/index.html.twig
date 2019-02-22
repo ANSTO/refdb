@@ -1,19 +1,107 @@
 {% extends 'base.html.twig' %}
 
+
 {% block javascripts %}
    {{ parent() }}
 
    <script>
-      $("form").submit(function() {
-         triggerSearch();
-         return false;
-      });
+       $("form").submit(function() {
+          triggerSearch();
+          return false;
+       });
 
       var adjustedText = false;
       var date = new Date();
       var lastInput = date.getTime();
       var lastSearch = date.getTime();
       var searchContent;
+
+      datasources['conference'] = new Bloodhound({
+         datumTokenizer: Bloodhound.tokenizers.whitespace,
+         queryTokenizer: Bloodhound.tokenizers.whitespace,
+         remote: {
+            url: Routing.generate('conference_search', { 'query': 'query' }),
+            wildcard: 'query',
+            transform: function(data) {
+               return data;
+            }
+         },
+         limit: 20
+      });
+
+      datasources['conference_date'] = new Bloodhound({
+         datumTokenizer: Bloodhound.tokenizers.whitespace,
+         queryTokenizer: Bloodhound.tokenizers.whitespace,
+         remote: {
+            url: Routing.generate('conference_search', { 'query': 'query', 'type': 'date' }),
+            wildcard: 'query',
+            transform: function(data) {
+               return data;
+            }
+         },
+         limit: 20
+      });
+
+      datasources['conference_location'] = new Bloodhound({
+         datumTokenizer: Bloodhound.tokenizers.whitespace,
+         queryTokenizer: Bloodhound.tokenizers.whitespace,
+         remote: {
+            url: Routing.generate('conference_search', { 'query': 'query', 'type': 'location' }),
+            wildcard: 'query',
+            transform: function(data) {
+               return data;
+            }
+         },
+         limit: 20
+      });
+
+      $(".conference-typeahead").typeahead({
+                 hint: true,
+                 highlight: true,
+                 minLength: 1
+              },
+              {
+                 limit: 20,
+                 name: 'conference_search',
+                 displayKey: 'code',
+                 templates: {
+                    suggestion: function(data) {
+                       return '<p><strong>[' + data.code + ']</strong> ' + data.name + '</p>';
+                    },
+                 },
+                 valueKey: 'id',
+                 source: datasources['conference']
+              }).on('typeahead:selected', function(evt, item) {
+         $(".conference-date-typeahead").val(item.date);
+         $(".conference-location-typeahead").val(item.location);
+      });
+
+      $(".conference-date-typeahead").typeahead({
+                 hint: true,
+                 highlight: true,
+                 minLength: 1
+              },
+              {
+                 limit: 20,
+                 name: 'conference_date',
+                 displayKey: 'date',
+                 valueKey: 'id',
+                 source: datasources['conference_date']
+              });
+
+      $(".conference-location-typeahead").typeahead({
+                 hint: true,
+                 highlight: true,
+                 minLength: 1
+              },
+              {
+                 limit: 20,
+                 name: 'conference_location',
+                 displayKey: 'location',
+                 valueKey: 'id',
+                 source: datasources['conference_location']
+              });
+
 
       $("form input").on("keyup", function(){
          if ($("form").serialize() !== searchContent) {

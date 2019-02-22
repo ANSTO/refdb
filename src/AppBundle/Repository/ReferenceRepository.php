@@ -14,7 +14,6 @@ use Doctrine\ORM\Query\Expr\Join;
 class ReferenceRepository extends \Doctrine\ORM\EntityRepository
 {
     public function search(Search $search) {
-
         $query = $this->createQueryBuilder("r");
 
         $query
@@ -23,6 +22,7 @@ class ReferenceRepository extends \Doctrine\ORM\EntityRepository
         $searching = false;
 
         if ($search->getConference() !== null) {
+            dump($search->getConference());
             $searching = true;
             $query
                 ->andWhere("LOWER(c.code) LIKE :conf")
@@ -54,9 +54,13 @@ class ReferenceRepository extends \Doctrine\ORM\EntityRepository
                 ->setParameter("title", "%" . mb_strtolower($search->getTitle()) . "%");
         }
         if ($search->getAuthor() !== null) {
+            $i = 0;
+            foreach ($search->getAuthor() as $author) {
+                $query->andWhere("0 < (SELECT COUNT(a$i.id) FROM AppBundle:Author a$i INNER JOIN a$i.references ar$i WHERE ar$i.id = r.id AND a$i = :author$i)")
+                    ->setParameter("author$i", $author);
+                $i++;
+            }
             $searching = true;
-            $query->innerJoin("r.authors","a", Join::WITH, "LOWER(a.name) LIKE :author")
-                ->setParameter("author", "%" . mb_strtolower($search->getAuthor()) . "%");
         }
 
         if ($searching == false) {
@@ -64,9 +68,7 @@ class ReferenceRepository extends \Doctrine\ORM\EntityRepository
         }
 
 
-        return $query
-            ->setMaxResults(5)
-            ->getQuery()
-            ->getResult();
+        return $query;
     }
+
 }

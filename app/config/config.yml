@@ -35,7 +35,7 @@ framework:
 twig:
     debug: '%kernel.debug%'
     strict_variables: '%kernel.debug%'
-    form_themes: ['template/forms.html.twig','bootstrap_4_layout.html.twig']
+    form_themes: ['template/forms.html.twig']
     globals:
        current_conference: "@AppBundle\\Service\\CurrentConferenceService"
 

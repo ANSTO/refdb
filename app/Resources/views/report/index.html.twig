@@ -22,7 +22,7 @@
             <ul>
                 <li><a href="{{ path("pages_report") }}">References Missing pages: {{ pages }} ({{ (pages / references * 100)|round(0) }}%)</a></li>
                 <li><a href="{{ path("id_report", {"filter": malformedIds|join(",") }) }}">References Malformed Authors: {{ malformed }} ({{ (malformed / references * 100)|round(0) }}%)</a></li>
-                <li><a href="{{ path("id_conference", {"filter": emptyIds|join(",") }) }}">Conferences with no references: {{ empty }} ({{ (empty / conferences * 100)|round(0) }}%)</a></li>
+                <li><a href="{{ path("id_conference", {"filter": emptyIds|join(",") }) }}">Known conferences not yet uploaded: {{ empty }} ({{ (empty / all_conferences * 100)|round(0) }}%)</a></li>
                 {#<li>Unregistered DOI: TBA</li>#}
                 {#<li>Conferences with pages missing: TBA</li>#}
             </ul>

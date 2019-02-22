@@ -2,7 +2,9 @@
 
 namespace AppBundle\Form;
 
+use AppBundle\Entity\Author;
 use AppBundle\Entity\Search;
+use AppBundle\Form\Type\TagsAsInputType;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
@@ -15,11 +17,14 @@ class SearchType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder
-            ->add('conference', null, ['label'=>"Conference Name"])
-            ->add('date', null,["label"=>"Conference Date"])
-            ->add('location', null, ["label"=>"Conference Location"])
+            ->add('conference', null, ['label'=>"Conference Code / Name", "attr"=>["class"=>"conference-typeahead","autocomplete"=>"off"]])
+            ->add('date', null,["label"=>"Conference Date", "attr"=>["class"=>"conference-date-typeahead","autocomplete"=>"off"]])
+            ->add('location', null, ["label"=>"Conference Location", "attr"=>["class"=>"conference-location-typeahead","autocomplete"=>"off"]])
             ->add('paperId', null, array("label"=>"Paper ID"))
-            ->add('author')
+            ->add('author', TagsAsInputType::class, [
+                "entity_class"=> Author::class,
+                "data_source" => "author_search",
+                "label"=> "Author/s"])
             ->add('title', null, ["label"=>"Paper Title"])
 
             ;

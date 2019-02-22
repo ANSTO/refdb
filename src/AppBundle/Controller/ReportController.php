@@ -36,10 +36,16 @@ class ReportController extends Controller
 
         $conferences = $manager->getRepository(Conference::class)
             ->createQueryBuilder("c")
-            ->select("count(c)")
+            ->select("count(DISTINCT c)")
+            ->innerJoin("c.references","r")
             ->getQuery()
             ->getSingleScalarResult();
 
+        $allConferences = $manager->getRepository(Conference::class)
+            ->createQueryBuilder("c")
+            ->select("count(DISTINCT c)")
+            ->getQuery()
+            ->getSingleScalarResult();
 
         $authors = $manager->getRepository(Author::class)
             ->createQueryBuilder("a")
@@ -99,6 +105,7 @@ class ReportController extends Controller
                 "malformed" => $malformed,
                 "searches" => $searches,
                 "empty" => $empty,
+                "all_conferences"=>$allConferences,
                 "emptyIds" => $emptyIds,
                 "malformedIds" => $malformedIds)
         );

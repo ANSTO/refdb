@@ -173,4 +173,12 @@ class ConferenceController extends Controller
             ->getForm()
             ;
     }
+
+    /**
+     * @Route("/search/{query}/{type}", name="conference_search", options={"expose"=true})
+     */
+    public function searchAction($query, $type="name") {
+        $results = $this->getDoctrine()->getManager()->getRepository(Conference::class)->search($query, $type);
+        return new JsonResponse($results);
+    }
 }
