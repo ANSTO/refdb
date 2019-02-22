@@ -40,7 +40,13 @@ $.each(elts, function(index, elt) {
         }
     });
 
-    var data = JSON.parse($elt.val());
+    var data;
+    if ($elt.val() === "") {
+        data = [];
+    } else {
+        data = JSON.parse($elt.val());
+    }
+
     $.each(data, function(i,v) {
         $elt.tagsinput('add', v);
     });

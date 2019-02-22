@@ -19,13 +19,12 @@ class ReferenceType extends AbstractType
         $builder
             ->add('author')
             ->add('title')
-            ->add('inProc', ChoiceType::class, array("label"=>"Prsesented as","choices"=>["Unpublished"=>0,"Published"=>1]))
+            ->add('inProc', ChoiceType::class, array("label"=>"Presented as","choices"=>["Unpublished"=>0,"Published"=>1]))
             ->add('conference', EntityType::class,array("choice_label"=>"getPlain","class"=>Conference::class))
             ->add("paperId", null, array("label"=>"Paper ID"))
             ->add('position', null, array("label"=>"pp."))
             ->add('isbn', null, array("label"=>"ISBN"))
-            ->add('doi', null, array("label"=>"DOI"))
-            ->add('override');
+            ->add('doi', null, array("label"=>"DOI"));
     }
 
     /**

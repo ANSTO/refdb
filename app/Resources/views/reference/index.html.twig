@@ -4,6 +4,7 @@
     {% if is_granted("ROLE_ADMIN") %}
         <a class="float-right btn btn-success" href="{{ path('reference_new') }}"><i class="fas fa-plus"></i> Add Reference</a>
     {% endif %}
+
     <h2>References</h2>
     <br />
     {% set filters = {'r.title': 'Title','r.isbn': 'ISBN','r.paperId': 'Paper ID'} %}

@@ -3,6 +3,7 @@
 namespace AppBundle\Controller;
 
 use AppBundle\Entity\Conference;
+use AppBundle\Service\CurrentConferenceService;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\Routing\Annotation\Route;
@@ -16,14 +17,48 @@ use Symfony\Component\HttpFoundation\Request;
 class ConferenceController extends Controller
 {
     /**
+     * Make this conference my current conference
+     *
+     * @Route("/dismiss", name="conference_dismiss")
+     * @param Request $request
+     * @param CurrentConferenceService $currentConferenceService
+     * @return \Symfony\Component\HttpFoundation\RedirectResponse
+     */
+    public function dismissAction(Request $request, CurrentConferenceService $currentConferenceService) {
+        $currentConferenceService->dismiss();
+        return $this->redirect($request->get('ref'));
+    }
+
+    /**
+     * Make this conference my current conference
+     *
+     * @Route("/clear/current", name="conference_current_clear")
+     */
+    public function clearAction(Request $request, CurrentConferenceService $currentConferenceService) {
+        $currentConferenceService->clearCurrent();
+        return $this->redirect($request->get('ref'));
+    }
+
+    /**
+     * Make this conference my current conference
+     *
+     * @Route("/current/{id}", name="conference_current")
+     */
+    public function currentAction(Request $request, CurrentConferenceService $currentConferenceService, Conference $conference) {
+        $currentConferenceService->setCurrent($conference);
+        return $this->redirect($request->get('ref'));
+    }
+
+    /**
      * Lists all conference entities.
      * @Route("/", name="conference_index")
      */
     public function indexAction(Request $request)
     {
-        $manager    = $this->getDoctrine()->getManager();
+        $manager = $this->getDoctrine()->getManager();
         $query = $manager->getRepository(Conference::class)
             ->createQueryBuilder("c")
+            ->innerJoin("c.references", "r")
             ->getQuery();
 
         $paginator  = $this->get('knp_paginator');
@@ -137,5 +172,13 @@ class ConferenceController extends Controller
             ->setMethod('DELETE')
             ->getForm()
             ;
+    }
+
+    /**
+     * @Route("/search/{query}/{type}", name="conference_search", options={"expose"=true})
+     */
+    public function searchAction($query, $type="name") {
+        $results = $this->getDoctrine()->getManager()->getRepository(Conference::class)->search($query, $type);
+        return new JsonResponse($results);
     }
 }

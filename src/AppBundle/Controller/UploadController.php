@@ -4,6 +4,7 @@ namespace AppBundle\Controller;
 
 use AppBundle\Entity\Conference;
 use AppBundle\Entity\Reference;
+use AppBundle\Service\ImportService;
 use Doctrine\ORM\EntityRepository;
 use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
@@ -36,7 +37,7 @@ class UploadController extends Controller
     /**
      * @Route("/", name="upload_index")
      */
-    public function indexAction(Request $request) {
+    public function indexAction(Request $request, ImportService $importService) {
 
         $manager = $this->getDoctrine()->getManager();
         $form = $this->createFormBuilder()
@@ -47,62 +48,16 @@ class UploadController extends Controller
             ->getForm();
         $form->handleRequest($request);
 
-
         if ($form->isSubmitted() && $form->isValid()) {
-
-            ini_set('memory_limit','1G');
-            ini_set('max_execution_time', 300);
-
-            $imported = 0;
-            $format = 0;
-            $duplicate = 0;
-
             $data = $form->getData();
 
-            /** @var UploadedFile $uploaded */
-            $uploaded = $data["file"];
-
-            $references = $this->getRows($uploaded->getPathname());
-
+            /** @var Conference $conference */
             $conference = $data["conference"];
+            $imported = $importService->import($data['file']->getPathname(), $conference);
 
-            /** @var Reference $reference */
-            foreach ($references as $reference) {
+            $this->addFlash("notice", $imported . " references imported");
 
-
-                $valid = true;
-                if (preg_match("/^\d+\-\d+$/", $reference->getPosition()) != true ||
-                    preg_match("/^[A-Za-z0-9]+$/", $reference->getPaperId()) != true ||
-                    $reference->getPaperId() == "" || $reference->getAuthor() == "" || $reference->getTitle() == "" || $reference->getPosition() == "") {
-                    $valid = false;
-                    $format++;
-                    $errors[] = $reference->getPaperId();
-                }
-
-                $exists = $manager->getRepository(Reference::class)->findBy([
-                    "conference"=>$conference,
-                    "paperId"=>$reference->getPaperId()]);
-
-                if (count($exists) > 0) {
-                    $valid = false;
-                    $duplicate++;
-                }
-
-                if ($valid) {
-                    $reference->setConference($conference);
-                    $manager->persist($reference);
-                    $imported++;
-                }
-            }
-
-            $this->addFlash("notice", $imported . " entries imported");
-            $this->addFlash("notice", $format . " entries ignored due to incorrect format " . implode(", ", $errors));
-            $this->addFlash("notice", $duplicate . " entries are duplicates");
-
-            $manager->flush();
-
-            return $this->redirectToRoute("author_clean");
-
+            return $this->redirectToRoute("conference_show", ["id"=> $conference->getId()]);
         }
 
         return $this->render("upload/index.html.twig", ["form"=>$form->createView()]);

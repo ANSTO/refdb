@@ -1,5 +1,19 @@
 {% use "bootstrap_4_layout.html.twig" %}
 
+{% block form_widget_simple -%}
+ {% if type is not defined or type != 'hidden' %}
+  {%- set attr = attr|merge({class: (attr.class|default('') ~ ' form-control' ~ (type|default('') == 'file' ? '-file' : ''))|trim}) -%}
+ {% endif %}
+ {%- if type is defined and (type == 'range' or type == 'color') %}
+  {# Attribute "required" is not supported #}
+  {%- set required = false -%}
+ {% endif %}
+ <div class="scrollable-dropdown-menu">
+ {{- parent() -}}
+ </div>
+{%- endblock form_widget_simple %}
+
+
 {% block entity_tags_widget -%}
  {% set attr = attr|merge({class: (attr.class|default('') ~ ' entity-tags')|trim}) %}
  {{- block('form_widget_simple') -}}

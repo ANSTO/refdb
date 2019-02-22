@@ -8,7 +8,7 @@ use Doctrine\ORM\Mapping as ORM;
 /**
  * Author
  *
- * @ORM\Table(name="author")
+ * @ORM\Table(name="author",indexes={@ORM\Index(name="author_search_idx", columns={"name"})}))
  * @ORM\Entity(repositoryClass="AppBundle\Repository\AuthorRepository")
  */
 class Author implements \JsonSerializable

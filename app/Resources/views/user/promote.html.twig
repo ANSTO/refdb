@@ -1,0 +1,20 @@
+<div class="modal-header">
+    <h5 class="modal-title">Are you sure?</h5>
+    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+        <span aria-hidden="true">&times;</span>
+    </button>
+</div>
+<div class="modal-body">
+    {{ form_start(promote_form) }}
+    {{ form_widget(promote_form) }}
+    <br />
+    <div class="row">
+        <div class="col">
+            <a href="javascript:void(0)" class="btn btn-default btn-block" data-dismiss="modal">Cancel</a>
+        </div>
+        <div class="col">
+            <button type="submit" class="btn btn-success btn-block btn-raised">Promote</button>
+        </div>
+    </div>
+    {{ form_end(promote_form) }}
+</div>

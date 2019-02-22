@@ -9,10 +9,10 @@ use Symfony\Component\Validator\Constraints as Assert;
 /**
  * Conference
  *
- * @ORM\Table(name="conference")
+ * @ORM\Table(name="conference",indexes={@ORM\Index(name="conference_code_idx", columns={"code"})}))
  * @ORM\Entity(repositoryClass="AppBundle\Repository\ConferenceRepository")
  */
-class Conference
+class Conference implements \JsonSerializable
 {
     /**
      * @var int
@@ -46,6 +46,19 @@ class Conference
 
     /**
      * @var string
+     *
+     * @ORM\Column(type="string", length=255, nullable=true)
+     */
+    private $doiCode;
+
+    /**
+     * @ORM\Column(type="boolean", nullable=true)
+     * @var boolean
+     */
+    private $useDoi;
+
+    /**
+     * @var string
      * @Assert\Regex("/^([A-Za-zàèìòùÀÈÌÒÙáéíóúýÁÉÍÓÚÝâêîôûÂÊÎÔÛãñõÃÑÕäëïöüÿÄËÏÖÜŸçÇßØøÅåÆæœ '\-]+, (?!USA)[A-Za-zàèìòùÀÈÌÒÙáéíóúýÁÉÍÓÚÝâêîôûÂÊÎÔÛãñõÃÑÕäëïöüÿÄËÏÖÜŸçÇßØøÅåÆæœ '\-]+|[A-Za-zàèìòùÀÈÌÒÙáéíóúýÁÉÍÓÚÝâêîôûÂÊÎÔÛãñõÃÑÕäëïöüÿÄËÏÖÜŸçÇßØøÅåÆæœ '\-]+, [A-Za-zàèìòùÀÈÌÒÙáéíóúýÁÉÍÓÚÝâêîôûÂÊÎÔÛãñõÃÑÕäëïöüÿÄËÏÖÜŸçÇßØøÅåÆæœ '\-]+, USA)$/")
      * @ORM\Column(name="location", type="string", length=2000)
      */
@@ -62,17 +75,14 @@ class Conference
      *
      * @ORM\Column(type="boolean", nullable=true)
      */
-    private $publicSubmission;
+    private $isPublished;
 
     /**
-     * @ORM\ManyToOne(targetEntity="AppBundle\Entity\Conference", inversedBy="replacements")
+     * @var string
+     *
+     * @ORM\Column(type="string", length=2000, nullable=true)
      */
-    private $replaces;
-
-    /**
-     * @ORM\OneToMany(targetEntity="AppBundle\Entity\Conference", mappedBy="replaces")
-     */
-    private $replacements;
+    private $importUrl;
 
     /**
      * Get id
@@ -219,11 +229,11 @@ class Conference
     /**
      * Add reference
      *
-     * @param \AppBundle\Entity\Reference $reference
+     * @param Reference $reference
      *
      * @return Conference
      */
-    public function addReference(\AppBundle\Entity\Reference $reference)
+    public function addReference(Reference $reference)
     {
         $this->references[] = $reference;
 
@@ -233,92 +243,90 @@ class Conference
     /**
      * Remove reference
      *
-     * @param \AppBundle\Entity\Reference $reference
+     * @param Reference $reference
      */
-    public function removeReference(\AppBundle\Entity\Reference $reference)
+    public function removeReference(Reference $reference)
     {
         $this->references->removeElement($reference);
     }
 
     /**
-     * Set publicSubmission
-     *
-     * @param boolean $publicSubmission
-     *
-     * @return Conference
+     * @return bool
      */
-    public function setPublicSubmission($publicSubmission)
+    public function isUseDoi()
     {
-        $this->publicSubmission = $publicSubmission;
-
-        return $this;
+        return $this->useDoi;
     }
 
     /**
-     * Get publicSubmission
-     *
-     * @return boolean
+     * @param bool $useDoi
      */
-    public function getPublicSubmission()
+    public function setUseDoi($useDoi)
     {
-        return $this->publicSubmission;
+        $this->useDoi = $useDoi;
     }
 
     /**
-     * Set replaces
-     *
-     * @param \AppBundle\Entity\Conference $replaces
-     *
-     * @return Conference
+     * @return string
      */
-    public function setReplaces(\AppBundle\Entity\Conference $replaces = null)
+    public function getDoiCode()
     {
-        $this->replaces = $replaces;
-
-        return $this;
+        return $this->doiCode;
     }
 
     /**
-     * Get replaces
-     *
-     * @return \AppBundle\Entity\Conference
+     * @param string $doiCode
      */
-    public function getReplaces()
+    public function setDoiCode($doiCode)
     {
-        return $this->replaces;
+        $this->doiCode = $doiCode;
     }
 
     /**
-     * Add replacement
-     *
-     * @param \AppBundle\Entity\Conference $replacement
-     *
-     * @return Conference
+     * @return string
      */
-    public function addReplacement(\AppBundle\Entity\Conference $replacement)
+    public function getImportUrl()
     {
-        $this->replacements[] = $replacement;
-
-        return $this;
+        return $this->importUrl;
     }
 
     /**
-     * Remove replacement
-     *
-     * @param \AppBundle\Entity\Conference $replacement
+     * @param string $importUrl
      */
-    public function removeReplacement(\AppBundle\Entity\Conference $replacement)
+    public function setImportUrl($importUrl)
     {
-        $this->replacements->removeElement($replacement);
+        $this->importUrl = $importUrl;
     }
 
     /**
-     * Get replacements
-     *
-     * @return \Doctrine\Common\Collections\Collection
+     * @return bool
      */
-    public function getReplacements()
+    public function isPublished()
     {
-        return $this->replacements;
+        return $this->isPublished;
+    }
+
+    /**
+     * @param bool $isPublished
+     */
+    public function setIsPublished($isPublished)
+    {
+        $this->isPublished = $isPublished;
+    }
+
+    /**
+     * Specify data which should be serialized to JSON
+     * @link https://php.net/manual/en/jsonserializable.jsonserialize.php
+     * @return mixed data which can be serialized by <b>json_encode</b>,
+     * which is a value of any type other than a resource.
+     * @since 5.4.0
+     */
+    public function jsonSerialize()
+    {
+        return ["name"=> $this->getName(),
+            "code" => $this->getCode(),
+            "location" => $this->getLocation(),
+            "date" => $this->getYear(),
+            "id"=>$this->getId()];
     }
 }
