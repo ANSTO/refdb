@@ -24,16 +24,15 @@ class Reference implements \JsonSerializable
 
     /**
      * @var string
-     * @ORM\Column(type="string", length=255, nullable=true)
+     * @ORM\Column(type="string", length=4000, nullable=true)
      */
-    private $paperId;
+    private $originalAuthors;
 
     /**
      * @var string
-     *
-     * @ORM\Column(name="full", type="string", length=4000, nullable=true)
+     * @ORM\Column(type="string", length=255, nullable=true)
      */
-    private $override;
+    private $paperId;
 
     /**
      * @var string
@@ -68,11 +67,10 @@ class Reference implements \JsonSerializable
      */
     private $isbn;
 
-
     /**
      * @var string
      *
-     * @ORM\Column(name="position", type="string", length=255)
+     * @ORM\Column(name="position", type="string", length=255, nullable=true)
      */
     private $position;
 
@@ -82,12 +80,12 @@ class Reference implements \JsonSerializable
      * @ORM\Column(name="in_proc", type="boolean", nullable=true)
      */
     private $inProc;
+
     /**
      * @var bool
      *
      * @ORM\Column(name="et_al", type="boolean", nullable=true)
      */
-
     private $etAl;
 
     /**
@@ -102,17 +100,13 @@ class Reference implements \JsonSerializable
      *
      * @ORM\Column(type="boolean", nullable=true)
      */
-    private $publicSubmission;
+    private $doiVerified;
 
     /**
-     * @ORM\ManyToOne(targetEntity="AppBundle\Entity\Reference", inversedBy="replacements")
+     * @ORM\OneToMany(targetEntity="AppBundle\Entity\Feedback", mappedBy="reference", cascade={"remove"})
+     * @var ArrayCollection
      */
-    private $replaces;
-
-    /**
-     * @ORM\OneToMany(targetEntity="AppBundle\Entity\Reference", mappedBy="replaces")
-     */
-    private $replacements;
+    private $feedback;
 
     /**
      * Constructor
@@ -287,21 +281,7 @@ class Reference implements \JsonSerializable
         $this->authors = $authors;
     }
 
-    /**
-     * @return string
-     */
-    public function getOverride()
-    {
-        return $this->override;
-    }
 
-    /**
-     * @param string $override
-     */
-    public function setOverride($override)
-    {
-        $this->override = $override;
-    }
 
     /**
      * @return string
@@ -321,19 +301,18 @@ class Reference implements \JsonSerializable
 
     public function __toString()
     {
-        if ($this->getOverride() !== null) {
-            return $this->getOverride();
+
+        $output = $this->getTitleSection() . "" . $this->getConferenceSection()  . "," . $this->getPaperSection();
+
+        $doi = $this->doi();
+
+        if ($doi !== false && $this->isDoiVerified()) {
+            $output .= ", " . $doi;
         } else {
-            $output = $this->getTitleSection() . "" . $this->getConferenceSection()  . "," . $this->getPaperSection();
-
-            $doi = $this->doi();
-
-            if ($doi !== false) {
-                $output .= ", " . $doi;
-            }
-
-            return $output;
+            $output .= ".";
         }
+        return $output;
+
     }
 
     public function getConferenceSection() {
@@ -344,12 +323,11 @@ class Reference implements \JsonSerializable
         $author = $this->getAuthorStr();
         $title = $this->getTitle();
 
-        if ($this->isInProc()) {
+        if ($this->isInProc() && $this->getConference()->isPublished()) {
             $inProc = "in <em>Proc. </em>";
         } else {
             $inProc = "<em>presented at the </em>";
         }
-
 
         return $author . " “" . $title . "” " . $inProc;
     }
@@ -363,11 +341,16 @@ class Reference implements \JsonSerializable
     }
 
     public function getPaperSection() {
-        $position = "";
-        if ($this->getPosition() !== null) {
-            $position = " pp. " . $this->getPosition();
-        }
 
+        $position = "";
+
+        if ($this->getConference()->isPublished()) {
+            if ($this->getPosition() !== null) {
+                $position = "pp. " . $this->getPosition();
+            }
+        } else {
+            $position = "unpublished";
+        }
         $paper = "";
         if ($this->getPaperId() !== null) {
             $paper = " paper " . $this->getPaperId() . ", ";
@@ -476,84 +459,50 @@ class Reference implements \JsonSerializable
     }
 
     /**
-     * Set publicSubmission
-     *
-     * @param boolean $publicSubmission
-     *
-     * @return Reference
+     * @return bool
      */
-    public function setPublicSubmission($publicSubmission)
+    public function isDoiVerified()
     {
-        $this->publicSubmission = $publicSubmission;
-
-        return $this;
+        return $this->doiVerified;
     }
 
     /**
-     * Get publicSubmission
-     *
-     * @return boolean
+     * @param bool $doiVerified
      */
-    public function getPublicSubmission()
+    public function setDoiVerified($doiVerified)
     {
-        return $this->publicSubmission;
+        $this->doiVerified = $doiVerified;
     }
 
     /**
-     * Set replaces
-     *
-     * @param \AppBundle\Entity\Reference $replaces
-     *
-     * @return Reference
+     * @return string
      */
-    public function setReplaces(\AppBundle\Entity\Reference $replaces = null)
+    public function getOriginalAuthors()
     {
-        $this->replaces = $replaces;
-
-        return $this;
+        return $this->originalAuthors;
     }
 
     /**
-     * Get replaces
-     *
-     * @return \AppBundle\Entity\Reference
+     * @param string $originalAuthors
      */
-    public function getReplaces()
+    public function setOriginalAuthors($originalAuthors)
     {
-        return $this->replaces;
+        $this->originalAuthors = $originalAuthors;
     }
 
     /**
-     * Add replacement
-     *
-     * @param \AppBundle\Entity\Reference $replacement
-     *
-     * @return Reference
+     * @return ArrayCollection
      */
-    public function addReplacement(\AppBundle\Entity\Reference $replacement)
+    public function getFeedback()
     {
-        $this->replacements[] = $replacement;
-
-        return $this;
+        return $this->feedback;
     }
 
     /**
-     * Remove replacement
-     *
-     * @param \AppBundle\Entity\Reference $replacement
+     * @param ArrayCollection $feedback
      */
-    public function removeReplacement(\AppBundle\Entity\Reference $replacement)
+    public function setFeedback($feedback)
     {
-        $this->replacements->removeElement($replacement);
-    }
-
-    /**
-     * Get replacements
-     *
-     * @return \Doctrine\Common\Collections\Collection
-     */
-    public function getReplacements()
-    {
-        return $this->replacements;
+        $this->feedback = $feedback;
     }
 }

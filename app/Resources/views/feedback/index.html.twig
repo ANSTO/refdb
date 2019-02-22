@@ -4,10 +4,9 @@
     {% if is_granted("ROLE_ADMIN") %}
         <a class="float-right btn btn-success" href="{{ path('reference_new') }}"><i class="fas fa-plus"></i> Add Reference</a>
     {% endif %}
-
-    <h2>References</h2>
+    <h2>Feedback</h2>
     <br />
-    {% set filters = {'r.title': 'Title','r.isbn': 'ISBN','r.paperId': 'Paper ID'} %}
+    {% set filters = {'f.email': 'Contact','f.feedback': 'Feedback'} %}
 
     {{ knp_pagination_filter(pagination, filters) }}
 
@@ -21,7 +20,8 @@
     <table class="table table-striped">
         <thead>
         <tr>
-            <th{% if pagination.isSorted('r.cache') %} class="sorted"{% endif %}>{{ knp_pagination_sortable(pagination, 'Reference', 'r.cache') }}</th>
+            <th width="50%">Reference</th>
+            <th {% if pagination.isSorted('f.feedback') %} class="sorted"{% endif %}>{{ knp_pagination_sortable(pagination, 'Feedback', 'f.feedback') }}</th>
             {% if filtered %}
                 <th>{{ label }}</th>
             {% endif %}
@@ -31,17 +31,18 @@
         </tr>
         </thead>
         <tbody>
-        {% for reference in pagination %}
+        {% for feedback in pagination %}
             <tr>
-                <td><a href="{{ path('reference_show', { 'id': reference.id }) }}">{{ reference.cache|latin }}</a></td>
+                <td><a href="{{ path('reference_show', { 'id': feedback.reference.id }) }}">{{ feedback.reference|latin }}</a></td>
+                <td>{{ feedback.feedback }}</td>
                 {% if filtered %}
                     <td>
-                        {{ attribute(reference, field)|latin }}
+                        {{ attribute(feedback, field)|latin }}
                     </td>
                 {% endif %}
                 {% if is_granted("ROLE_ADMIN") %}
                     <td class="text-center" width="150">
-                        <a href="{{ path('reference_edit', { 'id': reference.id }) }}"><i class="fas fa-edit"></i> Edit</a>
+                        <a class="btn-modal" href="{{ path('feedback_delete', { 'id': feedback.id }) }}"><i class="fas fa-edit"></i> Delete</a>
                     </td>
                 {% endif %}
             </tr>

@@ -28,10 +28,10 @@ class SearchController extends Controller
         $references = [];
         if ($form->isSubmitted() && $form->isValid()) {
             $manager = $this->getDoctrine()->getManager();
-            $manager->persist($search);
+            //$manager->persist($search);
             $manager->flush();
             $references = $this->getDoctrine()->getManager()
-                ->getRepository(Reference::class)->search($search);
+                ->getRepository(Reference::class)->search($search)->setMaxResults(5)->getQuery()->getResult();
         }
 
         // search by author
@@ -57,10 +57,10 @@ class SearchController extends Controller
 
         if ($form->isSubmitted() && $form->isValid()) {
             $manager = $this->getDoctrine()->getManager();
-            $manager->persist($search);
+            //$manager->persist($search);
             $manager->flush();
             $response = $this->getDoctrine()->getManager()
-                ->getRepository(Reference::class)->search($search);
+                ->getRepository(Reference::class)->search($search)->setMaxResults(5)->getQuery()->getResult();
         }
 
 

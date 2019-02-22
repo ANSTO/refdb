@@ -7,6 +7,7 @@ use AppBundle\Entity\Conference;
 use AppBundle\Entity\Reference;
 use AppBundle\Entity\Search;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
+use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Component\HttpFoundation\Request;
@@ -18,7 +19,6 @@ use Symfony\Component\HttpFoundation\Request;
  */
 class ReportController extends Controller
 {
-
     /**
      * Lists all author entities.
      * @Route("/", name="report_index")
@@ -36,10 +36,16 @@ class ReportController extends Controller
 
         $conferences = $manager->getRepository(Conference::class)
             ->createQueryBuilder("c")
-            ->select("count(c)")
+            ->select("count(DISTINCT c)")
+            ->innerJoin("c.references","r")
             ->getQuery()
             ->getSingleScalarResult();
 
+        $allConferences = $manager->getRepository(Conference::class)
+            ->createQueryBuilder("c")
+            ->select("count(DISTINCT c)")
+            ->getQuery()
+            ->getSingleScalarResult();
 
         $authors = $manager->getRepository(Author::class)
             ->createQueryBuilder("a")
@@ -99,6 +105,7 @@ class ReportController extends Controller
                 "malformed" => $malformed,
                 "searches" => $searches,
                 "empty" => $empty,
+                "all_conferences"=>$allConferences,
                 "emptyIds" => $emptyIds,
                 "malformedIds" => $malformedIds)
         );

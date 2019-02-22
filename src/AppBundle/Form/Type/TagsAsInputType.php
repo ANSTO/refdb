@@ -39,6 +39,7 @@ class TagsAsInputType extends AbstractType {
     {
         $resolver
             ->setDefaults(array(
+                "required"=>false,
                 'data_source' => null,
                 'entity_class' => null,
             ));

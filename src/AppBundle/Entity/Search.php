@@ -2,6 +2,7 @@
 
 namespace AppBundle\Entity;
 
+use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
@@ -34,8 +35,7 @@ class Search
     private $title;
 
     /**
-     * @var string
-     * @ORM\Column(type="string", length=2000, nullable=true)
+     * @var ArrayCollection
      */
     private $author;
 
@@ -119,7 +119,7 @@ class Search
     /**
      * Set author
      *
-     * @param string $author
+     * @param ArrayCollection $author
      *
      * @return Search
      */
@@ -133,7 +133,7 @@ class Search
     /**
      * Get author
      *
-     * @return string
+     * @return ArrayCollection
      */
     public function getAuthor()
     {

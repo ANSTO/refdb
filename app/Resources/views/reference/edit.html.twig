@@ -1,6 +1,14 @@
 {% extends 'base.html.twig' %}
 
 {% block body %}
+
+    {% if reference.conference.published == false and reference.conference.importUrl != "" %}
+        <div class="text-center alert alert-danger">
+            <strong>Warning</strong> Editing this reference is pointless, as it will be re-written each night, as part of an automatic update. <br />
+            Edit the source file instead.
+        </div>
+    {% endif %}
+
     <div class="float-right btn-group">
         <button class="btn btn-danger btn-modal" type="button" data-href="{{ path('reference_delete', { 'id': reference.id }) }}"><i class="fas fa-trash"></i> Delete</button>
     </div>
@@ -8,7 +16,6 @@
     <h2>Edit Reference</h2>
     <br />
     {{ form_start(edit_form) }}
-        {{ form_row(edit_form.override) }}
     {{ form_row(edit_form.title) }}
     {{ form_row(edit_form.author) }}
     {% if reference.etAl %}

@@ -17,68 +17,6 @@ use Symfony\Component\HttpFoundation\Request;
  */
 class CleanController extends Controller
 {
-
-    /**
-     * Lists all author entities.
-     * @Route("/author/list/{id}", name="reference_author_clean")
-     */
-    public function authorListAction(Request $request, Conference $conference)
-    {
-        $manager = $this->getDoctrine()->getManager();
-        $references = $manager->getRepository(Reference::class)->findBy(["conference"=>$conference]);
-        /** @var Reference $ref */
-        foreach ($references as $ref) {
-            $ref->setAuthor($ref->getAuthor() . " ");
-        }
-        $manager->flush();
-
-        return $this->redirectToRoute("author_clean");
-    }
-    /**
-     * Lists all author entities.
-     * @Route("/authors", name="author_clean")
-     */
-    public function authorAction(Request $request)
-    {
-        $manager = $this->getDoctrine()->getManager();
-        $results = $manager->getRepository(Author::class)
-            ->createQueryBuilder("a")
-            ->select("a.name, count(a.name)")
-            ->having("count(a.name) > 1")
-            ->groupBy("a.name")
-            ->getQuery()
-            ->getArrayResult();
-
-        $removed = 0;
-        foreach ($results as $result) {
-            $auths = $manager->getRepository(Author::class)->findBy(["name"=>$result["name"]]);
-
-            $auth = $auths[0];
-            if (count($auths) > 1) {
-                /** @var Author[] $other_auths */
-                $other_auths = array_slice($auths, 1);
-                foreach ($other_auths as $other_auth) {
-                    foreach ($other_auth->getReferences() as $other_auth_ref) {
-                        if (!$auth->getReferences()->contains($other_auth_ref)) {
-                            $auth->addReference($other_auth_ref);
-                        }
-                    }
-                    $manager->remove($other_auth);
-                    $removed++;
-                }
-            }
-
-        }
-
-        //echo $removed . " excess authors removed";
-
-        $manager->flush();
-
-
-        return $this->redirectToRoute("cache_clean");
-    }
-
-
     /**
      * Lists all author entities.
      * @Route("/cache", name="cache_clean")

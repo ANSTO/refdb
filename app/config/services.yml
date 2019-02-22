@@ -18,12 +18,17 @@ services:
         tags:
             - { name: doctrine.event_listener, event: postConnect}
 
-    AppBundle\EventSubscriber\AuthorSubscriber:
+
+    AppBundle\EventSubscriber\ConferenceSubscriber:
        tags:
-          - { name: doctrine.event_subscriber, connection: default, priority: 1 }
+          - { name: doctrine.event_subscriber, connection: default, priority: 2 }
+
     AppBundle\EventSubscriber\ReferenceSubscriber:
         tags:
             - { name: doctrine.event_subscriber, connection: default, priority: 10 }
+
+    AppBundle\Service\DoiService:
+    AppBundle\Service\CurrentConferenceService:
     # makes classes in src/AppBundle available to be used as services
     # this creates a service per class whose id is the fully-qualified class name
     AppBundle\:
@@ -31,6 +36,7 @@ services:
         # you can exclude directories or files
         # but if a service is unused, it's removed anyway
         exclude: '../../src/AppBundle/{Entity,Repository,Tests,EventSubscriber}'
+
 
     # controllers are imported separately to make sure they're public
     # and have a tag that allows actions to type-hint services

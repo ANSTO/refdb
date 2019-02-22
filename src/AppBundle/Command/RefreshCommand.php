@@ -20,13 +20,13 @@ use Symfony\Component\Console\Command\Command;
 use Symfony\Component\Console\Input\InputInterface;
 use Symfony\Component\Console\Output\OutputInterface;
 
-class ImportCommand extends Command
+class RefreshCommand extends Command
 {
     private $manager;
     private $importService;
 
     // the name of the command (the part after "bin/console")
-    protected static $defaultName = 'app:import-conference';
+    protected static $defaultName = 'app:refresh';
 
     public function __construct(ObjectManager $manager, ImportService $importService)
     {
@@ -38,27 +38,24 @@ class ImportCommand extends Command
 
     protected function configure()
     {
-        $this
-            ->addArgument("conf")
-            ->addArgument("filename");
+
     }
 
     protected function execute(InputInterface $input, OutputInterface $output)
     {
-        $conf = $input->getArgument('conf');
-        $filename = $input->getArgument('filename');
-
-        $conference = $this->manager
+        $conferences = $this->manager
             ->getRepository(Conference::class)
-            ->findOneBy(["code" => $conf]);
+            ->createQueryBuilder("c")
+            ->andWhere("c.isPublished = false")
+            ->getQuery()->getResult();
 
-        if ($conference === null) {
-            $output->writeln("Could not find conference with Code: " . $conf);
-            exit();
-        } else {
-            $output->writeln("Importing data into " . $conference->getName());
+        /** @var Conference $conference */
+        foreach ($conferences as $conference) {
+            if ($conference->getImportUrl() !== null) {
+                $output->writeln("Re-importing " . $conference);
+                $written = $this->importService->import($conference->getImportUrl(), $conference);
+                $output->writeln($written . " references created");
+            }
         }
-
-        $this->importService->import($filename, $conf);
     }
 }

@@ -24,8 +24,7 @@ class ReferenceType extends AbstractType
             ->add("paperId", null, array("label"=>"Paper ID"))
             ->add('position', null, array("label"=>"pp."))
             ->add('isbn', null, array("label"=>"ISBN"))
-            ->add('doi', null, array("label"=>"DOI"))
-            ->add('override');
+            ->add('doi', null, array("label"=>"DOI"));
     }
 
     /**
