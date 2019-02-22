@@ -75,23 +75,6 @@ class Conference
      *
      * @ORM\Column(type="boolean", nullable=true)
      */
-    private $publicSubmission;
-
-    /**
-     * @ORM\ManyToOne(targetEntity="AppBundle\Entity\Conference", inversedBy="replacements")
-     */
-    private $replaces;
-
-    /**
-     * @ORM\OneToMany(targetEntity="AppBundle\Entity\Conference", mappedBy="replaces")
-     */
-    private $replacements;
-
-    /**
-     * @var boolean
-     *
-     * @ORM\Column(type="boolean", nullable=true)
-     */
     private $isPublished;
 
     /**
@@ -246,11 +229,11 @@ class Conference
     /**
      * Add reference
      *
-     * @param \AppBundle\Entity\Reference $reference
+     * @param Reference $reference
      *
      * @return Conference
      */
-    public function addReference(\AppBundle\Entity\Reference $reference)
+    public function addReference(Reference $reference)
     {
         $this->references[] = $reference;
 
@@ -260,93 +243,11 @@ class Conference
     /**
      * Remove reference
      *
-     * @param \AppBundle\Entity\Reference $reference
+     * @param Reference $reference
      */
-    public function removeReference(\AppBundle\Entity\Reference $reference)
+    public function removeReference(Reference $reference)
     {
         $this->references->removeElement($reference);
-    }
-
-    /**
-     * Set publicSubmission
-     *
-     * @param boolean $publicSubmission
-     *
-     * @return Conference
-     */
-    public function setPublicSubmission($publicSubmission)
-    {
-        $this->publicSubmission = $publicSubmission;
-
-        return $this;
-    }
-
-    /**
-     * Get publicSubmission
-     *
-     * @return boolean
-     */
-    public function getPublicSubmission()
-    {
-        return $this->publicSubmission;
-    }
-
-    /**
-     * Set replaces
-     *
-     * @param \AppBundle\Entity\Conference $replaces
-     *
-     * @return Conference
-     */
-    public function setReplaces(\AppBundle\Entity\Conference $replaces = null)
-    {
-        $this->replaces = $replaces;
-
-        return $this;
-    }
-
-    /**
-     * Get replaces
-     *
-     * @return \AppBundle\Entity\Conference
-     */
-    public function getReplaces()
-    {
-        return $this->replaces;
-    }
-
-    /**
-     * Add replacement
-     *
-     * @param \AppBundle\Entity\Conference $replacement
-     *
-     * @return Conference
-     */
-    public function addReplacement(\AppBundle\Entity\Conference $replacement)
-    {
-        $this->replacements[] = $replacement;
-
-        return $this;
-    }
-
-    /**
-     * Remove replacement
-     *
-     * @param \AppBundle\Entity\Conference $replacement
-     */
-    public function removeReplacement(\AppBundle\Entity\Conference $replacement)
-    {
-        $this->replacements->removeElement($replacement);
-    }
-
-    /**
-     * Get replacements
-     *
-     * @return \Doctrine\Common\Collections\Collection
-     */
-    public function getReplacements()
-    {
-        return $this->replacements;
     }
 
     /**
@@ -380,7 +281,6 @@ class Conference
     {
         $this->doiCode = $doiCode;
     }
-
 
     /**
      * @return string

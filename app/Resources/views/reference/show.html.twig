@@ -1,9 +1,17 @@
 {% extends 'base.html.twig' %}
 
 {% block body %}
-    {% if warning %}
+    {% set feedbacks = reference.feedback|length %}
+    {% if warning or feedbacks != 0 %}
         <div class="text-center alert alert-danger">
-            <strong>Warning</strong> {{ warning }}
+            {% if warning %}
+                <strong>Warning</strong> {{ warning }}
+            {% else %}
+                <strong>Please note: </strong> We have recently received feedback indicated that this reference may have a problem.
+                {% if is_granted("ROLE_ADMIN") %}
+                    <a href="{{ path("feedback_index") }}">Review</a>
+                {% endif %}
+            {% endif %}
         </div>
     {% endif %}
 
@@ -40,7 +48,7 @@
         </div>
     {% elseif not app.user %}
         <div class="float-right btn-group">
-            <button class="btn btn-default btn-modal" data-href="{{ path('fix_landing', { 'id': reference.id }) }}"><i class="fas fa fa-question-circle"></i> Fix a problem</button>
+            <button class="btn btn-default btn-modal" data-href="{{ path('feedback_new', { 'id': reference.id }) }}"><i class="fas fa fa-question-circle"></i> Fix a problem</button>
         </div>
     {% endif %}
 
@@ -58,7 +66,6 @@
     </div>
     <br />
     <h3>For LaTeX</h3>
-
     <p>{% spaceless %}
             <textarea class="form-control latex-ref" rows="6">
 %\cite{{ '{' ~ reference.id ~ '}' }}
@@ -67,9 +74,14 @@
    in \emph{{ '{' ~ reference.conference ~ '}'}}, {{ reference.conference.location }}, {{ reference.conference.year -}},
 
                 {%- if current_conference.hasCurrent and reference.conference == current_conference.current -%}
-                    {{ reference.paperSection|replace({"unpublished": "this conference"}) }}.
+                    {{ reference.paperSection|replace({"unpublished": "this conference"}) }}
                 {%- else -%}
-                    {{ reference.paperSection|replace({"-": "--"}) }}.
+                    {{ reference.paperSection|replace({"-": "--"}) }}
+                {%- endif -%}
+                {%- if reference.doi and reference.doiVerified -%}
+                    , {{ '\n   ' ~ reference.doi -}}
+                {%- else -%}
+                    .
                 {%- endif -%}
 
             </textarea>

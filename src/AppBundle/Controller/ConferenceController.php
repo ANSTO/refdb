@@ -2,11 +2,8 @@
 
 namespace AppBundle\Controller;
 
-use AppBundle\Entity\Author;
 use AppBundle\Entity\Conference;
-use AppBundle\Entity\Reference;
 use AppBundle\Service\CurrentConferenceService;
-use Doctrine\ORM\Query\Expr\Join;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\Routing\Annotation\Route;
@@ -58,9 +55,10 @@ class ConferenceController extends Controller
      */
     public function indexAction(Request $request)
     {
-        $manager    = $this->getDoctrine()->getManager();
+        $manager = $this->getDoctrine()->getManager();
         $query = $manager->getRepository(Conference::class)
             ->createQueryBuilder("c")
+            ->innerJoin("c.references", "r")
             ->getQuery();
 
         $paginator  = $this->get('knp_paginator');
