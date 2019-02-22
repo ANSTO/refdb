@@ -67,8 +67,8 @@ swiftmailer:
     host:      "%mailer_host%"
     username:  "%ad_user%"
     password:  "%ad_pass%"
-    encryption: tls
-    port:       587
+#    encryption: tls
+#    port:       587
     spool:     { type: memory }
 
 sensio_framework_extra:
