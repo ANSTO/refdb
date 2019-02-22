@@ -22,7 +22,6 @@ class ReferenceRepository extends \Doctrine\ORM\EntityRepository
         $searching = false;
 
         if ($search->getConference() !== null) {
-            dump($search->getConference());
             $searching = true;
             $query
                 ->andWhere("LOWER(c.code) LIKE :conf")
