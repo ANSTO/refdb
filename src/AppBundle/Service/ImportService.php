@@ -61,7 +61,7 @@ class ImportService
 
         // filter out header rows
         $references = array_filter($references, function(Reference $reference) {
-            return (strtolower($reference->getOriginalAuthors()) != "author");
+            return (strtolower($reference->getOriginalAuthors()) != "authors");
         });
 
         $results = $this->findAuthors($references);
