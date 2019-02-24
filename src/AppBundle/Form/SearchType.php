@@ -6,6 +6,7 @@ use AppBundle\Entity\Author;
 use AppBundle\Entity\Search;
 use AppBundle\Form\Type\TagsAsInputType;
 use Symfony\Component\Form\AbstractType;
+use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 
@@ -21,9 +22,7 @@ class SearchType extends AbstractType
             ->add('date', null,["label"=>"Conference Date", "attr"=>["class"=>"conference-date-typeahead","autocomplete"=>"off"]])
             ->add('location', null, ["label"=>"Conference Location", "attr"=>["class"=>"conference-location-typeahead","autocomplete"=>"off"]])
             ->add('paperId', null, array("label"=>"Paper ID"))
-            ->add('author', TagsAsInputType::class, [
-                "entity_class"=> Author::class,
-                "data_source" => "author_search",
+            ->add('author', TextType::class, [
                 "label"=> "Author/s"])
             ->add('title', null, ["label"=>"Paper Title"])
 

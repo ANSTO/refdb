@@ -9,6 +9,8 @@
 namespace AppBundle\Service;
 
 
+use AppBundle\Entity\Reference;
+
 class AuthorService
 {
 
@@ -53,8 +55,6 @@ class AuthorService
             // only include the author if it is the correct format.
             if (preg_match_all("/^(([A-Z" . $this->accChars . "]{1}\.[ ]?){1,2}) ([A-Z" . $this->accChars . "]{1}[a-z" . $this->accChars . "\- ]+?)*$/u",$author, $matches) == true) {
                 // fix formatting of name
-
-
                 $results[] = trim($matches[0][0]);
             }
         }
@@ -86,5 +86,4 @@ class AuthorService
             "etAl" => $etAl
         );
     }
-
 }
