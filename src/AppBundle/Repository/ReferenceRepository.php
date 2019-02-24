@@ -53,12 +53,16 @@ class ReferenceRepository extends \Doctrine\ORM\EntityRepository
                 ->setParameter("title", "%" . mb_strtolower($search->getTitle()) . "%");
         }
         if ($search->getAuthor() !== null) {
+            $authors = explode(",",$search->getAuthor());
             $i = 0;
-            foreach ($search->getAuthor() as $author) {
-                $query->andWhere("0 < (SELECT COUNT(a$i.id) FROM AppBundle:Author a$i INNER JOIN a$i.references ar$i WHERE ar$i.id = r.id AND a$i = :author$i)")
-                    ->setParameter("author$i", $author);
-                $i++;
+            foreach ($authors as $author) {
+                if (strlen($author) > 0) {
+                    $query->andWhere("0 < (SELECT COUNT(a$i.id) FROM AppBundle:Author a$i INNER JOIN a$i.references ar$i WHERE ar$i.id = r.id AND LOWER(a$i.name) LIKE :name$i)")
+                        ->setParameter("name$i", "%" . mb_strtolower(trim($author)) . "%");
+                    $i++;
+                }
             }
+
             $searching = true;
         }
 

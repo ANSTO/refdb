@@ -23,8 +23,7 @@ class ReferenceType extends AbstractType
             ->add('conference', EntityType::class,array("choice_label"=>"getPlain","class"=>Conference::class))
             ->add("paperId", null, array("label"=>"Paper ID"))
             ->add('position', null, array("label"=>"pp."))
-            ->add('isbn', null, array("label"=>"ISBN"))
-            ->add('doi', null, array("label"=>"DOI"));
+        ;
     }
 
     /**
