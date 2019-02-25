@@ -53,7 +53,7 @@ class AuthorService
         $results = [];
         foreach ($cleanedAuthors as $author) {
             // only include the author if it is the correct format.
-            if (preg_match_all("/^(([-][A-Z" . $this->accChars . "]{1,2}[a-z]?\.[ ]?){1,3}) ([A-Z" . $this->accChars . "]{1}[a-z" . $this->accChars . "\- ]+?)*$/u",$author, $matches) == true) {
+            if (preg_match_all("/^(([-]?[A-Z" . $this->accChars . "]{1,2}[a-z]?\.[ ]?){1,3}) ([A-Z" . $this->accChars . "]{1}[a-z" . $this->accChars . "\- ]+?)*$/u",$author, $matches) == true) {
                 // fix formatting of name
                 $results[] = trim($matches[0][0]);
             }
