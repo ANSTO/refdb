@@ -26,7 +26,7 @@ class AuthorService
 
 
         // Are there any authors found in the desired format?
-        preg_match_all("/((((([A-Z" . $this->accChars . "]{1}\.[ ]?){1,2}) ([A-Z" . $this->accChars . "]{1}[a-z" . $this->accChars . "\- ]+)*))( [\(\[][^\)\]]+\)\]?)?)/u",$noSquare, $matches);
+        preg_match_all("/((((([A-Z" . $this->accChars . "]{1,2}\.[ ]?){1,3}) ([A-Z" . $this->accChars . "]{1}[a-z" . $this->accChars . "\- ]+)*))( [\(\[][^\)\]]+\)\]?)?)/u",$noSquare, $matches);
 
         if (count($matches[1]) == 0) {
             return ["authors"=>[], "text"=>$src];
@@ -53,7 +53,7 @@ class AuthorService
         $results = [];
         foreach ($cleanedAuthors as $author) {
             // only include the author if it is the correct format.
-            if (preg_match_all("/^(([A-Z" . $this->accChars . "]{1}\.[ ]?){1,2}) ([A-Z" . $this->accChars . "]{1}[a-z" . $this->accChars . "\- ]+?)*$/u",$author, $matches) == true) {
+            if (preg_match_all("/^(([A-Z" . $this->accChars . "]{1,2}\.[ ]?){1,3}) ([A-Z" . $this->accChars . "]{1}[a-z" . $this->accChars . "\- ]+?)*$/u",$author, $matches) == true) {
                 // fix formatting of name
                 $results[] = trim($matches[0][0]);
             }
