@@ -345,12 +345,12 @@ class Reference implements \JsonSerializable
 
         if ($this->getConference()->isPublished()) {
             if ($this->getPosition() !== null) {
-                $position = " pp. " . $this->getPosition();
+                $position = "pp. " . $this->getPosition();
             }
         } else {
             $position = "unpublished";
         }
-        $paper = "";
+        $paper = " ";
         if ($this->getPaperId() !== null && !($this->getConference()->isUseDoi() && $this->isDoiVerified())) {
             $paper = " paper " . $this->getPaperId() . ", ";
         }
