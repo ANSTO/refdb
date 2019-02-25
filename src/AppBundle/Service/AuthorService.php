@@ -24,7 +24,6 @@ class AuthorService
 
         $noSquare = preg_replace("/\[([^\[\]]*+|(?R))*\]/","", $noRound);
 
-
         // Are there any authors found in the desired format?
         preg_match_all("/((((([A-Z]?[-]?[A-Z" . $this->accChars . "]{1}[a-z]?\.[ ]?){1,3}) ([A-Z" . $this->accChars . "]{1}[a-z" . $this->accChars . "\- ]+)*))( [\(\[][^\)\]]+\)\]?)?)/u",$noSquare, $matches);
 
@@ -34,7 +33,6 @@ class AuthorService
 
         $authors = $matches[1];
         $cleanedAuthors = [];
-
 
         foreach ($authors as $author) {
 
@@ -54,10 +52,20 @@ class AuthorService
         foreach ($cleanedAuthors as $author) {
             // only include the author if it is the correct format.
             if (preg_match_all("/^(([A-Z]?[-]?[A-Z" . $this->accChars . "]{1}[a-z]?\.[ ]?){1,3}) ([A-Z" . $this->accChars . "]{1}[a-z" . $this->accChars . "\- ]+?)*$/u",$author, $matches) == true) {
-                // fix formatting of name
-                $results[] = trim($matches[0][0]);
+                $initials = explode(".",$matches[1][0]);
+                $parts = array_map(function($initial){
+                    if (trim($initial) == "") {
+                        return "";
+                    }
+                    return (trim($initial)[0] == '-' ? "" : " ") . trim($initial) . ".";
+                }, $initials);
+
+                $staging = trim(implode("" , array_slice($parts,0,-1))) . " " . trim($matches[3][0]);
+                $results[] = $staging;
+                //$results[] = trim($matches[0][0]);
             }
         }
+
 
 
         if (count($results) == 0) {
