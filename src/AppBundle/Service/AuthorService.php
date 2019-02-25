@@ -25,7 +25,7 @@ class AuthorService
         $noSquare = preg_replace("/\[([^\[\]]*+|(?R))*\]/","", $noRound);
 
         // Are there any authors found in the desired format?
-        preg_match_all("/((((([A-Z]?[-]?[A-Z" . $this->accChars . "]{1}[a-z]?\.[ ]?){1,3}) ([A-Z" . $this->accChars . "]{1}[a-z" . $this->accChars . "\- ]+)*))( [\(\[][^\)\]]+\)\]?)?)/u",$noSquare, $matches);
+        preg_match_all("/((((([A-Z]?[-]?[A-Z" . $this->accChars . "]{1}[a-z]?\.[ ]?){1,3}) (([A-Z]?[a-z]+[ ]?)?[A-Z" . $this->accChars . "]{1}[a-z" . $this->accChars . "\- ]+)*))( [\(\[][^\)\]]+\)\]?)?)/u",$noSquare, $matches);
 
         if (count($matches[1]) == 0) {
             return ["authors"=>[], "text"=>$src];
@@ -51,7 +51,7 @@ class AuthorService
         $results = [];
         foreach ($cleanedAuthors as $author) {
             // only include the author if it is the correct format.
-            if (preg_match_all("/^(([A-Z]?[-]?[A-Z" . $this->accChars . "]{1}[a-z]?\.[ ]?){1,3}) ([A-Z" . $this->accChars . "]{1}[a-z" . $this->accChars . "\- ]+?)*$/u",$author, $matches) == true) {
+            if (preg_match_all("/^(([A-Z]?[-]?[A-Z" . $this->accChars . "]{1}[a-z]?\.[ ]?){1,3}) (([A-Z]?[a-z]+[ ]?)?[A-Z" . $this->accChars . "]{1}[a-z" . $this->accChars . "\- ]+?)*$/u",$author, $matches) == true) {
                 $initials = explode(".",$matches[1][0]);
                 $parts = array_map(function($initial){
                     if (trim($initial) == "") {
