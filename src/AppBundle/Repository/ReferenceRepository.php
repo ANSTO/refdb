@@ -57,7 +57,7 @@ class ReferenceRepository extends \Doctrine\ORM\EntityRepository
             $i = 0;
             foreach ($authors as $author) {
                 if (strlen($author) > 0) {
-                    $frontTrim = ".";
+                    $frontTrim = "%";
                     if (strpos($author,".") !== false) {
                         $frontTrim = "";
                     }
