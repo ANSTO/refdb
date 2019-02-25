@@ -61,27 +61,31 @@
 
     <div class="card">
         <div class="card-body">
-            <pre class="wordbib">[n]{{ "\t" }}{{ reference|latin }}</pre>
+            <pre class="wordbib">[n]{{ "\t" }}{{ reference|latin }} <span style="font-family:'Liberation Mono'; font-size:8pt;">{{ reference.doiText }}</span></pre>
         </div>
     </div>
     <br />
     <h3>For LaTeX</h3>
     <p>{% spaceless %}
             <textarea class="form-control latex-ref" rows="6">
-%\cite{{ '{' ~ reference.id ~ '}' }}
-\bibitem{{ '{' ~ reference.id ~ '}' }}{{ "\n   " ~ reference.author }}
+%\cite{{ '{' ~ reference.conference.code|replace({"'":""}) ~ '-' ~ reference.paperId ~ '}' }}
+\bibitem{{ '{' ~ reference.conference.code|replace({"'":""}) ~ '-' ~ reference.paperId ~ '}' }}{{ "\n   " ~ reference.author|replace({"et al.": "\emph{et al.}"}) }},
    \textquotedblleft{{ '{' ~ reference.title ~ '}' }}\textquotedblright,
-   in \emph{{ '{' ~ reference.conference ~ '}'}}, {{ reference.conference.location }}, {{ reference.conference.year -}},
+   {% if reference.conference.published -%}
+        in \emph{{ '{Proc. ' ~ reference.conference.code ~ '}' }}
+    {%- else -%}
+        {{ 'presented at the ' ~ reference.conference.code }}
+    {%- endif -%}, {{ reference.conference.location }}, {{ reference.conference.year -}},
 
                 {%- if current_conference.hasCurrent and reference.conference == current_conference.current -%}
                     {{ reference.paperSection|replace({"unpublished": "this conference"}) }}
                 {%- else -%}
                     {{ reference.paperSection|replace({"-": "--"}) }}
-                {%- endif -%}
+                {%- endif -%}.
                 {%- if reference.doi and reference.doiVerified -%}
-                    , {{ '\n   ' ~ reference.doi -}}
+                    {{ '\n   \url{' ~ reference.doiText ~ '}' -}}
                 {%- else -%}
-                    .
+
                 {%- endif -%}
 
             </textarea>
