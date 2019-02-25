@@ -56,7 +56,8 @@ class ReferenceRepository extends \Doctrine\ORM\EntityRepository
             $authors = explode(",",$search->getAuthor());
             $i = 0;
             foreach ($authors as $author) {
-                if (strlen($author) > 0) {
+                if (strlen(trim($author)) > 0) {
+                    $author = trim(mb_strtoupper(substr($author,0,1)) . substr($author,1));
                     $frontTrim = "%";
                     if (strpos($author,".") !== false) {
                         $frontTrim = "";
