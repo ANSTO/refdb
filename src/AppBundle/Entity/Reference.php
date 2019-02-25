@@ -308,7 +308,7 @@ class Reference implements \JsonSerializable
     }
 
     public function getConferenceSection() {
-        return "<em>" . $this->conference . "</em>, " . $this->conference->getLocation() . ", " . $this->conference->getYear();
+        return $this->conference . "</em>, " . $this->conference->getLocation() . ", " . $this->conference->getYear();
     }
 
     public function getTitleSection() {
@@ -316,12 +316,12 @@ class Reference implements \JsonSerializable
         $title = $this->getTitle();
 
         if ($this->isInProc() && $this->getConference()->isPublished()) {
-            $inProc = "in <em>Proc. </em>";
+            $inProc = "in <em>Proc. ";
         } else {
-            $inProc = "<em>presented at the </em>";
+            $inProc = "presented at the ";
         }
 
-        return $author . ", “" . $title . "” " . $inProc;
+        return $author . ", “" . $title . "”, " . $inProc;
     }
 
     public function doi() {
@@ -345,13 +345,13 @@ class Reference implements \JsonSerializable
 
         if ($this->getConference()->isPublished()) {
             if ($this->getPosition() !== null) {
-                $position = "pp. " . $this->getPosition();
+                $position = " pp. " . $this->getPosition();
             }
         } else {
             $position = "unpublished";
         }
         $paper = "";
-        if ($this->getPaperId() !== null) {
+        if ($this->getPaperId() !== null && !($this->getConference()->isUseDoi() && $this->isDoiVerified())) {
             $paper = " paper " . $this->getPaperId() . ", ";
         }
 
