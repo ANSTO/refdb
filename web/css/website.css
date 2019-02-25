@@ -102,4 +102,9 @@ body {
   margin: 0 -16px;
 }
 
+@font-face {
+  font-family: "Liberation Mono";
+  src: url("../fonts/liberation-mono.ttf.woff") format("woff");
+}
+
 /*# sourceMappingURL=website.css.map */

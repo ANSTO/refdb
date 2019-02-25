@@ -301,16 +301,8 @@ class Reference implements \JsonSerializable
 
     public function __toString()
     {
+        $output = $this->getTitleSection() . "" . $this->getConferenceSection()  . "," . $this->getPaperSection() . ".";
 
-        $output = $this->getTitleSection() . "" . $this->getConferenceSection()  . "," . $this->getPaperSection();
-
-        $doi = $this->doi();
-
-        if ($doi !== false && $this->isDoiVerified()) {
-            $output .= ", " . $doi;
-        } else {
-            $output .= ".";
-        }
         return $output;
 
     }
@@ -329,7 +321,7 @@ class Reference implements \JsonSerializable
             $inProc = "<em>presented at the </em>";
         }
 
-        return $author . " “" . $title . "” " . $inProc;
+        return $author . ", “" . $title . "” " . $inProc;
     }
 
     public function doi() {
@@ -338,6 +330,13 @@ class Reference implements \JsonSerializable
         } else {
             return false;
         }
+    }
+
+    public function doiText() {
+        if ($this->getConference()->isUseDoi()) {
+            return 'doi:10.18429/JACoW-' . $this->getConference()->getDoiCode() . '-' . $this->getPaperId();
+        }
+        return "";
     }
 
     public function getPaperSection() {
