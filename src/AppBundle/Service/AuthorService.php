@@ -26,7 +26,7 @@ class AuthorService
 
 
         // Are there any authors found in the desired format?
-        preg_match_all("/((((([A-Z]?[-]?[-]?[A-Z" . $this->accChars . "]{1}[a-z]?\.[ ]?){1,3}) ([A-Z" . $this->accChars . "]{1}[a-z" . $this->accChars . "\- ]+)*))( [\(\[][^\)\]]+\)\]?)?)/u",$noSquare, $matches);
+        preg_match_all("/((((([A-Z]?[-]?[A-Z" . $this->accChars . "]{1}[a-z]?\.[ ]?){1,3}) ([A-Z" . $this->accChars . "]{1}[a-z" . $this->accChars . "\- ]+)*))( [\(\[][^\)\]]+\)\]?)?)/u",$noSquare, $matches);
 
         if (count($matches[1]) == 0) {
             return ["authors"=>[], "text"=>$src];
