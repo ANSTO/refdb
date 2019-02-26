@@ -1,77 +1,29 @@
-Symfony Standard Edition
+JaCoW Reference Engine
 ========================
 
-**WARNING**: This distribution does not support Symfony 4. See the
-[Installing & Setting up the Symfony Framework][15] page to find a replacement
-that fits you best.
+Requirements: PHP 7.2
 
-Welcome to the Symfony Standard Edition - a fully-functional Symfony
-application that you can use as the skeleton for your new applications.
+To improve performance, implement the recommendations from this guide
+https://symfony.com/doc/current/performance.html
 
-For details on how to download and get started with Symfony, see the
-[Installation][1] chapter of the Symfony Documentation.
+### How to install:
 
-What's inside?
---------------
+1. Git clone this project to your desired location
+2. Download the required libraries by running ``composer update`` in the root of the project
+    1. This will also aid you in generating the ``app/config/parameters.yml``
+3. Generate the database by running ``php bin/console doctrine:schema:create``
+4. Import all the included data by running ``php bin/console doctrine:fixtures:load``
+5. Add the first administrator run:
+ ``php bin/console fos:user:create`` This will give you a wizard to create the first user,
+Then promote that user to be an administrator  
+``php bin/console fos:user:promote username ROLE_ADMIN``
+6. (optional) Set up a cron to automatically import unpublished conferences:
+    
+    ``0 * * * * php /web/path/bin/console app:refresh > /dev/null`` 
+7. Ensure that the web server has write permissions to var/ 
+8. Add vhost entry to your preferred webserver, (apache examples provided in vhosts/) 
+     n.b. Only expose mount the root of web/ folder do not mount the root of the project.
 
-The Symfony Standard Edition is configured with the following defaults:
 
-  * An AppBundle you can use to start coding;
-
-  * Twig as the only configured template engine;
-
-  * Doctrine ORM/DBAL;
-
-  * Swiftmailer;
-
-  * Annotations enabled for everything.
-
-It comes pre-configured with the following bundles:
-
-  * **FrameworkBundle** - The core Symfony framework bundle
-
-  * [**SensioFrameworkExtraBundle**][6] - Adds several enhancements, including
-    template and routing annotation capability
-
-  * [**DoctrineBundle**][7] - Adds support for the Doctrine ORM
-
-  * [**TwigBundle**][8] - Adds support for the Twig templating engine
-
-  * [**SecurityBundle**][9] - Adds security by integrating Symfony's security
-    component
-
-  * [**SwiftmailerBundle**][10] - Adds support for Swiftmailer, a library for
-    sending emails
-
-  * [**MonologBundle**][11] - Adds support for Monolog, a logging library
-
-  * **WebProfilerBundle** (in dev/test env) - Adds profiling functionality and
-    the web debug toolbar
-
-  * **SensioDistributionBundle** (in dev/test env) - Adds functionality for
-    configuring and working with Symfony distributions
-
-  * [**SensioGeneratorBundle**][13] (in dev env) - Adds code generation
-    capabilities
-
-  * [**WebServerBundle**][14] (in dev env) - Adds commands for running applications
-    using the PHP built-in web server
-
-  * **DebugBundle** (in dev/test env) - Adds Debug and VarDumper component
-    integration
-
-All libraries and bundles included in the Symfony Standard Edition are
-released under the MIT or BSD license.
-
-Enjoy!
-
-[1]:  https://symfony.com/doc/3.4/setup.html
-[6]:  https://symfony.com/doc/current/bundles/SensioFrameworkExtraBundle/index.html
-[7]:  https://symfony.com/doc/3.4/doctrine.html
-[8]:  https://symfony.com/doc/3.4/templating.html
-[9]:  https://symfony.com/doc/3.4/security.html
-[10]: https://symfony.com/doc/3.4/email.html
-[11]: https://symfony.com/doc/3.4/logging.html
-[13]: https://symfony.com/doc/current/bundles/SensioGeneratorBundle/index.html
-[14]: https://symfony.com/doc/current/setup/built_in_web_server.html
-[15]: https://symfony.com/doc/current/setup.html
+ 
+Originally developed by: Josh Peters (ANSTO) for IPAC'19 

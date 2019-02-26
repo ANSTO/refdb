@@ -4,6 +4,7 @@ namespace AppBundle\Controller;
 
 use AppBundle\Entity\Feedback;
 use AppBundle\Entity\Reference;
+use Sensio\Bundle\FrameworkExtraBundle\Configuration\IsGranted;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Method;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
@@ -17,7 +18,7 @@ class FeedbackController extends Controller
 {
     /**
      * Lists all feedback entities.
-     *
+     * @IsGranted("ROLE_ADMIN")
      * @Route("/admin/feedback", name="feedback_index")
      * @Method("GET")
      */
@@ -42,20 +43,26 @@ class FeedbackController extends Controller
 
     /**
      * Creates a new feedback entity.
-     *
      * @Route("/feedback/{id}", name="feedback_new")
+     * @param Request $request
+     * @param Reference $reference
+     * @return JsonResponse|\Symfony\Component\HttpFoundation\Response
      */
     public function newAction(Request $request, Reference $reference)
     {
         $feedback = new Feedback();
+        /** @var Reference $reference */
         $feedback->setReference($reference);
-        $form = $this->createForm('AppBundle\Form\FeedbackType', $feedback, ["action"=>$this->generateUrl("feedback_new", ["id" => $reference->getId()])]);
+        $form = $this->createForm('AppBundle\Form\FeedbackType', $feedback, ["action"=>$this->generateUrl("feedback_new", [
+            "id" => $reference->getId()])]);
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
             $em = $this->getDoctrine()->getManager();
             $em->persist($feedback);
             $em->flush();
+
+            // TODO: Send notification email to admins
 
             $this->addFlash("notice", "Your feedback has been sent to our administrators. Thank you.");
             return new JsonResponse([
@@ -72,8 +79,11 @@ class FeedbackController extends Controller
 
     /**
      * Deletes a feedback entity.
-     *
+     * @IsGranted("ROLE_ADMIN")
      * @Route("/admin/feeback/delete/{id}", name="feedback_delete")
+     * @param Request $request
+     * @param Feedback $feedback
+     * @return JsonResponse|\Symfony\Component\HttpFoundation\Response
      */
     public function deleteAction(Request $request, Feedback $feedback)
     {

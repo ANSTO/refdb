@@ -1,9 +1,7 @@
 <?php
 
-// src/AppBundle/Twig/AppExtension.php
 namespace AppBundle\Twig;
 
-use AppBundle\Entity\Conference;
 use AppBundle\Service\CurrentConferenceService;
 use Twig\Extension\AbstractExtension;
 use Twig\TwigFilter;
@@ -36,7 +34,6 @@ class AppExtension extends AbstractExtension
 
     public function latinReplace($text)
     {
-
         if ($this->currentConferenceService->hasCurrent()) {
             $current = $this->currentConferenceService->getCurrent();
             // confirm its not just a conference text

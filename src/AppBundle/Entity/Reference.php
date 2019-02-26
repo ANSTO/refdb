@@ -23,6 +23,7 @@ class Reference implements \JsonSerializable
     private $id;
 
     /**
+     * The original imported author string to help aid with correcting errors.
      * @var string
      * @ORM\Column(type="string", length=4000, nullable=true)
      */
@@ -42,6 +43,7 @@ class Reference implements \JsonSerializable
     private $title;
 
     /**
+     * Author string component
      * @var string
      *
      * @ORM\Column(name="author", type="string", length=4000, nullable=true)
@@ -49,6 +51,9 @@ class Reference implements \JsonSerializable
     private $author;
 
     /**
+     * Associated authors
+     * @var ArrayCollection
+     *
      * @ORM\ManyToMany(targetEntity="AppBundle\Entity\Author", mappedBy="references")
      */
     private $authors;
@@ -61,6 +66,8 @@ class Reference implements \JsonSerializable
     private $conference;
 
     /**
+     * Unused so far.
+     *
      * @var string
      *
      * @ORM\Column(name="isbn", type="string", length=255, nullable=true)
@@ -75,6 +82,8 @@ class Reference implements \JsonSerializable
     private $position;
 
     /**
+     * Unused so far.
+     *
      * @var bool
      *
      * @ORM\Column(name="in_proc", type="boolean", nullable=true)
@@ -82,6 +91,7 @@ class Reference implements \JsonSerializable
     private $inProc;
 
     /**
+     * Indicates whether or not Et al. is being used in the author string
      * @var bool
      *
      * @ORM\Column(name="et_al", type="boolean", nullable=true)
@@ -89,6 +99,7 @@ class Reference implements \JsonSerializable
     private $etAl;
 
     /**
+     * Cached reference for string representation purposes.
      * @var string
      *
      * @ORM\Column(name="cache", type="string", length=4000, nullable=true)
@@ -96,6 +107,7 @@ class Reference implements \JsonSerializable
     private $cache;
 
     /**
+     * Whether or not the doi has been confirmed to exist over the web.
      * @var boolean
      *
      * @ORM\Column(type="boolean", nullable=true)
@@ -103,6 +115,8 @@ class Reference implements \JsonSerializable
     private $doiVerified;
 
     /**
+     * Any associated issues will be logged here.
+     *
      * @ORM\OneToMany(targetEntity="AppBundle\Entity\Feedback", mappedBy="reference", cascade={"remove"})
      * @var ArrayCollection
      */
@@ -388,11 +402,11 @@ class Reference implements \JsonSerializable
     /**
      * Add author
      *
-     * @param \AppBundle\Entity\Author $author
+     * @param Author $author
      *
      * @return Reference
      */
-    public function addAuthor(\AppBundle\Entity\Author $author)
+    public function addAuthor(Author $author)
     {
         $this->authors[] = $author;
 
@@ -402,9 +416,9 @@ class Reference implements \JsonSerializable
     /**
      * Remove author
      *
-     * @param \AppBundle\Entity\Author $author
+     * @param Author $author
      */
-    public function removeAuthor(\AppBundle\Entity\Author $author)
+    public function removeAuthor(Author $author)
     {
         $this->authors->removeElement($author);
     }

@@ -6,6 +6,7 @@ use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
+ * This could be used to track search data to perform analyics. It is currently unused.
  * Search
  *
  * @ORM\Table(name="search_queries")

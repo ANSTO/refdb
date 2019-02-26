@@ -10,7 +10,7 @@ $(document).on("click", ".btn-modal", function() {
         $ajaxModal.find(".modal-dialog").removeClass("modal-lg");
     }
 
-    if ($(this)[0].tagName == "A") {
+    if ($(this)[0].tagName === "A") {
         console.log($(this).attr("href"));
         $ajaxModal.data("href", $(this).attr("href"));
     } else {
@@ -85,7 +85,6 @@ var ajaxForm = function () {
             '<div class="modal-body"><p>An error occurred trying to perform that task.</p><p>Try reloading the page and try again. If the problem persists, contact the service desk on x9200</p></div>' +
             '<div class="modal-footer"><button class="btn btn-default" data-dismiss="modal">Close</button></div>' +
             '</div>');
-        $.material.init();
     });
     return false;
 };

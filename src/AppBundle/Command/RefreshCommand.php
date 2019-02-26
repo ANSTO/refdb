@@ -8,24 +8,23 @@
 
 namespace AppBundle\Command;
 
-
-use AppBundle\Entity\Author;
 use AppBundle\Entity\Conference;
-use AppBundle\Entity\Reference;
-use AppBundle\Service\AuthorService;
-use AppBundle\Service\CsvService;
 use AppBundle\Service\ImportService;
 use Doctrine\Common\Persistence\ObjectManager;
 use Symfony\Component\Console\Command\Command;
 use Symfony\Component\Console\Input\InputInterface;
 use Symfony\Component\Console\Output\OutputInterface;
 
+/**
+ * Automatically re-imports any conferences which are still unpublished and has an external URL
+ *
+ * Class RefreshCommand
+ * @package AppBundle\Command
+ */
 class RefreshCommand extends Command
 {
     private $manager;
     private $importService;
-
-    // the name of the command (the part after "bin/console")
     protected static $defaultName = 'app:refresh';
 
     public function __construct(ObjectManager $manager, ImportService $importService)

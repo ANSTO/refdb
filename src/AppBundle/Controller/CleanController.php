@@ -3,28 +3,24 @@
 namespace AppBundle\Controller;
 
 use AppBundle\Entity\Author;
-use AppBundle\Entity\Conference;
 use AppBundle\Entity\Reference;
 use AppBundle\Service\AuthorService;
 use Doctrine\Common\Collections\ArrayCollection;
-use Exception;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
-use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
-use Symfony\Component\HttpFoundation\Request;
 
 /**
- * Author controller.
+ * Clean controller, for basic data cleansing purposes
  *
  * @Route("clean")
  */
 class CleanController extends Controller
 {
     /**
-     * Lists all author entities.
-     * @Route("/cache", name="cache_clean")
+     * Regenerate cache for all references.
+     * @Route("/cache", name="cacche_clean")
      */
-    public function cacheAction(Request $request)
+    public function cacheAction()
     {
         $manager = $this->getDoctrine()->getManager();
         /** @var Reference[] $results */
@@ -43,18 +39,18 @@ class CleanController extends Controller
 
         }
 
-        //echo $cleaned . " total adjustments made";
         $manager->flush();
-
 
         return $this->redirectToRoute("upload_index");
     }
 
     /**
-     * Lists all author entities.
+     * Completely reset all authors
      * @Route("/authors", name="authors_clean")
+     * @param AuthorService $authorService
+     * @return \Symfony\Component\HttpFoundation\RedirectResponse
      */
-    public function authorAction(Request $request, AuthorService $authorService)
+    public function authorAction(AuthorService $authorService)
     {
         ini_set('memory_limit', '2G');
         ini_set('max_execution_time', 600);
@@ -72,6 +68,7 @@ class CleanController extends Controller
         $manager->clear();
 
         $authors = $manager->getRepository(Author::class)->findAll();
+
         /** @var Reference $reference */
         foreach ($authors as $author) {
             $manager->remove($author);
@@ -120,8 +117,4 @@ class CleanController extends Controller
 
         return ["references" => $references, "authors" => $authors];
     }
-
-
-
-
 }

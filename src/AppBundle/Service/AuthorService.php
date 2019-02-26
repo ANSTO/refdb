@@ -8,12 +8,9 @@
 
 namespace AppBundle\Service;
 
-
-use AppBundle\Entity\Reference;
-
 class AuthorService
 {
-
+    /** @var string Some common euro characters for people with hectic names */
     protected $accChars = "àèìòùÀÈÌÒÙáéíóúýÁÉÍÓÚÝâêîôûÂÊÎÔÛãñõÃÑÕäëïöüÿÄËÏÖÜŸçÇßØøÅåÆæœš";
 
     public function parse($src) {
@@ -25,7 +22,7 @@ class AuthorService
         $noSquare = preg_replace("/\[([^\[\]]*+|(?R))*\]/",",", $noRound);
 
         // Are there any authors found in the desired format?
-        preg_match_all("/((((([A-Z]?[-]?[A-Z" . $this->accChars . "]{1}[a-z]?\.[ ]?){1,3}) (([A-Z" . $this->accChars . "]?[a-z" . $this->accChars . "]+[ -]?)?[A-Z" . $this->accChars . "]{1}[a-z" . $this->accChars . "\- ]+)*))( [\(\[][^\)\]]+\)\]?)?)/u",$noSquare, $matches);
+        preg_match_all("/((((([A-Z]?[-]?[A-Z" . $this->accChars . "]{1}[a-z]?\.[ ]?){1,3}) (([A-Za-z" . $this->accChars . "\- ]+)*)))( [\(\[][^\)\]]+\)\]?)?)/u",$noSquare, $matches);
 
         if (count($matches[1]) == 0) {
             return ["authors"=>[], "text"=>$src];
@@ -87,7 +84,7 @@ class AuthorService
     }
 
     public function cleanAuthor($author) {
-        if (preg_match_all("/^(([A-Z]?[-]?[A-Z" . $this->accChars . "]{1}[a-z]?\.[ ]?){1,3}) (([A-Z" . $this->accChars . "]?[a-z" . $this->accChars . "]+[ -]?)?[A-Z" . $this->accChars . "]{1}[a-z" . $this->accChars . "\- ]+?)*$/u",$author, $matches) == true) {
+        if (preg_match_all("/^(([A-Z]?[-]?[A-Z" . $this->accChars . "]{1}[a-z]?\.[ ]?){1,3}) (([A-Za-z" . $this->accChars . "\- ]+?)*)$/u",$author, $matches) == true) {
             $initials = explode(".",$matches[1][0]);
             $parts = array_map(function($initial){
                 if (trim($initial) == "") {
@@ -98,7 +95,6 @@ class AuthorService
 
             $name = trim(implode("" , array_slice($parts,0,-1))) . " " . trim($matches[3][0]);
             return $name;
-            //$results[] = trim($matches[0][0]);
         }
         return null;
     }

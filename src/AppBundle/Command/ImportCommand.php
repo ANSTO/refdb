@@ -1,25 +1,20 @@
 <?php
-/**
- * Created by PhpStorm.
- * User: jdp
- * Date: 2019-02-19
- * Time: 18:12
- */
 
 namespace AppBundle\Command;
 
-
-use AppBundle\Entity\Author;
 use AppBundle\Entity\Conference;
-use AppBundle\Entity\Reference;
-use AppBundle\Service\AuthorService;
-use AppBundle\Service\CsvService;
 use AppBundle\Service\ImportService;
 use Doctrine\Common\Persistence\ObjectManager;
 use Symfony\Component\Console\Command\Command;
 use Symfony\Component\Console\Input\InputInterface;
 use Symfony\Component\Console\Output\OutputInterface;
 
+/**
+ * Import conferences via command line
+ *
+ * Class ImportCommand
+ * @package AppBundle\Command
+ */
 class ImportCommand extends Command
 {
     private $manager;
@@ -59,6 +54,6 @@ class ImportCommand extends Command
             $output->writeln("Importing data into " . $conference->getName());
         }
 
-        $this->importService->import($filename, $conf);
+        $this->importService->import($filename, $conference);
     }
 }

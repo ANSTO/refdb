@@ -10,6 +10,7 @@ namespace AppBundle\Service;
 
 
 use AppBundle\Entity\Author;
+use AppBundle\Entity\Conference;
 use AppBundle\Entity\Reference;
 use Doctrine\Common\Persistence\ObjectManager;
 use Exception;
@@ -32,9 +33,10 @@ class ImportService
     /**
      * @param $filename
      * @param $conference
+     * @return int
      * @throws Exception
      */
-    public function import($filename, $conference) {
+    public function import($filename, Conference $conference) {
         ini_set('memory_limit', '2G');
         ini_set('max_execution_time', 600);
 
