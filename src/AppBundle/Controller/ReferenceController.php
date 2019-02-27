@@ -113,8 +113,8 @@ class ReferenceController extends Controller
         if (preg_match_all("/[\[\(\/]+/",$reference->getAuthor(), $matches) || count($reference->getAuthors()) == 0) {
             $warning = "There is a problem with this papers authors";
         }
-        if ($reference->getPosition() == "99-98") {
-            $warning = "The page number (position in proceedings) is not included in this reference. 99-98 is a placeholder for missing data.";
+        if (($reference->getConference()->isPublished() && $reference->getPosition() == "") || $reference->getPosition() == "99-98") {
+            $warning = "The page numbers are not known for this reference.";
         }
 
 
