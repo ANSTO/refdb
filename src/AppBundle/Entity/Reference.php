@@ -356,7 +356,7 @@ class Reference implements \JsonSerializable
             $paper = " paper " . $this->getPaperId() . ", ";
         }
 
-        return $paper . $position;
+        return rtrim($paper . $position,", ");
     }
 
 
