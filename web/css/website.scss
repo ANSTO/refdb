@@ -110,3 +110,35 @@ body {
   font-family: "Liberation Mono";
   src: url("../fonts/liberation-mono.ttf.woff") format('woff');
 }
+
+a.favourite {
+  color:#000;
+  &.active, &:hover {
+    i { font-weight:900; }
+  }
+  &.active {
+    color:gold;
+    i {
+      text-shadow: 1px 1px #000000;
+    }
+  }
+  &.active:hover {
+    i { font-weight:400; }
+  }
+}
+
+#results {
+  padding-left:0px;
+  li {
+    display:flex;
+    list-style: none;
+    a.favourite {
+      padding: 0 10px;
+    }
+    a.item {
+
+
+    }
+  }
+}
+

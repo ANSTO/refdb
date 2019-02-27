@@ -3,6 +3,7 @@
 namespace AppBundle\Controller;
 
 use AppBundle\Entity\User;
+use Sensio\Bundle\FrameworkExtraBundle\Configuration\IsGranted;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\HttpFoundation\Request;
@@ -17,7 +18,7 @@ class UserController extends Controller
 {
     /**
      * Lists all user entities.
-     *
+     * @IsGranted("ROLE_ADMIN")
      * @Route("/", name="user_index")
      */
     public function indexAction()
@@ -47,7 +48,7 @@ class UserController extends Controller
 
     /**
      * Finds and displays a user entity.
-     *
+     * @IsGranted("ROLE_ADMIN")
      * @Route("/show/{id}", name="user_show")
      */
     public function showAction(User $user)
@@ -62,7 +63,7 @@ class UserController extends Controller
 
     /**
      * Deletes a user entity.
-     *
+     * @IsGranted("ROLE_ADMIN")
      * @Route("/promote/{id}", name="user_promote")
      */
     public function promoteAction(Request $request, User $user)
@@ -84,7 +85,7 @@ class UserController extends Controller
 
     /**
      * Deletes a user entity.
-     *
+     * @IsGranted("ROLE_ADMIN")
      * @Route("/delete/{id}", name="user_delete")
      */
     public function deleteAction(Request $request, User $user)

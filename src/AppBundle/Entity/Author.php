@@ -23,6 +23,7 @@ class Author implements \JsonSerializable
     private $id;
 
     /**
+     * The authors name
      * @var string
      *
      * @ORM\Column(name="name", type="string", length=255)
@@ -30,6 +31,8 @@ class Author implements \JsonSerializable
     private $name;
 
     /**
+     * Their associated references
+     *
      * @ORM\ManyToMany(targetEntity="AppBundle\Entity\Reference", inversedBy="authors", cascade={"persist"})
      * @var ArrayCollection
      */
@@ -110,13 +113,6 @@ class Author implements \JsonSerializable
         $this->references->removeElement($reference);
     }
 
-    /**
-     * Specify data which should be serialized to JSON
-     * @link https://php.net/manual/en/jsonserializable.jsonserialize.php
-     * @return mixed data which can be serialized by <b>json_encode</b>,
-     * which is a value of any type other than a resource.
-     * @since 5.4.0
-     */
     public function jsonSerialize()
     {
         return [

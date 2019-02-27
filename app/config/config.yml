@@ -37,12 +37,14 @@ twig:
     strict_variables: '%kernel.debug%'
     form_themes: ['template/forms.html.twig']
     globals:
+       form_service: "@AppBundle\\Service\\FormService"
+       favourite_service: "@AppBundle\\Service\\FavouriteService"
        current_conference: "@AppBundle\\Service\\CurrentConferenceService"
 
 # Doctrine Configuration
 doctrine:
     dbal:
-        driver: oci8
+        driver: '%database_driver%'
         host: '%database_host%'
         port: '%database_port%'
         dbname: '%database_name%'
@@ -65,8 +67,8 @@ doctrine:
 swiftmailer:
     transport: "%mailer_transport%"
     host:      "%mailer_host%"
-    username:  "%ad_user%"
-    password:  "%ad_pass%"
+    username:  "%mailer_user%"
+    password:  "%mailer_pass%"
 #    encryption: tls
 #    port:       587
     spool:     { type: memory }

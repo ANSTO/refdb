@@ -10,6 +10,7 @@ namespace AppBundle\Service;
 
 
 use AppBundle\Entity\Author;
+use AppBundle\Entity\Conference;
 use AppBundle\Entity\Reference;
 use Doctrine\Common\Persistence\ObjectManager;
 use Exception;
@@ -29,20 +30,7 @@ class ImportService
         $this->doiService = $doiService;
     }
 
-    /**
-     * @param $filename
-     * @param $conference
-     * @throws Exception
-     */
-    public function import($filename, $conference) {
-        ini_set('memory_limit', '2G');
-        ini_set('max_execution_time', 600);
-
-        // delete all current references
-        foreach ($conference->getReferences() as $reference) {
-            $this->manager->remove($reference);
-        }
-
+    private function findReferences($filename) {
         $contents = $this->csvService->open($filename);
 
         /** @var Reference[] $references */
@@ -50,7 +38,7 @@ class ImportService
             $reference = new Reference();
             $reference->setAuthor(trim($data[1]));
             $reference->setOriginalAuthors(trim($data[1]));
-            $reference->setTitle(trim($data[2]));
+            $reference->setTitle(rtrim(trim($data[2]),"*"));
             $reference->setPaperId(trim(strtoupper($data[0])));
             $reference->setInProc(true);
             if (isset($data[3])) {
@@ -64,16 +52,69 @@ class ImportService
             return (strtolower($reference->getOriginalAuthors()) != "authors");
         });
 
+        return $references;
+    }
+
+    public function merge($filename, Conference $conference) {
+        ini_set('memory_limit', '2G');
+        ini_set('max_execution_time', 600);
+
+        $dbReferences = $conference->getReferences();
+        $fileReferences = $this->findReferences($filename);
+
+        foreach ($fileReferences as $fileReference) {
+            $fileReference->setConference($conference);
+        }
+
+        // find missing references to be remove missing references
+        /** @var Reference $dbReference */
+        foreach ($dbReferences as $dbReference) {
+            $found = false;
+            foreach ($fileReferences as $fileReference) {
+                if ($dbReference->getPaperId() == $fileReference->getPaperId()) {
+                    $found = true;
+                }
+            }
+            if (!$found) {
+                $this->manager->remove($dbReference);
+            }
+        }
+
+        $recalculateAuthors = [];
+
+        // find only new references
+        foreach ($fileReferences as $fileReference) {
+            $found = false;
+            foreach ($dbReferences as $dbReference) {
+                if ($dbReference->getPaperId() == $fileReference->getPaperId()) {
+                    $found = true;
+                    $dbReference->setTitle($fileReference->getTitle());
+                    if ($dbReference->getOriginalAuthors() !== $fileReference->getOriginalAuthors()) {
+                        $dbReference->setOriginalAuthors($fileReference->getOriginalAuthors());
+                        $recalculateAuthors[] = $dbReference;
+                    }
+                }
+            }
+            if (!$found) {
+                $recalculateAuthors[] = $fileReference;
+                $this->manager->persist($fileReference);
+            }
+        }
+
+        $this->calculateAuthors($recalculateAuthors);
+
+        $this->manager->flush();
+
+        return count($recalculateAuthors);
+
+    }
+
+
+    private function calculateAuthors($references) {
         $results = $this->findAuthors($references);
 
         $references = $results['references'];
         $newAuthors = $results['authors'];
-
-        // Persist all the references
-        foreach ($references as $reference) {
-            $reference->setConference($conference);
-            $this->manager->persist($reference);
-        }
 
         // Add all the links to the authors
         foreach ($newAuthors as $name => $newAuthorRefs) {
@@ -106,6 +147,31 @@ class ImportService
                 $this->manager->persist($newAuthor);
             }
         }
+    }
+
+    /**
+     * @param $filename
+     * @param $conference
+     * @return int
+     * @throws Exception
+     */
+    public function import($filename, Conference $conference) {
+        ini_set('memory_limit', '2G');
+        ini_set('max_execution_time', 600);
+
+        // delete all current references
+        foreach ($conference->getReferences() as $reference) {
+            $this->manager->remove($reference);
+        }
+
+        $references = $this->findReferences($filename);
+
+        foreach ($references as $reference) {
+            $reference->setConference($conference);
+            $this->manager->persist($reference);
+        }
+
+        $this->calculateAuthors($references);
 
         $this->manager->flush();
 

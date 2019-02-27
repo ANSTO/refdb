@@ -22,7 +22,7 @@ class SearchType extends AbstractType
             ->add('date', null,["label"=>"Conference Date", "attr"=>["class"=>"conference-date-typeahead","autocomplete"=>"off"]])
             ->add('location', null, ["label"=>"Conference Location", "attr"=>["class"=>"conference-location-typeahead","autocomplete"=>"off"]])
             ->add('paperId', null, array("label"=>"Paper ID"))
-            ->add('author', TextType::class, [
+            ->add('author', TextType::class, ["required"=>false,
                 "label"=> "Author/s"])
             ->add('title', null, ["label"=>"Paper Title"])
 

@@ -7,6 +7,8 @@ use AppBundle\Entity\Conference;
 use AppBundle\Entity\Reference;
 use AppBundle\Form\Type\TagsAsInputType;
 use AppBundle\Service\DoiService;
+use AppBundle\Service\FormService;
+use Sensio\Bundle\FrameworkExtraBundle\Configuration\IsGranted;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\Routing\Annotation\Route;
@@ -19,6 +21,21 @@ use Symfony\Component\HttpFoundation\Request;
  */
 class ReferenceController extends Controller
 {
+    private $safeRef = "/^((?!\/\/)[a-zA-Z0-9\/._])+$/";
+
+    /**
+     * Clear the 'current conference' option
+     *
+     * @Route("/format", name="conference_format")
+     */
+    public function formAction(Request $request, FormService $formService) {
+        if (preg_match($this->safeRef, $request->get('ref'))) {
+            $formService->toggleForm();
+            return $this->redirect($request->get('ref'));
+        }
+        return $this->redirectToRoute("homepage");
+    }
+
 
     /**
      * Lists all reference entities.
@@ -38,13 +55,12 @@ class ReferenceController extends Controller
             10
         );
 
-        // parameters to template
         return $this->render('reference/index.html.twig', array('pagination' => $pagination));
     }
 
     /**
      * Creates a new reference entity.
-     *
+     * @IsGranted("ROLE_ADMIN")
      * @Route("/new/{id}", name="reference_new", defaults={"id": null})
      * @param Request $request
      * @param Conference|null $conference
@@ -75,6 +91,8 @@ class ReferenceController extends Controller
      * Finds and displays a reference entity.
      *
      * @Route("/show/{id}", name="reference_show", options={"expose"=true})
+     * @param Reference $reference
+     * @return \Symfony\Component\HttpFoundation\Response
      */
     public function showAction(Reference $reference)
     {
@@ -111,7 +129,7 @@ class ReferenceController extends Controller
 
     /**
      * Displays a form to edit an existing reference entity.
-     *
+     * @IsGranted("ROLE_ADMIN")
      * @Route("/edit/{id}", name="reference_edit")
      */
     public function editAction(Request $request, Reference $reference)
@@ -161,7 +179,7 @@ class ReferenceController extends Controller
 
     /**
      * Deletes a reference entity.
-     *
+     * @IsGranted("ROLE_ADMIN")
      * @Route("/delete/{id}", name="reference_delete")
      */
     public function deleteAction(Request $request, Reference $reference)
@@ -187,7 +205,7 @@ class ReferenceController extends Controller
      *
      * @param Reference $reference The reference entity
      *
-     * @return \Symfony\Component\Form\Form The form
+     * @return \Symfony\Component\Form\FormInterface
      */
     private function createDeleteForm(Reference $reference)
     {

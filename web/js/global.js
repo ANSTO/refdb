@@ -10,7 +10,7 @@ $(document).on("click", ".btn-modal", function() {
         $ajaxModal.find(".modal-dialog").removeClass("modal-lg");
     }
 
-    if ($(this)[0].tagName == "A") {
+    if ($(this)[0].tagName === "A") {
         console.log($(this).attr("href"));
         $ajaxModal.data("href", $(this).attr("href"));
     } else {
@@ -85,7 +85,6 @@ var ajaxForm = function () {
             '<div class="modal-body"><p>An error occurred trying to perform that task.</p><p>Try reloading the page and try again. If the problem persists, contact the service desk on x9200</p></div>' +
             '<div class="modal-footer"><button class="btn btn-default" data-dismiss="modal">Close</button></div>' +
             '</div>');
-        $.material.init();
     });
     return false;
 };
@@ -93,3 +92,33 @@ var ajaxForm = function () {
 $('.ajaxModal')
     .on('show.bs.modal', function() {ajaxModalShow($(this))})
     .on('hide.bs.modal', function() {ajaxModalHide($(this))});
+
+
+if (!String.prototype.startsWith) {
+    String.prototype.startsWith = function(searchString, position) {
+        position = position || 0;
+        return this.indexOf(searchString, position) === position;
+    };
+}
+
+if (!String.prototype.endsWith) {
+    String.prototype.endsWith = function(search, this_len) {
+        if (this_len === undefined || this_len > this.length) {
+            this_len = this.length;
+        }
+        return this.substring(this_len - search.length, this_len) === search;
+    };
+}
+
+$(document).ready(function(){
+    $("#filter").submit(function(){
+        var val = $("#filterValue").val();
+        if (!val.endsWith('*'))
+            val = val + "*" ;
+
+        if (!val.startsWith('*'))
+            val = "*" + val;
+
+        $("#filterValue").val(val);
+    });
+});

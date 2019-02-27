@@ -3,14 +3,19 @@
 {% block body %}
     {% if is_granted("ROLE_ADMIN") %}
     <div class="float-right btn-group">
+        <a class="btn btn-success" href="{{ path('upload_index', { 'id': conference.id }) }}"><i class="fas fa-upload"></i> Upload</a>
         <a class="btn btn-primary" href="{{ path('conference_edit', { 'id': conference.id }) }}"><i class="fas fa-edit"></i> Edit</a>
         <button class="btn btn-danger btn-modal" type="button" data-href="{{ path('conference_delete', { 'id': conference.id }) }}"><i class="fas fa-trash"></i> Delete</button>
     </div>
     {% endif %}
     <h2>{{ conference|latin }}</h2>
 
+    <p>
+        {{ conference.location }}, {{ conference.year }}
+
+    </p>
     <br />
-    <h3>References</h3>
+    <h3>References </h3>
     {% if conference.references|length == 0 %}
         <p><em>No references found for this conference.</em></p>
     {% endif %}
