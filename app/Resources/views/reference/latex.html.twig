@@ -2,9 +2,9 @@
 \bibitem{{ '{' ~ reference.conference.code|replace({"'":""}) ~ '-' ~ reference.paperId ~ '}' }}{{ "\n   " ~ reference.author|replace({"et al.": "\\emph{et al.}"}) }},
    \textquotedblleft{{ '{' ~ reference.title ~ '}' }}\textquotedblright,
    {% if reference.conference.published -%}
-        in \emph{{ '{Proc. ' ~ reference.conference ~ '}' }}
+        in \emph{{ '{Proc. ' ~ reference.conference.form(form_service.getForm()) ~ '}' }}
     {%- else -%}
-        {{ 'presented at the ' ~ reference.conference }}
+        {{ 'presented at the ' ~ reference.conference.form(form_service.getForm()) }}
     {%- endif -%}, {{ reference.conference.location }}, {{ reference.conference.year -}},
 
                 {%- if current_conference.hasCurrent and reference.conference == current_conference.current -%}

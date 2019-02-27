@@ -31,6 +31,14 @@
         {% endspaceless %}
     </p>
 
+        <a class="btn btn-block" href="{{ path('conference_format', {"ref": path("favourite_show")}) }}">
+            {% if form_service.getForm == "long" %}
+                Use Abbreviated Form
+            {% else %}
+                Use Complete Form
+            {% endif %}
+        </a>
+
     <br />
     <h3>References</h3>
 

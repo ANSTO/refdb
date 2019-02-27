@@ -215,11 +215,7 @@ class Conference implements \JsonSerializable
 
     public function __toString()
     {
-        if ($this->getName() !== null) {
-            return $this->getName() . " (" . $this->getCode() . ")";
-        } else {
-            return $this->getCode();
-        }
+        return $this->getForm();
     }
 
     public function getPlain() {
@@ -323,6 +319,14 @@ class Conference implements \JsonSerializable
             $this->isPublished = false;
         } else {
             $this->isPublished = $isPublished;
+        }
+    }
+
+    public function getForm($form = "long") {
+        if ($this->getName() !== null && $form == "long") {
+            return $this->getName() . " (" . $this->getCode() . ")";
+        } else {
+            return $this->getCode();
         }
     }
 

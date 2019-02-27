@@ -7,6 +7,7 @@ use AppBundle\Entity\Conference;
 use AppBundle\Entity\Reference;
 use AppBundle\Form\Type\TagsAsInputType;
 use AppBundle\Service\DoiService;
+use AppBundle\Service\FormService;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\IsGranted;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\JsonResponse;
@@ -20,6 +21,22 @@ use Symfony\Component\HttpFoundation\Request;
  */
 class ReferenceController extends Controller
 {
+    private $safeRef = "/^((?!\/\/)[a-zA-Z0-9\/._])+$/";
+
+    /**
+     * Clear the 'current conference' option
+     *
+     * @Route("/format", name="conference_format")
+     */
+    public function formAction(Request $request, FormService $formService) {
+        if (preg_match($this->safeRef, $request->get('ref'))) {
+            $formService->toggleForm();
+            return $this->redirect($request->get('ref'));
+        }
+        return $this->redirectToRoute("homepage");
+    }
+
+
     /**
      * Lists all reference entities.
      * @Route("/", name="reference_index")

@@ -37,6 +37,7 @@ twig:
     strict_variables: '%kernel.debug%'
     form_themes: ['template/forms.html.twig']
     globals:
+       form_service: "@AppBundle\\Service\\FormService"
        favourite_service: "@AppBundle\\Service\\FavouriteService"
        current_conference: "@AppBundle\\Service\\CurrentConferenceService"
 

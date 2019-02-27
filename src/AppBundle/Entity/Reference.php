@@ -324,14 +324,25 @@ class Reference implements \JsonSerializable
 
     public function __toString()
     {
-        $output = $this->getTitleSection() . "" . $this->getConferenceSection()  . "," . $this->getPaperSection() . ".";
-
-        return $output;
+        return $this->format();
 
     }
 
-    public function getConferenceSection() {
-        return $this->conference . "</em>, " . $this->conference->getLocation() . ", " . $this->conference->getYear();
+    public function format($format = "long") {
+        $output = $this->getTitleSection() . "" . $this->getConferenceSection($format)  . "," . $this->getPaperSection() . ".";
+
+        return $output;
+    }
+
+    public function getConferenceSection($format) {
+        if ($format == "long") {
+            $section = $this->conference;
+        } else {
+            $section = $this->conference->getCode();
+        }
+
+        $section .= "</em>, " . $this->conference->getLocation() . ", " . $this->conference->getYear();
+        return $section;
     }
 
     public function getTitleSection() {
@@ -380,6 +391,8 @@ class Reference implements \JsonSerializable
 
         return $paper . $position;
     }
+
+
 
     /**
      * @return string

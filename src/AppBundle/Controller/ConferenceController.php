@@ -17,7 +17,7 @@ use Symfony\Component\HttpFoundation\Request;
  */
 class ConferenceController extends Controller
 {
-    private $safeRef = "/^((?!\/\/)[a-zA-Z0-9\/])+$/";
+    private $safeRef = "/^((?!\/\/)[a-zA-Z0-9\/._])+$/";
 
     /**
      * Dismiss the notification for current conference.

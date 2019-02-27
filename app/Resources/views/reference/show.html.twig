@@ -39,8 +39,6 @@
         {% endif %}
     {% endif %}
 
-
-
     {% if is_granted("ROLE_ADMIN") %}
         <div class="float-right btn-group">
             <a class=" btn btn-primary" href="{{ path('reference_edit', { 'id': reference.id }) }}"><i class="fas fa-edit"></i> Edit</a>
@@ -51,9 +49,6 @@
             <button class="btn btn-default btn-modal" data-href="{{ path('feedback_new', { 'id': reference.id }) }}"><i class="fas fa fa-question-circle"></i> Fix a problem</button>
         </div>
     {% endif %}
-
-
-
 
     <h2><a class="favourite {{ favourite_service.check(reference) ? "active" : "" }}" href="{{ path("favourite_toggle_redirect", {"id": reference.id, "ref": path("reference_show", {"id": reference.id})}) }}"><i class="far fa-star"></i></a> Reference</h2>
     <br />
@@ -72,6 +67,15 @@
             </textarea>
         {% endspaceless %}
     </p>
+
+    <a class="btn btn-block" href="{{ path('conference_format', {"ref": path("reference_show", {"id": reference.id })}) }}">
+        {% if form_service.getForm == "long" %}
+            Use Abbreviated Form
+        {% else %}
+            Use Complete Form
+        {% endif %}
+    </a>
+    <br />
 
     <br />
     <h3>Metadata</h3>
