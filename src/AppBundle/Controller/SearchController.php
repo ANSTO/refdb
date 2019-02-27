@@ -28,16 +28,22 @@ class SearchController extends Controller
         $form = $this->createForm(SearchType::class, $search);
         $form->handleRequest($request);
 
+        $totalResults = 0;
         $references = [];
         if ($form->isSubmitted() && $form->isValid()) {
             $query = $this->getDoctrine()->getManager()
                 ->getRepository(Reference::class)->search($search);
 
             if ($query !== false) {
-                $response["results"] = $query->setMaxResults(5)
+                $references = $query->setMaxResults(5)
                     ->getQuery()
                     ->getResult();
+
+                $query = $this->getDoctrine()->getManager()
+                    ->getRepository(Reference::class)->search($search);
+                $totalResults = $query->select("COUNT(r)")->getQuery()->getSingleScalarResult();
             } else {
+
                 $response["results"] = [];
             }
         }
@@ -45,6 +51,7 @@ class SearchController extends Controller
         return $this->render('search/index.html.twig', [
             "form" => $form->createView(),
             "favourites" => $favouriteService->getFavourites(),
+            "total" => $totalResults,
             "references" => $references
         ]);
     }
@@ -63,11 +70,16 @@ class SearchController extends Controller
         $form = $this->createForm(SearchType::class, $search);
         $form->handleRequest($request);
 
+        $totalResults = 0;
+
         if ($form->isSubmitted() && $form->isValid()) {
             $query = $this->getDoctrine()->getManager()
                 ->getRepository(Reference::class)->search($search);
 
             if ($query !== false) {
+                $response["total"] = $query->select("COUNT(r)")->getQuery()->getSingleScalarResult();
+                $query = $this->getDoctrine()->getManager()
+                    ->getRepository(Reference::class)->search($search);
                 $response["results"] = $query->setMaxResults(5)
                     ->getQuery()
                     ->getResult();
