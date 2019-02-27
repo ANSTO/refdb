@@ -25,7 +25,7 @@ class ConferenceType extends AbstractType
             ->add("useDoi", ChoiceType::class, ["choices"=>[ "No"=>0,"Yes"=>1]])
             ->add("doiCode", TextType::class, ["label"=>"Doi Code: IPAC2017 (from 10.18429/JACoW-THISCODE-PAPERID)", "required"=>false])
             ->add("isPublished", CheckboxType::class, ["label"=>"Is this conference proceedings published?", "required"=>false])
-            ->add("importUrl", UrlType::class, ["label"=>"URL to CSV Import"]);
+            ->add("importUrl", UrlType::class, ["label"=>"URL to CSV Import", "required"=>false]);
     }
     /**
      * {@inheritdoc}

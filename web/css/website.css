@@ -102,4 +102,35 @@ body {
   margin: 0 -16px;
 }
 
+@font-face {
+  font-family: "Liberation Mono";
+  src: url("../fonts/liberation-mono.ttf.woff") format("woff");
+}
+a.favourite {
+  color: #000;
+}
+a.favourite.active i, a.favourite:hover i {
+  font-weight: 900;
+}
+a.favourite.active {
+  color: gold;
+}
+a.favourite.active i {
+  text-shadow: 1px 1px #000000;
+}
+a.favourite.active:hover i {
+  font-weight: 400;
+}
+
+#results {
+  padding-left: 0px;
+}
+#results li {
+  display: flex;
+  list-style: none;
+}
+#results li a.favourite {
+  padding: 0 10px;
+}
+
 /*# sourceMappingURL=website.css.map */

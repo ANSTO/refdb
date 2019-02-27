@@ -23,6 +23,7 @@ class Reference implements \JsonSerializable
     private $id;
 
     /**
+     * The original imported author string to help aid with correcting errors.
      * @var string
      * @ORM\Column(type="string", length=4000, nullable=true)
      */
@@ -42,6 +43,7 @@ class Reference implements \JsonSerializable
     private $title;
 
     /**
+     * Author string component
      * @var string
      *
      * @ORM\Column(name="author", type="string", length=4000, nullable=true)
@@ -49,6 +51,9 @@ class Reference implements \JsonSerializable
     private $author;
 
     /**
+     * Associated authors
+     * @var ArrayCollection
+     *
      * @ORM\ManyToMany(targetEntity="AppBundle\Entity\Author", mappedBy="references")
      */
     private $authors;
@@ -61,6 +66,8 @@ class Reference implements \JsonSerializable
     private $conference;
 
     /**
+     * Unused so far.
+     *
      * @var string
      *
      * @ORM\Column(name="isbn", type="string", length=255, nullable=true)
@@ -75,6 +82,8 @@ class Reference implements \JsonSerializable
     private $position;
 
     /**
+     * Unused so far.
+     *
      * @var bool
      *
      * @ORM\Column(name="in_proc", type="boolean", nullable=true)
@@ -82,6 +91,7 @@ class Reference implements \JsonSerializable
     private $inProc;
 
     /**
+     * Indicates whether or not Et al. is being used in the author string
      * @var bool
      *
      * @ORM\Column(name="et_al", type="boolean", nullable=true)
@@ -89,6 +99,7 @@ class Reference implements \JsonSerializable
     private $etAl;
 
     /**
+     * Cached reference for string representation purposes.
      * @var string
      *
      * @ORM\Column(name="cache", type="string", length=4000, nullable=true)
@@ -96,6 +107,7 @@ class Reference implements \JsonSerializable
     private $cache;
 
     /**
+     * Whether or not the doi has been confirmed to exist over the web.
      * @var boolean
      *
      * @ORM\Column(type="boolean", nullable=true)
@@ -103,10 +115,19 @@ class Reference implements \JsonSerializable
     private $doiVerified;
 
     /**
+     * Any associated issues will be logged here.
+     *
      * @ORM\OneToMany(targetEntity="AppBundle\Entity\Feedback", mappedBy="reference", cascade={"remove"})
      * @var ArrayCollection
      */
     private $feedback;
+
+
+    /**
+     * @var ArrayCollection
+     * @ORM\OneToMany(targetEntity="AppBundle\Entity\Favourite", mappedBy="reference", cascade={"remove"})
+     */
+    private $favourites;
 
     /**
      * Constructor
@@ -114,6 +135,8 @@ class Reference implements \JsonSerializable
     public function __construct()
     {
         $this->authors = new ArrayCollection();
+        $this->feedback = new ArrayCollection();
+        $this->favourites = new ArrayCollection();
     }
 
     /**
@@ -301,22 +324,25 @@ class Reference implements \JsonSerializable
 
     public function __toString()
     {
-
-        $output = $this->getTitleSection() . "" . $this->getConferenceSection()  . "," . $this->getPaperSection();
-
-        $doi = $this->doi();
-
-        if ($doi !== false && $this->isDoiVerified()) {
-            $output .= ", " . $doi;
-        } else {
-            $output .= ".";
-        }
-        return $output;
+        return $this->format();
 
     }
 
-    public function getConferenceSection() {
-        return "<em>" . $this->conference . "</em>, " . $this->conference->getLocation() . ", " . $this->conference->getYear();
+    public function format($format = "long") {
+        $output = $this->getTitleSection() . "" . $this->getConferenceSection($format)  . "," . $this->getPaperSection() . ".";
+
+        return $output;
+    }
+
+    public function getConferenceSection($format) {
+        if ($format == "long") {
+            $section = $this->conference;
+        } else {
+            $section = $this->conference->getCode();
+        }
+
+        $section .= "</em>, " . $this->conference->getLocation() . ", " . $this->conference->getYear();
+        return $section;
     }
 
     public function getTitleSection() {
@@ -324,12 +350,12 @@ class Reference implements \JsonSerializable
         $title = $this->getTitle();
 
         if ($this->isInProc() && $this->getConference()->isPublished()) {
-            $inProc = "in <em>Proc. </em>";
+            $inProc = "in <em>Proc. ";
         } else {
-            $inProc = "<em>presented at the </em>";
+            $inProc = "presented at the ";
         }
 
-        return $author . " “" . $title . "” " . $inProc;
+        return $author . ", “" . $title . "”, " . $inProc;
     }
 
     public function doi() {
@@ -338,6 +364,13 @@ class Reference implements \JsonSerializable
         } else {
             return false;
         }
+    }
+
+    public function doiText() {
+        if ($this->getConference()->isUseDoi()) {
+            return 'doi:10.18429/JACoW-' . $this->getConference()->getDoiCode() . '-' . $this->getPaperId();
+        }
+        return "";
     }
 
     public function getPaperSection() {
@@ -351,13 +384,15 @@ class Reference implements \JsonSerializable
         } else {
             $position = "unpublished";
         }
-        $paper = "";
-        if ($this->getPaperId() !== null) {
+        $paper = " ";
+        if ($this->getPaperId() !== null && !($this->getConference()->isUseDoi() && $this->isDoiVerified())) {
             $paper = " paper " . $this->getPaperId() . ", ";
         }
 
         return $paper . $position;
     }
+
+
 
     /**
      * @return string
@@ -389,11 +424,11 @@ class Reference implements \JsonSerializable
     /**
      * Add author
      *
-     * @param \AppBundle\Entity\Author $author
+     * @param Author $author
      *
      * @return Reference
      */
-    public function addAuthor(\AppBundle\Entity\Author $author)
+    public function addAuthor(Author $author)
     {
         $this->authors[] = $author;
 
@@ -403,9 +438,9 @@ class Reference implements \JsonSerializable
     /**
      * Remove author
      *
-     * @param \AppBundle\Entity\Author $author
+     * @param Author $author
      */
-    public function removeAuthor(\AppBundle\Entity\Author $author)
+    public function removeAuthor(Author $author)
     {
         $this->authors->removeElement($author);
     }
@@ -504,5 +539,21 @@ class Reference implements \JsonSerializable
     public function setFeedback($feedback)
     {
         $this->feedback = $feedback;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getFavourites()
+    {
+        return $this->favourites;
+    }
+
+    /**
+     * @param mixed $favourites
+     */
+    public function setFavourites($favourites)
+    {
+        $this->favourites = $favourites;
     }
 }

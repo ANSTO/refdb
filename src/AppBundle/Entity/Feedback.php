@@ -6,7 +6,8 @@ use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\Validator\Constraints as Assert;
 
 /**
- * Feedback
+ *
+ * Feedback, for users to alert admins of incorrect references
  *
  * @ORM\Table(name="feedback")
  * @ORM\Entity(repositoryClass="AppBundle\Repository\FeedbackRepository")
@@ -105,7 +106,7 @@ class Feedback
     /**
      * Set reference
      *
-     * @param \stdClass $reference
+     * @param Reference $reference
      *
      * @return Feedback
      */
@@ -119,7 +120,7 @@ class Feedback
     /**
      * Get reference
      *
-     * @return \stdClass
+     * @return Reference
      */
     public function getReference()
     {

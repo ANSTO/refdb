@@ -3,6 +3,7 @@
 namespace AppBundle\Controller;
 
 use AppBundle\Entity\Author;
+use Sensio\Bundle\FrameworkExtraBundle\Configuration\IsGranted;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\Routing\Annotation\Route;
@@ -15,7 +16,6 @@ use Symfony\Component\HttpFoundation\Request;
  */
 class AuthorController extends Controller
 {
-
     /**
      * Lists all author entities.
      * @Route("/", name="author_index")
@@ -40,7 +40,7 @@ class AuthorController extends Controller
 
     /**
      * Creates a new author entity.
-     *
+     * @IsGranted("ROLE_ADMIN")
      * @Route("/new", name="author_new")
      */
     public function newAction(Request $request)
@@ -80,7 +80,7 @@ class AuthorController extends Controller
 
     /**
      * Displays a form to edit an existing author entity.
-     *
+     * @IsGranted("ROLE_ADMIN")
      * @Route("/edit/{id}", name="author_edit")
      */
     public function editAction(Request $request, Author $author)
@@ -104,7 +104,7 @@ class AuthorController extends Controller
 
     /**
      * Deletes a author entity.
-     *
+     * @IsGranted("ROLE_ADMIN")
      * @Route("/delete/{id}", name="author_delete")
      */
     public function deleteAction(Request $request, Author $author)
@@ -129,7 +129,7 @@ class AuthorController extends Controller
      *
      * @param Author $author The author entity
      *
-     * @return \Symfony\Component\Form\Form The form
+     * @return \Symfony\Component\Form\FormInterface
      */
     private function createDeleteForm(Author $author)
     {
@@ -144,7 +144,8 @@ class AuthorController extends Controller
      * @Route("/search/{query}", name="author_search", options={"expose"=true})
      */
     public function searchAction($query) {
-        $results = $this->getDoctrine()->getManager()->getRepository(Author::class)->search($query);
+        $results = $this->getDoctrine()->getManager()->getRepository(Author::class)
+            ->search($query);
         return new JsonResponse($results);
     }
 }

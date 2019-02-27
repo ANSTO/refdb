@@ -1,11 +1,22 @@
 <!DOCTYPE html>
 <html>
 <head>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta charset="UTF-8" />
-    <title>{% block title %}Citation Search{% endblock %}</title>
+    <title>{% block title %}Reference Search{% endblock %}</title>
+
+    <!-- Global site tag (gtag.js) - Google Analytics -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=UA-31304666-7"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);}
+        gtag('js', new Date());
+        gtag('config', 'UA-31304666-7');
+    </script>
+
     {% block stylesheets %}
         <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
-        <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.6.3/css/all.css" integrity="sha384-UHRtZLI+pbxtHCWp1t77Bi1L4ZtiqrqD80Kn4Z8NTSRyMA2Fd33n5dQ8lWUE00s/" crossorigin="anonymous">
+        <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.2/css/all.css" integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr" crossorigin="anonymous">
         <link rel="stylesheet" href="{{ asset("css/typeaheadjs.css") }}" />
         <link rel="stylesheet" href="{{ asset("css/bootstrap-tagsinput.css") }}" />
         <link rel="stylesheet" href="{{ asset("css/website.css") }}" />
@@ -18,7 +29,7 @@
     <div class="container">
         <a href="{{ path("homepage") }}">
             <img class="float-md-right" height="50" src="{{ asset("images/jacow_image.png") }}" border="0">
-            <h1>Citation Search</h1>
+            <h1>Reference Search</h1>
         </a>
     </div>
 </div>
@@ -42,13 +53,18 @@
                     <li class="nav-item {{ "conference" in app.request.uri ? "active" : "" }}">
                         <a class="nav-link" href="{{ path("conference_index") }}">Conferences</a>
                     </li>
-                    <li class="nav-item {{ "report" in app.request.uri ? "active" : "" }}">
-                        <a class="nav-link" href="{{ path("report_index") }}">Reports</a>
-                    </li>
-                    {% if is_granted("ROLE_ADMIN") %}
-                        <li class="nav-item {{ "upload" in app.request.uri ? "active" : "" }}">
-                            <a class="nav-link" href="{{ path("upload_index") }}">Upload</a>
+                    {% if favourite_service.favourites|length != 0 %}
+                        <li class="nav-item {{ "favourite" in app.request.uri ? "active" : "" }}">
+                            <a class="nav-link" href="{{ path("favourite_show") }}">See Favourites</a>
                         </li>
+                    {% endif %}
+                    {% if is_granted("ROLE_USER") %}
+                        {#<li class="nav-item {{ "report" in app.request.uri ? "active" : "" }}">#}
+                            {#<a class="nav-link" href="{{ path("report_index") }}">Reports</a>#}
+                        {#</li>#}
+                        {#<li class="nav-item {{ "upload" in app.request.uri ? "active" : "" }}">#}
+                            {#<a class="nav-link" href="{{ path("upload_index") }}">Upload</a>#}
+                        {#</li>#}
                     {% endif %}
                 </ul>
                 <ul class="navbar-nav ml-auto">

@@ -4,6 +4,7 @@ namespace AppBundle\Controller;
 
 use AppBundle\Entity\Conference;
 use AppBundle\Service\CurrentConferenceService;
+use Sensio\Bundle\FrameworkExtraBundle\Configuration\IsGranted;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\Routing\Annotation\Route;
@@ -16,8 +17,10 @@ use Symfony\Component\HttpFoundation\Request;
  */
 class ConferenceController extends Controller
 {
+    private $safeRef = "/^((?!\/\/)[a-zA-Z0-9\/._])+$/";
+
     /**
-     * Make this conference my current conference
+     * Dismiss the notification for current conference.
      *
      * @Route("/dismiss", name="conference_dismiss")
      * @param Request $request
@@ -25,28 +28,38 @@ class ConferenceController extends Controller
      * @return \Symfony\Component\HttpFoundation\RedirectResponse
      */
     public function dismissAction(Request $request, CurrentConferenceService $currentConferenceService) {
-        $currentConferenceService->dismiss();
-        return $this->redirect($request->get('ref'));
+        // Confirm referral URL is internal only (only contains alpha num and slash)
+        if (preg_match($this->safeRef, $request->get('ref'))) {
+            $currentConferenceService->dismiss();
+            return $this->redirect($request->get('ref'));
+        }
+        return $this->redirectToRoute("homepage");
     }
 
     /**
-     * Make this conference my current conference
+     * Clear the 'current conference' option
      *
      * @Route("/clear/current", name="conference_current_clear")
      */
     public function clearAction(Request $request, CurrentConferenceService $currentConferenceService) {
-        $currentConferenceService->clearCurrent();
-        return $this->redirect($request->get('ref'));
+        if (preg_match($this->safeRef, $request->get('ref'))) {
+            $currentConferenceService->clearCurrent();
+            return $this->redirect($request->get('ref'));
+        }
+        return $this->redirectToRoute("homepage");
     }
 
     /**
-     * Make this conference my current conference
+     * Make this conference my current conference (changes the way the reference appears)
      *
      * @Route("/current/{id}", name="conference_current")
      */
     public function currentAction(Request $request, CurrentConferenceService $currentConferenceService, Conference $conference) {
-        $currentConferenceService->setCurrent($conference);
-        return $this->redirect($request->get('ref'));
+        if (preg_match($this->safeRef, $request->get('ref'))) {
+            $currentConferenceService->setCurrent($conference);
+            return $this->redirect($request->get('ref'));
+        }
+        return $this->redirectToRoute("homepage");
     }
 
     /**
@@ -58,7 +71,7 @@ class ConferenceController extends Controller
         $manager = $this->getDoctrine()->getManager();
         $query = $manager->getRepository(Conference::class)
             ->createQueryBuilder("c")
-            ->innerJoin("c.references", "r")
+         #   ->innerJoin("c.references", "r")
             ->getQuery();
 
         $paginator  = $this->get('knp_paginator');
@@ -74,7 +87,7 @@ class ConferenceController extends Controller
 
     /**
      * Creates a new conference entity.
-     *
+     * @IsGranted("ROLE_ADMIN")
      * @Route("/new", name="conference_new")
      */
     public function newAction(Request $request)
@@ -114,7 +127,7 @@ class ConferenceController extends Controller
 
     /**
      * Displays a form to edit an existing conference entity.
-     *
+     * @IsGranted("ROLE_ADMIN")
      * @Route("/edit/{id}", name="conference_edit")
      */
     public function editAction(Request $request, Conference $conference)
@@ -138,7 +151,7 @@ class ConferenceController extends Controller
 
     /**
      * Deletes a conference entity.
-     *
+     * @IsGranted("ROLE_ADMIN")
      * @Route("/delete/{id}", name="conference_delete")
      */
     public function deleteAction(Request $request, Conference $conference)
@@ -163,7 +176,7 @@ class ConferenceController extends Controller
      *
      * @param Conference $conference The conference entity
      *
-     * @return \Symfony\Component\Form\Form The form
+     * @return \Symfony\Component\Form\Form|\Symfony\Component\Form\FormInterface
      */
     private function createDeleteForm(Conference $conference)
     {
@@ -176,9 +189,13 @@ class ConferenceController extends Controller
 
     /**
      * @Route("/search/{query}/{type}", name="conference_search", options={"expose"=true})
+     * @param $query
+     * @param string $type
+     * @return JsonResponse
      */
-    public function searchAction($query, $type="name") {
-        $results = $this->getDoctrine()->getManager()->getRepository(Conference::class)->search($query, $type);
+    public function searchAction($query, $type = "name") {
+        $results = $this->getDoctrine()->getManager()->getRepository(Conference::class)
+            ->search($query, $type);
         return new JsonResponse($results);
     }
 }

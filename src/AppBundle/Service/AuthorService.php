@@ -8,23 +8,21 @@
 
 namespace AppBundle\Service;
 
-
 class AuthorService
 {
-
-    protected $accChars = "àèìòùÀÈÌÒÙáéíóúýÁÉÍÓÚÝâêîôûÂÊÎÔÛãñõÃÑÕäëïöüÿÄËÏÖÜŸçÇßØøÅåÆæœ";
+    /** @var string Some common euro characters for people with hectic names */
+    protected $accChars = "àèìòùÀÈÌÒÙáéíóúýÁÉÍÓÚÝâêîôûÂÊÎÔÛãñõÃÑÕäëïöüÿÄËÏÖÜŸçÇßØøÅåÆæœš";
 
     public function parse($src) {
         // Does the source contain et al.
         $etAl = (strpos($src," et al.") !== false);
 
-        $noRound = preg_replace("/\(([^()]*+|(?R))*\)/","", $src);
+        $noRound = preg_replace("/\(([^()]*+|(?R))*\)/",",", $src);
 
-        $noSquare = preg_replace("/\[([^\[\]]*+|(?R))*\]/","", $noRound);
-
+        $noSquare = preg_replace("/\[([^\[\]]*+|(?R))*\]/",",", $noRound);
 
         // Are there any authors found in the desired format?
-        preg_match_all("/((((([A-Z" . $this->accChars . "]{1}\.[ ]?){1,2}) ([A-Z" . $this->accChars . "]{1}[a-z" . $this->accChars . "\- ]+)*))( [\(\[][^\)\]]+\)\]?)?)/u",$noSquare, $matches);
+        preg_match_all("/((((([A-Z]?[-]?[A-Z" . $this->accChars . "]{1}[a-z]?\.[ ]?){1,3}) (([A-Za-z" . $this->accChars . "\- ]+)*)))( [\(\[][^\)\]]+\)\]?)?)/u",$noSquare, $matches);
 
         if (count($matches[1]) == 0) {
             return ["authors"=>[], "text"=>$src];
@@ -32,7 +30,6 @@ class AuthorService
 
         $authors = $matches[1];
         $cleanedAuthors = [];
-
 
         foreach ($authors as $author) {
 
@@ -51,13 +48,12 @@ class AuthorService
         $results = [];
         foreach ($cleanedAuthors as $author) {
             // only include the author if it is the correct format.
-            if (preg_match_all("/^(([A-Z" . $this->accChars . "]{1}\.[ ]?){1,2}) ([A-Z" . $this->accChars . "]{1}[a-z" . $this->accChars . "\- ]+?)*$/u",$author, $matches) == true) {
-                // fix formatting of name
-
-
-                $results[] = trim($matches[0][0]);
+            $cleaned = $this->cleanAuthor($author);
+            if ($cleaned !== null) {
+                $results[] = $cleaned;
             }
         }
+
 
 
         if (count($results) == 0) {
@@ -87,4 +83,19 @@ class AuthorService
         );
     }
 
+    public function cleanAuthor($author) {
+        if (preg_match_all("/^(([A-Z]?[-]?[A-Z" . $this->accChars . "]{1}[a-z]?\.[ ]?){1,3}) (([A-Za-z" . $this->accChars . "\- ]+?)*)$/u",$author, $matches) == true) {
+            $initials = explode(".",$matches[1][0]);
+            $parts = array_map(function($initial){
+                if (trim($initial) == "") {
+                    return "";
+                }
+                return (trim($initial)[0] == '-' ? "" : " ") . trim($initial) . ".";
+            }, $initials);
+
+            $name = trim(implode("" , array_slice($parts,0,-1))) . " " . trim($matches[3][0]);
+            return $name;
+        }
+        return null;
+    }
 }

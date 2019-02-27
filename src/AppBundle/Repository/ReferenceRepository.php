@@ -22,7 +22,6 @@ class ReferenceRepository extends \Doctrine\ORM\EntityRepository
         $searching = false;
 
         if ($search->getConference() !== null) {
-            dump($search->getConference());
             $searching = true;
             $query
                 ->andWhere("LOWER(c.code) LIKE :conf")
@@ -54,17 +53,27 @@ class ReferenceRepository extends \Doctrine\ORM\EntityRepository
                 ->setParameter("title", "%" . mb_strtolower($search->getTitle()) . "%");
         }
         if ($search->getAuthor() !== null) {
+            $authors = explode(",",$search->getAuthor());
             $i = 0;
-            foreach ($search->getAuthor() as $author) {
-                $query->andWhere("0 < (SELECT COUNT(a$i.id) FROM AppBundle:Author a$i INNER JOIN a$i.references ar$i WHERE ar$i.id = r.id AND a$i = :author$i)")
-                    ->setParameter("author$i", $author);
-                $i++;
+            foreach ($authors as $author) {
+                $author = trim($author);
+                if (strlen($author) > 0) {
+                    $author = mb_strtoupper(substr($author,0,1)) . substr($author,1);
+                    $frontTrim = "%";
+                    if (strpos($author,".") !== false) {
+                        $frontTrim = "";
+                    }
+                    $query->andWhere("0 < (SELECT COUNT(a$i.id) FROM AppBundle:Author a$i INNER JOIN a$i.references ar$i WHERE ar$i.id = r.id AND a$i.name LIKE :name$i)")
+                        ->setParameter("name$i", $frontTrim . trim($author) . "%");
+                    $i++;
+                }
             }
+
             $searching = true;
         }
 
         if ($searching == false) {
-            return [];
+            return false;
         }
 
 

@@ -25,19 +25,20 @@ class Conference implements \JsonSerializable
 
     /**
      * @var string
-     *
+     * Long version of a conference name.
      * @ORM\Column(name="name", type="string", length=4000, nullable=true)
      */
     private $name;
 
     /**
      * @var string
-     *
+     * eg. IPAC'18
      * @ORM\Column(name="code", type="string", length=255)
      */
     private $code;
 
     /**
+     * This is the date of the conference, Eg. May 2018
      * @var string
      * @Assert\Regex("/^((?!May. )(May|[A-Z]{1}[a-z]{2}\.)(\-(?!May. )(May|[A-Z]{1}[a-z]{2}\.))?) [0-9]{4}$/", message="Please the correct format the date held in the format MMM YYYY")
      * @ORM\Column(name="year", type="string", length=255, nullable=true)
@@ -45,6 +46,7 @@ class Conference implements \JsonSerializable
     private $year;
 
     /**
+     * Conference component of the DOIs
      * @var string
      *
      * @ORM\Column(type="string", length=255, nullable=true)
@@ -52,14 +54,16 @@ class Conference implements \JsonSerializable
     private $doiCode;
 
     /**
+     * Enable DOIs or not.
      * @ORM\Column(type="boolean", nullable=true)
      * @var boolean
      */
     private $useDoi;
 
     /**
+     * Location of the conference, eg. Sydney, Australia
      * @var string
-     * @Assert\Regex("/^([A-Za-zàèìòùÀÈÌÒÙáéíóúýÁÉÍÓÚÝâêîôûÂÊÎÔÛãñõÃÑÕäëïöüÿÄËÏÖÜŸçÇßØøÅåÆæœ '\-]+, (?!USA)[A-Za-zàèìòùÀÈÌÒÙáéíóúýÁÉÍÓÚÝâêîôûÂÊÎÔÛãñõÃÑÕäëïöüÿÄËÏÖÜŸçÇßØøÅåÆæœ '\-]+|[A-Za-zàèìòùÀÈÌÒÙáéíóúýÁÉÍÓÚÝâêîôûÂÊÎÔÛãñõÃÑÕäëïöüÿÄËÏÖÜŸçÇßØøÅåÆæœ '\-]+, [A-Za-zàèìòùÀÈÌÒÙáéíóúýÁÉÍÓÚÝâêîôûÂÊÎÔÛãñõÃÑÕäëïöüÿÄËÏÖÜŸçÇßØøÅåÆæœ '\-]+, USA)$/")
+     * Assert\Regex("/^([A-Za-zàèìòùÀÈÌÒÙáéíóúýÁÉÍÓÚÝâêîôûÂÊÎÔÛãñõÃÑÕäëïöüÿÄËÏÖÜŸçÇßØøÅåÆæœ '\-]+, (?!USA)[A-Za-zàèìòùÀÈÌÒÙáéíóúýÁÉÍÓÚÝâêîôûÂÊÎÔÛãñõÃÑÕäëïöüÿÄËÏÖÜŸçÇßØøÅåÆæœ '\-]+|[A-Za-zàèìòùÀÈÌÒÙáéíóúýÁÉÍÓÚÝâêîôûÂÊÎÔÛãñõÃÑÕäëïöüÿÄËÏÖÜŸçÇßØøÅåÆæœ '\-]+, [A-Za-zàèìòùÀÈÌÒÙáéíóúýÁÉÍÓÚÝâêîôûÂÊÎÔÛãñõÃÑÕäëïöüÿÄËÏÖÜŸçÇßØøÅåÆæœ '\-]+, USA)$/")
      * @ORM\Column(name="location", type="string", length=2000)
      */
     private $location;
@@ -71,6 +75,8 @@ class Conference implements \JsonSerializable
     private $references;
 
     /**
+     * Status of the conference proceedings
+     *
      * @var boolean
      *
      * @ORM\Column(type="boolean", nullable=true)
@@ -78,6 +84,7 @@ class Conference implements \JsonSerializable
     private $isPublished;
 
     /**
+     * Automatic import URL for unpublished conferences
      * @var string
      *
      * @ORM\Column(type="string", length=2000, nullable=true)
@@ -208,11 +215,7 @@ class Conference implements \JsonSerializable
 
     public function __toString()
     {
-        if ($this->getName() !== null) {
-            return $this->getName() . " (" . $this->getCode() . ")";
-        } else {
-            return $this->getCode();
-        }
+        return $this->getForm();
     }
 
     public function getPlain() {
@@ -223,7 +226,8 @@ class Conference implements \JsonSerializable
      */
     public function __construct()
     {
-        $this->references = new \Doctrine\Common\Collections\ArrayCollection();
+        $this->isPublished = false;
+        $this->references = new ArrayCollection();
     }
 
     /**
@@ -311,16 +315,21 @@ class Conference implements \JsonSerializable
      */
     public function setIsPublished($isPublished)
     {
-        $this->isPublished = $isPublished;
+        if ($isPublished === null) {
+            $this->isPublished = false;
+        } else {
+            $this->isPublished = $isPublished;
+        }
     }
 
-    /**
-     * Specify data which should be serialized to JSON
-     * @link https://php.net/manual/en/jsonserializable.jsonserialize.php
-     * @return mixed data which can be serialized by <b>json_encode</b>,
-     * which is a value of any type other than a resource.
-     * @since 5.4.0
-     */
+    public function getForm($form = "long") {
+        if ($this->getName() !== null && $form == "long") {
+            return $this->getName() . " (" . $this->getCode() . ")";
+        } else {
+            return $this->getCode();
+        }
+    }
+
     public function jsonSerialize()
     {
         return ["name"=> $this->getName(),
