@@ -184,7 +184,11 @@
             $(".show-total").toggle(content.results.length < content.total);
             $(".show-total #current-total").text(content.results.length);
             $(".show-total #overall-total").text(content.total);
+
+
          },"json");
+
+         gtag('event', 'Search');
       }
    </script>
 {% endblock %}
