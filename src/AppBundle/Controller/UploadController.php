@@ -20,23 +20,18 @@ class UploadController extends Controller
     /**
      * Used for re-uploading conference CSVs
      * @IsGranted("ROLE_ADMIN")
-     * @Route("/", name="upload_index")
+     * @Route("/{id}", name="upload_index")
      */
-    public function indexAction(Request $request, ImportService $importService) {
+    public function indexAction(Request $request, ImportService $importService, Conference $conference) {
 
         $form = $this->createFormBuilder()
             ->add("file",FileType::class)
-            ->add("conference", EntityType::class, array("class"=>Conference::class, "query_builder"=>function(EntityRepository $er) {
-                return $er->createQueryBuilder('c')->orderBy('c.code', 'ASC');
-            }))
             ->getForm();
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
             $data = $form->getData();
 
-            /** @var Conference $conference */
-            $conference = $data["conference"];
             try {
                 $imported = $importService->import($data['file']->getPathname(), $conference);
                 $this->addFlash("notice", $imported . " references imported");
@@ -47,7 +42,7 @@ class UploadController extends Controller
             return $this->redirectToRoute("conference_show", ["id"=> $conference->getId()]);
         }
 
-        return $this->render("upload/index.html.twig", ["form"=>$form->createView()]);
+        return $this->render("upload/index.html.twig", ["form"=>$form->createView(),"conference"=>$conference]);
     }
 
 
