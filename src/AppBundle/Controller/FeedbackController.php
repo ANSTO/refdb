@@ -4,6 +4,7 @@ namespace AppBundle\Controller;
 
 use AppBundle\Entity\Feedback;
 use AppBundle\Entity\Reference;
+use AppBundle\Entity\User;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\IsGranted;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Method;
@@ -51,6 +52,10 @@ class FeedbackController extends Controller
     public function newAction(Request $request, Reference $reference)
     {
         $feedback = new Feedback();
+
+        if ($this->getUser() !== null && $this->getUser() instanceof User) {
+            $feedback->setEmail($this->getUser()->getEmail());
+        }
         /** @var Reference $reference */
         $feedback->setReference($reference);
         $form = $this->createForm('AppBundle\Form\FeedbackType', $feedback, ["action"=>$this->generateUrl("feedback_new", [
