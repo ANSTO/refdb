@@ -3,7 +3,9 @@
 
 namespace AppBundle\Service;
 
+use AppBundle\Entity\Favourite;
 use AppBundle\Entity\Reference;
+use AppBundle\Entity\User;
 use Doctrine\Common\Persistence\ObjectManager;
 use Symfony\Component\HttpFoundation\RequestStack;
 use Symfony\Component\Security\Core\Authentication\Token\Storage\TokenStorageInterface;
@@ -44,14 +46,21 @@ class FavouriteService {
 
     public function getFavourites() {
         $favourites = [];
-        if ($this->getUser()) {
-
+        $session = $this->getSession();
+        if (!$session->has("favourites")) {
+            $favourites = [];
         } else {
-            $session = $this->getSession();
-            if (!$session->has("favourites")) {
-                $favourites = [];
-            } else {
-                $favourites = $session->get("favourites");
+            $favourites = $session->get("favourites");
+        }
+
+        if ($this->getUser() && $this->getUser() instanceof User) {
+            /** @var User $user */
+            $user = $this->getUser();
+            foreach ($user->getFavourites() as $fav) {
+                if (!in_array($fav->getReference()->getId(),$favourites)) {
+                    $favourites[] = $fav->getReference()->getId();
+                }
+
             }
         }
         return array_values($favourites);
@@ -62,30 +71,60 @@ class FavouriteService {
         return in_array($reference->getId(), $favourites);
     }
 
+    private function save($favourites) {
+        if ($this->getUser() && $this->getUser() instanceof User) {
+            /** @var User $user */
+            $user = $this->getUser();
+            $dbFavs = $user->getFavourites();
+
+            /** @var Favourite $dbFav */
+            foreach ($dbFavs as $dbFav) {
+                $found = false;
+                foreach ($favourites as $fav) {
+                    if ($fav == $dbFav->getReference()->getId()) {
+                        $found = true;
+                        break;
+                    }
+                }
+                if ($found == false) {
+                    $this->manager->remove($dbFav);
+                }
+            }
+
+            foreach ($favourites as $fav) {
+                $found = false;
+                foreach ($dbFavs as $dbFav) {
+                    if ($fav == $dbFav->getReference()->getId()) {
+                        $found = true;
+                        break;
+                    }
+                }
+                if ($found == false) {
+                    $newFav = new Favourite();
+                    $newFav->setUser($user);
+                    $reference = $this->manager->getRepository(Reference::class)->find($fav);
+                    $newFav->setReference($reference);
+                    $this->manager->persist($newFav);
+                }
+            }
+
+            $this->manager->flush();
+        }
+        $this->getSession()->set("favourites", $favourites);
+    }
+
     public function toggle(Reference $reference) {
         $added = false;
-        $favourites = [];
-        if ($this->getUser()) {
-
+        $favourites = $this->getFavourites();
+        if (in_array($reference->getId(), $favourites)) {
+            $added = false;
+            $favourites = array_filter($favourites, function($item) use ($reference) { return $item !== $reference->getId(); });
         } else {
-
-            $session = $this->getSession();
-
-            if (!$session->has("favourites")) {
-                $favourites = [];
-            } else {
-                $favourites = $session->get("favourites");
-            }
-            if (in_array($reference->getId(), $favourites)) {
-                $added = false;
-                $favourites = array_filter($favourites, function($item) use ($reference) { return $item !== $reference->getId(); });
-            } else {
-                $added = true;
-                $favourites[] = $reference->getId();
-            }
-
-            $session->set("favourites", $favourites);
+            $added = true;
+            $favourites[] = $reference->getId();
         }
+
+        $this->save($favourites);
 
         return ["favourites"=> array_values($favourites), "added"=>$added];
     }

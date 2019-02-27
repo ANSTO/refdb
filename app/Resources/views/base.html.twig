@@ -48,12 +48,12 @@
                         </li>
                     {% endif %}
                     {% if is_granted("ROLE_USER") %}
-                        <li class="nav-item {{ "report" in app.request.uri ? "active" : "" }}">
-                            <a class="nav-link" href="{{ path("report_index") }}">Reports</a>
-                        </li>
-                        <li class="nav-item {{ "upload" in app.request.uri ? "active" : "" }}">
-                            <a class="nav-link" href="{{ path("upload_index") }}">Upload</a>
-                        </li>
+                        {#<li class="nav-item {{ "report" in app.request.uri ? "active" : "" }}">#}
+                            {#<a class="nav-link" href="{{ path("report_index") }}">Reports</a>#}
+                        {#</li>#}
+                        {#<li class="nav-item {{ "upload" in app.request.uri ? "active" : "" }}">#}
+                            {#<a class="nav-link" href="{{ path("upload_index") }}">Upload</a>#}
+                        {#</li>#}
                     {% endif %}
                 </ul>
                 <ul class="navbar-nav ml-auto">
