@@ -4,9 +4,13 @@
 
    <h2>Upload Conference</h2>
 
+   <h4>{{ conference }}</h4>
+
+   {% if conference.references|length %}
+      <div class="alert alert-danger">Uploading a new import will delete {{ conference.references|length }} entries.</div>
+   {% endif %}
    <br />
    {{ form_start(form) }}
-      {{ form_row(form.conference) }}
       {{ form_row(form.file) }}
       {{ form_rest(form) }}
       <br />

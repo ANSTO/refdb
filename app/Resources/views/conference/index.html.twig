@@ -7,7 +7,7 @@
     <h2>Conferences</h2>
 
     <br />
-    {% set filters = {'c.name': 'Name','c.code': 'Code','c.location': 'Location','c.year': 'Date'} %}
+    {% set filters = {'c.code': 'Code','c.name': 'Full Name','c.location': 'Location','c.year': 'Date'} %}
 
     {{ knp_pagination_filter(pagination, filters) }}
 
