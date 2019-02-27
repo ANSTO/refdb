@@ -345,7 +345,7 @@ class Reference implements \JsonSerializable
         $position = "";
 
         if ($this->getConference()->isPublished()) {
-            if ($this->getPosition() !== null) {
+            if ($this->getPosition() !== null && $this->getPosition() !== "99-98") {
                 $position = "pp. " . $this->getPosition();
             }
         } else {
