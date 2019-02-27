@@ -128,7 +128,7 @@ a.favourite {
 }
 
 #results {
-  padding-left:0px;
+  padding-left:0;
   li {
     display:flex;
     list-style: none;
@@ -142,3 +142,24 @@ a.favourite {
   }
 }
 
+
+.partnership {
+  text-align: center;
+  margin-top:50px;
+  font-size:80%;
+  margin-bottom:10px;
+  .break {
+    display:none;
+  }
+  img {
+    margin:15px;
+  }
+}
+
+@media only screen and (max-width: 600px) {
+  .partnership {
+    .break {
+      display:block;
+    }
+  }
+}

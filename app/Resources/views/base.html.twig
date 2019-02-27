@@ -5,8 +5,6 @@
     <meta charset="UTF-8" />
     <title>{% block title %}Reference Search{% endblock %}</title>
 
-    <!-- Global site tag (gtag.js) - Google Analytics -->
-    <!-- Global site tag (gtag.js) - Google Analytics -->
     <script async src="https://www.googletagmanager.com/gtag/js?id=UA-135252843-1"></script>
     <script>
         window.dataLayer = window.dataLayer || [];
@@ -14,7 +12,6 @@
         gtag('js', new Date());
         gtag('config', 'UA-135252843-1');
     </script>
-
 
     {% block stylesheets %}
         <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
@@ -29,10 +26,8 @@
 <body>
 <div class="header">
     <div class="container">
-        <a href="{{ path("homepage") }}">
-            <img class="float-md-right" height="50" src="{{ asset("images/jacow_image.png") }}" border="0">
-            <h1>Reference Search</h1>
-        </a>
+        <a href="http://www.jacow.org/" target="_blank"><img alt="JaCoW Logo" class="float-md-right" height="50" src="{{ asset("images/jacow_image.png") }}" border="0"></a>
+        <a href="{{ path("homepage") }}"><h1>Reference Search</h1></a>
     </div>
 </div>
 <div class="nav-area">
@@ -62,10 +57,7 @@
                     {% endif %}
                     {% if is_granted("ROLE_USER") %}
                         {#<li class="nav-item {{ "report" in app.request.uri ? "active" : "" }}">#}
-                            {#<a class="nav-link" href="{{ path("report_index") }}">Reports</a>#}
-                        {#</li>#}
-                        {#<li class="nav-item {{ "upload" in app.request.uri ? "active" : "" }}">#}
-                            {#<a class="nav-link" href="{{ path("upload_index") }}">Upload</a>#}
+                        {#<a class="nav-link" href="{{ path("report_index") }}">Reports</a>#}
                         {#</li>#}
                     {% endif %}
                 </ul>
@@ -126,7 +118,6 @@
     <script src="{{ asset("js/bootstrap-tagsinput.js") }}"></script>
     <script src="{{ asset("js/tags.js") }}"></script>
     <script src="{{ asset("js/global.js") }}?1"></script>
-
 {% endblock %}
 </body>
 </html>

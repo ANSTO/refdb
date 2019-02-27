@@ -123,7 +123,7 @@ a.favourite.active:hover i {
 }
 
 #results {
-  padding-left: 0px;
+  padding-left: 0;
 }
 #results li {
   display: flex;
@@ -131,6 +131,24 @@ a.favourite.active:hover i {
 }
 #results li a.favourite {
   padding: 0 10px;
+}
+.partnership {
+  text-align: center;
+  margin-top: 50px;
+  font-size: 80%;
+  margin-bottom: 10px;
+}
+.partnership .break {
+  display: none;
+}
+.partnership img {
+  margin: 15px;
+}
+
+@media only screen and (max-width: 600px) {
+  .partnership .break {
+    display: block;
+  }
 }
 
 /*# sourceMappingURL=website.css.map */
