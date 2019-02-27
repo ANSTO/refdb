@@ -363,6 +363,24 @@ class Reference implements \JsonSerializable
         return "";
     }
 
+    public function getFirstLastName() {
+        $authorString = $this->getAuthor();
+        $authors = preg_split("/and|,/", $authorString);
+
+        $author = $authors[0];
+
+        $parts = explode(". ",$author);
+        foreach ($parts as $part) {
+            $name = trim($part," ,-");
+            if (strlen($name) > 2) {
+                return $name . ":";
+            }
+        }
+        $author = str_replace(".","", $author);
+        $author = str_replace(" ", "", $author);
+        return $author . ":";
+    }
+
     public function getPaperSection() {
 
         $position = "";
