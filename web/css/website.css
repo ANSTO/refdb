@@ -145,7 +145,12 @@ a.favourite.active:hover i {
   margin: 15px;
 }
 
-@media only screen and (max-width: 600px) {
+@media only screen and (max-width: 575px) {
+  .results-section {
+    padding-top: 30px;
+  }
+}
+@media only screen and (max-width: 780px) {
   .partnership .break {
     display: block;
   }
