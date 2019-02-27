@@ -66,15 +66,6 @@ class Reference implements \JsonSerializable
     private $conference;
 
     /**
-     * Unused so far.
-     *
-     * @var string
-     *
-     * @ORM\Column(name="isbn", type="string", length=255, nullable=true)
-     */
-    private $isbn;
-
-    /**
      * @var string
      *
      * @ORM\Column(name="position", type="string", length=255, nullable=true)
@@ -219,30 +210,6 @@ class Reference implements \JsonSerializable
     public function getConference()
     {
         return $this->conference;
-    }
-
-    /**
-     * Set isbn
-     *
-     * @param string $isbn
-     *
-     * @return Reference
-     */
-    public function setIsbn($isbn)
-    {
-        $this->isbn = $isbn;
-
-        return $this;
-    }
-
-    /**
-     * Get isbn
-     *
-     * @return string
-     */
-    public function getIsbn()
-    {
-        return $this->isbn;
     }
 
     /**

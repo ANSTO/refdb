@@ -69,7 +69,7 @@ class Conference implements \JsonSerializable
     private $location;
 
     /**
-     * @ORM\OneToMany(targetEntity="AppBundle\Entity\Reference", mappedBy="conference")
+     * @ORM\OneToMany(targetEntity="AppBundle\Entity\Reference", mappedBy="conference", cascade={"remove"})
      * @var ArrayCollection
      */
     private $references;
