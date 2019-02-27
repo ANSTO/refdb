@@ -5,6 +5,7 @@ namespace AppBundle\Controller;
 use AppBundle\Entity\Reference;
 use AppBundle\Entity\Search;
 use AppBundle\Form\SearchType;
+use AppBundle\Service\CurrentConferenceService;
 use AppBundle\Service\FavouriteService;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\JsonResponse;
@@ -63,7 +64,7 @@ class SearchController extends Controller
      * @param Request $request
      * @return JsonResponse
      */
-    public function searchAction(Request $request, FavouriteService $favouriteService) {
+    public function searchAction(Request $request, FavouriteService $favouriteService, CurrentConferenceService $currentConferenceService) {
 
         $response = ["favourites" => $favouriteService->getFavourites()];
         $search = new Search();
@@ -80,13 +81,38 @@ class SearchController extends Controller
                 $response["total"] = $query->select("COUNT(r)")->getQuery()->getSingleScalarResult();
                 $query = $this->getDoctrine()->getManager()
                     ->getRepository(Reference::class)->search($search);
-                $response["results"] = $query->setMaxResults(5)
+                $results = $query->setMaxResults(5)
                     ->getQuery()
                     ->getResult();
+
+                $response['results'] = [];
+
+                /** @var Reference $reference */
+                foreach ($results as $reference) {
+                    $object = $reference->jsonSerialize();
+                    $text = $object['name'];
+                    if ($currentConferenceService->hasCurrent()) {
+                        $current = $currentConferenceService->getCurrent();
+                        // confirm its not just a conference text
+                        if ($current->__toString() !== $text && $this->endsWith($text, ", unpublished.") !== false) {
+                            $text = substr($text, 0, -strlen(", unpublished."))  . ", this conference.";
+                        }
+                    }
+                    $text = strip_tags($text, "<em><sup><sub><br>");
+                    $text = str_replace(" et al.", " <em>et al.</em>", $text);
+
+                    $object['name'] = $text;
+                    $response['results'][] = $object;
+                }
             } else {
                 $response["results"] = [];
             }
         }
+
+
+        // fix content
+
+
 
 
         return new JsonResponse($response);
