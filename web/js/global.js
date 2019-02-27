@@ -92,3 +92,33 @@ var ajaxForm = function () {
 $('.ajaxModal')
     .on('show.bs.modal', function() {ajaxModalShow($(this))})
     .on('hide.bs.modal', function() {ajaxModalHide($(this))});
+
+
+if (!String.prototype.startsWith) {
+    String.prototype.startsWith = function(searchString, position) {
+        position = position || 0;
+        return this.indexOf(searchString, position) === position;
+    };
+}
+
+if (!String.prototype.endsWith) {
+    String.prototype.endsWith = function(search, this_len) {
+        if (this_len === undefined || this_len > this.length) {
+            this_len = this.length;
+        }
+        return this.substring(this_len - search.length, this_len) === search;
+    };
+}
+
+$(document).ready(function(){
+    $("#filter").submit(function(){
+        var val = $("#filterValue").val();
+        if (!val.endsWith('*'))
+            val = val + "*" ;
+
+        if (!val.startsWith('*'))
+            val = "*" + val;
+
+        $("#filterValue").val(val);
+    });
+});

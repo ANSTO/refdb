@@ -1,19 +1,4 @@
-
-<script>
-    function addStar() {
-        var val = $("#filterValue").val();
-        if (!val.endsWith('*'))
-            val = val + "*" ;
-
-        if (!val.startsWith('*'))
-            val = "*" + val;
-
-        $("#filterValue").val(val);
-    }
-
-</script>
-
-<form method="get" action="{{ action }}" onsubmit="addStar()" enctype="application/x-www-form-urlencoded">
+<form method="get" id="filter" action="{{ action }}" enctype="application/x-www-form-urlencoded">
     <div class="row align-items-end">
         <div class="col">
             <strong>Search By</strong>
