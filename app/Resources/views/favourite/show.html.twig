@@ -22,7 +22,7 @@
     <br />
     <h3>For LaTeX</h3>
     <p>{% spaceless %}
-            <textarea class="form-control latex-ref" rows="6">
+            <textarea class="form-control latex-ref" rows="{{ 6 * references|length }}">
 {% for reference in references -%}
     {%- include "reference/latex.html.twig" %}
 

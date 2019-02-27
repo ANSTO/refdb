@@ -71,7 +71,7 @@ class ConferenceController extends Controller
         $manager = $this->getDoctrine()->getManager();
         $query = $manager->getRepository(Conference::class)
             ->createQueryBuilder("c")
-            ->innerJoin("c.references", "r")
+         #   ->innerJoin("c.references", "r")
             ->getQuery();
 
         $paginator  = $this->get('knp_paginator');
