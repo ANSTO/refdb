@@ -52,7 +52,7 @@ class RefreshCommand extends Command
         foreach ($conferences as $conference) {
             if ($conference->getImportUrl() !== null) {
                 $output->writeln("Re-importing " . $conference);
-                $written = $this->importService->import($conference->getImportUrl(), $conference);
+                $written = $this->importService->merge($conference->getImportUrl(), $conference);
                 $output->writeln($written . " references created");
             }
         }

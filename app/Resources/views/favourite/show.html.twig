@@ -1,0 +1,46 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    <h2>Favourites</h2>
+    <br />
+
+    {% if references|length == 0 %}
+        <div class="alert alert-info">
+            You do not currently have any favourites.
+        </div>
+    {% else %}
+
+    <h3>For Word</h3>
+
+    <div class="card">
+        <div class="card-body">
+            {% for reference in references %}
+                {% include "reference/word.html.twig" %}
+            {% endfor %}
+        </div>
+    </div>
+    <br />
+    <h3>For LaTeX</h3>
+    <p>{% spaceless %}
+            <textarea class="form-control latex-ref" rows="6">
+{% for reference in references -%}
+    {%- include "reference/latex.html.twig" %}
+
+{% endfor %}
+            </textarea>
+        {% endspaceless %}
+    </p>
+
+    <br />
+    <h3>References</h3>
+
+    <ul id="results">
+        {% for reference in references %}
+            <li><a class="favourite active" href="{{ path("favourite_toggle_redirect", {"id": reference.id }) }}"><i class="far fa-star"></i></a><a class="item" href="{{ path("reference_show", {"id": reference.id }) }}">{{ reference.cache|latin }}</a></li>
+        {% endfor %}
+    </ul>
+    {% endif %}
+    <a class="btn btn-default" href="{{ path('homepage') }}"><i class="fas fa-arrow-left"></i> Back to search</a>
+
+
+{% endblock %}

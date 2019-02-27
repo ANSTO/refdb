@@ -7,8 +7,40 @@
    <script>
        $("form").submit(function() {
           triggerSearch();
+
           return false;
        });
+
+      var favourites = {{ favourites|json_encode }};
+      updateFavourites();
+
+      function updateFavourites() {
+
+         $.each($(".favourite"), function() {
+            var id = $(this).data("id");
+            $(this).toggleClass("active", favourites.includes(id));
+         });
+      }
+
+      $("#results").on("click", ".favourite",function() {
+         var id = $(this).data("id");
+         $(this).toggleClass("active", !favourites.includes(id));
+         if (!favourites.includes(id)) {
+            favourites.push(id);
+         } else {
+            favourites = favourites.filter(function(item){ return item !== id; })
+         }
+         toggleFavourite(id);
+      });
+
+      function toggleFavourite(id) {
+         $.getJSON(Routing.generate("favourite_toggle", {"id": id}),
+                 "",
+           function(data, textStatus, jqXHR){
+            favourites = data.favourites;
+            updateFavourites();
+         });
+      }
 
       var adjustedText = false;
       var date = new Date();
@@ -140,10 +172,12 @@
          $.post(Routing.generate('search'), searchContent, function(content){
             $("#searching").toggle(false);
             var results = $("#results");
+            favourites = content.favourites;
             results.empty();
-            $.each(content, function(key,item) {
-               results.append("<li><a href='" + Routing.generate("reference_show", {"id": item.id }) + "'>" + item.name + "</a></li>");
+            $.each(content.results, function(key,item) {
+               results.append("<li><a data-id=\"" + item.id + "\" class=\"favourite favourite" + item.id + "\" href=\"javascript:void(0)\"><i class=\"far fa-star\"></i></a><a class=\"item\" href=\'" + Routing.generate("reference_show", {"id": item.id }) + "'>" + item.name + "</a></li>");
             });
+            updateFavourites();
             $("#no-results").toggle(content.length == 0)
          },"json");
       }
@@ -164,7 +198,9 @@
          {{ form_end(form) }}
       </div>
       <div class="col-sm">
+         <a class="float-right" href="{{ path("favourite_show") }}">See favourites <i class="fas fa-star"></i></a>
          <h2>Results</h2>
+
          <br />
          <em style="display:none;" id="searching"><i class="fa fa-spinner fa-spin"></i> Searching</em>
          <em id="no-results"
@@ -174,11 +210,9 @@
 
          <ul id="results">
             {% for reference in references %}
-               <li><a href="{{ path("reference_show", {"id": reference.id }) }}">{{ reference.cache|latin }}</a></li>
+               <li><a data-id="{{ reference.id }}" class="favourite favourite{{ reference.id }}" href="javascript:void(0)"><i class="far fa-star"></i></a><a class="item" href="{{ path("reference_show", {"id": reference.id }) }}">{{ reference.cache|latin }}</a></li>
             {% endfor %}
          </ul>
-
-
       </div>
    </div>
 {% endblock %}

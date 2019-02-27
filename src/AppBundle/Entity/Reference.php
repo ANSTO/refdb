@@ -122,12 +122,21 @@ class Reference implements \JsonSerializable
      */
     private $feedback;
 
+
+    /**
+     * @var ArrayCollection
+     * @ORM\OneToMany(targetEntity="AppBundle\Entity\Favourite", mappedBy="reference", cascade={"remove"})
+     */
+    private $favourites;
+
     /**
      * Constructor
      */
     public function __construct()
     {
         $this->authors = new ArrayCollection();
+        $this->feedback = new ArrayCollection();
+        $this->favourites = new ArrayCollection();
     }
 
     /**
@@ -517,5 +526,21 @@ class Reference implements \JsonSerializable
     public function setFeedback($feedback)
     {
         $this->feedback = $feedback;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getFavourites()
+    {
+        return $this->favourites;
+    }
+
+    /**
+     * @param mixed $favourites
+     */
+    public function setFavourites($favourites)
+    {
+        $this->favourites = $favourites;
     }
 }

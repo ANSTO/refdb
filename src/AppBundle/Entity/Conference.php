@@ -230,6 +230,7 @@ class Conference implements \JsonSerializable
      */
     public function __construct()
     {
+        $this->isPublished = false;
         $this->references = new ArrayCollection();
     }
 
@@ -318,7 +319,11 @@ class Conference implements \JsonSerializable
      */
     public function setIsPublished($isPublished)
     {
-        $this->isPublished = $isPublished;
+        if ($isPublished === null) {
+            $this->isPublished = false;
+        } else {
+            $this->isPublished = $isPublished;
+        }
     }
 
     public function jsonSerialize()

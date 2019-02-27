@@ -73,7 +73,7 @@ class ReferenceRepository extends \Doctrine\ORM\EntityRepository
         }
 
         if ($searching == false) {
-            return [];
+            return false;
         }
 
 
