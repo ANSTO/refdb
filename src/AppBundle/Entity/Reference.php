@@ -296,7 +296,13 @@ class Reference implements \JsonSerializable
     }
 
     public function format($format = "long") {
-        $output = $this->getTitleSection() . "" . $this->getConferenceSection($format)  . "," . $this->getPaperSection() . ".";
+        $output = $this->getTitleSection() . "" . $this->getConferenceSection($format);
+
+        if (trim($this->getPaperSection()) !== "") {
+            $output .= "," . $this->getPaperSection();
+        }
+
+        $output .= ".";
 
         return $output;
     }
@@ -312,9 +318,26 @@ class Reference implements \JsonSerializable
         return $section;
     }
 
+    public function hasTitleIssue() {
+        // detect all upper case
+        return (preg_match("/^[0-9A-Z ]+$/",$this->getTitle()));
+    }
+
+    public function getTitleCaseCorrected() {
+        $title = $this->getTitle();
+
+        if ($this->hasTitleIssue()) {
+            $title = ucwords(strtolower($title));
+        }
+
+        return $title;
+    }
+
     public function getTitleSection() {
         $author = $this->getAuthorStr();
-        $title = $this->getTitle();
+        $title = $this->getTitleCaseCorrected();
+
+
 
         if ($this->isInProc() && $this->getConference()->isPublished()) {
             $inProc = "in <em>Proc. ";
