@@ -121,4 +121,11 @@ $(document).ready(function(){
 
         $("#filterValue").val(val);
     });
+
+    $('textarea').each(function () {
+        this.setAttribute('style', 'height:' + (this.scrollHeight + 10) + 'px;');
+    }).on('input', function () {
+        this.style.height = 'auto';
+        this.style.height = (this.scrollHeight) + 'px';
+    });
 });
