@@ -8,7 +8,8 @@ use Doctrine\ORM\Mapping as ORM;
 /**
  * Reference
  *
- * @ORM\Table(name="reference")
+ * @ORM\Table(name="reference",indexes={
+ *     @ORM\Index(name="reference_paper_idx", columns={"cache"}) })
  * @ORM\Entity(repositoryClass="AppBundle\Repository\ReferenceRepository")
  */
 class Reference implements \JsonSerializable
