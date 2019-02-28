@@ -37,13 +37,14 @@ class AuthorCommand extends Command
 
     protected function configure()
     {
-        $this
-            ->addArgument("conf")
-            ->addArgument("filename");
+
     }
 
     protected function execute(InputInterface $input, OutputInterface $output)
     {
+        ini_set('memory_limit', '2G');
+        ini_set('max_execution_time', 900);
+
         $manager = $this->manager;
 
         /** @var Reference[] $results */
