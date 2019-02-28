@@ -8,7 +8,7 @@
     {%- endif -%}, {{ reference.conference.location }}, {{ reference.conference.year -}}{% if reference.paperSection|trim != "" %},{% endif %}
 
                 {%- if current_conference.hasCurrent and reference.conference == current_conference.current -%}
-                    {{ reference.paperSection|replace({"unpublished": "this conference"}) }}
+                    {{ reference.paperSection ~ ", this conference" }}
                 {%- else -%}
                     {{ reference.paperSection|replace({"-": "--"}) }}
                 {%- endif -%}.

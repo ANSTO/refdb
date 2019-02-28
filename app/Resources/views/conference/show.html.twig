@@ -3,6 +3,7 @@
 {% block body %}
     {% if is_granted("ROLE_ADMIN") %}
     <div class="float-right btn-group">
+        <a class="btn btn-default" href="{{ path('conference_export', { 'id': conference.id }) }}"><i class="fas fa-download"></i> Export</a>
         <a class="btn btn-success" href="{{ path('upload_index', { 'id': conference.id }) }}"><i class="fas fa-upload"></i> Upload</a>
         <a class="btn btn-primary" href="{{ path('conference_edit', { 'id': conference.id }) }}"><i class="fas fa-edit"></i> Edit</a>
         <button class="btn btn-danger btn-modal" type="button" data-href="{{ path('conference_delete', { 'id': conference.id }) }}"><i class="fas fa-trash"></i> Delete</button>
