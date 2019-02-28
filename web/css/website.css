@@ -132,6 +132,13 @@ a.favourite.active:hover i {
 #results li a.favourite {
   padding: 0 10px;
 }
+.search-form .form-group {
+  margin-bottom: 0;
+}
+.search-form .search-button {
+  margin-bottom: 0px;
+}
+
 .partnership {
   text-align: center;
   margin-top: 50px;

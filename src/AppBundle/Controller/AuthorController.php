@@ -3,6 +3,7 @@
 namespace AppBundle\Controller;
 
 use AppBundle\Entity\Author;
+use AppBundle\Form\BasicSearchType;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\IsGranted;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\JsonResponse;
@@ -22,20 +23,65 @@ class AuthorController extends Controller
      */
     public function indexAction(Request $request)
     {
+        $form = $this->createForm(BasicSearchType::class);
+        $form->handleRequest($request);
+
         $manager = $this->getDoctrine()->getManager();
-        $query = $manager->getRepository(Author::class)
-            ->createQueryBuilder("a")
-            ->getQuery();
+        $search = $manager->getRepository(Author::class)
+            ->createQueryBuilder("a");
+
+        if ($form->isSubmitted() && $form->isValid()) {
+            $terms = $form->get('terms')->getData();
+
+            $parts = explode(".", $terms);
+
+            // get initials
+            if (count($parts) > 1) {
+                $lastName = trim(end($parts), ". ");
+                $firstInitial = trim($parts[0], ". ");
+
+                $search->orWhere("LOWER(a.name) LIKE :first")
+                    ->setParameter("first", mb_strtolower($firstInitial) . '. ' . mb_strtolower($lastName) . '%');
+
+                if (count($parts) > 2) {
+                    $middleInitials = array_slice($parts, 1, -1);
+
+                    $middleInitials = array_map(function($initial) { return trim($initial); }, $middleInitials);
+
+                    $joined = implode("", $middleInitials);
+                    $dotted = implode(". ", $middleInitials);
+
+                    $search->orWhere("LOWER(a.name) LIKE :joined")
+                        ->setParameter("joined", mb_strtolower($firstInitial) . '. ' . mb_strtolower($joined) . '. ' . mb_strtolower($lastName) . '%');
+
+                    $search->orWhere("LOWER(a.name) LIKE :dotted")
+                        ->setParameter("dotted", mb_strtolower($firstInitial) . '. ' . mb_strtolower($dotted) . '. ' . mb_strtolower($lastName) . '%');
+                } else {
+                    $search->orWhere("LOWER(a.name) LIKE :more")
+                        ->setParameter("more", mb_strtolower($firstInitial) . '. %. ' . mb_strtolower($lastName) . '%');
+                }
+
+            } else {
+                $lastName = end($parts);
+                $search->orWhere("LOWER(a.name) LIKE :terms")
+                    ->setParameter("terms", '%' . mb_strtolower($lastName) . '%');
+            }
+
+        }
+
 
         $paginator  = $this->get('knp_paginator');
         $pagination = $paginator->paginate(
-            $query,
+            $search->getQuery(),
             $request->query->getInt('page', 1),
             10
         );
 
         // parameters to template
-        return $this->render('author/index.html.twig', array('pagination' => $pagination));
+        return $this->render('author/index.html.twig', array(
+            'pagination' => $pagination,
+            'search' => $form->createView()
+        ));
     }
 
     /**
@@ -137,7 +183,7 @@ class AuthorController extends Controller
             ->setAction($this->generateUrl('author_delete', array('id' => $author->getId())))
             ->setMethod('DELETE')
             ->getForm()
-        ;
+            ;
     }
 
     /**

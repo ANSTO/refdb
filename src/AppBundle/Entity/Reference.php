@@ -339,7 +339,7 @@ class Reference implements \JsonSerializable
 
 
 
-        if ($this->isInProc() && $this->getConference()->isPublished()) {
+        if ($this->isInProc() && $this->getConference()->isPublished() && $this->getInProc()) {
             $inProc = "in <em>Proc. ";
         } else {
             $inProc = "presented at the ";
@@ -385,7 +385,7 @@ class Reference implements \JsonSerializable
 
         $position = "";
 
-        if ($this->getConference()->isPublished()) {
+        if ($this->getConference()->isPublished() && $this->getInProc()) {
             if ($this->getPosition() !== null && $this->getPosition() !== "99-98") {
                 $position = "pp. " . $this->getPosition();
             }
