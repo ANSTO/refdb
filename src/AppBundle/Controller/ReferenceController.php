@@ -53,9 +53,8 @@ class ReferenceController extends Controller
 
         if ($form->isSubmitted() && $form->isValid()) {
             $terms = mb_strtolower($form->get('terms')->getData());
-
-            $search->orWhere('LOWER(r.paperId) LIKE :terms')
-                ->orWhere('LOWER(r.title) LIKE :terms')
+            $search
+                ->where('LOWER(r.cache) LIKE :terms')
                 ->setParameter("terms", '%' . $terms . "%");
         }
 
