@@ -5,6 +5,7 @@ namespace AppBundle\Controller;
 use AppBundle\Entity\Author;
 use AppBundle\Entity\Conference;
 use AppBundle\Entity\Reference;
+use AppBundle\Form\BasicSearchType;
 use AppBundle\Form\Type\TagsAsInputType;
 use AppBundle\Service\DoiService;
 use AppBundle\Service\FormService;
@@ -43,19 +44,31 @@ class ReferenceController extends Controller
      */
     public function indexAction(Request $request)
     {
-        $manager    = $this->getDoctrine()->getManager();
-        $query = $manager->getRepository(Reference::class)
-            ->createQueryBuilder("r")
-            ->getQuery();
+        $form = $this->createForm(BasicSearchType::class, null, ["method"=>"GET"]);
+        $form->handleRequest($request);
 
-        $paginator  = $this->get('knp_paginator');
+        $manager = $this->getDoctrine()->getManager();
+        $search = $manager->getRepository(Reference::class)
+            ->createQueryBuilder("r");
+
+        if ($form->isSubmitted() && $form->isValid()) {
+            $terms = mb_strtolower($form->get('terms')->getData());
+
+            $search->orWhere('LOWER(r.paperId) LIKE :terms')
+                ->orWhere('LOWER(r.title) LIKE :terms')
+                ->setParameter("terms", '%' . $terms . "%");
+        }
+
+        $paginator = $this->get('knp_paginator');
         $pagination = $paginator->paginate(
-            $query,
+            $search->getQuery(),
             $request->query->getInt('page', 1),
             10
         );
 
-        return $this->render('reference/index.html.twig', array('pagination' => $pagination));
+        return $this->render('reference/index.html.twig', array(
+            'pagination' => $pagination,
+            "search"=>$form->createView()));
     }
 
     /**
