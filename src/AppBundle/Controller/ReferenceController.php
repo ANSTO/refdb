@@ -108,7 +108,7 @@ class ReferenceController extends Controller
      */
     public function showAction(Reference $reference)
     {
-        $warning = false;
+        $warning = "";
 
         if ($reference->getConference()->isUseDoi() && !$reference->isDoiVerified()) {
             $doiService = new DoiService();
@@ -123,19 +123,15 @@ class ReferenceController extends Controller
         }
 
         if ($reference->hasTitleIssue()) {
-            $warning = "This papers title has been automatically cased, and may contain mistakes.";
+            $warning .= "This papers title has been automatically cased, and may contain mistakes.\n\n";
         }
 
         if (preg_match_all("/[\[\(\/]+/",$reference->getAuthor(), $matches) || count($reference->getAuthors()) == 0) {
-            $warning = "There is a problem with this papers authors";
+            $warning .= "There is a problem with this papers authors.\n\n";
         }
-        if (($reference->getConference()->isPublished() && $reference->getPosition() == "") || $reference->getPosition() == "99-98") {
-            $warning = "The page numbers are not known for this reference.";
+        if (($reference->getConference()->isPublished() && $reference->getInProc() && ($reference->getPosition() === null || $reference->getPosition() == "" || $reference->getPosition() == "99-98"))) {
+            $warning .= "The page numbers are not known for this reference, but must be provided.\n\n";
         }
-
-
-
-
 
         $deleteForm = $this->createDeleteForm($reference);
 

@@ -2,8 +2,11 @@
 
 namespace AppBundle\Controller;
 
+use AppBundle\Entity\Author;
 use AppBundle\Entity\Conference;
+use AppBundle\Entity\Reference;
 use AppBundle\Form\BasicSearchType;
+use AppBundle\Http\CsvResponse;
 use AppBundle\Service\CurrentConferenceService;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\IsGranted;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
@@ -82,8 +85,8 @@ class ConferenceController extends Controller
             $search->orWhere('LOWER(c.code) LIKE :terms')
                 ->orWhere('LOWER(c.name) LIKE :terms')
                 ->orWhere('LOWER(c.year) LIKE :terms')
-            ->setParameter("terms", $terms . "%")
-            ->orWhere('LOWER(c.location) LIKE :location')
+                ->setParameter("terms", $terms . "%")
+                ->orWhere('LOWER(c.location) LIKE :location')
                 ->setParameter("location", '%' . $terms . "%");
             //
             $abbreviated = str_replace("international", "int.", $terms);
@@ -112,6 +115,45 @@ class ConferenceController extends Controller
 
         // parameters to template
         return $this->render('conference/index.html.twig', array('pagination' => $pagination, 'search'=> $form->createView()));
+    }
+
+    /**
+     * Make this conference my current conference (changes the way the reference appears)
+     * @IsGranted("ROLE_ADMIN")
+     * @Route("/export/{id}", name="conference_export")
+     */
+    public function export(Request $request, Conference $conference) {
+        $references = $this->getDoctrine()->getRepository(Reference::class)->createQueryBuilder("r")
+            ->leftJoin("r.authors", "a")
+            ->where("r.conference = :conference")
+            ->setParameter("conference",$conference)
+            ->getQuery()
+            ->getResult();
+
+        $output = [];
+
+        /** @var Reference $reference */
+        foreach ($references as $reference) {
+            $item = [];
+            $item["paper"] = $reference->getPaperId();
+            $authors = [];
+            /** @var Author $author */
+            foreach ($reference->getAuthors() as $author) {
+                $authors[] = $author->getName();
+            }
+            if (count($authors) == 0) {
+                $item["authors"] = $reference->getOriginalAuthors();
+            } else {
+                $item["authors"] = implode(", ", $authors);
+            }
+
+            $item["title"] = $reference->getTitle();
+            $item["position"] = $reference->getPosition();
+            $output[] = $item;
+        }
+
+        return new CsvResponse($output);
+
     }
 
     /**
