@@ -60,7 +60,7 @@ class RefreshCommand extends Command
                     $output->writeln($written . " references created");
                 } catch (\Exception $exception) {
                     $message = " Failed updating " . $conference . "\n\n " . $exception->getMessage();
-                    $this->adminNotificationService->sendAll("Automatic Import Failer", $message);
+                    $this->adminNotificationService->sendAll("Automatic Import Failed", $message);
                     $output->writeln($message);
                 }
 

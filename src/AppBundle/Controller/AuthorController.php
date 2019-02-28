@@ -23,7 +23,7 @@ class AuthorController extends Controller
      */
     public function indexAction(Request $request)
     {
-        $form = $this->createForm(BasicSearchType::class);
+        $form = $this->createForm(BasicSearchType::class, null, ["method"=>"GET"]);
         $form->handleRequest($request);
 
         $manager = $this->getDoctrine()->getManager();

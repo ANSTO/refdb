@@ -5,6 +5,7 @@ namespace AppBundle\Controller;
 use AppBundle\Entity\Author;
 use AppBundle\Entity\Conference;
 use AppBundle\Entity\Reference;
+use AppBundle\Form\BasicSearchType;
 use AppBundle\Form\Type\TagsAsInputType;
 use AppBundle\Service\DoiService;
 use AppBundle\Service\FormService;
@@ -43,19 +44,30 @@ class ReferenceController extends Controller
      */
     public function indexAction(Request $request)
     {
-        $manager    = $this->getDoctrine()->getManager();
-        $query = $manager->getRepository(Reference::class)
-            ->createQueryBuilder("r")
-            ->getQuery();
+        $form = $this->createForm(BasicSearchType::class, null, ["method"=>"GET"]);
+        $form->handleRequest($request);
 
-        $paginator  = $this->get('knp_paginator');
+        $manager = $this->getDoctrine()->getManager();
+        $search = $manager->getRepository(Reference::class)
+            ->createQueryBuilder("r");
+
+        if ($form->isSubmitted() && $form->isValid()) {
+            $terms = mb_strtolower($form->get('terms')->getData());
+            $search
+                ->where('LOWER(r.cache) LIKE :terms')
+                ->setParameter("terms", '%' . $terms . "%");
+        }
+
+        $paginator = $this->get('knp_paginator');
         $pagination = $paginator->paginate(
-            $query,
+            $search->getQuery(),
             $request->query->getInt('page', 1),
             10
         );
 
-        return $this->render('reference/index.html.twig', array('pagination' => $pagination));
+        return $this->render('reference/index.html.twig', array(
+            'pagination' => $pagination,
+            "search"=>$form->createView()));
     }
 
     /**
@@ -96,7 +108,7 @@ class ReferenceController extends Controller
      */
     public function showAction(Reference $reference)
     {
-        $warning = false;
+        $warning = "";
 
         if ($reference->getConference()->isUseDoi() && !$reference->isDoiVerified()) {
             $doiService = new DoiService();
@@ -111,19 +123,17 @@ class ReferenceController extends Controller
         }
 
         if ($reference->hasTitleIssue()) {
-            $warning = "This papers title has been automatically cased, and may contain mistakes.";
+            $warning .= "This papers title has been automatically cased, and may contain mistakes.\n\n";
         }
 
         if (preg_match_all("/[\[\(\/]+/",$reference->getAuthor(), $matches) || count($reference->getAuthors()) == 0) {
-            $warning = "There is a problem with this papers authors";
+            $warning .= "There is a problem with this papers authors.\n\n";
         }
-        if (($reference->getConference()->isPublished() && $reference->getPosition() == "") || $reference->getPosition() == "99-98") {
-            $warning = "The page numbers are not known for this reference.";
+        if (($reference->getConference()->isPublished() && $reference->getInProc() && ($reference->getPosition() === null || $reference->getPosition() == "" || $reference->getPosition() == "99-98"))) {
+            $warning .= "The page numbers could not be added automatically for this paper. ";
+            $warning .= "You must provide the page numbers from the original proceedings which is located at JACoW.org, and substitute ‘pp. XX-XX’ with the correct page numbers.\n";
+            $warning .= "* Please report these numbers by clicking on the ‘Fix a problem’ button as an Admin will be able to update this reference for future results.    \n\n";
         }
-
-
-
-
 
         $deleteForm = $this->createDeleteForm($reference);
 

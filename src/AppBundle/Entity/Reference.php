@@ -8,7 +8,8 @@ use Doctrine\ORM\Mapping as ORM;
 /**
  * Reference
  *
- * @ORM\Table(name="reference")
+ * @ORM\Table(name="reference",indexes={
+ *     @ORM\Index(name="reference_paper_idx", columns={"cache"}) })
  * @ORM\Entity(repositoryClass="AppBundle\Repository\ReferenceRepository")
  */
 class Reference implements \JsonSerializable
@@ -326,9 +327,9 @@ class Reference implements \JsonSerializable
     public function getTitleCaseCorrected() {
         $title = $this->getTitle();
 
-        if ($this->hasTitleIssue()) {
-            $title = ucwords(strtolower($title));
-        }
+       // if ($this->hasTitleIssue()) {
+       //     $title = ucwords(strtolower($title));
+       // }
 
         return $title;
     }
@@ -373,11 +374,13 @@ class Reference implements \JsonSerializable
         foreach ($parts as $part) {
             $name = trim($part," ,-");
             if (strlen($name) > 2) {
+                $name = str_replace(" et al.","",$name);
                 return $name . ":";
             }
         }
         $author = str_replace(".","", $author);
         $author = str_replace(" ", "", $author);
+        $author = str_replace(" et al.","",$author);
         return $author . ":";
     }
 
@@ -388,9 +391,9 @@ class Reference implements \JsonSerializable
         if ($this->getConference()->isPublished() && $this->getInProc()) {
             if ($this->getPosition() !== null && $this->getPosition() !== "99-98") {
                 $position = "pp. " . $this->getPosition();
+            } else {
+                $position = "pp. XX-XX";
             }
-        } else {
-            $position = "unpublished";
         }
         $paper = " ";
         if ($this->getPaperId() !== null && !($this->getConference()->isUseDoi() && $this->isDoiVerified())) {

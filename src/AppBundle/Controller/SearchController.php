@@ -57,6 +57,15 @@ class SearchController extends Controller
         ]);
     }
 
+    private function endsWith($string, $endString)
+    {
+        $len = strlen($endString);
+        if ($len == 0) {
+            return true;
+        }
+        return (substr($string, -$len) === $endString);
+    }
+
     /**
      * Search page
      * JSON results only of page
@@ -94,8 +103,8 @@ class SearchController extends Controller
                     if ($currentConferenceService->hasCurrent()) {
                         $current = $currentConferenceService->getCurrent();
                         // confirm its not just a conference text
-                        if ($current->__toString() !== $text && $this->endsWith($text, ", unpublished.") !== false) {
-                            $text = substr($text, 0, -strlen(", unpublished."))  . ", this conference.";
+                        if ($current->__toString() !== $text && $this->endsWith($text, ".") !== false) {
+                            $text = substr($text, 0, -1)  . ", this conference.";
                         }
                     }
                     $text = strip_tags($text, "<em><sup><sub><br>");
