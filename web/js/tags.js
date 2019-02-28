@@ -1,6 +1,5 @@
 var elts = $('input.entity-tags');
 
-datasources = [];
 
 $.each(elts, function(index, elt) {
 

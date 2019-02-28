@@ -1,0 +1,19 @@
+{% extends 'email/email_base.html.twig' %}
+
+{% block title %}JaCoW Reference Database{% endblock %}
+
+{% block preview %}{{ title }}{% endblock %}
+
+{% block logo %}
+    <img width="626" height="99" alt="JaCoW" title="JaCoW"
+         src="{{ logoID }}" style="height: auto; line-height: 100%; outline: none; text-decoration: none; border: 0 none;">
+{% endblock %}
+
+
+{% block body %}
+    <h4 class="text-center" style="margin-top: 0; margin-bottom: 0; font-weight: 500; color: inherit; vertical-align: baseline; font-size: 24px; line-height: 28.8px;" align="center">
+        {{ title }}
+    </h4>
+
+    <p class="text-center" align="center">{{ content|nl2br }}</p>
+{% endblock %}

@@ -9,7 +9,7 @@
     <br />
     {% set filters = {'c.code': 'Code','c.name': 'Full Name','c.location': 'Location','c.year': 'Date'} %}
 
-    {{ knp_pagination_filter(pagination, filters) }}
+    {{ include('search/basic.html.twig') }}
 
     {% set filtered = 0 %}
     {% if pagination.params.filterField is defined and pagination.params.filterField in filters|keys %}

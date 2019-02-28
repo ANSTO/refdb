@@ -296,7 +296,13 @@ class Reference implements \JsonSerializable
     }
 
     public function format($format = "long") {
-        $output = $this->getTitleSection() . "" . $this->getConferenceSection($format)  . "," . $this->getPaperSection() . ".";
+        $output = $this->getTitleSection() . "" . $this->getConferenceSection($format);
+
+        if (trim($this->getPaperSection()) !== "") {
+            $output .= "," . $this->getPaperSection();
+        }
+
+        $output .= ".";
 
         return $output;
     }
@@ -312,11 +318,28 @@ class Reference implements \JsonSerializable
         return $section;
     }
 
-    public function getTitleSection() {
-        $author = $this->getAuthorStr();
+    public function hasTitleIssue() {
+        // detect all upper case
+        return (preg_match("/^[0-9A-Z ]+$/",$this->getTitle()));
+    }
+
+    public function getTitleCaseCorrected() {
         $title = $this->getTitle();
 
-        if ($this->isInProc() && $this->getConference()->isPublished()) {
+        if ($this->hasTitleIssue()) {
+            $title = ucwords(strtolower($title));
+        }
+
+        return $title;
+    }
+
+    public function getTitleSection() {
+        $author = $this->getAuthorStr();
+        $title = $this->getTitleCaseCorrected();
+
+
+
+        if ($this->isInProc() && $this->getConference()->isPublished() && $this->getInProc()) {
             $inProc = "in <em>Proc. ";
         } else {
             $inProc = "presented at the ";
@@ -340,12 +363,30 @@ class Reference implements \JsonSerializable
         return "";
     }
 
+    public function getFirstLastName() {
+        $authorString = $this->getAuthor();
+        $authors = preg_split("/and|,/", $authorString);
+
+        $author = $authors[0];
+
+        $parts = explode(". ",$author);
+        foreach ($parts as $part) {
+            $name = trim($part," ,-");
+            if (strlen($name) > 2) {
+                return $name . ":";
+            }
+        }
+        $author = str_replace(".","", $author);
+        $author = str_replace(" ", "", $author);
+        return $author . ":";
+    }
+
     public function getPaperSection() {
 
         $position = "";
 
-        if ($this->getConference()->isPublished()) {
-            if ($this->getPosition() !== null) {
+        if ($this->getConference()->isPublished() && $this->getInProc()) {
+            if ($this->getPosition() !== null && $this->getPosition() !== "99-98") {
                 $position = "pp. " . $this->getPosition();
             }
         } else {
@@ -356,7 +397,7 @@ class Reference implements \JsonSerializable
             $paper = " paper " . $this->getPaperId() . ", ";
         }
 
-        return $paper . $position;
+        return rtrim($paper . $position,", ");
     }
 
 

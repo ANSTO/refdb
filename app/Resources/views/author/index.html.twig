@@ -6,9 +6,7 @@
     {% endif %}
     <h2>Authors</h2>
     <br />
-    <div>
-        {{ knp_pagination_filter(pagination, {'a.name': 'Name'}) }}
-    </div>
+    {{ include('search/basic.html.twig') }}
     <br />
     <table class="table table-striped">
         <thead>

@@ -1,5 +1,11 @@
 {% extends 'base.html.twig' %}
 
+{% block javascripts %}
+    {{ parent() }}
+    <script src="{{ asset("js/bootstrap-tagsinput.js") }}"></script>
+    <script src="{{ asset("js/tags.js") }}?2" async></script>
+{% endblock %}
+
 {% block body %}
 
     {% if reference.conference.published == false and reference.conference.importUrl != "" %}

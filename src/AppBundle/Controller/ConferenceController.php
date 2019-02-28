@@ -3,6 +3,7 @@
 namespace AppBundle\Controller;
 
 use AppBundle\Entity\Conference;
+use AppBundle\Form\BasicSearchType;
 use AppBundle\Service\CurrentConferenceService;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\IsGranted;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
@@ -68,21 +69,49 @@ class ConferenceController extends Controller
      */
     public function indexAction(Request $request)
     {
+        $form = $this->createForm(BasicSearchType::class);
+        $form->handleRequest($request);
+
         $manager = $this->getDoctrine()->getManager();
-        $query = $manager->getRepository(Conference::class)
-            ->createQueryBuilder("c")
-         #   ->innerJoin("c.references", "r")
-            ->getQuery();
+        $search = $manager->getRepository(Conference::class)
+            ->createQueryBuilder("c");
+
+        if ($form->isSubmitted() && $form->isValid()) {
+            $terms = mb_strtolower($form->get('terms')->getData());
+
+            $search->orWhere('LOWER(c.code) LIKE :terms')
+                ->orWhere('LOWER(c.name) LIKE :terms')
+                ->orWhere('LOWER(c.year) LIKE :terms')
+            ->setParameter("terms", $terms . "%")
+            ->orWhere('LOWER(c.location) LIKE :location')
+                ->setParameter("location", '%' . $terms . "%");
+            //
+            $abbreviated = str_replace("international", "int.", $terms);
+            $abbreviated = str_replace("conference", "conf.", $abbreviated);
+
+            $search
+                ->orWhere('LOWER(c.name) LIKE :abbreviated')
+                ->setParameter("abbreviated", $abbreviated . "%");
+
+            if (preg_match("/(\d{4})/", $terms, $matches)) {
+                foreach ($matches as $match) {
+                    $terms = str_replace($match, substr($match,2), $terms);
+                }
+                $search->orWhere('LOWER(c.code) LIKE :date')
+                    ->orWhere('LOWER(c.year) LIKE :date')
+                    ->setParameter('date','%' . $terms);
+            }
+        }
 
         $paginator  = $this->get('knp_paginator');
         $pagination = $paginator->paginate(
-            $query,
+            $search->getQuery(),
             $request->query->getInt('page', 1),
             10
         );
 
         // parameters to template
-        return $this->render('conference/index.html.twig', array('pagination' => $pagination));
+        return $this->render('conference/index.html.twig', array('pagination' => $pagination, 'search'=> $form->createView()));
     }
 
     /**
