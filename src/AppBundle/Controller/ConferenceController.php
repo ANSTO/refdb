@@ -121,6 +121,9 @@ class ConferenceController extends Controller
      * Make this conference my current conference (changes the way the reference appears)
      * @IsGranted("ROLE_ADMIN")
      * @Route("/export/{id}", name="conference_export")
+     * @param Request $request
+     * @param Conference $conference
+     * @return CsvResponse
      */
     public function export(Request $request, Conference $conference) {
         $references = $this->getDoctrine()->getRepository(Reference::class)->createQueryBuilder("r")

@@ -130,7 +130,9 @@ class ReferenceController extends Controller
             $warning .= "There is a problem with this papers authors.\n\n";
         }
         if (($reference->getConference()->isPublished() && $reference->getInProc() && ($reference->getPosition() === null || $reference->getPosition() == "" || $reference->getPosition() == "99-98"))) {
-            $warning .= "The page numbers are not known for this reference, but must be provided.\n\n";
+            $warning .= "The page numbers could not be added automatically for this paper. ";
+            $warning .= "You must provide the page numbers from the original proceedings which is located at JACoW.org, and substitute ‘pp. XX-XX’ with the correct page numbers.\n";
+            $warning .= "* Please report these numbers by clicking on the ‘Fix a problem’ button as an Admin will be able to update this reference for future results.    \n\n";
         }
 
         $deleteForm = $this->createDeleteForm($reference);
