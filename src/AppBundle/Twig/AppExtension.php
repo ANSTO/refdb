@@ -37,8 +37,8 @@ class AppExtension extends AbstractExtension
         if ($this->currentConferenceService->hasCurrent()) {
             $current = $this->currentConferenceService->getCurrent();
             // confirm its not just a conference text
-            if ($current->__toString() !== $text && $this->endsWith($text, ", unpublished.") !== false) {
-                $text = substr($text, 0, -strlen(", unpublished."))  . ", this conference.";
+            if ($current->__toString() !== $text && $this->endsWith($text, ".") !== false) {
+                $text = substr($text, 0, -1)  . ", this conference.";
             }
         }
         $text = strip_tags($text, "<em><sup><sub><br>");

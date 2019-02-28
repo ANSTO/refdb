@@ -391,7 +391,7 @@ class Reference implements \JsonSerializable
                 $position = "pp. " . $this->getPosition();
             }
         } else {
-            $position = "unpublished";
+            //$position = "unpublished";
         }
         $paper = " ";
         if ($this->getPaperId() !== null && !($this->getConference()->isUseDoi() && $this->isDoiVerified())) {
