@@ -93,7 +93,7 @@ class AuthorCommand extends Command
             $associationAuthor[] = $newAuthor;
         }
 
-        $output->writeln("Attempting to persist all " . count($newAuthors) . " with " . $i . " associations");
+        $output->writeln("Attempting to persist all " . count($newAuthors) . " authors with " . $i . " reference associations");
 
         $manager->flush();
     }
