@@ -9,6 +9,7 @@
 namespace AppBundle\Command;
 
 use AppBundle\Entity\Conference;
+use AppBundle\Service\AdminNotifyService;
 use AppBundle\Service\ImportService;
 use Doctrine\Common\Persistence\ObjectManager;
 use Symfony\Component\Console\Command\Command;
@@ -25,12 +26,14 @@ class RefreshCommand extends Command
 {
     private $manager;
     private $importService;
+    private $adminNotificationService;
     protected static $defaultName = 'app:refresh';
 
-    public function __construct(ObjectManager $manager, ImportService $importService)
+    public function __construct(ObjectManager $manager, ImportService $importService, AdminNotifyService $adminNotificationService)
     {
         $this->manager = $manager;
         $this->importService = $importService;
+        $this->adminNotificationService = $adminNotificationService;
         parent::__construct();
     }
 
@@ -52,8 +55,15 @@ class RefreshCommand extends Command
         foreach ($conferences as $conference) {
             if ($conference->getImportUrl() !== null) {
                 $output->writeln("Re-importing " . $conference);
-                $written = $this->importService->merge($conference->getImportUrl(), $conference);
-                $output->writeln($written . " references created");
+                try {
+                    $written = $this->importService->merge($conference->getImportUrl(), $conference);
+                    $output->writeln($written . " references created");
+                } catch (\Exception $exception) {
+                    $message = " Failed updating " . $conference . "\n\n " . $exception->getMessage();
+                    $this->adminNotificationService->sendAll("Automatic Import Failer", $message);
+                    $output->writeln($message);
+                }
+
             }
         }
     }
