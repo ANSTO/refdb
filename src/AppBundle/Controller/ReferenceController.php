@@ -110,12 +110,19 @@ class ReferenceController extends Controller
             }
         }
 
+        if ($reference->hasTitleIssue()) {
+            $warning = "This papers title has been automatically cased, and may contain mistakes.";
+        }
+
         if (preg_match_all("/[\[\(\/]+/",$reference->getAuthor(), $matches) || count($reference->getAuthors()) == 0) {
             $warning = "There is a problem with this papers authors";
         }
-        if ($reference->getPosition() == "99-98") {
-            $warning = "The page number (position in proceedings) is not included in this reference. 99-98 is a placeholder for missing data.";
+        if (($reference->getConference()->isPublished() && $reference->getPosition() == "") || $reference->getPosition() == "99-98") {
+            $warning = "The page numbers are not known for this reference.";
         }
+
+
+
 
 
         $deleteForm = $this->createDeleteForm($reference);
@@ -213,6 +220,6 @@ class ReferenceController extends Controller
             ->setAction($this->generateUrl('reference_delete', array('id' => $reference->getId())))
             ->setMethod('DELETE')
             ->getForm()
-        ;
+            ;
     }
 }

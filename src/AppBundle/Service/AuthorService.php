@@ -15,7 +15,9 @@ class AuthorService
 
     public function parse($src) {
         // Does the source contain et al.
-        $etAl = (strpos($src," et al.") !== false);
+        $etAl = (strpos($src," et al") !== false);
+
+        $src = preg_replace("/ et al\.?/","", $src);
 
         $noRound = preg_replace("/\(([^()]*+|(?R))*\)/",",", $src);
 
@@ -84,6 +86,7 @@ class AuthorService
     }
 
     public function cleanAuthor($author) {
+        $author = preg_replace("/ et al\.?/","", $author);
         if (preg_match_all("/^(([A-Z]?[-]?[A-Z" . $this->accChars . "]{1}[a-z]?\.[ ]?){1,3}) (([A-Za-z" . $this->accChars . "\- ]+?)*)$/u",$author, $matches) == true) {
             $initials = explode(".",$matches[1][0]);
             $parts = array_map(function($initial){
