@@ -2,12 +2,12 @@
 
 {% block body %}
     {% if is_granted("ROLE_ADMIN") %}
-    <div class="float-right btn-group">
-        <a class="btn btn-default" href="{{ path('conference_export', { 'id': conference.id }) }}"><i class="fas fa-download"></i> Export</a>
-        <a class="btn btn-success" href="{{ path('upload_index', { 'id': conference.id }) }}"><i class="fas fa-upload"></i> Upload</a>
-        <a class="btn btn-primary" href="{{ path('conference_edit', { 'id': conference.id }) }}"><i class="fas fa-edit"></i> Edit</a>
-        <button class="btn btn-danger btn-modal" type="button" data-href="{{ path('conference_delete', { 'id': conference.id }) }}"><i class="fas fa-trash"></i> Delete</button>
-    </div>
+        <div class="float-right btn-group">
+            <a class="btn btn-default" href="{{ path('conference_export', { 'id': conference.id }) }}"><i class="fas fa-download"></i> Export</a>
+            <a class="btn btn-success" href="{{ path('upload_index', { 'id': conference.id }) }}"><i class="fas fa-upload"></i> Upload</a>
+            <a class="btn btn-primary" href="{{ path('conference_edit', { 'id': conference.id }) }}"><i class="fas fa-edit"></i> Edit</a>
+            <button class="btn btn-danger btn-modal" type="button" data-href="{{ path('conference_delete', { 'id': conference.id }) }}"><i class="fas fa-trash"></i> Delete</button>
+        </div>
     {% endif %}
     <h2>{{ conference|latin }}</h2>
 
@@ -19,10 +19,61 @@
     <h3>References </h3>
     {% if conference.references|length == 0 %}
         <p><em>No references found for this conference.</em></p>
+    {% else %}
+        <br />
+        {% set filters = {'r.title': 'Title','r.paperId': 'Paper ID'} %}
+
+        {{ include('search/basic.html.twig') }}
+
+        {% set filtered = 0 %}
+        {% if pagination.params.filterField is defined and pagination.params.filterField in filters|keys %}
+            {% set filtered = 1 %}
+            {% set label = filters[pagination.params.filterField] %}
+            {% set field = pagination.params.filterField|slice(2) %}
+        {% endif %}
+        <br />
+        <table class="table table-striped">
+            <thead>
+            <tr>
+                <th{% if pagination.isSorted('r.cache') %} class="sorted"{% endif %}>{{ knp_pagination_sortable(pagination, 'Reference', 'r.cache') }}</th>
+                {% if filtered %}
+                    <th>{{ label }}</th>
+                {% endif %}
+                {% if is_granted("ROLE_ADMIN") %}
+                    <th class="text-center">Actions</th>
+                {% endif %}
+            </tr>
+            </thead>
+            <tbody>
+            {% for reference in pagination %}
+                <tr>
+                    <td><a href="{{ path('reference_show', { 'id': reference.id }) }}">{{ reference.cache|latin }}</a></td>
+                    {% if filtered %}
+                        <td>
+                            {{ attribute(reference, field)|latin }}
+                        </td>
+                    {% endif %}
+                    {% if is_granted("ROLE_ADMIN") %}
+                        <td class="text-center" width="150">
+                            <a href="{{ path('reference_edit', { 'id': reference.id }) }}"><i class="fas fa-edit"></i> Edit</a>
+                        </td>
+                    {% endif %}
+                </tr>
+            {% endfor %}
+            </tbody>
+        </table>
+
+
+        <div class="d-flex justify-content-between">
+            <div class="p-2 total align-self-center">
+                {{ pagination.getTotalItemCount }} results
+            </div>
+
+            <div class="navigation p-2 align-self-center">
+                {{ knp_pagination_render(pagination) }}
+            </div>
+        </div>
+        <br />
     {% endif %}
-    {% for reference in conference.references %}
-        <a href="{{ path('reference_show', {'id': reference.id }) }}">{{ reference|latin }}</a><br /><br />
-    {% endfor %}
-    <br />
     <a class="btn btn-default" href="{{ path('conference_index') }}"><i class="fas fa-arrow-left"></i> Back to the list</a>
 {% endblock %}
