@@ -48,17 +48,19 @@ class AuthorCommand extends Command
         $manager = $this->manager;
 
         /** @var Reference[] $results */
-        $references = $manager->getRepository(Reference::class)->findAll();
+     //   $references = $manager->getRepository(Reference::class)->findAll();
 
+      //  $output->writeln("Removing all authors on " . count($references) . " references");
         /** @var Reference $reference */
-        foreach ($references as $reference) {
-            $reference->setAuthors(new ArrayCollection());
-        }
-        $manager->flush();
-        $manager->clear();
+//        foreach ($references as $reference) {
+//            $reference->setAuthors(new ArrayCollection());
+//        }
+//        $manager->flush();
+//        $manager->clear();
 
         $authors = $manager->getRepository(Author::class)->findAll();
 
+        $output->writeln("Removing all " . count($authors) . " authors");
         /** @var Reference $reference */
         foreach ($authors as $author) {
             $manager->remove($author);
@@ -66,21 +68,32 @@ class AuthorCommand extends Command
         $manager->flush();
         $manager->clear();
 
+        $output->writeln("Downloading all references");
+
         $references = $manager->getRepository(Reference::class)->findAll();
+        $output->writeln("Found " . count($references) . " references");
+        $output->writeln("Calculating authors");
         $results = $this->findAuthors($references, $this->authorService);
         $newAuthors = $results['authors'];
+        $output->writeln("Found " . count($newAuthors) . " authors");
 
+        $i = 0;
         // All authors should be new.
+        $associationAuthor = [];
         foreach ($newAuthors as $name => $newAuthorRefs) {
             $newAuthor = new Author();
             $newAuthor->setName($name);
             foreach ($newAuthorRefs as $reference) {
                 if (!$newAuthor->getReferences()->contains($reference)) {
                     $newAuthor->addReference($reference);
+                    $i++;
                 }
             }
             $manager->persist($newAuthor);
+            $associationAuthor[] = $newAuthor;
         }
+
+        $output->writeln("Attempting to persist all " . count($newAuthors) . " with " . $i . " associations");
 
         $manager->flush();
     }
