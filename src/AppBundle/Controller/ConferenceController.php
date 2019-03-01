@@ -188,15 +188,40 @@ class ConferenceController extends Controller
      * Finds and displays a conference entity.
      *
      * @Route("/show/{id}", name="conference_show")
+     * @param Request $request
+     * @param Conference $conference
+     * @return \Symfony\Component\HttpFoundation\Response
      */
-    public function showAction(Conference $conference)
+    public function showAction(Request $request, Conference $conference)
     {
-        $deleteForm = $this->createDeleteForm($conference);
+        $form = $this->createForm(BasicSearchType::class, null, ["method"=>"GET"]);
+        $form->handleRequest($request);
+
+        $manager = $this->getDoctrine()->getManager();
+        $search = $manager->getRepository(Reference::class)
+            ->createQueryBuilder("r")
+            ->where("r.conference = :conference")
+            ->setParameter("conference", $conference);
+
+        if ($form->isSubmitted() && $form->isValid()) {
+            $terms = mb_strtolower($form->get('terms')->getData());
+            $search
+                ->andWhere('LOWER(r.cache) LIKE :terms')
+                ->setParameter("terms", '%' . $terms . "%");
+        }
+
+        $paginator = $this->get('knp_paginator');
+        $pagination = $paginator->paginate(
+            $search->getQuery(),
+            $request->query->getInt('page', 1),
+            10
+        );
 
         return $this->render('conference/show.html.twig', array(
             'conference' => $conference,
-            'delete_form' => $deleteForm->createView(),
-        ));
+            'pagination' => $pagination,
+            "search"=>$form->createView()));
+
     }
 
     /**
