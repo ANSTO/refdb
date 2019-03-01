@@ -63,7 +63,7 @@
     <p>{% spaceless %}
             <textarea class="form-control latex-ref">
 {% for reference in references -%}
-    {%- include "reference/latex.html.twig" %}
+    {%- include "reference/latex.html.twig" %}{{ "\n" }}
 {% endfor %}</textarea>
         {% endspaceless %}
     </p>
