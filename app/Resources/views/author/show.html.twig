@@ -1,5 +1,13 @@
 {% extends 'base.html.twig' %}
 
+{% block javascripts %}
+    {{ parent() }}
+    <script>
+        var favourites = {{ favourite_service.favourites|json_encode }};
+    </script>
+    <script src="{{ asset('js/favourite.js') }}" async></script>
+{% endblock %}
+
 {% block body %}
     {% if is_granted("ROLE_ADMIN") %}
     <div class="float-right btn-group">

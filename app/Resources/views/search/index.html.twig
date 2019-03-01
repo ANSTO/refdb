@@ -6,6 +6,7 @@
    <script>
       var favourites = {{ favourites|json_encode }};
    </script>
+   <script src="{{ asset('js/favourite.js') }}" async></script>
    <script src="{{ asset('js/search.js') }}" async></script>
 {% endblock %}
 {% block body %}

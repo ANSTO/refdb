@@ -12,6 +12,7 @@
 <table class="table table-striped">
     <thead>
     <tr>
+        <th style="padding-right:0;" width="10"></th>
         <th{% if pagination.isSorted('r.cache') %} class="sorted"{% endif %}>{{ knp_pagination_sortable(pagination, 'Reference', 'r.cache') }}</th>
         {% if filtered %}
             <th>{{ label }}</th>
@@ -24,7 +25,10 @@
     <tbody>
     {% for reference in pagination %}
         <tr>
-            <td><a href="{{ path('reference_show', { 'id': reference.id }) }}">{{ reference.cache|latin }}</a></td>
+
+            <td style=" padding-right:0;"><a data-id="{{ reference.id }}" class="favourite favourite{{ reference.id }}" href="javascript:void(0)"><i class="far fa-star"></i></a></td>
+            <td>
+                <a href="{{ path('reference_show', { 'id': reference.id }) }}">{{ reference.cache|latin }}</a></td>
             {% if filtered %}
                 <td>
                     {{ attribute(reference, field)|latin }}
