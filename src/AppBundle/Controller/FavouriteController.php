@@ -41,6 +41,7 @@ class FavouriteController extends Controller
         $titleIssue = false;
         $authorIssue = false;
         $pageNumberIssue = false;
+        $hasWarning = false;
         foreach ($references as $reference) {
             if ($reference->getConference()->isUseDoi() && !$reference->isDoiVerified()) {
                 $doiService = new DoiService();
@@ -64,9 +65,17 @@ class FavouriteController extends Controller
             if (($reference->getConference()->isPublished() && $reference->getInProc() && ($reference->getPosition() === null || $reference->getPosition() == "" || $reference->getPosition() == "99-98"))) {
                 $pageNumberIssue = true;
             }
+
+            if (count($reference->getFeedback()) > 0) {
+                $hasWarning = true;
+            }
         }
 
         $warning = "";
+
+        if ($hasWarning) {
+            $warning .= "Please note that we have recently received feedback indicated that atleast one of these reference may have a problem.\n\n";
+        }
 
         if ($titleIssue) {
             $warning .= "Some papers titles are all uppercase, you must correct this before using this reference.\n\n";
@@ -77,9 +86,11 @@ class FavouriteController extends Controller
         }
         if ($pageNumberIssue) {
             $warning .= "The page numbers for some of these references could not be added automatically. ";
-            $warning .= "You must provide the page numbers from the original proceedings which is located at JACoW.org, and substitute ‘pp. XX-XX’ with the correct page numbers.\n";
+            $warning .= "You must provide the page numbers from the original proceedings which is located at JACoW.org, and substitute ‘pp. XX-XX’ with the correct page numbers.\n\n";
             //$warning .= "* Please report these numbers by clicking on the ‘Fix a problem’ button as an Admin will be able to update this reference for future results.    \n\n";
         }
+
+
 
         return $this->render("favourite/show.html.twig", ["references"=>$references, "warning" => $warning]);
     }
