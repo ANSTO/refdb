@@ -389,10 +389,12 @@ class Reference implements \JsonSerializable
         $position = "";
 
         if ($this->getConference()->isPublished() && $this->getInProc()) {
-            if ($this->getPosition() !== null && $this->getPosition() !== "99-98") {
+            if ($this->getPosition() !== null && $this->getPosition() !== "99-98" && $this->getPosition() != "na") {
                 $position = "pp. " . $this->getPosition();
             } else {
-                $position = "pp. XX-XX";
+                if ($this->getPosition() != "na") {
+                    $position = "pp. XX-XX";
+                }
             }
         }
         $paper = " ";
