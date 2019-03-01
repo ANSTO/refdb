@@ -11,7 +11,7 @@ namespace AppBundle\Service;
 class AuthorService
 {
     /** @var string Some common euro characters for people with hectic names */
-    protected $accChars = "àèìòùÀÈÌÒÙáéíóúýÁÉÍÓÚÝâêîôûÂÊÎÔÛãñõÃÑÕäëïöüÿÄËÏÖÜŸçÇßØøÅåÆæœš";
+    protected $accChars = "żàèìòùÀÈÌÒÙáéíóúýÁÉÍÓÚÝâêîôûÂÊÎÔÛãñõÃÑÕäëïöüÿÄËÏÖÜŸçÇßØøÅåÆæœš";
 
     public function parse($src) {
         // Does the source contain et al.

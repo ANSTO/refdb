@@ -17,7 +17,7 @@ class CsvService
         if (($handle = fopen($filename, "r")) !== FALSE) {
             while (($data = fgetcsv($handle, 8000, ",")) !== FALSE) {
                 foreach ($data as &$item) {
-                    $encoding = mb_detect_encoding($item, 'UTF-8, ISO-8859-1');
+                    $encoding = mb_detect_encoding($item, 'UTF-8, ISO-8859-2');
                     if ($encoding !== "UTF-8") {
                         $item = mb_convert_encoding($item, "UTF-8", $encoding);
                     }
