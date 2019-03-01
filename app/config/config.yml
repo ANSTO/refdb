@@ -67,8 +67,8 @@ doctrine:
 swiftmailer:
     transport: "%mailer_transport%"
     host:      "%mailer_host%"
-    username:  ~
-    password:  ~
+    username:  "%mailer_user%"
+    password:  "%mailer_pass%"
 #    encryption: tls
 #    port:       587
     spool:     { type: memory }
