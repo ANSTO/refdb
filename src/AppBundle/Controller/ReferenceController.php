@@ -123,7 +123,7 @@ class ReferenceController extends Controller
         }
 
         if ($reference->hasTitleIssue()) {
-            $warning .= "This papers title has been automatically cased, and may contain mistakes.\n\n";
+            $warning .= "This papers title is all uppercase, you must correct this before using this reference.\n\n";
         }
 
         if (preg_match_all("/[\[\(\/]+/",$reference->getAuthor(), $matches) || count($reference->getAuthors()) == 0) {

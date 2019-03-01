@@ -5,6 +5,7 @@ namespace AppBundle\Controller;
 use AppBundle\Entity\Author;
 use AppBundle\Entity\Favourite;
 use AppBundle\Entity\Reference;
+use AppBundle\Service\DoiService;
 use AppBundle\Service\FavouriteService;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\IsGranted;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
@@ -35,7 +36,52 @@ class FavouriteController extends Controller
             $references[] = $manager->getRepository(Reference::class)->find($favourite);
         }
 
-        return $this->render("favourite/show.html.twig", ["references"=>$references]);
+
+        $verifyFailed = false;
+        $titleIssue = false;
+        $authorIssue = false;
+        $pageNumberIssue = false;
+        foreach ($references as $reference) {
+            if ($reference->getConference()->isUseDoi() && !$reference->isDoiVerified()) {
+                $doiService = new DoiService();
+                $valid = $doiService->check($reference);
+                if (!$valid) {
+                    $verifyFailed = true;
+                } else {
+                    $reference->setDoiVerified(true);
+                    $reference->setCache($reference->__toString());
+                    $this->getDoctrine()->getManager()->flush();
+                }
+            }
+
+            if ($reference->hasTitleIssue()) {
+                $titleIssue = true;
+            }
+
+            if (preg_match_all("/[\[\(\/]+/",$reference->getAuthor(), $matches) || count($reference->getAuthors()) == 0) {
+                $authorIssue = true;
+            }
+            if (($reference->getConference()->isPublished() && $reference->getInProc() && ($reference->getPosition() === null || $reference->getPosition() == "" || $reference->getPosition() == "99-98"))) {
+                $pageNumberIssue = true;
+            }
+        }
+
+        $warning = "";
+
+        if ($titleIssue) {
+            $warning .= "Some papers titles are all uppercase, you must correct this before using this reference.\n\n";
+        }
+
+        if ($authorIssue) {
+            $warning .= "Some papers have malformed authors, please correct this before using these references.\n\n";
+        }
+        if ($pageNumberIssue) {
+            $warning .= "The page numbers for some of these references could not be added automatically. ";
+            $warning .= "You must provide the page numbers from the original proceedings which is located at JACoW.org, and substitute ‘pp. XX-XX’ with the correct page numbers.\n";
+            //$warning .= "* Please report these numbers by clicking on the ‘Fix a problem’ button as an Admin will be able to update this reference for future results.    \n\n";
+        }
+
+        return $this->render("favourite/show.html.twig", ["references"=>$references, "warning" => $warning]);
     }
 
     /**
