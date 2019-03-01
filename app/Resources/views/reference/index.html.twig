@@ -7,57 +7,6 @@
 
     <h2>References</h2>
     <br />
-    {% set filters = {'r.title': 'Title','r.paperId': 'Paper ID'} %}
-
-    {{ include('search/basic.html.twig') }}
-
-    {% set filtered = 0 %}
-    {% if pagination.params.filterField is defined and pagination.params.filterField in filters|keys %}
-        {% set filtered = 1 %}
-        {% set label = filters[pagination.params.filterField] %}
-        {% set field = pagination.params.filterField|slice(2) %}
-    {% endif %}
-    <br />
-    <table class="table table-striped">
-        <thead>
-        <tr>
-            <th{% if pagination.isSorted('r.cache') %} class="sorted"{% endif %}>{{ knp_pagination_sortable(pagination, 'Reference', 'r.cache') }}</th>
-            {% if filtered %}
-                <th>{{ label }}</th>
-            {% endif %}
-            {% if is_granted("ROLE_ADMIN") %}
-                <th class="text-center">Actions</th>
-            {% endif %}
-        </tr>
-        </thead>
-        <tbody>
-        {% for reference in pagination %}
-            <tr>
-                <td><a href="{{ path('reference_show', { 'id': reference.id }) }}">{{ reference.cache|latin }}</a></td>
-                {% if filtered %}
-                    <td>
-                        {{ attribute(reference, field)|latin }}
-                    </td>
-                {% endif %}
-                {% if is_granted("ROLE_ADMIN") %}
-                    <td class="text-center" width="150">
-                        <a href="{{ path('reference_edit', { 'id': reference.id }) }}"><i class="fas fa-edit"></i> Edit</a>
-                    </td>
-                {% endif %}
-            </tr>
-        {% endfor %}
-        </tbody>
-    </table>
-
-
-    <div class="d-flex justify-content-between">
-        <div class="p-2 total align-self-center">
-            {{ pagination.getTotalItemCount }} results
-        </div>
-
-        <div class="navigation p-2 align-self-center">
-            {{ knp_pagination_render(pagination) }}
-        </div>
-    </div>
+    {% include "reference/listing.html.twig" %}
 
 {% endblock %}

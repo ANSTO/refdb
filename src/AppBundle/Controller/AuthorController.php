@@ -3,6 +3,7 @@
 namespace AppBundle\Controller;
 
 use AppBundle\Entity\Author;
+use AppBundle\Entity\Reference;
 use AppBundle\Form\BasicSearchType;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\IsGranted;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
@@ -114,14 +115,37 @@ class AuthorController extends Controller
      *
      * @Route("/show/{id}", name="author_show")
      */
-    public function showAction(Author $author)
+    public function showAction(Request $request, Author $author)
     {
-        $deleteForm = $this->createDeleteForm($author);
+        $form = $this->createForm(BasicSearchType::class, null, ["method"=>"GET"]);
+        $form->handleRequest($request);
+
+        $manager = $this->getDoctrine()->getManager();
+        $search = $manager->getRepository(Reference::class)
+            ->createQueryBuilder("r")
+            ->innerJoin("r.authors","a")
+            ->where(":author = a")
+            ->setParameter("author", $author);
+
+        if ($form->isSubmitted() && $form->isValid()) {
+            $terms = mb_strtolower($form->get('terms')->getData());
+            $search
+                ->andWhere('LOWER(r.cache) LIKE :terms')
+                ->setParameter("terms", '%' . $terms . "%");
+        }
+
+        $paginator = $this->get('knp_paginator');
+        $pagination = $paginator->paginate(
+            $search->getQuery(),
+            $request->query->getInt('page', 1),
+            10
+        );
 
         return $this->render('author/show.html.twig', array(
             'author' => $author,
-            'delete_form' => $deleteForm->createView(),
-        ));
+            'pagination' => $pagination,
+            "search"=>$form->createView()));
+
     }
 
     /**
