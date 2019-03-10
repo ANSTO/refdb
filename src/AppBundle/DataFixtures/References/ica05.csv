@@ -1,241 +1,241 @@
-I1_001,"B. Frammery","The LHC Control System",
-I1_002,"B.E. Glendenning, G. Raffi","The ALMA Computing Project Œ Update and Management Approach",
-I2_002,"L.J.Lagin, R.Bettenhausen, R.Beeler, G.Bowers, R.Carey, D.Casavant, B.Cline, R.Demaret, D.Domyancic, S.Elko, J.Fisher, M.Hermann, J.Krammen, T.Kohut, C.Marshall, D. Mathisen, A.Ludwigsen, R.Patterson, R.Sanchez, E.Stout, P.Van Arsdall, B.Van Wonterghem","Shot Automation for the National Ignition Facility",
-I3_001,"T. Fountain, A. McCarthy, F. Peng","PCI Express: an Overview of PCI Express, Cabled PCI Express and PXI Express ",
-I3_002,"Ph.Gayet , R. Barillere","UNICOS a Framework to Build Industry Like Control Systems Principles Methodology",
-I3_003,"G.Chiozzi,A.Caproni,R.Cirami,P.DiMarcantonio,D.Fugate,S.Harrington,B.Jeram,M.Plesko,M.Sekoranja,H.Sommer,K.Zagar","The ALMA Common Software ACS - Status and Developments",
-I4_002,"T. Larrieu, Y. Roblin, K. White, R. Slominski","Evaluating the Potential of Commercial GIS for Accelerator Configuration Management",
-I5_003,"F.J.Busto,F.J.Varas","Knowledge Enabled Services KES for Decision Support in Control Rooms. CESADS KES Case Study at ESA/ESOC.",
-O1_001,"P.LaPenna","The Status of VIRGO",
-O1_002,"P.J. Van Arsdall, R. Bryant, R. Carey, D. Casavant, L. Lagin, R. Patterson","Status of the National Ignition Facility and Control System",
-O1_003,"K. v.d. Schaaf , E. Lawerman","SCADA in the LOFAR radio telescope",
-O1_004,"T.Fukui, R.Tanaka, T.Ohata, M.Takeuchi, Y.Otake, M.Kitamura, T. Ishikawa, H. Kitamura, T. Shintake and SCSS project team","Status of The SCSS Control System  First Phase of an 8Gev XFEL Project In SPRING-8",
-O1_005,"L.Battistello, D.Bulfone, V.Forchi', F.Giacuzzo, G.Gaio, M.Lonza, R.Marizza, R.Passuello, L.Pivetta, C.Scafuri, L.Zambon","The Control System Of The ELETTRA Booster Injector",
-O1_006,"P.Adzic, F.Beaudette, G.Dissertori, R.Gomez-Reino, G.Leshev, A.Lister,D.Maletic, P.Milenovic, R.Ofierzynski, J.Puzovic, A.Sytin, S.Zelepoukine","The detector control system for the electromagnetic calorimeter of the CMS experiment at the LHC",
-O1_007,"T. Katoh, K. Furukawa, N. Kamikubota, H. Nakagawa, J. Odagiri, Y. Takeuchi, N. Yamamoto,  H. Kiyomichi, H. Sakaki, H. Sako, G-B. Shen, H. Takahashi, H. Yoshikawa","Towards the Commissioning of J-PARC",
-O1_008,"A.Augustinus,P.Chochula,G.DeCataldo,L.Jirden,S.Popescu","ALICE detector control status report",
-O1_009,"J.Cuperus, M.Peryt, E.Roux, J.Schinzel","The Directory Service for the CERN Accelerator Control Application Programs",
-O1_010,"L.Abadie,E.v.Herwijnen,C.Gaspar,B.Jost,N.Neufeld,R.Jacobsson","The LHCB Configuration Database",
-O1_011,"F.Carena, W.Carena, S.Chapeland, R. Divià, J-C.Marin, K.Schossmaier, C. Soós, P. Vande Vyvre, A. Vascotto","The ALICE Experiment Control System",
-O1_012,"G-H. Hemelsoet, J.Axensalva, V. Chohan,   E.Veyrunes","Cryogenic Magnet Tests for the LHC: Process Operation Using Web-based Tools and Facilities",
-O1_013,"J.Serrano,A.Rohlev,I.Kozsar","FPGA-based Low Level Control of CERN's LINAC 3 Cavities",
-O1_014,"A. Balzer, P.Bischoff, R. Follath, D. Herrendörfer, G. Reichardt, P. Stange","Diagnostics and Optimization Procedures for Beamline Control at BESSY",
-O1_015,"M.Park, K.H.Kim, M.C.Kyum, M.Kwon","Development of a Time Synchronization System for Kstar With a VME-Bus System",
-O2_001,"R.W. Carey, R. Bettenhausen, C. Estes, J. Fisher, J. Krammen, L. Lagin, A. Ludwigsen, D. Mathisen, J. Matone, R. Patterson, C. Reynolds, R. Sanchez, E. Stout, J. Tappero, P. VanArsdall","Status of the use of Large-Scale CORBA Distributed Software Framework for NIF Controls",
-O2_003,"A. Vodovnik, K. Zagar","Model Driven Architecture Control Systems and Eclipse",
-O2_004,"F.Carbognani","Automation of the Lock Acquisition of the 3 Km ARM VIRGO Interferometer",
-O2_006,"A.Barriuso-Poy,H.Burckhart,L.Carminati,J.Cook,V.Filimonov,V.Khomutnikov,Y.Ryabov,F.Varela","Hierarchical Control for the ATLAS Experiment",
-O2_007,"S.Poulsen","Best Practices in the Design of a Secure Control System",
-O2_008,"M.Ishii, T.Fukui, M.Kodera, T.Ohata, R.Tanaka","Construction and Management of a Secure Network in SPring-8",
-O2_009,"U. Epting","Computing and Network Infrastructure for Controls CNIC ",
-O2_010,"G. Morpurgo, R. B. Flockhart, S. Lüders","The Software for the CERN Detector Safety System",
-O2_011,"S. K.Feng, D. P.Siddons, T.Straumann, M. Heron, S. Singleton","EPICS/RTEMS/MVME5500 for Real-time Controls at NSLS",
-O2_012,"K.Rehlich,A.Agababyan,G.Asova,G.Dimitrov,G.Grygiel,B.Fominykh,O.Hensler,R.Kammering,L.Petrosyan,V.Rybnikov,G.Trowitzsch,M.Winde,T.Wilksen","Integrating a Fast Data Acquisition System into the DOOCS Control System",
-O2_013,"J.Bobnar, M.Sekoranja, I.Verstovsek","Visual DCT's Latest Hits",
-O2_014,"D. Fernández-Carreiras, F.Becheri, D. Beltran, R. ButzBach, J. Klora, E. Taurel","Status of the Alba control system",
-O2_015,"V.I.Zaitsev, A.V.Kartashov, N.I.Lachtjushko","Present Status of the ANGARA-5 Fusion Facility Control System",
-O2_016,"S.M.Schmeling","A Summary of the IEEE Real Time 2005 Conference held at Stockholm",
-O3_001,"F. Fontanelli, B. Jost, G. Mini, N. Neufeld, M. Sannino","Embedded PCs for Electronics Control in LHCB",
-O3_002,"T. Masuda, T. Fukui, R. Tanaka","Development of a Linux-based small-size controller using PoE technology",
-O3_003,"F. Biancat-Marchet, A. Baudry","Advanced Hardware Technology in ALMA Backend and Correlator",
-O3_004,"D.Breton,D.Charlet,P.Robbe,I.Videau","SPECS a Serial Protocol for the Experiment",
-O3_005,"O.Holme,M.Gonzalez-Berges,P.Golonka,S.Schmeling","The JCOP Framework",
-O3_006,"E.Taurel, D. Fernandez, M. Ounsy, C. Scafuri","The Tango collaboration Status and some of the latest developments",
-O3_007,"C. Saunders, D.A. Dohan, N.D. Arnold","The IRMIS Object Model and Services API",
-O3_008,"F.Bernard,E.Blanco,A.Egorov,P.Gayet,H.Milcent,C.H.Sicard","Deploying the UNICOS Industrial Controls Framework In Multiple Projects and Architectures",
-O3_009,"A. Farris, R. Marson, J. Kern","The ALMA Telescope Control System",
-O3_010,"I.Verstovsek, J. Kamenik","Management System Based on Open Source Tools",
-O3_011,"E.van Herwijnen","Control and monitoring of on-line trigger algorithms using Gaucho",
-O3_012,"L.Pivetta","Development of the TANGO Alarm System",
-O3_013,"G. Raupp, G. Neu, R. Cole, K. Lueddecke, T. Vijverberg, W. Treutterer, D. Zasche, Th. Zehetbauer","Experiment Management System for the ASDEX Upgrade Tokamak",
-O3_014,"R. K. Agrawal, A.Chauhan, A. M. Gupta, B. Merh, P. Fatnani, S. Gangopadhyay","Software Scenario for Control System of INDUS-2",
-O3_015,"D. J. Nicklaus","The Controls System for the Superconducting Module Test Facility",
-O3_016,"M.Boege,J.Chrin","Developments to the SLS CORBA Framework for High Level Software Applications",
-O3_017,"D. Fugate, G. Chiozzi, A. Caproni, B. Jeram, H. Sommer, S. Harrington","A generic software interface simulator for ALMA common software",
-O3_018,"S.B.Wampler","A middleware-neutral common services software infrastructure",
-O3_019,"M.Beharrell","OPC evolution toward UNIX from Windows to World Wide Domination ",
-O3_020,"G. Bassato, S. Canella, A. Battistella","The control of the new PIAVE injector at LNL",
-O3_021,"P.Fatnani, N. Lulani, A.Gupta, A.Chouhan, A. A. S. Walia","Orbit Control For INDUS-2 Storage Ring",
-O3_022,"Q. King","Advanced uses of the WorldFIP fieldbus for diverse communications applications within the LHC power converter control system",
-O4_001,"M. Bickley, K. S. White","Structuring an EPICS System to Optimize Reliability Performance and Cost",
-O4_002,"T.Ohata, M.Ishii","A study of introduction of the virtualization technology into operator consoles",
-O4_005,"M. Greenwald, D. Schissel, J. Burruss, T. Fredian, J. Lister, J. Stillerman","Visions for data management and remote collaboration for ITER",
-O4_007,"S. Deghaye, L. Bojtar, Y. Georgievskiy, J. Serrano","OASIS Status Report",
-O4_008,"S.Jackson, P.Karlsson","The introduction of hierarchical structure and application security to Java Web Start deployment",
-O4_009,"T.Lam,A.Götz","Leveraging the Eclipse Ecosystem for the Scientific Community",
-O4_010,"R.Pugliese, F.Asnicar, L.Del Cano, C.Scafuri , G.Maron","The GRIDCC project providing a real-time Grid for for distributed instrumentation",
-O4_011,"G. Segura, D. Perrin, L. Scibile","RAMSES Radiation Monitoring System for the Environment and Safety",
-O4_012,"E. Carrone, A. Tsirou, P.G. Verdini","A Discrete Event System the CMS Tracker Interlocks",
-O4_013,"K.Zagar","Dependability Considerations in Distributed Control Systems",
-O4_014,"R.Evans, A.Grippo, K.Jordan","A Versatile Carrier Board and Associated Timer Module Applications",
-O4_015,"P. Betinelli-Deck, A. Buteau, D. Corruble, B. Gagey, N. Leclercq, M. Ounsy, J.P. Ricaud","Status of the SOLEIL Control System",
-O5_001,"M. Arruat, S. Jackson, J-L. Nougaret, M. Peryt","Equipment Software Modelling for Accelerator Controls",
-O5_003,"C. Gaspar, B. Franek","Tools for the Automation of Large Control Systems",
-O5_004,"J. Gutleber","HYPERDAQ  Where Data Acquisition Meets the Web",
-O5_005,"F.Poncet, JL.Pons","Tango Application Toolkit",
-O5_006,"F.Carbognani","Software Engineering for the Virgo Project at EGO",
-O5_007,"G. Thomas, K. Azarov, R. Barillère, S. Cabaret, N. Kulman, X.Pons, J. Rochez","LHC GCS A model-driven approach for automatic PLC and SCADA code generation",
-O5_008,"S.Luders","Control Systems Under Attack",
-O5_010,"M.Clausen,G.Tkacik","EPICS Office",
-P1_001,"Y. Sato, K. Agari, M. Ieiri, Y. Katoh, H. Kodama, E. Hirose, Y. Igarashi, S. Inaba, M. Minakawa, K. Nakayoshi, H. Noumi, M. Saito, S. Sawada, Y. Suzuki, H. Takahashi, M. Takasaki, K. H. Tanaka, A. Toyoda, Y. Yamada, Y. Yamanoi, H. Watanabe","Progress of a Control System for Slow-Extraction Beam Lines at J-PARC",
-P1_002,"V.Alferov","A Cryo Complex Control System",
-P1_003,"R.Keitel, D.Bishop, D.Dale, T.Howland, H.Hui, K.Langton, M.Leross, R. Nussbaumer, C.Payne, K.Pelzer, J.Richards, E.Tikhomolov,G.Waters","The ISAC Control System - Phase II",
-P1_004,"C. Neri, A. Coletti, M. Riva , F. Pollastrone","The Laser In Vessel Viewing System IWS For ITER Present Status And New Developments Of The Control Processing And Data Visualization Sytems",
-P1_005,"V. Androsov, I. Drebot, P. Gladkikh, V. Grevtsev, V. Ivashchenko, I. Karnaukhov, V. Kozin, V. Layshchenko, V. Markov, N. Mocheshnikov, A.Mytsykov, F. Peev, A. Rezayev, A. Shcherbakov, Yu. Telegin, V. Trotsenko, A.Zelinsky, R.Tatchyn","Progress In Development Of Kharkov X-Ray Generator Nestor",
-P1_009,"H.Takahashi,H.Sakaki,H.Sako,H.Yoshikawa,M.Kawase,Y.Kato,Y.Itoh,M.Sugimoto","Data acquisition system for J-PARC 3GeV RCS",
-P1_010,"D.Anicic, G.Dave, M.Gasche, T.Korhonen, H.Lutz, A.C.Mezger","PROSCAN Control System Status Report",
-P1_011,"P.Schütt, U.Krause, R.Bär, B.Franczak, G.Fröhlich, L.Hechler, A.Redelbach, S.Richter, V.Schaa, W.Schiebel","Operation Modes and Controls Aspects of FAIR",
-P1_012,"P.deVicente, R.Bolaño, L.Barbas","Development of the control system for the 40m radiotelescope of the OAN using the Alma Common Software",
-P1_016,"T. Henss, K.-H. Becks, J. Boek, M. Imhaeuser, S. Kersten, P. Kind, K. Lantzsch, P. Maettig, J. Schultes","Hard - and Software of the ATLAS Pixel Detector Control System",
-P1_017,"G. De Cataldo, A. Franco, I. Sgura, A.Tauro","The Detector Control System for the HMPID Detector In the Alice Experiment at LHC",
-P1_018,"M. T. Heron, M. G. Abbott, P.  H. Amos, K. A. R. Baker, C. A. Colborne, P. N. Denison, I. J. Gillingham, A. Gonias, P. Hamadyk, S. Lay, M. A. Leech, P. J. Leicester, M. McClory, M. A. Norbury, N. P. Rees, A. J. Rose, J. Rowland, S. J. Singleton, K. Vijayan,  I. S. Uzun,  A. J. Duggan, P. H. Owens, S. Hunt","Progress on the Implementation of the Diamond Control System",
-P1_019,"S.Pal,T.Bhattacharjee,A.Roy,R.B.Bhole,M.Das,B.Sarkar,L.Chowdhury,S.Dasgupta","Progress of computerization in VEC modernisation",
-P1_021,"J.Zhao,C.H.Wang,G.Lei,W.C.Gao,K.J.Yue,J.Liu,G.Li,Z.Zhao","Status of the BEPCII control system",
-P1_023,"E. Matias, R. Berg, N. Johnson, T. Johnson, M. McKibben, R. Tanner, T. Wilson, G. Wright and H. Zang ","The Canadian Light Source Control System Lessons Learned From Building a Synchratoron and Beamlines Control System",
-P1_024,"M.Ooi, T.Kai, S.Meigo, H.Kinoshita, K.Sakai, S.Sakamoto, M.Kaminaga, T.Katoh, T.Katoh","Development of Beam Monitor DAQ system for 3NBT at J-PARC",
-P1_025,"R. Baer, H. Eickhoff, U. Weinrich, P. Frankenbach","Status and Conceptual Design of the Control System for the Heavy Ion Therapy Accelerator Facility HICAT",
-P1_028,"A. Butterworth, J. Molendijk, R. Sorokoletov, F. Weierud","Control of the low level RF system of the Large Hadron Collider",
-P1_029,"Y.Xinglin,Panjian,Wangyuan","Design and Implementation of Control System for 4MeV LIA",
-P1_030,"G. Morpurgo, R. B. Flockhart, S. Lüders","The DSS Synoptic Facility",
-P1_031,"T. Qing, D. Wenfeng, X. Weiping","A Preliminary Design of a Control and Monitoring System Based on Network for a Pulsed Power Device",
-P1_032,"P. Di Marcantonio, R. Cirami, B. Jeram, G. Chiozzi","Transmitting huge amounts of data design implementation and performance of the Bulk Data transfer mechanism in ACS",
-P1_033,"K. Evans","The EPICS Process Variable Gateway -- Version 2",
-P1_034,"C.H.Wang, J.Liu, J.Zhao","The Insertion Device Control In BEPC",
-P1_035,"L. Kopylov , I. Laugier, S. Merker, M. Mikheev","Development of the vacuum control system for the LHC.",
-P1_036,"V. Aleynikov, A. Nikiforov","QNX Based Software for Control System of FLNR",
-P1_037,"A.Gotz, P.Verdier, J.Coquet, A.Buteau, C.Scafuri","Abstract Device Pattern and TANGO",
-P1_038,"C.H.Wang, J.Zhao, J.Liu, S.Huang","Power Supply Control for BEPCII Rings and Transport",
-P1_040,"F. Gougnaud, Ph. De Antoni, Y. Lussignol, D. Arranger, G. Durand, D. Eppellé","The control system for the MIRI imager Ground Support Equipment",
-P1_042,"G. Thomas, K. Azarov, R. Barillère, S. Cabaret, N. Kulman, X.Pons, J. Rochez","LHC GCS A framework for the production of 23 homogeneous control systems",
-P1_043,"S.Page","Integration of the LHC Power Converters within the High-Level LHC Control System",
-P1_044,"A. Oates, G. Cox, A.J. Duggan, B. G. Martlew, P.H. Owens, A. Quigley, R.V. Rotheroe. ","Development of the Control System for ERLP",
-P1_045,"R.Jacobsson","Controlling Electronics Boards in LHCb with PVSS",
-P1_046,"C. Timossi, M. J. Chin","The Use of FPGAs As A Platform for Distributed Control Systems",
-P1_047,"K.H.Kim,M.K.Kim,M.K.Park,J.W.Choi,I.S.Choi,M.C.Kyum,M.Kwon","The integrated control system for KSTAR",
-P1_048,"N.P.Rees, W.C.Pulford, M.A.Norbury, P.J.Leicester, E.L.Jones, M.T.Heron, P.N.Denison","Development of Photon Beamlines at Diamond",
-P1_049,"M. Gonzalez-Berges, R. Barillere, F. Bernard","Frameworking A collaborative approach to control systems development",
-P1_050,"Kuotung Hsu, Jenny Chen, C. J. Wang, Teno Yang, K.H. Hu, C. Kuo","Integration of New Digital BPM in the Taiwan Light Source",
-P1_051,"D. Beck, H. Brand, S. Goette, F. Herfurth, C. Rauth, R. Savreux, S. Schwarz, C. Yazidjian","The CS Framework  a Labview Based Approach to SCADA Systems",
-P1_052,"T. A. Khan, C. H. Kuo, K. T. Hsu","Embedded Linux System for Accelerator Control Applications",
-P1_054,"F. Becheri, D. Beltran, R. Butzbach, D. Fernandez-Carreiras, J. Klora, P. Readman, E. Taurel","A tango based control system for a 3D measurement bench for magnets",
-P1_056,"P.C.Burkimsher","Scaling Up PVSS",
-P1_057,"D.Purcell,W. Blokland, C. Long","An In-Line Emittance Scanner Based On A LabVIEW Style State Machine With Sequencer",
-P1_058,"O. Pinazza, P. Antonioli, F. Cindolo, A. Polini, E. Scapparone, S. Sellitto","Customization and tuning of the Control System for the Time Of Flight detector of the ALICE experiment",
-P1_059,"L.T.Hoff","Experience with collaborative development for the Spallation Neutron Source from a partner lab perspective",
-P1_060,"T. Luigi , G. Paolo","The Development of Control and Measurement Components for Particle Accelerator Controls the role of Industrial Companies",
-P1_062,"R. Arcidiacono, V. Brigljevic, E. Cano, S. Cittolin, S. Erhan, D.Gigi, F.Glege, R.Gomez-Reino, M. Gulmini, J. Gutleber, C. Jacobs, G. Lo Presti, G. Maron, F. Meijers, E. Meschi, S. Murray, A. Oh, L. Orsini, M. Pieri, L. Pollet, A. Racz, P. Rosinsky, C. Schwick, I. Suzuki, J. Varela","CMS DCS Design Concepts",
-P1_064,"E. Barbero, F. Rodriguez-Mateos","Hardware Commissioning of the LHC Quality Assurance Follow-up and Storing of the Test Results",
-P1_068,"A.Ymashita, Y.Furukawa","WARCS Wide Area Remote Control System in SPring-8",
-P1_069,"D. Purcell, D. Murphy","Lessons Learned After Implementation and Management of Half of The SNS Diagnostics PC-based Input Output Controllers LOCS ",
-P1_070,"T.Bhattacharjee, A. Maiti, C. D. Datta, S.P. Bhagwat, D. Sarkar, S. Dasgupta ","Design and development of micro-controller based embedded system for different types of power supplies ",
-P1_071,"M.Joyce,M.Spata,T.Oren,A.Cuffe,T.McGuckin,I.Carlino,S.Higgens,H.Fanning,M.Bickley,B.Bevins","Software Support during a Control Room Upgrade",
-P1_072,"A. Bogomyagkov, S. Karnaev, S. Mishnev, I. Nikolaev, D. Shatilov, E. Simonov, V. Smaluk, BINP, Novosibirsk","Automation of Operations on the VEPP-4 Control System",
-P1_073,"E.McCrory,T.Bolshakov,V.Papadimitriou,A.J.Slaughter,A.Xiao","Operational Perspective on Maintaining the Java-Based Shot Data Acquisition System for the Tevatron Complex ",
-P1_074,"J.T. Morris, S. Binello, T.S. Clifford, T D'Ottavio, R.C. Lee, C. Whalen","Storage Techniques for RHIC Accelerator Data",
-P1_075,"F.H.Munson, R.C.Pardo, M.A.Power, R.C.Raffenetti, R.J.Carrier","Remote Control of the ATLAS Superconducting Accelerator",
-P1_076,"D. A. Dohan, N. D. Arnold","The APS Cable Database ",
-P1_077,"T. T. Nakamura, N. Yamamoto, T. Katoh","Data Archiving System in KEKB Accelerators Control System",
-P1_078,"T.Birke,B.Franksen,B.Kuner,R.Lange,P.Laux,R.Müller,G.Pfeiffer,J.Rahn","Beyond Devices - An improved RDB Data-Model for Configuration Management",
-P1_079,"T. Birke, B. Franksen, B. Kuner, R. Lange, P. Laux, R. Müller, G. Pfeiffer, J. Rahn","Use Case - Configuration Management with a generic RDB Data-Model",
-P1_080,"H. Sako, N. Kamikubota, H. Sakaki, H. Takahashi, H. Yoshikawa, M. Kawase, K. Watanabe","Relational database system for J-PARC LINAC and RCS",
-P1_081,"B. S. K. Srivastava, P. Fatnani","Comprehensive Machine Status Monitoring and Information Services Using Web Technology",
-P1_082,"B. Sarkar, A.De, S. K. Thakur, C. D. Datta, D. Sarkar, S.Saha","Control Strategy for the Main Magnet Power Supplies of the K-500 Superconducting Cyclotron",
-P1_083,"Y.R.Martin, S.Coda, B.P.Duval, X.Llobet, J.-M.Moret","A new plant control software for the TCV tokamak",
-P1_084,"H. Lutz, D. Anicic, A.C. Mezger, M. Gasche","The Configuration Databases for the PSI Proton Accelerator Controlsystems",
-P1_085,"R.Krempaska,A.Bertrand,M.Dach,D.Vermeulen,D.Zimoch","SLS Control System Software Management",
-P1_087,"E. Lécorché, P. Lermine","Use of the Ingres RDBMS inside the new Ganil Linux based control system",
-P1_088,"L. David","Linux migration of the Ganil control system",
-P1_089,"B.G.Martlew","The SRS Control System 25 Years of Operation and Development",
-P1_090,"S. Deghaye, L. Bojtar, Y. Georgievskiy, J. Serrano","Hardware Abstraction Layer in Oasis",
-P1_091,"D.Bolkhovityanov,N.Lebedev,A.Starostenko,A.Tsyganov","Design and Development of a Control System for Intence Source of Radioactive Ions Prototype ",
-P1_092,"K.S. Lee, E. Klassen, M.M. Mouat, J.J. Pon, P.J. Yogendran","Experience Porting TRIUMF's 500 MeV Cyclotron Central Control System Software to Intel's 64 bit Itanium Running OpenVMS",
-P1_093,"L.Hechler, K.Höppner, P. Kainberger, U.Krause, G.Schwarz","Replacement of Outdated VME Boards as Starting Point for Control System Modernization",
-P1_094,"G. Tkacik, M. Plesko, M. Clausen","Transplanting the success of Eclipse to control systems",
-P1_095,"D. Calcoen","THE G-64 BUS AT CERN AFTER 25 YEARS OF OPERATION",
-P1_096,"R.Evans, K.Jordan, D.Gruber, D.Sexton","DevLore  A Firmware Library and Web-Based Configuration Control for Accelerator Systems Under Constant Development",
-P1_098,"R.K.Agrawal,B.Merh,P.Fatnani,R.Yadav,S.Gangopadhyay","SCADA Functionality For Control Operations of Indus-2",
-P1_100,"I. Kriznar, M. Plesko, M. Sekoranja, P. Kolaric,W. Mexner","Migration From ACS 1.1 to ACS 4 at ANKA",
-P1_103,"W. Waggoner, M. Brnicky, M. Cherney, J. Fujita, and C. Hartsig","The STAR Slow Controls System - Status and Upgrade Plans",
-P1_104,"H. Kleines, M. Drochner, M. Wagener, F. Suxdorf, F.-J. Kayser,L.Schätzler, J. Heinen,  M. Heiderich, J. Neuhaus, J. Krüger","Implementation of the Control and Data Acquisition Systems for Neutron Scattering Experiments at the New Jülich Center for Neutron Science According to the Jülich-Munich Standard ",
-P1_105,"J.W.Humphrey,C.W.Allen,A.M.DeContreras,C.S.Moore","ARTEMIS the SLAC Accelerator Problem Reporting and Maintenance Scheduling Tool",
-P1_106,"V.Voevodin,L.Kim,E.Llimenkov,V.Komarov,V.Kuznetsov","Experience With The New Control System Of IHEP Accelerators Complex",
-P3_001,"M. Zelazny, T. Gromme, T. Himel, L. Hendrickson, K. Krauter","Recording PEP2 Ring Beam Losses at SLAC",
-P3_002,"S.Cabaret, R.Barillère, A.Rachid, H. Coppier","LHC GCS process tuning selection and use of PID and Smith Predictor for the regulations of the LHC experiments™ gas systems.",
-P3_003,"S.M. Shajedul Hasan, J. Tang, K. Kasemir, Y. W. Kang, M. Crofford, M. K. Howlader","EPICS Based High Power RF Conditioning Control System for the SNS Accelerator RF Test Facility",
-P3_005,"A. Rijllart, C. Charrondiere, B. Khomenko, M. Marchesotti, E. Michel, B. Pannetier, A. Raimondo, H. Reymond","Industrial Controls for Test Systems From Superconducting Strands TILL Magnet Fiducialisation In the Tunnel for the LHC Project",
-P3_007,"B.Kalantari,T.Korhonen","Enhancements of the Filling Pattern Controls at the Swiss Light Source",
-P3_008,"K.Hsu, J.Chen, C. J. Wang, T.Yang, K.H. Hu, Ch. Kuo","Automatic Beam Profile and Emittance Measurement For the Beam Transport Line",
-P3_009,"Yu.A.Bashmakov, V.A.Karpov","Control of Gamma-Beam Generation at the Synchrotron Pakhra by Nonlinear Resonance Excitation of Accelerated Bunches",
-P3_010,"V.Bocci,G.Chiodi,F.Iacoangeli,R.Nobrega,D.Pinci,W.Rinaldi","A Prototype of the LHCb Muon Detector Control System",
-P3_011,"D. Bulfone, R. De Monte, V. Forchi', G. Gaio, M. Lonza","Design of a Fast Global Orbit Feedback System for the ELETTRA Storage Ring",
-P3_012,"C. Briegel","BPM Search Algorithms for Beam Injection and Extraction at Fermilab",
-P3_014,"P. Gurd, F. Casagrande, M. McCarthy, W.H. Strong, V. Ganni","The Development of Automatic Sequences for the RF and Cryogenic Systems at the Spallation Neutron Source",
-P3_015,"J. Tang","A Dynamic System Model Validation Scheme with Fuzzy Logic Techniques",
-P3_016,"O.Aberle, R.Assmann, B.Goddard, V.Kain, M.Jonker, M.Lamont, R.Losito, A.Masi, R.Schmidt, C.Sicard, M.Sobczak","The Controls Architecture for the LHC Collimation System.",
-P3_017,"R. K. Agrawal, A. Chauhan, A. G. Bhujle, K. Saifee, M. Seema, P. Fatnani, S. Gangopadhyay, Y. Sheth","Synchronous Ramping Scheme for SRS INDUS-2",
-P3_020,"A. Antoine, E. Carlier, N. Voumard","The LHC Beam Dumping System Trigger Synchronisation and Distribution System",
-P3_021,"Y. Chernousko, A. Gonias, M. T. Heron, T. Korhonen,  E. Pietarinen, J. Pietarinen"," Progress in Timing System Developments for Diamond Light Source ",
-P3_022,"T.Nakamura,K.Kobayashi","FPGA Based Bunch-by-bunch Feedback Signal Processor",
-P3_024,"M. Ariola, L. Laborde, D. Mazon, D. Moreau, G. De Tommasi","Real time control of plasma profiles at JET",
-P3_025,"P.Chevtsov","Automated Image Quality Optimization for Synchrotron Light Interferometers",
-P3_027,"M.Mantovani","the automatic alignment system for the Virgo interferometer",
-P3_030,"I. S. Uzun, R. Bartolini, G. Rehm, J.A. Dobbing, M. T. Heron, J. Rowland ","Initial Design of the Fast Orbit Feedback System for DIAMOND Light Source",
-P3_031,"B.Todd, A.Dinius, P.Nouchi, B.Puccio, R.Schmidt ","The Architecture Design and Realisation of the LHC Beam Interlock System",
-P3_032,"J.R.Alexander, M.T.Heron","Upgrading the Daresbury Personnel Safety Interlock System",
-P3_033,"A.Agapov, A.Buchelnicov,A.Vaguine, A. Vikentjev, V.Mikheev, S. Poluektov","Informational and Analytical Route Safety Estimation and Risk Calculation System for Dangerous Object Transportation",
-P3_034,"A.D.Petrov, D.J.Nicklaus","Secure Client Tier for the Accelerator Control System",
-P3_035,"G.Dzieglewski, A.C.Mezger","Protection Mechanisms for a High Power Accelerator",
-P3_036,"R.Harrison, J.Brahy, P.Dahlen, B.Puccio, R.Schmidt, M.Zerlauth","Powering Interlock Systems at CERN with Industrial Controllers",
-P3_037,"B.Puccio, R.Schmidt., J.Wenninger","Beam Interlocking Stragety between the LHC and its Injector",
-P3_038,"P.Fraboulet","Application of advanced hardware testing and inventory management methods for the LHC power converter control system",
-P3_039,"L. T. Hoff","Experience with FPGA-based processor core as Front-end Computer",
-P3_040,"S.Ramamoorthy, J. Dabrowski, C. Nielson, W. Rambo, E. Zitvogel, J. Kulesza","NSLS Control System Interface to Parker 6K Motion Controller System",
-P3_041,"M. Riva, B. Esposito, D. Marocco","A Novel FPGA-based Digital Approach to Neutron/Gamma-Ray Pulse Acquisition and Discrimination in Scintillators",
-P3_042,"M.Werner, M.Zerlauth","A Fast Magnet Current Change Monitor for Machine Protection in HERA and the LHC",
-P3_043,"V.N.Boriskin,M.I.Ayzatsky,V.A.Gurin,V.A.Mats,A.N.Savchenko,A.A.Sarvilov,V.I.Tatanov","The Distribution Density Monitoring of Charged Particles By Computer Tomography Method",
-P3_044,"M. Giacchini, G. Bassato, F. Gramegna, R. Lange","An EPICS IOC on PC104",
-P3_045,"K.M. Ha, J.Y. Huang, S.C. Kim, J.H. Suh, J.H Kim, S.H. Jeong, H.S. Kang, J. Choi , I.S. Ko","PLS Fully Digital Controlled Corrector Power Supplies",
-P3_047,"Y.Suzuki, K.Agari, M.Ieiri, Y.Katoh, E.Hirose, M.Minakawa, H.Noumi, Y.Sato, H.Takahashi, M.Takasaki, K.H.Tanaka, A.Toyoda, Y.Yamada, Y.Yamanoi, H.Watanabe","GPIB to Serial Converter",
-P3_048,"H.Takebe,K.Tsumaki,C.Zhang,S.Matsui,H.Tanaka","Experiment and Installation of High Resolution Steering Magnet Power Supply for SPRING-8",
-P3_050,"T.Fukui, R.Tanaka, T.Ohata, Y.Otake","A Development of High-Speed A/D D/A Vme Boards for a Low Level RF System of SCSS",
-P3_051,"J.F. Gournay","Quench Data Acquisition and Slow Control for the Superconducting Magnet of the COMPASS Experiment",
-P3_053,"D. Dale, D. Bishop, T. Howland, H. Hui, R. Keitel, K. Langton, W. Roberts, E. Tikhomolov, G. Waters","Custom Electronic Modules for the TRIUMF/ISAC Control System",
-P3_054,"Y.Tian, B.Oerter","An Upgrade of Magnet-field-driven Timing Systems at the AGS",
-P3_055,"D. Curry, A. Hofler, H. Dong, T. Allison, J. Hovater, K. Mahoney","Implementation of an EPICS IOC on an Embedded Soft Core Processor Using Field Programmable Gate Arrays",
-P3_056,"R.A.Barlow,P.Bobbio,E.Carlier,G.Graewer,N.Voumard,R.Gjelsvik","The Beam Energy Tracking System",
-P3_058,"M.Sayed, W.Panschow","Actual FPGAs - The Way Out of Manifold Hardware Problems",
-P3_062,"F. Fontanelli, B.Jost, G. Mini, N. Neufeld, R.Abdel-Rahman, K. Rolli, M. Sannino","Interfacing Credit Card-sized PCs to Board Level Electronics ",
-P3_064,"B.Solar","Beam Position Monitor Digital Signal Conditioning",
-P3_065,"V.A.Andreev, E.A.Frolov, A.D.Kovalenko, I.I.Kulikov, B.V.Vasilishin, V.I.Volkov","Development of the Nuclotron LAN",
-P3_067,"J.Pisano,R.Amestica,J.Perez","ALMA Correlator Real-Time Data Processor",
-P3_068,"S. Luengo, J. Riera, S.Tortella, X. Vilasis, P. Perret, A. Comerma, D. Gascón, L. Garrido","SPD Very Front End Electronics",
-P3_069,"G. Jiang, J. Odagiri, N. Yamamoto, A. Akiyama, K. Furukawa, T. Katoh","Embedded EPICS on ITRON/SH4-based Controllers",
-P3_070,"A. Toyoda, K. Agari, H. Fujii, Y. Hayato, E. Hirose, M. Ieiri, Y. Igarashi, Y. Kato, H. Kodama, M. Minakawa, K. Nakayoshi, H. Noumi, Y. Sato, S. Sawada, Y. Suzuki, H. Takahashi, M. Takasaki, K. H. Tanaka, M. Tanaka, H. Watanabe, Y. Yamada, and Y. Yamanoi","Recent development of a monitoring system for beam line status at the J-PARC slow-extraction beam line",
-P3_071,"Yu. Krylov, Yu. Yupinov","Archiving and Monitoring of Status for KSRS",
-P3_072,"S. Chevtsov, B. Dalesio, K. Kasemir, C. McChesney","EPICS ArchiveViewer",
-P3_073,"N.D. Arnold, D. Dohan, A. Johnson, C. Saunders","Discovering Process-Variable-to-Signal Relationships in EPICS 3.x and 4.x",
-P3_074,"M. R. Kraimer, M. Rivers, E. Norum","EPICS Asynchronous Driver Support",
-P3_075,"S. Xu, M. R. Kraimer","Real Time Performance Measurements of EPICS IOCcore",
-P3_076,"P. Chu, S. Cousineau, V. Danilov, J. Galambos, T. Pelaia, A. Shishlo, C.K. Allen","SNS Application Programming Infrastructure and Physics Applications",
-P3_078,"R.Keitel","EdlBuild - Display Generation for the EPICS edm Display Manager",
-P3_079,"R.Nussbaumer,G.Waters","BACnet Support for EPICS",
-P3_081,"N. Kanaya, S. Sakasai, H. Yano, D. Kobayashi, S. Suenari,S. Suzuki, S. Sato","Graphic User Interface for Console Systems Using JAVA TMI for the 1.8GeV TSRF Synchrotron Radiation Source",
-P3_082,"T.Pal","Data-Driven User Interfaces Using Oracle Portal",
-P3_083,"K. H. Kim, M. K. Kim, M. K. Park, J. W. Choi, I. S. Choi, M. C. Kyum, M. Kwon","The PXI and VMEbus supports for the Linux based EPICS",
-P3_085,"T.Karcnik, M.Sprogar","Designing a Reusable Instrument Interface",
-P3_086,"C. Kuo, J.Chen, C. J. Wang, K. Hsu","Electronic Logbook by Using the Hypertext Preprocessor",
-P3_087,"A. Bertrand, R. Krempaska","EPICS on the WEB",
-P3_088,"J.H. Kim, J.M. Kim, K.M. Ha, H.S. Kang, J. Choi, I.S. KoPohang","Upgrade of the PLS LINAC Control System",
-P3_089,"M.Sekoranja","Native Java implementation of Channel Access for EPICS",
-P3_092,"J. Galambos, C. Chu, J. Patton, T. Pelaia, A. Shishlo, SNS","Database Use in Application Programming at SNS",
-P3_093,"J.B.Lister,L.Appel,G.Huysmans,Ch.Schlatter,W.Suttrop","Creating an XML Driven Data Bus between Fusion Experiments",
-P3_094,"M.Arruat, S. Jackson, J-L. Nougaret, M. Peryt","Use of WML Technologies for Data-driven Accelerator Controls",
-P3_095,"A. Aladwan,  A. Bertrand,  M. Dach,  S. Hunt,  R. Krempaska,  E. Zimoch","Image Acquisition and Processing at the Swiss Light Source",
-P3_096,"J.Hill","A 2nd Generation Network Distributed Application Programming Interface for EPICS",
-P3_098,"R. Yadav, P. Fatnani","A Modular Control Package for Automation of Indus-2 Low Conductivity Water LCW Plant",
-P3_099,"X. Geng, J.Butler, A. Zaltsman, L. Hoff","ANS Ring High Power RF Control System",
-P3_100,"T.Samanta, D.Sarkar, S.Dasgupta","PC-PLC Based Vacuum Control System For Superconducting Cylotron At VECC",
-P3_101,"M.Bickley, P. Chevtsov","New GPIB Control Software at Jefferson Lab",
-P3_102,"P. Gurd, G. Lawson, D.H. Thompson, E. Williams","The Application of Linux Soft IOCs for Status Summaries at the Spallation Neutron Source",
-P3_104,"V.Komarov,G.Antonichev,L.Kim,V.Kokovin,N.Krotov,V.Kuznetsov,Yu.Milichenko,N.Radomsky,V.Voevodin","Modernization of U-70 General Timing System",
-P3_106,"A.Augustinus, J.Baechler, M. Boccioli, U. Frankenfeld, L.Jirden","Very High Voltage Control for ALICE TPC",
+I1_001,B. Frammery,The LHC Control System,na
+I1_002,"B.E. Glendenning, G. Raffi",The ALMA Computing Project Œ Update and Management Approach,na
+I2_002,"L.J.Lagin, R.Bettenhausen, R.Beeler, G.Bowers, R.Carey, D.Casavant, B.Cline, R.Demaret, D.Domyancic, S.Elko, J.Fisher, M.Hermann, J.Krammen, T.Kohut, C.Marshall, D. Mathisen, A.Ludwigsen, R.Patterson, R.Sanchez, E.Stout, P.Van Arsdall, B.Van Wonterghem",Shot Automation for the National Ignition Facility,na
+I3_001,"T. Fountain, A. McCarthy, F. Peng","PCI Express: an Overview of PCI Express, Cabled PCI Express and PXI Express ",na
+I3_002,"Ph.Gayet , R. Barillere",UNICOS a Framework to Build Industry Like Control Systems Principles Methodology,na
+I3_003,"G.Chiozzi,A.Caproni,R.Cirami,P.DiMarcantonio,D.Fugate,S.Harrington,B.Jeram,M.Plesko,M.Sekoranja,H.Sommer,K.Zagar",The ALMA Common Software ACS - Status and Developments,na
+I4_002,"T. Larrieu, Y. Roblin, K. White, R. Slominski",Evaluating the Potential of Commercial GIS for Accelerator Configuration Management,na
+I5_003,"F.J.Busto,F.J.Varas",Knowledge Enabled Services KES for Decision Support in Control Rooms. CESADS KES Case Study at ESA/ESOC.,na
+O1_001,P.LaPenna,The Status of VIRGO,na
+O1_002,"P.J. Van Arsdall, R. Bryant, R. Carey, D. Casavant, L. Lagin, R. Patterson",Status of the National Ignition Facility and Control System,na
+O1_003,"K. v.d. Schaaf , E. Lawerman",SCADA in the LOFAR radio telescope,na
+O1_004,"T.Fukui, R.Tanaka, T.Ohata, M.Takeuchi, Y.Otake, M.Kitamura, T. Ishikawa, H. Kitamura, T. Shintake and SCSS project team",Status of The SCSS Control System  First Phase of an 8Gev XFEL Project In SPRING-8,na
+O1_005,"L.Battistello, D.Bulfone, V.Forchi', F.Giacuzzo, G.Gaio, M.Lonza, R.Marizza, R.Passuello, L.Pivetta, C.Scafuri, L.Zambon",The Control System Of The ELETTRA Booster Injector,na
+O1_006,"P.Adzic, F.Beaudette, G.Dissertori, R.Gomez-Reino, G.Leshev, A.Lister,D.Maletic, P.Milenovic, R.Ofierzynski, J.Puzovic, A.Sytin, S.Zelepoukine",The detector control system for the electromagnetic calorimeter of the CMS experiment at the LHC,na
+O1_007,"T. Katoh, K. Furukawa, N. Kamikubota, H. Nakagawa, J. Odagiri, Y. Takeuchi, N. Yamamoto,  H. Kiyomichi, H. Sakaki, H. Sako, G-B. Shen, H. Takahashi, H. Yoshikawa",Towards the Commissioning of J-PARC,na
+O1_008,"A.Augustinus,P.Chochula,G.DeCataldo,L.Jirden,S.Popescu",ALICE detector control status report,na
+O1_009,"J.Cuperus, M.Peryt, E.Roux, J.Schinzel",The Directory Service for the CERN Accelerator Control Application Programs,na
+O1_010,"L.Abadie,E.v.Herwijnen,C.Gaspar,B.Jost,N.Neufeld,R.Jacobsson",The LHCB Configuration Database,na
+O1_011,"F.Carena, W.Carena, S.Chapeland, R. Divià, J-C.Marin, K.Schossmaier, C. Soós, P. Vande Vyvre, A. Vascotto",The ALICE Experiment Control System,na
+O1_012,"G-H. Hemelsoet, J.Axensalva, V. Chohan,   E.Veyrunes",Cryogenic Magnet Tests for the LHC: Process Operation Using Web-based Tools and Facilities,na
+O1_013,"J.Serrano,A.Rohlev,I.Kozsar",FPGA-based Low Level Control of CERN's LINAC 3 Cavities,na
+O1_014,"A. Balzer, P.Bischoff, R. Follath, D. Herrendörfer, G. Reichardt, P. Stange",Diagnostics and Optimization Procedures for Beamline Control at BESSY,na
+O1_015,"M.Park, K.H.Kim, M.C.Kyum, M.Kwon",Development of a Time Synchronization System for Kstar With a VME-Bus System,na
+O2_001,"R.W. Carey, R. Bettenhausen, C. Estes, J. Fisher, J. Krammen, L. Lagin, A. Ludwigsen, D. Mathisen, J. Matone, R. Patterson, C. Reynolds, R. Sanchez, E. Stout, J. Tappero, P. VanArsdall",Status of the use of Large-Scale CORBA Distributed Software Framework for NIF Controls,na
+O2_003,"A. Vodovnik, K. Zagar",Model Driven Architecture Control Systems and Eclipse,na
+O2_004,F.Carbognani,Automation of the Lock Acquisition of the 3 Km ARM VIRGO Interferometer,na
+O2_006,"A.Barriuso-Poy,H.Burckhart,L.Carminati,J.Cook,V.Filimonov,V.Khomutnikov,Y.Ryabov,F.Varela",Hierarchical Control for the ATLAS Experiment,na
+O2_007,S.Poulsen,Best Practices in the Design of a Secure Control System,na
+O2_008,"M.Ishii, T.Fukui, M.Kodera, T.Ohata, R.Tanaka",Construction and Management of a Secure Network in SPring-8,na
+O2_009,U. Epting,Computing and Network Infrastructure for Controls CNIC ,na
+O2_010,"G. Morpurgo, R. B. Flockhart, S. Lüders",The Software for the CERN Detector Safety System,na
+O2_011,"S. K.Feng, D. P.Siddons, T.Straumann, M. Heron, S. Singleton",EPICS/RTEMS/MVME5500 for Real-time Controls at NSLS,na
+O2_012,"K.Rehlich,A.Agababyan,G.Asova,G.Dimitrov,G.Grygiel,B.Fominykh,O.Hensler,R.Kammering,L.Petrosyan,V.Rybnikov,G.Trowitzsch,M.Winde,T.Wilksen",Integrating a Fast Data Acquisition System into the DOOCS Control System,na
+O2_013,"J.Bobnar, M.Sekoranja, I.Verstovsek",Visual DCT's Latest Hits,na
+O2_014,"D. Fernández-Carreiras, F.Becheri, D. Beltran, R. ButzBach, J. Klora, E. Taurel",Status of the Alba control system,na
+O2_015,"V.I.Zaitsev, A.V.Kartashov, N.I.Lachtjushko",Present Status of the ANGARA-5 Fusion Facility Control System,na
+O2_016,S.M.Schmeling,A Summary of the IEEE Real Time 2005 Conference held at Stockholm,na
+O3_001,"F. Fontanelli, B. Jost, G. Mini, N. Neufeld, M. Sannino",Embedded PCs for Electronics Control in LHCB,na
+O3_002,"T. Masuda, T. Fukui, R. Tanaka",Development of a Linux-based small-size controller using PoE technology,na
+O3_003,"F. Biancat-Marchet, A. Baudry",Advanced Hardware Technology in ALMA Backend and Correlator,na
+O3_004,"D.Breton,D.Charlet,P.Robbe,I.Videau",SPECS a Serial Protocol for the Experiment,na
+O3_005,"O.Holme,M.Gonzalez-Berges,P.Golonka,S.Schmeling",The JCOP Framework,na
+O3_006,"E.Taurel, D. Fernandez, M. Ounsy, C. Scafuri",The Tango collaboration Status and some of the latest developments,na
+O3_007,"C. Saunders, D.A. Dohan, N.D. Arnold",The IRMIS Object Model and Services API,na
+O3_008,"F.Bernard,E.Blanco,A.Egorov,P.Gayet,H.Milcent,C.H.Sicard",Deploying the UNICOS Industrial Controls Framework In Multiple Projects and Architectures,na
+O3_009,"A. Farris, R. Marson, J. Kern",The ALMA Telescope Control System,na
+O3_010,"I.Verstovsek, J. Kamenik",Management System Based on Open Source Tools,na
+O3_011,E.van Herwijnen,Control and monitoring of on-line trigger algorithms using Gaucho,na
+O3_012,L.Pivetta,Development of the TANGO Alarm System,na
+O3_013,"G. Raupp, G. Neu, R. Cole, K. Lueddecke, T. Vijverberg, W. Treutterer, D. Zasche, Th. Zehetbauer",Experiment Management System for the ASDEX Upgrade Tokamak,na
+O3_014,"R. K. Agrawal, A.Chauhan, A. M. Gupta, B. Merh, P. Fatnani, S. Gangopadhyay",Software Scenario for Control System of INDUS-2,na
+O3_015,D. J. Nicklaus,The Controls System for the Superconducting Module Test Facility,na
+O3_016,"M.Boege,J.Chrin",Developments to the SLS CORBA Framework for High Level Software Applications,na
+O3_017,"D. Fugate, G. Chiozzi, A. Caproni, B. Jeram, H. Sommer, S. Harrington",A generic software interface simulator for ALMA common software,na
+O3_018,S.B.Wampler,A middleware-neutral common services software infrastructure,na
+O3_019,M.Beharrell,OPC evolution toward UNIX from Windows to World Wide Domination ,na
+O3_020,"G. Bassato, S. Canella, A. Battistella",The control of the new PIAVE injector at LNL,na
+O3_021,"P.Fatnani, N. Lulani, A.Gupta, A.Chouhan, A. A. S. Walia",Orbit Control For INDUS-2 Storage Ring,na
+O3_022,Q. King,Advanced uses of the WorldFIP fieldbus for diverse communications applications within the LHC power converter control system,na
+O4_001,"M. Bickley, K. S. White",Structuring an EPICS System to Optimize Reliability Performance and Cost,na
+O4_002,"T.Ohata, M.Ishii",A study of introduction of the virtualization technology into operator consoles,na
+O4_005,"M. Greenwald, D. Schissel, J. Burruss, T. Fredian, J. Lister, J. Stillerman",Visions for data management and remote collaboration for ITER,na
+O4_007,"S. Deghaye, L. Bojtar, Y. Georgievskiy, J. Serrano",OASIS Status Report,na
+O4_008,"S.Jackson, P.Karlsson",The introduction of hierarchical structure and application security to Java Web Start deployment,na
+O4_009,"T.Lam,A.Götz",Leveraging the Eclipse Ecosystem for the Scientific Community,na
+O4_010,"R.Pugliese, F.Asnicar, L.Del Cano, C.Scafuri , G.Maron",The GRIDCC project providing a real-time Grid for for distributed instrumentation,na
+O4_011,"G. Segura, D. Perrin, L. Scibile",RAMSES Radiation Monitoring System for the Environment and Safety,na
+O4_012,"E. Carrone, A. Tsirou, P.G. Verdini",A Discrete Event System the CMS Tracker Interlocks,na
+O4_013,K.Zagar,Dependability Considerations in Distributed Control Systems,na
+O4_014,"R.Evans, A.Grippo, K.Jordan",A Versatile Carrier Board and Associated Timer Module Applications,na
+O4_015,"P. Betinelli-Deck, A. Buteau, D. Corruble, B. Gagey, N. Leclercq, M. Ounsy, J.P. Ricaud",Status of the SOLEIL Control System,na
+O5_001,"M. Arruat, S. Jackson, J-L. Nougaret, M. Peryt",Equipment Software Modelling for Accelerator Controls,na
+O5_003,"C. Gaspar, B. Franek",Tools for the Automation of Large Control Systems,na
+O5_004,J. Gutleber,HYPERDAQ  Where Data Acquisition Meets the Web,na
+O5_005,"F.Poncet, JL.Pons",Tango Application Toolkit,na
+O5_006,F.Carbognani,Software Engineering for the Virgo Project at EGO,na
+O5_007,"G. Thomas, K. Azarov, R. Barillère, S. Cabaret, N. Kulman, X.Pons, J. Rochez",LHC GCS A model-driven approach for automatic PLC and SCADA code generation,na
+O5_008,S.Luders,Control Systems Under Attack,na
+O5_010,"M.Clausen,G.Tkacik",EPICS Office,na
+P1_001,"Y. Sato, K. Agari, M. Ieiri, Y. Katoh, H. Kodama, E. Hirose, Y. Igarashi, S. Inaba, M. Minakawa, K. Nakayoshi, H. Noumi, M. Saito, S. Sawada, Y. Suzuki, H. Takahashi, M. Takasaki, K. H. Tanaka, A. Toyoda, Y. Yamada, Y. Yamanoi, H. Watanabe",Progress of a Control System for Slow-Extraction Beam Lines at J-PARC,na
+P1_002,V.Alferov,A Cryo Complex Control System,na
+P1_003,"R.Keitel, D.Bishop, D.Dale, T.Howland, H.Hui, K.Langton, M.Leross, R. Nussbaumer, C.Payne, K.Pelzer, J.Richards, E.Tikhomolov,G.Waters",The ISAC Control System - Phase II,na
+P1_004,"C. Neri, A. Coletti, M. Riva , F. Pollastrone",The Laser In Vessel Viewing System IWS For ITER Present Status And New Developments Of The Control Processing And Data Visualization Sytems,na
+P1_005,"V. Androsov, I. Drebot, P. Gladkikh, V. Grevtsev, V. Ivashchenko, I. Karnaukhov, V. Kozin, V. Layshchenko, V. Markov, N. Mocheshnikov, A.Mytsykov, F. Peev, A. Rezayev, A. Shcherbakov, Yu. Telegin, V. Trotsenko, A.Zelinsky, R.Tatchyn",Progress In Development Of Kharkov X-Ray Generator Nestor,na
+P1_009,"H.Takahashi,H.Sakaki,H.Sako,H.Yoshikawa,M.Kawase,Y.Kato,Y.Itoh,M.Sugimoto",Data acquisition system for J-PARC 3GeV RCS,na
+P1_010,"D.Anicic, G.Dave, M.Gasche, T.Korhonen, H.Lutz, A.C.Mezger",PROSCAN Control System Status Report,na
+P1_011,"P.Schütt, U.Krause, R.Bär, B.Franczak, G.Fröhlich, L.Hechler, A.Redelbach, S.Richter, V.Schaa, W.Schiebel",Operation Modes and Controls Aspects of FAIR,na
+P1_012,"P.deVicente, R.Bolaño, L.Barbas",Development of the control system for the 40m radiotelescope of the OAN using the Alma Common Software,na
+P1_016,"T. Henss, K.-H. Becks, J. Boek, M. Imhaeuser, S. Kersten, P. Kind, K. Lantzsch, P. Maettig, J. Schultes",Hard - and Software of the ATLAS Pixel Detector Control System,na
+P1_017,"G. De Cataldo, A. Franco, I. Sgura, A.Tauro",The Detector Control System for the HMPID Detector In the Alice Experiment at LHC,na
+P1_018,"M. T. Heron, M. G. Abbott, P.  H. Amos, K. A. R. Baker, C. A. Colborne, P. N. Denison, I. J. Gillingham, A. Gonias, P. Hamadyk, S. Lay, M. A. Leech, P. J. Leicester, M. McClory, M. A. Norbury, N. P. Rees, A. J. Rose, J. Rowland, S. J. Singleton, K. Vijayan,  I. S. Uzun,  A. J. Duggan, P. H. Owens, S. Hunt",Progress on the Implementation of the Diamond Control System,na
+P1_019,"S.Pal,T.Bhattacharjee,A.Roy,R.B.Bhole,M.Das,B.Sarkar,L.Chowdhury,S.Dasgupta",Progress of computerization in VEC modernisation,na
+P1_021,"J.Zhao,C.H.Wang,G.Lei,W.C.Gao,K.J.Yue,J.Liu,G.Li,Z.Zhao",Status of the BEPCII control system,na
+P1_023,"E. Matias, R. Berg, N. Johnson, T. Johnson, M. McKibben, R. Tanner, T. Wilson, G. Wright and H. Zang ",The Canadian Light Source Control System Lessons Learned From Building a Synchratoron and Beamlines Control System,na
+P1_024,"M.Ooi, T.Kai, S.Meigo, H.Kinoshita, K.Sakai, S.Sakamoto, M.Kaminaga, T.Katoh, T.Katoh",Development of Beam Monitor DAQ system for 3NBT at J-PARC,na
+P1_025,"R. Baer, H. Eickhoff, U. Weinrich, P. Frankenbach",Status and Conceptual Design of the Control System for the Heavy Ion Therapy Accelerator Facility HICAT,na
+P1_028,"A. Butterworth, J. Molendijk, R. Sorokoletov, F. Weierud",Control of the low level RF system of the Large Hadron Collider,na
+P1_029,"Y.Xinglin,Panjian,Wangyuan",Design and Implementation of Control System for 4MeV LIA,na
+P1_030,"G. Morpurgo, R. B. Flockhart, S. Lüders",The DSS Synoptic Facility,na
+P1_031,"T. Qing, D. Wenfeng, X. Weiping",A Preliminary Design of a Control and Monitoring System Based on Network for a Pulsed Power Device,na
+P1_032,"P. Di Marcantonio, R. Cirami, B. Jeram, G. Chiozzi",Transmitting huge amounts of data design implementation and performance of the Bulk Data transfer mechanism in ACS,na
+P1_033,K. Evans,The EPICS Process Variable Gateway -- Version 2,na
+P1_034,"C.H.Wang, J.Liu, J.Zhao",The Insertion Device Control In BEPC,na
+P1_035,"L. Kopylov , I. Laugier, S. Merker, M. Mikheev",Development of the vacuum control system for the LHC.,na
+P1_036,"V. Aleynikov, A. Nikiforov",QNX Based Software for Control System of FLNR,na
+P1_037,"A.Gotz, P.Verdier, J.Coquet, A.Buteau, C.Scafuri",Abstract Device Pattern and TANGO,na
+P1_038,"C.H.Wang, J.Zhao, J.Liu, S.Huang",Power Supply Control for BEPCII Rings and Transport,na
+P1_040,"F. Gougnaud, Ph. De Antoni, Y. Lussignol, D. Arranger, G. Durand, D. Eppellé",The control system for the MIRI imager Ground Support Equipment,na
+P1_042,"G. Thomas, K. Azarov, R. Barillère, S. Cabaret, N. Kulman, X.Pons, J. Rochez",LHC GCS A framework for the production of 23 homogeneous control systems,na
+P1_043,S.Page,Integration of the LHC Power Converters within the High-Level LHC Control System,na
+P1_044,"A. Oates, G. Cox, A.J. Duggan, B. G. Martlew, P.H. Owens, A. Quigley, R.V. Rotheroe. ",Development of the Control System for ERLP,na
+P1_045,R.Jacobsson,Controlling Electronics Boards in LHCb with PVSS,na
+P1_046,"C. Timossi, M. J. Chin",The Use of FPGAs As A Platform for Distributed Control Systems,na
+P1_047,"K.H.Kim,M.K.Kim,M.K.Park,J.W.Choi,I.S.Choi,M.C.Kyum,M.Kwon",The integrated control system for KSTAR,na
+P1_048,"N.P.Rees, W.C.Pulford, M.A.Norbury, P.J.Leicester, E.L.Jones, M.T.Heron, P.N.Denison",Development of Photon Beamlines at Diamond,na
+P1_049,"M. Gonzalez-Berges, R. Barillere, F. Bernard",Frameworking A collaborative approach to control systems development,na
+P1_050,"Kuotung Hsu, Jenny Chen, C. J. Wang, Teno Yang, K.H. Hu, C. Kuo",Integration of New Digital BPM in the Taiwan Light Source,na
+P1_051,"D. Beck, H. Brand, S. Goette, F. Herfurth, C. Rauth, R. Savreux, S. Schwarz, C. Yazidjian",The CS Framework  a Labview Based Approach to SCADA Systems,na
+P1_052,"T. A. Khan, C. H. Kuo, K. T. Hsu",Embedded Linux System for Accelerator Control Applications,na
+P1_054,"F. Becheri, D. Beltran, R. Butzbach, D. Fernandez-Carreiras, J. Klora, P. Readman, E. Taurel",A tango based control system for a 3D measurement bench for magnets,na
+P1_056,P.C.Burkimsher,Scaling Up PVSS,na
+P1_057,"D.Purcell,W. Blokland, C. Long",An In-Line Emittance Scanner Based On A LabVIEW Style State Machine With Sequencer,na
+P1_058,"O. Pinazza, P. Antonioli, F. Cindolo, A. Polini, E. Scapparone, S. Sellitto",Customization and tuning of the Control System for the Time Of Flight detector of the ALICE experiment,na
+P1_059,L.T.Hoff,Experience with collaborative development for the Spallation Neutron Source from a partner lab perspective,na
+P1_060,"T. Luigi , G. Paolo",The Development of Control and Measurement Components for Particle Accelerator Controls the role of Industrial Companies,na
+P1_062,"R. Arcidiacono, V. Brigljevic, E. Cano, S. Cittolin, S. Erhan, D.Gigi, F.Glege, R.Gomez-Reino, M. Gulmini, J. Gutleber, C. Jacobs, G. Lo Presti, G. Maron, F. Meijers, E. Meschi, S. Murray, A. Oh, L. Orsini, M. Pieri, L. Pollet, A. Racz, P. Rosinsky, C. Schwick, I. Suzuki, J. Varela",CMS DCS Design Concepts,na
+P1_064,"E. Barbero, F. Rodriguez-Mateos",Hardware Commissioning of the LHC Quality Assurance Follow-up and Storing of the Test Results,na
+P1_068,"A.Ymashita, Y.Furukawa",WARCS Wide Area Remote Control System in SPring-8,na
+P1_069,"D. Purcell, D. Murphy",Lessons Learned After Implementation and Management of Half of The SNS Diagnostics PC-based Input Output Controllers LOCS ,na
+P1_070,"T.Bhattacharjee, A. Maiti, C. D. Datta, S.P. Bhagwat, D. Sarkar, S. Dasgupta ",Design and development of micro-controller based embedded system for different types of power supplies ,na
+P1_071,"M.Joyce,M.Spata,T.Oren,A.Cuffe,T.McGuckin,I.Carlino,S.Higgens,H.Fanning,M.Bickley,B.Bevins",Software Support during a Control Room Upgrade,na
+P1_072,"A. Bogomyagkov, S. Karnaev, S. Mishnev, I. Nikolaev, D. Shatilov, E. Simonov, V. Smaluk, BINP, Novosibirsk",Automation of Operations on the VEPP-4 Control System,na
+P1_073,"E.McCrory,T.Bolshakov,V.Papadimitriou,A.J.Slaughter,A.Xiao",Operational Perspective on Maintaining the Java-Based Shot Data Acquisition System for the Tevatron Complex ,na
+P1_074,"J.T. Morris, S. Binello, T.S. Clifford, T D'Ottavio, R.C. Lee, C. Whalen",Storage Techniques for RHIC Accelerator Data,na
+P1_075,"F.H.Munson, R.C.Pardo, M.A.Power, R.C.Raffenetti, R.J.Carrier",Remote Control of the ATLAS Superconducting Accelerator,na
+P1_076,"D. A. Dohan, N. D. Arnold",The APS Cable Database ,na
+P1_077,"T. T. Nakamura, N. Yamamoto, T. Katoh",Data Archiving System in KEKB Accelerators Control System,na
+P1_078,"T.Birke,B.Franksen,B.Kuner,R.Lange,P.Laux,R.Müller,G.Pfeiffer,J.Rahn",Beyond Devices - An improved RDB Data-Model for Configuration Management,na
+P1_079,"T. Birke, B. Franksen, B. Kuner, R. Lange, P. Laux, R. Müller, G. Pfeiffer, J. Rahn",Use Case - Configuration Management with a generic RDB Data-Model,na
+P1_080,"H. Sako, N. Kamikubota, H. Sakaki, H. Takahashi, H. Yoshikawa, M. Kawase, K. Watanabe",Relational database system for J-PARC LINAC and RCS,na
+P1_081,"B. S. K. Srivastava, P. Fatnani",Comprehensive Machine Status Monitoring and Information Services Using Web Technology,na
+P1_082,"B. Sarkar, A.De, S. K. Thakur, C. D. Datta, D. Sarkar, S.Saha",Control Strategy for the Main Magnet Power Supplies of the K-500 Superconducting Cyclotron,na
+P1_083,"Y.R.Martin, S.Coda, B.P.Duval, X.Llobet, J.-M.Moret",A new plant control software for the TCV tokamak,na
+P1_084,"H. Lutz, D. Anicic, A.C. Mezger, M. Gasche",The Configuration Databases for the PSI Proton Accelerator Controlsystems,na
+P1_085,"R.Krempaska,A.Bertrand,M.Dach,D.Vermeulen,D.Zimoch",SLS Control System Software Management,na
+P1_087,"E. Lécorché, P. Lermine",Use of the Ingres RDBMS inside the new Ganil Linux based control system,na
+P1_088,L. David,Linux migration of the Ganil control system,na
+P1_089,B.G.Martlew,The SRS Control System 25 Years of Operation and Development,na
+P1_090,"S. Deghaye, L. Bojtar, Y. Georgievskiy, J. Serrano",Hardware Abstraction Layer in Oasis,na
+P1_091,"D.Bolkhovityanov,N.Lebedev,A.Starostenko,A.Tsyganov",Design and Development of a Control System for Intence Source of Radioactive Ions Prototype ,na
+P1_092,"K.S. Lee, E. Klassen, M.M. Mouat, J.J. Pon, P.J. Yogendran",Experience Porting TRIUMF's 500 MeV Cyclotron Central Control System Software to Intel's 64 bit Itanium Running OpenVMS,na
+P1_093,"L.Hechler, K.Höppner, P. Kainberger, U.Krause, G.Schwarz",Replacement of Outdated VME Boards as Starting Point for Control System Modernization,na
+P1_094,"G. Tkacik, M. Plesko, M. Clausen",Transplanting the success of Eclipse to control systems,na
+P1_095,D. Calcoen,THE G-64 BUS AT CERN AFTER 25 YEARS OF OPERATION,na
+P1_096,"R.Evans, K.Jordan, D.Gruber, D.Sexton",DevLore  A Firmware Library and Web-Based Configuration Control for Accelerator Systems Under Constant Development,na
+P1_098,"R.K.Agrawal,B.Merh,P.Fatnani,R.Yadav,S.Gangopadhyay",SCADA Functionality For Control Operations of Indus-2,na
+P1_100,"I. Kriznar, M. Plesko, M. Sekoranja, P. Kolaric,W. Mexner",Migration From ACS 1.1 to ACS 4 at ANKA,na
+P1_103,"W. Waggoner, M. Brnicky, M. Cherney, J. Fujita, and C. Hartsig",The STAR Slow Controls System - Status and Upgrade Plans,na
+P1_104,"H. Kleines, M. Drochner, M. Wagener, F. Suxdorf, F.-J. Kayser,L.Schätzler, J. Heinen,  M. Heiderich, J. Neuhaus, J. Krüger",Implementation of the Control and Data Acquisition Systems for Neutron Scattering Experiments at the New Jülich Center for Neutron Science According to the Jülich-Munich Standard ,na
+P1_105,"J.W.Humphrey,C.W.Allen,A.M.DeContreras,C.S.Moore",ARTEMIS the SLAC Accelerator Problem Reporting and Maintenance Scheduling Tool,na
+P1_106,"V.Voevodin,L.Kim,E.Llimenkov,V.Komarov,V.Kuznetsov",Experience With The New Control System Of IHEP Accelerators Complex,na
+P3_001,"M. Zelazny, T. Gromme, T. Himel, L. Hendrickson, K. Krauter",Recording PEP2 Ring Beam Losses at SLAC,na
+P3_002,"S.Cabaret, R.Barillère, A.Rachid, H. Coppier",LHC GCS process tuning selection and use of PID and Smith Predictor for the regulations of the LHC experiments™ gas systems.,na
+P3_003,"S.M. Shajedul Hasan, J. Tang, K. Kasemir, Y. W. Kang, M. Crofford, M. K. Howlader",EPICS Based High Power RF Conditioning Control System for the SNS Accelerator RF Test Facility,na
+P3_005,"A. Rijllart, C. Charrondiere, B. Khomenko, M. Marchesotti, E. Michel, B. Pannetier, A. Raimondo, H. Reymond",Industrial Controls for Test Systems From Superconducting Strands TILL Magnet Fiducialisation In the Tunnel for the LHC Project,na
+P3_007,"B.Kalantari,T.Korhonen",Enhancements of the Filling Pattern Controls at the Swiss Light Source,na
+P3_008,"K.Hsu, J.Chen, C. J. Wang, T.Yang, K.H. Hu, Ch. Kuo",Automatic Beam Profile and Emittance Measurement For the Beam Transport Line,na
+P3_009,"Yu.A.Bashmakov, V.A.Karpov",Control of Gamma-Beam Generation at the Synchrotron Pakhra by Nonlinear Resonance Excitation of Accelerated Bunches,na
+P3_010,"V.Bocci,G.Chiodi,F.Iacoangeli,R.Nobrega,D.Pinci,W.Rinaldi",A Prototype of the LHCb Muon Detector Control System,na
+P3_011,"D. Bulfone, R. De Monte, V. Forchi', G. Gaio, M. Lonza",Design of a Fast Global Orbit Feedback System for the ELETTRA Storage Ring,na
+P3_012,C. Briegel,BPM Search Algorithms for Beam Injection and Extraction at Fermilab,na
+P3_014,"P. Gurd, F. Casagrande, M. McCarthy, W.H. Strong, V. Ganni",The Development of Automatic Sequences for the RF and Cryogenic Systems at the Spallation Neutron Source,na
+P3_015,J. Tang,A Dynamic System Model Validation Scheme with Fuzzy Logic Techniques,na
+P3_016,"O.Aberle, R.Assmann, B.Goddard, V.Kain, M.Jonker, M.Lamont, R.Losito, A.Masi, R.Schmidt, C.Sicard, M.Sobczak",The Controls Architecture for the LHC Collimation System.,na
+P3_017,"R. K. Agrawal, A. Chauhan, A. G. Bhujle, K. Saifee, M. Seema, P. Fatnani, S. Gangopadhyay, Y. Sheth",Synchronous Ramping Scheme for SRS INDUS-2,na
+P3_020,"A. Antoine, E. Carlier, N. Voumard",The LHC Beam Dumping System Trigger Synchronisation and Distribution System,na
+P3_021,"Y. Chernousko, A. Gonias, M. T. Heron, T. Korhonen,  E. Pietarinen, J. Pietarinen", Progress in Timing System Developments for Diamond Light Source ,na
+P3_022,"T.Nakamura,K.Kobayashi",FPGA Based Bunch-by-bunch Feedback Signal Processor,na
+P3_024,"M. Ariola, L. Laborde, D. Mazon, D. Moreau, G. De Tommasi",Real time control of plasma profiles at JET,na
+P3_025,P.Chevtsov,Automated Image Quality Optimization for Synchrotron Light Interferometers,na
+P3_027,M.Mantovani,the automatic alignment system for the Virgo interferometer,na
+P3_030,"I. S. Uzun, R. Bartolini, G. Rehm, J.A. Dobbing, M. T. Heron, J. Rowland ",Initial Design of the Fast Orbit Feedback System for DIAMOND Light Source,na
+P3_031,"B.Todd, A.Dinius, P.Nouchi, B.Puccio, R.Schmidt ",The Architecture Design and Realisation of the LHC Beam Interlock System,na
+P3_032,"J.R.Alexander, M.T.Heron",Upgrading the Daresbury Personnel Safety Interlock System,na
+P3_033,"A.Agapov, A.Buchelnicov,A.Vaguine, A. Vikentjev, V.Mikheev, S. Poluektov",Informational and Analytical Route Safety Estimation and Risk Calculation System for Dangerous Object Transportation,na
+P3_034,"A.D.Petrov, D.J.Nicklaus",Secure Client Tier for the Accelerator Control System,na
+P3_035,"G.Dzieglewski, A.C.Mezger",Protection Mechanisms for a High Power Accelerator,na
+P3_036,"R.Harrison, J.Brahy, P.Dahlen, B.Puccio, R.Schmidt, M.Zerlauth",Powering Interlock Systems at CERN with Industrial Controllers,na
+P3_037,"B.Puccio, R.Schmidt., J.Wenninger",Beam Interlocking Stragety between the LHC and its Injector,na
+P3_038,P.Fraboulet,Application of advanced hardware testing and inventory management methods for the LHC power converter control system,na
+P3_039,L. T. Hoff,Experience with FPGA-based processor core as Front-end Computer,na
+P3_040,"S.Ramamoorthy, J. Dabrowski, C. Nielson, W. Rambo, E. Zitvogel, J. Kulesza",NSLS Control System Interface to Parker 6K Motion Controller System,na
+P3_041,"M. Riva, B. Esposito, D. Marocco",A Novel FPGA-based Digital Approach to Neutron/Gamma-Ray Pulse Acquisition and Discrimination in Scintillators,na
+P3_042,"M.Werner, M.Zerlauth",A Fast Magnet Current Change Monitor for Machine Protection in HERA and the LHC,na
+P3_043,"V.N.Boriskin,M.I.Ayzatsky,V.A.Gurin,V.A.Mats,A.N.Savchenko,A.A.Sarvilov,V.I.Tatanov",The Distribution Density Monitoring of Charged Particles By Computer Tomography Method,na
+P3_044,"M. Giacchini, G. Bassato, F. Gramegna, R. Lange",An EPICS IOC on PC104,na
+P3_045,"K.M. Ha, J.Y. Huang, S.C. Kim, J.H. Suh, J.H Kim, S.H. Jeong, H.S. Kang, J. Choi , I.S. Ko",PLS Fully Digital Controlled Corrector Power Supplies,na
+P3_047,"Y.Suzuki, K.Agari, M.Ieiri, Y.Katoh, E.Hirose, M.Minakawa, H.Noumi, Y.Sato, H.Takahashi, M.Takasaki, K.H.Tanaka, A.Toyoda, Y.Yamada, Y.Yamanoi, H.Watanabe",GPIB to Serial Converter,na
+P3_048,"H.Takebe,K.Tsumaki,C.Zhang,S.Matsui,H.Tanaka",Experiment and Installation of High Resolution Steering Magnet Power Supply for SPRING-8,na
+P3_050,"T.Fukui, R.Tanaka, T.Ohata, Y.Otake",A Development of High-Speed A/D D/A Vme Boards for a Low Level RF System of SCSS,na
+P3_051,J.F. Gournay,Quench Data Acquisition and Slow Control for the Superconducting Magnet of the COMPASS Experiment,na
+P3_053,"D. Dale, D. Bishop, T. Howland, H. Hui, R. Keitel, K. Langton, W. Roberts, E. Tikhomolov, G. Waters",Custom Electronic Modules for the TRIUMF/ISAC Control System,na
+P3_054,"Y.Tian, B.Oerter",An Upgrade of Magnet-field-driven Timing Systems at the AGS,na
+P3_055,"D. Curry, A. Hofler, H. Dong, T. Allison, J. Hovater, K. Mahoney",Implementation of an EPICS IOC on an Embedded Soft Core Processor Using Field Programmable Gate Arrays,na
+P3_056,"R.A.Barlow,P.Bobbio,E.Carlier,G.Graewer,N.Voumard,R.Gjelsvik",The Beam Energy Tracking System,na
+P3_058,"M.Sayed, W.Panschow",Actual FPGAs - The Way Out of Manifold Hardware Problems,na
+P3_062,"F. Fontanelli, B.Jost, G. Mini, N. Neufeld, R.Abdel-Rahman, K. Rolli, M. Sannino",Interfacing Credit Card-sized PCs to Board Level Electronics ,na
+P3_064,B.Solar,Beam Position Monitor Digital Signal Conditioning,na
+P3_065,"V.A.Andreev, E.A.Frolov, A.D.Kovalenko, I.I.Kulikov, B.V.Vasilishin, V.I.Volkov",Development of the Nuclotron LAN,na
+P3_067,"J.Pisano,R.Amestica,J.Perez",ALMA Correlator Real-Time Data Processor,na
+P3_068,"S. Luengo, J. Riera, S.Tortella, X. Vilasis, P. Perret, A. Comerma, D. Gascón, L. Garrido",SPD Very Front End Electronics,na
+P3_069,"G. Jiang, J. Odagiri, N. Yamamoto, A. Akiyama, K. Furukawa, T. Katoh",Embedded EPICS on ITRON/SH4-based Controllers,na
+P3_070,"A. Toyoda, K. Agari, H. Fujii, Y. Hayato, E. Hirose, M. Ieiri, Y. Igarashi, Y. Kato, H. Kodama, M. Minakawa, K. Nakayoshi, H. Noumi, Y. Sato, S. Sawada, Y. Suzuki, H. Takahashi, M. Takasaki, K. H. Tanaka, M. Tanaka, H. Watanabe, Y. Yamada, and Y. Yamanoi",Recent development of a monitoring system for beam line status at the J-PARC slow-extraction beam line,na
+P3_071,"Yu. Krylov, Yu. Yupinov",Archiving and Monitoring of Status for KSRS,na
+P3_072,"S. Chevtsov, B. Dalesio, K. Kasemir, C. McChesney",EPICS ArchiveViewer,na
+P3_073,"N.D. Arnold, D. Dohan, A. Johnson, C. Saunders",Discovering Process-Variable-to-Signal Relationships in EPICS 3.x and 4.x,na
+P3_074,"M. R. Kraimer, M. Rivers, E. Norum",EPICS Asynchronous Driver Support,na
+P3_075,"S. Xu, M. R. Kraimer",Real Time Performance Measurements of EPICS IOCcore,na
+P3_076,"P. Chu, S. Cousineau, V. Danilov, J. Galambos, T. Pelaia, A. Shishlo, C.K. Allen",SNS Application Programming Infrastructure and Physics Applications,na
+P3_078,R.Keitel,EdlBuild - Display Generation for the EPICS edm Display Manager,na
+P3_079,"R.Nussbaumer,G.Waters",BACnet Support for EPICS,na
+P3_081,"N. Kanaya, S. Sakasai, H. Yano, D. Kobayashi, S. Suenari,S. Suzuki, S. Sato",Graphic User Interface for Console Systems Using JAVA TMI for the 1.8GeV TSRF Synchrotron Radiation Source,na
+P3_082,T.Pal,Data-Driven User Interfaces Using Oracle Portal,na
+P3_083,"K. H. Kim, M. K. Kim, M. K. Park, J. W. Choi, I. S. Choi, M. C. Kyum, M. Kwon",The PXI and VMEbus supports for the Linux based EPICS,na
+P3_085,"T.Karcnik, M.Sprogar",Designing a Reusable Instrument Interface,na
+P3_086,"C. Kuo, J.Chen, C. J. Wang, K. Hsu",Electronic Logbook by Using the Hypertext Preprocessor,na
+P3_087,"A. Bertrand, R. Krempaska",EPICS on the WEB,na
+P3_088,"J.H. Kim, J.M. Kim, K.M. Ha, H.S. Kang, J. Choi, I.S. KoPohang",Upgrade of the PLS LINAC Control System,na
+P3_089,M.Sekoranja,Native Java implementation of Channel Access for EPICS,na
+P3_092,"J. Galambos, C. Chu, J. Patton, T. Pelaia, A. Shishlo, SNS",Database Use in Application Programming at SNS,na
+P3_093,"J.B.Lister,L.Appel,G.Huysmans,Ch.Schlatter,W.Suttrop",Creating an XML Driven Data Bus between Fusion Experiments,na
+P3_094,"M.Arruat, S. Jackson, J-L. Nougaret, M. Peryt",Use of WML Technologies for Data-driven Accelerator Controls,na
+P3_095,"A. Aladwan,  A. Bertrand,  M. Dach,  S. Hunt,  R. Krempaska,  E. Zimoch",Image Acquisition and Processing at the Swiss Light Source,na
+P3_096,J.Hill,A 2nd Generation Network Distributed Application Programming Interface for EPICS,na
+P3_098,"R. Yadav, P. Fatnani",A Modular Control Package for Automation of Indus-2 Low Conductivity Water LCW Plant,na
+P3_099,"X. Geng, J.Butler, A. Zaltsman, L. Hoff",ANS Ring High Power RF Control System,na
+P3_100,"T.Samanta, D.Sarkar, S.Dasgupta",PC-PLC Based Vacuum Control System For Superconducting Cylotron At VECC,na
+P3_101,"M.Bickley, P. Chevtsov",New GPIB Control Software at Jefferson Lab,na
+P3_102,"P. Gurd, G. Lawson, D.H. Thompson, E. Williams",The Application of Linux Soft IOCs for Status Summaries at the Spallation Neutron Source,na
+P3_104,"V.Komarov,G.Antonichev,L.Kim,V.Kokovin,N.Krotov,V.Kuznetsov,Yu.Milichenko,N.Radomsky,V.Voevodin",Modernization of U-70 General Timing System,na
+P3_106,"A.Augustinus, J.Baechler, M. Boccioli, U. Frankenfeld, L.Jirden",Very High Voltage Control for ALICE TPC,na
