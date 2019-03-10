@@ -7,8 +7,7 @@ use AppBundle\Entity\Reference;
 use AppBundle\Entity\User;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\IsGranted;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
-use Sensio\Bundle\FrameworkExtraBundle\Configuration\Method;
-use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
+use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\HttpFoundation\Request;
 
@@ -21,7 +20,6 @@ class FeedbackController extends Controller
      * Lists all feedback entities.
      * @IsGranted("ROLE_ADMIN")
      * @Route("/admin/feedback", name="feedback_index")
-     * @Method("GET")
      */
     public function indexAction(Request $request)
     {

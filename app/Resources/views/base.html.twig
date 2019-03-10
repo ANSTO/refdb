@@ -52,11 +52,9 @@
                     <li class="nav-item {{ "conference" in app.request.uri ? "active" : "" }}">
                         <a class="nav-link" href="{{ path("conference_index") }}">Conferences</a>
                     </li>
-                    {% if favourite_service.favourites|length != 0 %}
-                        <li class="nav-item {{ "favourite" in app.request.uri ? "active" : "" }}">
-                            <a class="nav-link" href="{{ path("favourite_show") }}">See Favourites</a>
-                        </li>
-                    {% endif %}
+                    <li class="nav-item {{ "favourite" in app.request.uri ? "active" : "" }}">
+                        <a class="nav-link" href="{{ path("favourite_show") }}"><i class="fas fa-star"></i> Favourites</a>
+                    </li>
                     {% if is_granted("ROLE_USER") %}
                         {#<li class="nav-item {{ "report" in app.request.uri ? "active" : "" }}">#}
                         {#<a class="nav-link" href="{{ path("report_index") }}">Reports</a>#}
@@ -84,6 +82,11 @@
                         <li class="nav-item">
                             <a class="nav-link" href="{{ path("fos_user_security_logout") }}">Logout</a>
                         </li>
+                    {% endif %}
+                    {% if not is_granted("ROLE_ADMIN") %}
+                    <li class="nav-item">
+                        <a class="nav-link" href="http://www.jacow.org/Authors/RefSearchToolHelp" target="_blank"><i class="far fa-question-circle"></i> Help</a>
+                    </li>
                     {% endif %}
                 </ul>
             </div>

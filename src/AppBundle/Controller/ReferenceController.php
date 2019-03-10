@@ -123,17 +123,19 @@ class ReferenceController extends Controller
         }
 
         if ($reference->hasTitleIssue()) {
-            $warning .= "This papers title has been automatically cased, and may contain mistakes.\n\n";
+            $warning .= "This papers title is all uppercase, you must correct this before using this reference.\n\n";
         }
 
         if (preg_match_all("/[\[\(\/]+/",$reference->getAuthor(), $matches) || count($reference->getAuthors()) == 0) {
             $warning .= "There is a problem with this papers authors.\n\n";
         }
-        if (($reference->getConference()->isPublished() && $reference->getInProc() && ($reference->getPosition() === null || $reference->getPosition() == "" || $reference->getPosition() == "99-98"))) {
+        if (($reference->getConference()->isPublished() && $reference->getInProc() && $reference->getPosition() != "na" && ($reference->getPosition() === null || $reference->getPosition() == "" || $reference->getPosition() == "99-98"))) {
             $warning .= "The page numbers could not be added automatically for this paper. ";
             $warning .= "You must provide the page numbers from the original proceedings which is located at JACoW.org, and substitute ‘pp. XX-XX’ with the correct page numbers.\n";
             $warning .= "* Please report these numbers by clicking on the ‘Fix a problem’ button as an Admin will be able to update this reference for future results.    \n\n";
         }
+
+
 
         $deleteForm = $this->createDeleteForm($reference);
 
