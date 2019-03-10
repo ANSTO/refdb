@@ -2,23 +2,17 @@
 
 {% block body %}
 
-    {% if warning != "" or feedbacks != 0 %}
+    {% if warning != "" %}
         <div class="text-center alert alert-danger">
             {% if warning != "" %}
                 <strong>Warning</strong><br />
                 {{ warning|trim|nl2br }}
-            {% else %}
-                <strong>Please note: </strong> We have recently received feedback indicated that this reference may have a problem.
-                {% if is_granted("ROLE_ADMIN") %}
-                    <a href="{{ path("feedback_index") }}">Review</a>
-                {% endif %}
             {% endif %}
         </div>
     {% endif %}
 
     {% set found = false %}
     {% for reference in references %}
-
         {% if not reference.conference.published and found == false %}
             {% if current_conference.hasCurrent and current_conference.current == reference.conference %}
                 {% if not current_conference.understand %}

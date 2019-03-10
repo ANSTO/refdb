@@ -2,6 +2,7 @@
 
 {% block javascripts %}
     {{ parent() }}
+    <script>var datasources = [];</script>
     <script src="{{ asset("js/bootstrap-tagsinput.js") }}"></script>
     <script src="{{ asset("js/tags.js") }}?2" async></script>
 {% endblock %}
