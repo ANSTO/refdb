@@ -6,6 +6,10 @@
   text-decoration: none;
 }
 
+a {
+  word-break: break-word;
+}
+
 .nav-area {
   background-color: #0066ff;
   margin-bottom: 20px;
