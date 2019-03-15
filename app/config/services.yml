@@ -16,6 +16,7 @@ services:
         bind:
             $rootDir: '%kernel.root_dir%'
             $fromAddress: '%from_address%'
+            $defaultConference: '%default_conference%'
 
     Doctrine\DBAL\Event\Listeners\OracleSessionInit:
         tags:
