@@ -20,14 +20,14 @@ class CurrentConferenceService
     private $requestStack;
     private $default;
 
-    public function __construct(ObjectManager $objectManager, RequestStack $requestStack)
+    public function __construct(ObjectManager $objectManager, RequestStack $requestStack, $defaultConference)
     {
         $this->requestStack = $requestStack;
         $this->manager = $objectManager;
         $this->default = false;
 
-        // default to IPAC'19
-        $conference = $this->manager->getRepository(Conference::class)->findOneBy(["code"=>"IPAC'19"]);
+        // default to conference code
+        $conference = $this->manager->getRepository(Conference::class)->findOneBy([ "code"=> $defaultConference]);
         if ($conference) {
             $this->default = $conference->getId();
         }
