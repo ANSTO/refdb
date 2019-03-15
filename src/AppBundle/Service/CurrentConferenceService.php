@@ -18,11 +18,19 @@ class CurrentConferenceService
 {
     private $manager;
     private $requestStack;
+    private $default;
 
     public function __construct(ObjectManager $objectManager, RequestStack $requestStack)
     {
         $this->requestStack = $requestStack;
         $this->manager = $objectManager;
+        $this->default = false;
+
+        // default to IPAC'19
+        $conference = $this->manager->getRepository(Conference::class)->findOneBy(["code"=>"IPAC'19"]);
+        if ($conference) {
+            $this->default = $conference->getId();
+        }
     }
 
     public function getSession() {
@@ -38,12 +46,13 @@ class CurrentConferenceService
     }
 
     public function hasCurrent() {
-        return $this->getSession()->has("current");
+
+        return $this->getSession()->get("current", $this->default);
     }
 
     public function clearCurrent() {
         $session = $this->getSession();
-        $session->remove("current");
+        $session->set("current", false);
     }
 
     public function setCurrent(Conference $conference) {
@@ -52,7 +61,7 @@ class CurrentConferenceService
     }
 
     public function getCurrent() {
-        return $this->manager->getRepository(Conference::class)->find($this->getSession()->get("current"));
+        return $this->manager->getRepository(Conference::class)->find($this->getSession()->get("current", $this->default));
     }
 
 }
