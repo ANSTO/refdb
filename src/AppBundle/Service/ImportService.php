@@ -91,7 +91,7 @@ class ImportService
                     $dbReference->setTitle($fileReference->getTitle());
                     if ($dbReference->getOriginalAuthors() !== $fileReference->getOriginalAuthors()) {
                         $dbReference->setOriginalAuthors($fileReference->getOriginalAuthors());
-                        $recalculateAuthors[] = $dbReference;
+                        $recalculateAuthors[] = $fileReference;
                     }
                 }
             }
