@@ -31,6 +31,12 @@ class Reference implements \JsonSerializable
     private $originalAuthors;
 
     /**
+     * @var int
+     * @ORM\Column(type="integer", nullable=true)
+     */
+    private $contributionId;
+
+    /**
      * @var string
      * @ORM\Column(type="string", length=255, nullable=true)
      */
@@ -568,5 +574,21 @@ class Reference implements \JsonSerializable
     public function setFavourites($favourites)
     {
         $this->favourites = $favourites;
+    }
+
+    /**
+     * @return int
+     */
+    public function getContributionId()
+    {
+        return $this->contributionId;
+    }
+
+    /**
+     * @param int $contributionId
+     */
+    public function setContributionId($contributionId)
+    {
+        $this->contributionId = $contributionId;
     }
 }

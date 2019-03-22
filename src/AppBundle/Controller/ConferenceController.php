@@ -152,6 +152,7 @@ class ConferenceController extends Controller
 
             $item["title"] = $reference->getTitle();
             $item["position"] = $reference->getPosition();
+            $item["contribution"] = $reference->getContributionId();
             $output[] = $item;
         }
 
