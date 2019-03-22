@@ -44,6 +44,12 @@ class ImportService
             if (isset($data[3])) {
                 $reference->setPosition(trim(str_replace(" ", "-", $data[3])));
             }
+            if (isset($data[4])) {
+                $contributionId = trim($data[4]);
+                if (filter_var($contributionId, FILTER_VALIDATE_INT)) {
+                    $reference->setContributionId($contributionId);
+                }
+            }
             return $reference;
         }, $contents);
 
@@ -71,7 +77,7 @@ class ImportService
         foreach ($dbReferences as $dbReference) {
             $found = false;
             foreach ($fileReferences as $fileReference) {
-                if ($dbReference->getPaperId() == $fileReference->getPaperId()) {
+                if ($dbReference->getContributionId() == $fileReference->getContributionId()) {
                     $found = true;
                 }
             }
@@ -86,8 +92,10 @@ class ImportService
         foreach ($fileReferences as $fileReference) {
             $found = false;
             foreach ($dbReferences as $dbReference) {
-                if ($dbReference->getPaperId() == $fileReference->getPaperId()) {
+                if ($dbReference->getContributionId() == $fileReference->getContributionId()) {
                     $found = true;
+                    $dbReference->setPaperId($fileReference->getPaperId());
+                    $dbReference->setPosition($fileReference->getPosition());
                     $dbReference->setTitle($fileReference->getTitle());
                     if ($dbReference->getOriginalAuthors() !== $fileReference->getOriginalAuthors()) {
                         $dbReference->setOriginalAuthors($fileReference->getOriginalAuthors());
