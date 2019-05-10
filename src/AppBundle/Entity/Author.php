@@ -33,7 +33,7 @@ class Author implements \JsonSerializable
     /**
      * Their associated references
      *
-     * @ORM\ManyToMany(targetEntity="AppBundle\Entity\Reference", inversedBy="authors", cascade={"persist"})
+     * @ORM\ManyToMany(targetEntity="AppBundle\Entity\Reference", inversedBy="authors", cascade={"persist", "remove"})
      * @var ArrayCollection
      */
     private $references;
