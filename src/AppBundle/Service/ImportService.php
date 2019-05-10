@@ -86,8 +86,7 @@ class ImportService
             }
         }
 
-        $recalculateAuthors = [];
-
+        $calculateAuthors = [];
         // find only new references
         foreach ($fileReferences as $fileReference) {
             $found = false;
@@ -99,25 +98,42 @@ class ImportService
                     $dbReference->setTitle($fileReference->getTitle());
                     if ($dbReference->getOriginalAuthors() !== $fileReference->getOriginalAuthors()) {
                         $dbReference->setOriginalAuthors($fileReference->getOriginalAuthors());
-                        $recalculateAuthors[] = $fileReference;
+                        $dbReference->setAuthor($fileReference->getAuthor());
+
+                        // Clear Authors
+
+                        /** @var Author $author */
+                        foreach ($dbReference->getAuthors() as $author) {
+                            $author->getReferences();
+                            $author->removeReference($dbReference);
+                        }
+
+                        $calculateAuthors[] = $dbReference;
                     }
                 }
             }
             if (!$found) {
-                $recalculateAuthors[] = $fileReference;
+
+                $calculateAuthors[] = $fileReference;
                 $this->manager->persist($fileReference);
             }
         }
 
-        $this->calculateAuthors($recalculateAuthors);
+        try {
+            $this->calculateAuthors($calculateAuthors);
+        } catch (Exception $e) {
+        }
 
         $this->manager->flush();
 
-        return count($recalculateAuthors);
+        return count($calculateAuthors);
 
     }
 
-
+    /**
+     * @param $references
+     * @throws Exception
+     */
     private function calculateAuthors($references) {
         $results = $this->findAuthors($references);
 
