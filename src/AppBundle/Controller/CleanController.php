@@ -3,6 +3,7 @@
 namespace AppBundle\Controller;
 
 use AppBundle\Entity\Author;
+use AppBundle\Entity\Favourite;
 use AppBundle\Entity\Reference;
 use AppBundle\Service\AuthorService;
 use Doctrine\Common\Collections\ArrayCollection;
@@ -18,7 +19,63 @@ class CleanController extends Controller
 {
     /**
      * Regenerate cache for all references.
-     * @Route("/cache", name="cacche_clean")
+     * @Route("/duplicate", name="duplicate_clean")
+     */
+    public function duplicateAction() {
+        $count = 0;
+        $manager = $this->getDoctrine()->getManager();
+        /** @var Reference[] $results */
+        $results = $manager->getRepository(Reference::class)
+            ->createQueryBuilder("r")
+            ->select("c.id as conference, r.contributionId, max(r.id) as max")
+            ->join("r.conference","c")
+            ->where("r.contributionId is not null")
+            ->groupBy("c.id")
+            ->addGroupBy("r.contributionId")
+            ->having("count(r.id) > 1")
+            ->getQuery()
+            ->getArrayResult();
+
+        foreach ($results as $result) {
+            $max = $manager->getRepository(Reference::class)->find($result['max']);
+
+            $references = $manager->getRepository(Reference::class)
+                ->createQueryBuilder("r")
+                ->select("r, favs, feeds")
+                ->leftJoin("r.favourites", "favs")
+                ->leftJoin("r.feedback", "feeds")
+                ->join("r.conference","c")
+                ->where("c.id = :conference")
+                ->setParameter("conference", $result["conference"])
+                ->andWhere("r.contributionId = :contributionId")
+                ->setParameter("contributionId", $result["contributionId"])
+                ->andWhere("r.id != :max")
+                ->setParameter("max", $result['max'])
+                ->getQuery()
+                ->getResult();
+
+
+            /** @var Reference $reference */
+            foreach ($references as $reference) {
+                /** @var Favourite $favourite */
+                foreach ($reference->getFavourites() as $favourite) {
+                    $favourite->setReference($max);
+                }
+                foreach ($reference->getFeedback() as $favourite) {
+                    $favourite->setReference($max);
+                }
+                $count++;
+                $manager->remove($reference);
+            }
+        }
+
+        $manager->flush();
+
+    }
+
+    /**
+     * Regenerate cache for all references.
+     * @Route("/cache", name="cache_clean")
      */
     public function cacheAction()
     {
