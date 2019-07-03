@@ -46,7 +46,6 @@ class CurrentConferenceService
     }
 
     public function hasCurrent() {
-
         return $this->getSession()->get("current", $this->default);
     }
 
@@ -61,7 +60,16 @@ class CurrentConferenceService
     }
 
     public function getCurrent() {
-        return $this->manager->getRepository(Conference::class)->find($this->getSession()->get("current", $this->default));
+        /** @var Conference $conference */
+        $conference = $this->manager
+            ->getRepository(Conference::class)
+            ->find($this->getSession()->get("current", $this->default));
+
+
+        if ($conference->isPublished() == false) {
+            return $conference;
+        }
+        return null;
     }
 
 }

@@ -117,9 +117,12 @@ class ReferenceController extends Controller
                 $warning = "This references DOI could not be verified, so it has been removed.";
             } else {
                 $reference->setDoiVerified(true);
-                $reference->setCache($reference->__toString());
-                $this->getDoctrine()->getManager()->flush();
             }
+        }
+
+        if ($reference->__toString() !== $reference->getCache()) {
+            $reference->setCache($reference->__toString());
+            $this->getDoctrine()->getManager()->flush();
         }
 
         if ($reference->hasTitleIssue()) {

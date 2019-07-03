@@ -97,13 +97,14 @@ class SearchController extends Controller
                 $response['results'] = [];
 
                 /** @var Reference $reference */
+
                 foreach ($results as $reference) {
                     $object = $reference->jsonSerialize();
                     $text = $object['name'];
                     if ($currentConferenceService->hasCurrent()) {
                         $current = $currentConferenceService->getCurrent();
                         // confirm its not just a conference text
-                        if ($current->__toString() !== $text && $this->endsWith($text, ".") !== false) {
+                        if ($current === $reference->getConference() && $current->__toString() !== $text && $this->endsWith($text, ".") !== false) {
                             $text = substr($text, 0, -1)  . ", this conference.";
                         }
                     }
