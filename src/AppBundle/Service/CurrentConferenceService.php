@@ -66,7 +66,7 @@ class CurrentConferenceService
             ->find($this->getSession()->get("current", $this->default));
 
 
-        if ($conference->isPublished() == false) {
+        if ($conference !== null && $conference->isPublished() == false) {
             return $conference;
         }
         return null;
