@@ -72,6 +72,7 @@ class SearchController extends Controller
      * @Route("/search", name="search", options={"expose"=true})
      * @param Request $request
      * @return JsonResponse
+     * @throws \Doctrine\ORM\NonUniqueResultException
      */
     public function searchAction(Request $request, FavouriteService $favouriteService, CurrentConferenceService $currentConferenceService) {
 
