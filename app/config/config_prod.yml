@@ -20,3 +20,13 @@ monolog:
         console:
             type: console
             process_psr_3_messages: false
+
+sentry:
+    dsn: "%sentry_dsn%"
+    options:
+        environment: "%sentry_environment%"
+        send_default_pii: true
+        excluded_exceptions:
+            - 'Symfony\Component\Security\Core\Exception\AccessDeniedException'
+            - 'Symfony\Component\HttpKernel\Exception\NotFoundHttpException'
+

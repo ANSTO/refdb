@@ -20,3 +20,7 @@ parameters:
     secret: ThisTokenIsNotSoSecretChangeIt
     from_address: ~
     default_conference: "IPAC'19"
+
+    # Sentry
+    sentry_dsn: ~
+    sentry_environment: prod
