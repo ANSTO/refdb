@@ -4,7 +4,7 @@
    {% if reference.conference.published -%}
         in \emph{{ '{Proc. ' ~ reference.conference.form(form_service.getForm()) ~ '}' }}
     {%- else -%}
-        {{ 'presented at the ' ~ reference.conference.form(form_service.getForm()) }}
+        {{ 'presented at the ' ~ reference.conference.form(form_service.getForm())|replace({"'":"’"}) }}
     {%- endif -%}, {{ reference.conference.location }}, {{ reference.conference.year -}}{% if reference.paperSection|trim != "" %},{% endif %}
 
                 {%- if current_conference.hasCurrent and reference.conference == current_conference.current -%}
