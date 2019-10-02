@@ -82,6 +82,8 @@ class ConferenceController extends Controller
         if ($form->isSubmitted() && $form->isValid()) {
             $terms = mb_strtolower($form->get('terms')->getData());
 
+            $terms = str_replace("’","'",$terms);
+
             $search->orWhere('LOWER(c.code) LIKE :terms')
                 ->orWhere('LOWER(c.name) LIKE :terms')
                 ->orWhere('LOWER(c.year) LIKE :terms')

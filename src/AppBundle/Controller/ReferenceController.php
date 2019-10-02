@@ -53,6 +53,8 @@ class ReferenceController extends Controller
 
         if ($form->isSubmitted() && $form->isValid()) {
             $terms = mb_strtolower($form->get('terms')->getData());
+            $terms = str_replace("’","'",$terms);
+
             $search
                 ->where('LOWER(r.cache) LIKE :terms')
                 ->setParameter("terms", '%' . $terms . "%");

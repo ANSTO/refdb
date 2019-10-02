@@ -23,10 +23,11 @@ class ReferenceRepository extends \Doctrine\ORM\EntityRepository
 
         if ($search->getConference() !== null) {
             $searching = true;
+            $conference = str_replace("’","'",mb_strtolower($search->getConference()));
             $query
                 ->andWhere("LOWER(c.code) LIKE :conf")
                 ->orWhere("LOWER(c.name) LIKE :conf")
-                ->setParameter("conf", "%" . mb_strtolower($search->getConference()) . "%");
+                ->setParameter("conf", "%" . $conference . "%");
         }
 
         if ($search->getLocation() !== null) {
