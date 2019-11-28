@@ -18,6 +18,7 @@ services:
             $fromAddress: '%from_address%'
             $defaultConference: '%default_conference%'
 
+    # Required for Oracle DBs with localised date times
     Doctrine\DBAL\Event\Listeners\OracleSessionInit:
         tags:
             - { name: doctrine.event_listener, event: postConnect}

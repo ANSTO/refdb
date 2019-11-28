@@ -11,6 +11,7 @@ https://symfony.com/doc/current/performance.html
 1. Git clone this project to your desired location
 2. Download the required libraries by running ``composer update`` in the root of the project
     1. This will also aid you in generating the ``app/config/parameters.yml``
+    2. If you are using a non oracle DB, remove the Oracle Specific service in the services.yml
 3. Generate the database by running ``php bin/console doctrine:schema:create``
 4. Import all the included data by running ``php bin/console doctrine:fixtures:load``
 5. Add the first administrator run:
