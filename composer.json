@@ -1,5 +1,5 @@
 {
-    "name": "ANSTO/refdb",
+    "name": "ansto/refdb",
     "license": "MIT",
     "type": "project",
     "description": "Citation Databse for JaCOW Catalog",
@@ -34,8 +34,8 @@
         "twig/twig": "^1.0||^2.0"
     },
     "require-dev": {
-        "doctrine/doctrine-fixtures-bundle": "^3.0",
         "doctrine/data-fixtures": "~1.3",
+        "doctrine/doctrine-fixtures-bundle": "^3.0",
         "sensio/generator-bundle": "^3.0",
         "symfony/phpunit-bridge": "^5.0"
     },
