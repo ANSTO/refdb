@@ -176,6 +176,9 @@ class AuthorController extends Controller
      * Deletes a author entity.
      * @IsGranted("ROLE_ADMIN")
      * @Route("/delete/{id}", name="author_delete")
+     * @param Request $request
+     * @param Author $author
+     * @return JsonResponse|\Symfony\Component\HttpFoundation\Response
      */
     public function deleteAction(Request $request, Author $author)
     {
