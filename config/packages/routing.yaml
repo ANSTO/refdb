@@ -1,0 +1,5 @@
+framework:
+    router:
+        utf8: true
+        #resource: '%kernel.project_dir%/config/routes.yaml'
+        #strict_requirements: ~

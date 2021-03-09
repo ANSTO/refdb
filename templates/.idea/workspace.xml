@@ -1,0 +1,408 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ChangeListManager">
+    <list default="true" id="d309faad-1f3e-4f88-a96a-b2d90c93b59a" name="Default Changelist" comment="">
+      <change afterPath="$PROJECT_DIR$/../.env" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../.env.local" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../config/packages/fos_user.yaml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../config/packages/knp_paginator.yaml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../config/packages/prod/sentry.yaml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../.gitignore" beforeDir="false" afterPath="$PROJECT_DIR$/../.gitignore" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../app/.htaccess" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../app/AppCache.php" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../app/AppKernel.php" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../app/Resources/FOSUserBundle/views/Registration/confirmed.html.twig" beforeDir="false" afterPath="$PROJECT_DIR$/bundles/FOSUserBundle/Registration/confirmed.html.twig" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../app/Resources/FOSUserBundle/views/Registration/email.txt.twig" beforeDir="false" afterPath="$PROJECT_DIR$/bundles/FOSUserBundle/Registration/email.txt.twig" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../app/Resources/FOSUserBundle/views/Registration/register_content.html.twig" beforeDir="false" afterPath="$PROJECT_DIR$/bundles/FOSUserBundle/Registration/register_content.html.twig" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../app/Resources/FOSUserBundle/views/Resetting/email.txt.twig" beforeDir="false" afterPath="$PROJECT_DIR$/bundles/FOSUserBundle/Resetting/email.txt.twig" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../app/Resources/FOSUserBundle/views/Resetting/request_content.html.twig" beforeDir="false" afterPath="$PROJECT_DIR$/bundles/FOSUserBundle/Resetting/request_content.html.twig" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../app/Resources/FOSUserBundle/views/Security/login_content.html.twig" beforeDir="false" afterPath="$PROJECT_DIR$/bundles/FOSUserBundle/Security/login_content.html.twig" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../app/Resources/FOSUserBundle/views/layout.html.twig" beforeDir="false" afterPath="$PROJECT_DIR$/bundles/FOSUserBundle/layout.html.twig" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../app/Resources/KnpPaginatorBundle/views/Pagination/filtration.html.twig" beforeDir="false" afterPath="$PROJECT_DIR$/bundles/KnpPaginatorBundle/Pagination/filtration.html.twig" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../app/Resources/views/author/delete.html.twig" beforeDir="false" afterPath="$PROJECT_DIR$/author/delete.html.twig" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../app/Resources/views/author/edit.html.twig" beforeDir="false" afterPath="$PROJECT_DIR$/author/edit.html.twig" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../app/Resources/views/author/index.html.twig" beforeDir="false" afterPath="$PROJECT_DIR$/author/index.html.twig" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../app/Resources/views/author/new.html.twig" beforeDir="false" afterPath="$PROJECT_DIR$/author/new.html.twig" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../app/Resources/views/author/show.html.twig" beforeDir="false" afterPath="$PROJECT_DIR$/author/show.html.twig" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../app/Resources/views/base.html.twig" beforeDir="false" afterPath="$PROJECT_DIR$/base.html.twig" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../app/Resources/views/conference/delete.html.twig" beforeDir="false" afterPath="$PROJECT_DIR$/conference/delete.html.twig" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../app/Resources/views/conference/edit.html.twig" beforeDir="false" afterPath="$PROJECT_DIR$/conference/edit.html.twig" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../app/Resources/views/conference/index.html.twig" beforeDir="false" afterPath="$PROJECT_DIR$/conference/index.html.twig" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../app/Resources/views/conference/new.html.twig" beforeDir="false" afterPath="$PROJECT_DIR$/conference/new.html.twig" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../app/Resources/views/conference/show.html.twig" beforeDir="false" afterPath="$PROJECT_DIR$/conference/show.html.twig" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../app/Resources/views/email/email.html.twig" beforeDir="false" afterPath="$PROJECT_DIR$/email/email.html.twig" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../app/Resources/views/email/email_base.html.twig" beforeDir="false" afterPath="$PROJECT_DIR$/email/email_base.html.twig" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../app/Resources/views/favourite/show.html.twig" beforeDir="false" afterPath="$PROJECT_DIR$/favourite/show.html.twig" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../app/Resources/views/feedback/delete.html.twig" beforeDir="false" afterPath="$PROJECT_DIR$/feedback/delete.html.twig" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../app/Resources/views/feedback/index.html.twig" beforeDir="false" afterPath="$PROJECT_DIR$/feedback/index.html.twig" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../app/Resources/views/feedback/new.html.twig" beforeDir="false" afterPath="$PROJECT_DIR$/feedback/new.html.twig" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../app/Resources/views/reference/delete.html.twig" beforeDir="false" afterPath="$PROJECT_DIR$/reference/delete.html.twig" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../app/Resources/views/reference/edit.html.twig" beforeDir="false" afterPath="$PROJECT_DIR$/reference/edit.html.twig" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../app/Resources/views/reference/index.html.twig" beforeDir="false" afterPath="$PROJECT_DIR$/reference/index.html.twig" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../app/Resources/views/reference/latex.html.twig" beforeDir="false" afterPath="$PROJECT_DIR$/reference/latex.html.twig" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../app/Resources/views/reference/listing.html.twig" beforeDir="false" afterPath="$PROJECT_DIR$/reference/listing.html.twig" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../app/Resources/views/reference/new.html.twig" beforeDir="false" afterPath="$PROJECT_DIR$/reference/new.html.twig" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../app/Resources/views/reference/show.html.twig" beforeDir="false" afterPath="$PROJECT_DIR$/reference/show.html.twig" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../app/Resources/views/reference/word.html.twig" beforeDir="false" afterPath="$PROJECT_DIR$/reference/word.html.twig" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../app/Resources/views/report/conference.html.twig" beforeDir="false" afterPath="$PROJECT_DIR$/report/conference.html.twig" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../app/Resources/views/report/index.html.twig" beforeDir="false" afterPath="$PROJECT_DIR$/report/index.html.twig" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../app/Resources/views/report/reference.html.twig" beforeDir="false" afterPath="$PROJECT_DIR$/report/reference.html.twig" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../app/Resources/views/search/basic.html.twig" beforeDir="false" afterPath="$PROJECT_DIR$/search/basic.html.twig" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../app/Resources/views/search/index.html.twig" beforeDir="false" afterPath="$PROJECT_DIR$/search/index.html.twig" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../app/Resources/views/template/forms.html.twig" beforeDir="false" afterPath="$PROJECT_DIR$/template/forms.html.twig" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../app/Resources/views/upload/index.html.twig" beforeDir="false" afterPath="$PROJECT_DIR$/upload/index.html.twig" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../app/Resources/views/user/delete.html.twig" beforeDir="false" afterPath="$PROJECT_DIR$/user/delete.html.twig" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../app/Resources/views/user/edit.html.twig" beforeDir="false" afterPath="$PROJECT_DIR$/user/edit.html.twig" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../app/Resources/views/user/index.html.twig" beforeDir="false" afterPath="$PROJECT_DIR$/user/index.html.twig" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../app/Resources/views/user/new.html.twig" beforeDir="false" afterPath="$PROJECT_DIR$/user/new.html.twig" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../app/Resources/views/user/promote.html.twig" beforeDir="false" afterPath="$PROJECT_DIR$/user/promote.html.twig" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../app/Resources/views/user/show.html.twig" beforeDir="false" afterPath="$PROJECT_DIR$/user/show.html.twig" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../app/config/config.yml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../app/config/config_dev.yml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../app/config/config_prod.yml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../app/config/config_test.yml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../app/config/parameters.yml.dist" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../app/config/routing.yml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../app/config/routing_dev.yml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../app/config/security.yml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../app/config/services.yml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../bin/console" beforeDir="false" afterPath="$PROJECT_DIR$/../bin/console" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../bin/symfony_requirements" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../composer.json" beforeDir="false" afterPath="$PROJECT_DIR$/../composer.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../composer.lock" beforeDir="false" afterPath="$PROJECT_DIR$/../composer.lock" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../phpunit.xml.dist" beforeDir="false" afterPath="$PROJECT_DIR$/../phpunit.xml.dist" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../src/AppBundle/AppBundle.php" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../src/AppBundle/Command/AuthorCommand.php" beforeDir="false" afterPath="$PROJECT_DIR$/../src/Command/AuthorCommand.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../src/AppBundle/Command/CacheCommand.php" beforeDir="false" afterPath="$PROJECT_DIR$/../src/Command/CacheCommand.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../src/AppBundle/Command/ImportCommand.php" beforeDir="false" afterPath="$PROJECT_DIR$/../src/Command/ImportCommand.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../src/AppBundle/Command/RefreshCommand.php" beforeDir="false" afterPath="$PROJECT_DIR$/../src/Command/RefreshCommand.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../src/AppBundle/Controller/AuthorController.php" beforeDir="false" afterPath="$PROJECT_DIR$/../src/Controller/AuthorController.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../src/AppBundle/Controller/CleanController.php" beforeDir="false" afterPath="$PROJECT_DIR$/../src/Controller/CleanController.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../src/AppBundle/Controller/ConferenceController.php" beforeDir="false" afterPath="$PROJECT_DIR$/../src/Controller/ConferenceController.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../src/AppBundle/Controller/FavouriteController.php" beforeDir="false" afterPath="$PROJECT_DIR$/../src/Controller/FavouriteController.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../src/AppBundle/Controller/FeedbackController.php" beforeDir="false" afterPath="$PROJECT_DIR$/../src/Controller/FeedbackController.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../src/AppBundle/Controller/ReferenceController.php" beforeDir="false" afterPath="$PROJECT_DIR$/../src/Controller/ReferenceController.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../src/AppBundle/Controller/ReportController.php" beforeDir="false" afterPath="$PROJECT_DIR$/../src/Controller/ReportController.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../src/AppBundle/Controller/SearchController.php" beforeDir="false" afterPath="$PROJECT_DIR$/../src/Controller/SearchController.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../src/AppBundle/Controller/UploadController.php" beforeDir="false" afterPath="$PROJECT_DIR$/../src/Controller/UploadController.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../src/AppBundle/Controller/UserController.php" beforeDir="false" afterPath="$PROJECT_DIR$/../src/Controller/UserController.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../src/AppBundle/DataFixtures/ConferenceFixtures.php" beforeDir="false" afterPath="$PROJECT_DIR$/../src/DataFixtures/ConferenceFixtures.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../src/AppBundle/DataFixtures/Import/conferences.csv" beforeDir="false" afterPath="$PROJECT_DIR$/../src/DataFixtures/Import/conferences.csv" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../src/AppBundle/DataFixtures/ReferenceFixtures.php" beforeDir="false" afterPath="$PROJECT_DIR$/../src/DataFixtures/ReferenceFixtures.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../src/AppBundle/DataFixtures/References/BIW2008.csv" beforeDir="false" afterPath="$PROJECT_DIR$/../src/DataFixtures/References/BIW2008.csv" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../src/AppBundle/DataFixtures/References/BIW2010.csv" beforeDir="false" afterPath="$PROJECT_DIR$/../src/DataFixtures/References/BIW2010.csv" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../src/AppBundle/DataFixtures/References/BIW2012.csv" beforeDir="false" afterPath="$PROJECT_DIR$/../src/DataFixtures/References/BIW2012.csv" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../src/AppBundle/DataFixtures/References/COOL2009.csv" beforeDir="false" afterPath="$PROJECT_DIR$/../src/DataFixtures/References/COOL2009.csv" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../src/AppBundle/DataFixtures/References/COOL2011.csv" beforeDir="false" afterPath="$PROJECT_DIR$/../src/DataFixtures/References/COOL2011.csv" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../src/AppBundle/DataFixtures/References/COOL2013.csv" beforeDir="false" afterPath="$PROJECT_DIR$/../src/DataFixtures/References/COOL2013.csv" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../src/AppBundle/DataFixtures/References/CYCLOTRONS2013.csv" beforeDir="false" afterPath="$PROJECT_DIR$/../src/DataFixtures/References/CYCLOTRONS2013.csv" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../src/AppBundle/DataFixtures/References/Cyclotrons2010.csv" beforeDir="false" afterPath="$PROJECT_DIR$/../src/DataFixtures/References/Cyclotrons2010.csv" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../src/AppBundle/DataFixtures/References/DIPAC2011.csv" beforeDir="false" afterPath="$PROJECT_DIR$/../src/DataFixtures/References/DIPAC2011.csv" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../src/AppBundle/DataFixtures/References/ECLOUD2010.csv" beforeDir="false" afterPath="$PROJECT_DIR$/../src/DataFixtures/References/ECLOUD2010.csv" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../src/AppBundle/DataFixtures/References/ECRIS2010.csv" beforeDir="false" afterPath="$PROJECT_DIR$/../src/DataFixtures/References/ECRIS2010.csv" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../src/AppBundle/DataFixtures/References/ECRIS2012.csv" beforeDir="false" afterPath="$PROJECT_DIR$/../src/DataFixtures/References/ECRIS2012.csv" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../src/AppBundle/DataFixtures/References/ECRIS2014.csv" beforeDir="false" afterPath="$PROJECT_DIR$/../src/DataFixtures/References/ECRIS2014.csv" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../src/AppBundle/DataFixtures/References/ERL2009.csv" beforeDir="false" afterPath="$PROJECT_DIR$/../src/DataFixtures/References/ERL2009.csv" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../src/AppBundle/DataFixtures/References/ERL2011.csv" beforeDir="false" afterPath="$PROJECT_DIR$/../src/DataFixtures/References/ERL2011.csv" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../src/AppBundle/DataFixtures/References/ERL2013.csv" beforeDir="false" afterPath="$PROJECT_DIR$/../src/DataFixtures/References/ERL2013.csv" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../src/AppBundle/DataFixtures/References/ERL2015.csv" beforeDir="false" afterPath="$PROJECT_DIR$/../src/DataFixtures/References/ERL2015.csv" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../src/AppBundle/DataFixtures/References/FEL2008.csv" beforeDir="false" afterPath="$PROJECT_DIR$/../src/DataFixtures/References/FEL2008.csv" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../src/AppBundle/DataFixtures/References/FEL2009.csv" beforeDir="false" afterPath="$PROJECT_DIR$/../src/DataFixtures/References/FEL2009.csv" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../src/AppBundle/DataFixtures/References/FEL2010.csv" beforeDir="false" afterPath="$PROJECT_DIR$/../src/DataFixtures/References/FEL2010.csv" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../src/AppBundle/DataFixtures/References/FEL2011.csv" beforeDir="false" afterPath="$PROJECT_DIR$/../src/DataFixtures/References/FEL2011.csv" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../src/AppBundle/DataFixtures/References/FEL2012.csv" beforeDir="false" afterPath="$PROJECT_DIR$/../src/DataFixtures/References/FEL2012.csv" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../src/AppBundle/DataFixtures/References/FEL2013.csv" beforeDir="false" afterPath="$PROJECT_DIR$/../src/DataFixtures/References/FEL2013.csv" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../src/AppBundle/DataFixtures/References/FEL2014.csv" beforeDir="false" afterPath="$PROJECT_DIR$/../src/DataFixtures/References/FEL2014.csv" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../src/AppBundle/DataFixtures/References/FEL2015.csv" beforeDir="false" afterPath="$PROJECT_DIR$/../src/DataFixtures/References/FEL2015.csv" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../src/AppBundle/DataFixtures/References/HB2008.csv" beforeDir="false" afterPath="$PROJECT_DIR$/../src/DataFixtures/References/HB2008.csv" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../src/AppBundle/DataFixtures/References/HB2010.csv" beforeDir="false" afterPath="$PROJECT_DIR$/../src/DataFixtures/References/HB2010.csv" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../src/AppBundle/DataFixtures/References/HB2012.csv" beforeDir="false" afterPath="$PROJECT_DIR$/../src/DataFixtures/References/HB2012.csv" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../src/AppBundle/DataFixtures/References/HB2014.csv" beforeDir="false" afterPath="$PROJECT_DIR$/../src/DataFixtures/References/HB2014.csv" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../src/AppBundle/DataFixtures/References/HF2014.csv" beforeDir="false" afterPath="$PROJECT_DIR$/../src/DataFixtures/References/HF2014.csv" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../src/AppBundle/DataFixtures/References/HIAT2009.csv" beforeDir="false" afterPath="$PROJECT_DIR$/../src/DataFixtures/References/HIAT2009.csv" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../src/AppBundle/DataFixtures/References/HIAT2012.csv" beforeDir="false" afterPath="$PROJECT_DIR$/../src/DataFixtures/References/HIAT2012.csv" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../src/AppBundle/DataFixtures/References/HIAT2015.csv" beforeDir="false" afterPath="$PROJECT_DIR$/../src/DataFixtures/References/HIAT2015.csv" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../src/AppBundle/DataFixtures/References/IBIC2012.csv" beforeDir="false" afterPath="$PROJECT_DIR$/../src/DataFixtures/References/IBIC2012.csv" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../src/AppBundle/DataFixtures/References/IBIC2013.csv" beforeDir="false" afterPath="$PROJECT_DIR$/../src/DataFixtures/References/IBIC2013.csv" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../src/AppBundle/DataFixtures/References/IBIC2014.csv" beforeDir="false" afterPath="$PROJECT_DIR$/../src/DataFixtures/References/IBIC2014.csv" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../src/AppBundle/DataFixtures/References/IBIC2015.csv" beforeDir="false" afterPath="$PROJECT_DIR$/../src/DataFixtures/References/IBIC2015.csv" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../src/AppBundle/DataFixtures/References/ICALEPCS2013.csv" beforeDir="false" afterPath="$PROJECT_DIR$/../src/DataFixtures/References/ICALEPCS2013.csv" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../src/AppBundle/DataFixtures/References/ICALEPCS2015.csv" beforeDir="false" afterPath="$PROJECT_DIR$/../src/DataFixtures/References/ICALEPCS2015.csv" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../src/AppBundle/DataFixtures/References/ICAP2009.csv" beforeDir="false" afterPath="$PROJECT_DIR$/../src/DataFixtures/References/ICAP2009.csv" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../src/AppBundle/DataFixtures/References/ICAP2012.csv" beforeDir="false" afterPath="$PROJECT_DIR$/../src/DataFixtures/References/ICAP2012.csv" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../src/AppBundle/DataFixtures/References/ICAP2015.csv" beforeDir="false" afterPath="$PROJECT_DIR$/../src/DataFixtures/References/ICAP2015.csv" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../src/AppBundle/DataFixtures/References/IPAC10.csv" beforeDir="false" afterPath="$PROJECT_DIR$/../src/DataFixtures/References/IPAC10.csv" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../src/AppBundle/DataFixtures/References/IPAC2011.csv" beforeDir="false" afterPath="$PROJECT_DIR$/../src/DataFixtures/References/IPAC2011.csv" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../src/AppBundle/DataFixtures/References/IPAC2012.csv" beforeDir="false" afterPath="$PROJECT_DIR$/../src/DataFixtures/References/IPAC2012.csv" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../src/AppBundle/DataFixtures/References/IPAC2013.csv" beforeDir="false" afterPath="$PROJECT_DIR$/../src/DataFixtures/References/IPAC2013.csv" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../src/AppBundle/DataFixtures/References/LINAC08.csv" beforeDir="false" afterPath="$PROJECT_DIR$/../src/DataFixtures/References/LINAC08.csv" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../src/AppBundle/DataFixtures/References/LINAC2010.csv" beforeDir="false" afterPath="$PROJECT_DIR$/../src/DataFixtures/References/LINAC2010.csv" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../src/AppBundle/DataFixtures/References/LINAC2012.csv" beforeDir="false" afterPath="$PROJECT_DIR$/../src/DataFixtures/References/LINAC2012.csv" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../src/AppBundle/DataFixtures/References/LINAC2014.csv" beforeDir="false" afterPath="$PROJECT_DIR$/../src/DataFixtures/References/LINAC2014.csv" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../src/AppBundle/DataFixtures/References/PAC2009.csv" beforeDir="false" afterPath="$PROJECT_DIR$/../src/DataFixtures/References/PAC2009.csv" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../src/AppBundle/DataFixtures/References/PAC2011.csv" beforeDir="false" afterPath="$PROJECT_DIR$/../src/DataFixtures/References/PAC2011.csv" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../src/AppBundle/DataFixtures/References/PAC2013.csv" beforeDir="false" afterPath="$PROJECT_DIR$/../src/DataFixtures/References/PAC2013.csv" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../src/AppBundle/DataFixtures/References/PCaPAC2014.csv" beforeDir="false" afterPath="$PROJECT_DIR$/../src/DataFixtures/References/PCaPAC2014.csv" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../src/AppBundle/DataFixtures/References/SAP2014.csv" beforeDir="false" afterPath="$PROJECT_DIR$/../src/DataFixtures/References/SAP2014.csv" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../src/AppBundle/DataFixtures/References/SRF2003.csv" beforeDir="false" afterPath="$PROJECT_DIR$/../src/DataFixtures/References/SRF2003.csv" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../src/AppBundle/DataFixtures/References/SRF2005.csv" beforeDir="false" afterPath="$PROJECT_DIR$/../src/DataFixtures/References/SRF2005.csv" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../src/AppBundle/DataFixtures/References/SRF2009.csv" beforeDir="false" afterPath="$PROJECT_DIR$/../src/DataFixtures/References/SRF2009.csv" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../src/AppBundle/DataFixtures/References/SRF2011.csv" beforeDir="false" afterPath="$PROJECT_DIR$/../src/DataFixtures/References/SRF2011.csv" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../src/AppBundle/DataFixtures/References/SRF2013.csv" beforeDir="false" afterPath="$PROJECT_DIR$/../src/DataFixtures/References/SRF2013.csv" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../src/AppBundle/DataFixtures/References/SRF2015.csv" beforeDir="false" afterPath="$PROJECT_DIR$/../src/DataFixtures/References/SRF2015.csv" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../src/AppBundle/DataFixtures/References/SRF89.csv" beforeDir="false" afterPath="$PROJECT_DIR$/../src/DataFixtures/References/SRF89.csv" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../src/AppBundle/DataFixtures/References/SRF91.csv" beforeDir="false" afterPath="$PROJECT_DIR$/../src/DataFixtures/References/SRF91.csv" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../src/AppBundle/DataFixtures/References/SRF93.csv" beforeDir="false" afterPath="$PROJECT_DIR$/../src/DataFixtures/References/SRF93.csv" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../src/AppBundle/DataFixtures/References/SRF95.csv" beforeDir="false" afterPath="$PROJECT_DIR$/../src/DataFixtures/References/SRF95.csv" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../src/AppBundle/DataFixtures/References/SRF97.csv" beforeDir="false" afterPath="$PROJECT_DIR$/../src/DataFixtures/References/SRF97.csv" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../src/AppBundle/DataFixtures/References/SRF99.csv" beforeDir="false" afterPath="$PROJECT_DIR$/../src/DataFixtures/References/SRF99.csv" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../src/AppBundle/DataFixtures/References/a01.csv" beforeDir="false" afterPath="$PROJECT_DIR$/../src/DataFixtures/References/a01.csv" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../src/AppBundle/DataFixtures/References/a04.csv" beforeDir="false" afterPath="$PROJECT_DIR$/../src/DataFixtures/References/a04.csv" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../src/AppBundle/DataFixtures/References/a07.csv" beforeDir="false" afterPath="$PROJECT_DIR$/../src/DataFixtures/References/a07.csv" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../src/AppBundle/DataFixtures/References/a98.csv" beforeDir="false" afterPath="$PROJECT_DIR$/../src/DataFixtures/References/a98.csv" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../src/AppBundle/DataFixtures/References/abdwhb06.csv" beforeDir="false" afterPath="$PROJECT_DIR$/../src/DataFixtures/References/abdwhb06.csv" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../src/AppBundle/DataFixtures/References/c01.csv" beforeDir="false" afterPath="$PROJECT_DIR$/../src/DataFixtures/References/c01.csv" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../src/AppBundle/DataFixtures/References/c04.csv" beforeDir="false" afterPath="$PROJECT_DIR$/../src/DataFixtures/References/c04.csv" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../src/AppBundle/DataFixtures/References/c07.csv" beforeDir="false" afterPath="$PROJECT_DIR$/../src/DataFixtures/References/c07.csv" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../src/AppBundle/DataFixtures/References/c59.csv" beforeDir="false" afterPath="$PROJECT_DIR$/../src/DataFixtures/References/c59.csv" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../src/AppBundle/DataFixtures/References/c63.csv" beforeDir="false" afterPath="$PROJECT_DIR$/../src/DataFixtures/References/c63.csv" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../src/AppBundle/DataFixtures/References/c66.csv" beforeDir="false" afterPath="$PROJECT_DIR$/../src/DataFixtures/References/c66.csv" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../src/AppBundle/DataFixtures/References/c69.csv" beforeDir="false" afterPath="$PROJECT_DIR$/../src/DataFixtures/References/c69.csv" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../src/AppBundle/DataFixtures/References/c72.csv" beforeDir="false" afterPath="$PROJECT_DIR$/../src/DataFixtures/References/c72.csv" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../src/AppBundle/DataFixtures/References/c75.csv" beforeDir="false" afterPath="$PROJECT_DIR$/../src/DataFixtures/References/c75.csv" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../src/AppBundle/DataFixtures/References/c78.csv" beforeDir="false" afterPath="$PROJECT_DIR$/../src/DataFixtures/References/c78.csv" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../src/AppBundle/DataFixtures/References/c81.csv" beforeDir="false" afterPath="$PROJECT_DIR$/../src/DataFixtures/References/c81.csv" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../src/AppBundle/DataFixtures/References/c84.csv" beforeDir="false" afterPath="$PROJECT_DIR$/../src/DataFixtures/References/c84.csv" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../src/AppBundle/DataFixtures/References/c86.csv" beforeDir="false" afterPath="$PROJECT_DIR$/../src/DataFixtures/References/c86.csv" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../src/AppBundle/DataFixtures/References/c89.csv" beforeDir="false" afterPath="$PROJECT_DIR$/../src/DataFixtures/References/c89.csv" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../src/AppBundle/DataFixtures/References/c92.csv" beforeDir="false" afterPath="$PROJECT_DIR$/../src/DataFixtures/References/c92.csv" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../src/AppBundle/DataFixtures/References/c95.csv" beforeDir="false" afterPath="$PROJECT_DIR$/../src/DataFixtures/References/c95.csv" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../src/AppBundle/DataFixtures/References/c98.csv" beforeDir="false" afterPath="$PROJECT_DIR$/../src/DataFixtures/References/c98.csv" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../src/AppBundle/DataFixtures/References/cl07.csv" beforeDir="false" afterPath="$PROJECT_DIR$/../src/DataFixtures/References/cl07.csv" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../src/AppBundle/DataFixtures/References/cool2015.csv" beforeDir="false" afterPath="$PROJECT_DIR$/../src/DataFixtures/References/cool2015.csv" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../src/AppBundle/DataFixtures/References/cool2017.csv" beforeDir="false" afterPath="$PROJECT_DIR$/../src/DataFixtures/References/cool2017.csv" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../src/AppBundle/DataFixtures/References/cyclotrons2016.csv" beforeDir="false" afterPath="$PROJECT_DIR$/../src/DataFixtures/References/cyclotrons2016.csv" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../src/AppBundle/DataFixtures/References/d01.csv" beforeDir="false" afterPath="$PROJECT_DIR$/../src/DataFixtures/References/d01.csv" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../src/AppBundle/DataFixtures/References/d03.csv" beforeDir="false" afterPath="$PROJECT_DIR$/../src/DataFixtures/References/d03.csv" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../src/AppBundle/DataFixtures/References/d05.csv" beforeDir="false" afterPath="$PROJECT_DIR$/../src/DataFixtures/References/d05.csv" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../src/AppBundle/DataFixtures/References/d07.csv" beforeDir="false" afterPath="$PROJECT_DIR$/../src/DataFixtures/References/d07.csv" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../src/AppBundle/DataFixtures/References/d09.csv" beforeDir="false" afterPath="$PROJECT_DIR$/../src/DataFixtures/References/d09.csv" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../src/AppBundle/DataFixtures/References/d99.csv" beforeDir="false" afterPath="$PROJECT_DIR$/../src/DataFixtures/References/d99.csv" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../src/AppBundle/DataFixtures/References/e00.csv" beforeDir="false" afterPath="$PROJECT_DIR$/../src/DataFixtures/References/e00.csv" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../src/AppBundle/DataFixtures/References/e02.csv" beforeDir="false" afterPath="$PROJECT_DIR$/../src/DataFixtures/References/e02.csv" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../src/AppBundle/DataFixtures/References/e04.csv" beforeDir="false" afterPath="$PROJECT_DIR$/../src/DataFixtures/References/e04.csv" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../src/AppBundle/DataFixtures/References/e06.csv" beforeDir="false" afterPath="$PROJECT_DIR$/../src/DataFixtures/References/e06.csv" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../src/AppBundle/DataFixtures/References/e08.csv" beforeDir="false" afterPath="$PROJECT_DIR$/../src/DataFixtures/References/e08.csv" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../src/AppBundle/DataFixtures/References/e88.csv" beforeDir="false" afterPath="$PROJECT_DIR$/../src/DataFixtures/References/e88.csv" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../src/AppBundle/DataFixtures/References/e90.csv" beforeDir="false" afterPath="$PROJECT_DIR$/../src/DataFixtures/References/e90.csv" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../src/AppBundle/DataFixtures/References/e92.csv" beforeDir="false" afterPath="$PROJECT_DIR$/../src/DataFixtures/References/e92.csv" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../src/AppBundle/DataFixtures/References/e94.csv" beforeDir="false" afterPath="$PROJECT_DIR$/../src/DataFixtures/References/e94.csv" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../src/AppBundle/DataFixtures/References/e96.csv" beforeDir="false" afterPath="$PROJECT_DIR$/../src/DataFixtures/References/e96.csv" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../src/AppBundle/DataFixtures/References/e98.csv" beforeDir="false" afterPath="$PROJECT_DIR$/../src/DataFixtures/References/e98.csv" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../src/AppBundle/DataFixtures/References/ecris08.csv" beforeDir="false" afterPath="$PROJECT_DIR$/../src/DataFixtures/References/ecris08.csv" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../src/AppBundle/DataFixtures/References/ecris2016.csv" beforeDir="false" afterPath="$PROJECT_DIR$/../src/DataFixtures/References/ecris2016.csv" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../src/AppBundle/DataFixtures/References/eefact2016.csv" beforeDir="false" afterPath="$PROJECT_DIR$/../src/DataFixtures/References/eefact2016.csv" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../src/AppBundle/DataFixtures/References/erl07.csv" beforeDir="false" afterPath="$PROJECT_DIR$/../src/DataFixtures/References/erl07.csv" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../src/AppBundle/DataFixtures/References/erl2017.csv" beforeDir="false" afterPath="$PROJECT_DIR$/../src/DataFixtures/References/erl2017.csv" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../src/AppBundle/DataFixtures/References/f04.csv" beforeDir="false" afterPath="$PROJECT_DIR$/../src/DataFixtures/References/f04.csv" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../src/AppBundle/DataFixtures/References/f05.csv" beforeDir="false" afterPath="$PROJECT_DIR$/../src/DataFixtures/References/f05.csv" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../src/AppBundle/DataFixtures/References/f06.csv" beforeDir="false" afterPath="$PROJECT_DIR$/../src/DataFixtures/References/f06.csv" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../src/AppBundle/DataFixtures/References/f07.csv" beforeDir="false" afterPath="$PROJECT_DIR$/../src/DataFixtures/References/f07.csv" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../src/AppBundle/DataFixtures/References/fac08.csv" beforeDir="false" afterPath="$PROJECT_DIR$/../src/DataFixtures/References/fac08.csv" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../src/AppBundle/DataFixtures/References/fel2017.csv" beforeDir="false" afterPath="$PROJECT_DIR$/../src/DataFixtures/References/fel2017.csv" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../src/AppBundle/DataFixtures/References/fls06.csv" beforeDir="false" afterPath="$PROJECT_DIR$/../src/DataFixtures/References/fls06.csv" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../src/AppBundle/DataFixtures/References/fls2018.csv" beforeDir="false" afterPath="$PROJECT_DIR$/../src/DataFixtures/References/fls2018.csv" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../src/AppBundle/DataFixtures/References/hb2016.csv" beforeDir="false" afterPath="$PROJECT_DIR$/../src/DataFixtures/References/hb2016.csv" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../src/AppBundle/DataFixtures/References/hb2018.csv" beforeDir="false" afterPath="$PROJECT_DIR$/../src/DataFixtures/References/hb2018.csv" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../src/AppBundle/DataFixtures/References/ibic2016.csv" beforeDir="false" afterPath="$PROJECT_DIR$/../src/DataFixtures/References/ibic2016.csv" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../src/AppBundle/DataFixtures/References/ibic2017.csv" beforeDir="false" afterPath="$PROJECT_DIR$/../src/DataFixtures/References/ibic2017.csv" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../src/AppBundle/DataFixtures/References/ica01.csv" beforeDir="false" afterPath="$PROJECT_DIR$/../src/DataFixtures/References/ica01.csv" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../src/AppBundle/DataFixtures/References/ica03.csv" beforeDir="false" afterPath="$PROJECT_DIR$/../src/DataFixtures/References/ica03.csv" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../src/AppBundle/DataFixtures/References/ica05.csv" beforeDir="false" afterPath="$PROJECT_DIR$/../src/DataFixtures/References/ica05.csv" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../src/AppBundle/DataFixtures/References/ica07.csv" beforeDir="false" afterPath="$PROJECT_DIR$/../src/DataFixtures/References/ica07.csv" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../src/AppBundle/DataFixtures/References/ica99.csv" beforeDir="false" afterPath="$PROJECT_DIR$/../src/DataFixtures/References/ica99.csv" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../src/AppBundle/DataFixtures/References/icalepcs2009.csv" beforeDir="false" afterPath="$PROJECT_DIR$/../src/DataFixtures/References/icalepcs2009.csv" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../src/AppBundle/DataFixtures/References/icalepcs2011.csv" beforeDir="false" afterPath="$PROJECT_DIR$/../src/DataFixtures/References/icalepcs2011.csv" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../src/AppBundle/DataFixtures/References/icalepcs2017.csv" beforeDir="false" afterPath="$PROJECT_DIR$/../src/DataFixtures/References/icalepcs2017.csv" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../src/AppBundle/DataFixtures/References/icap06.csv" beforeDir="false" afterPath="$PROJECT_DIR$/../src/DataFixtures/References/icap06.csv" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../src/AppBundle/DataFixtures/References/ipac2014.csv" beforeDir="false" afterPath="$PROJECT_DIR$/../src/DataFixtures/References/ipac2014.csv" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../src/AppBundle/DataFixtures/References/ipac2015.csv" beforeDir="false" afterPath="$PROJECT_DIR$/../src/DataFixtures/References/ipac2015.csv" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../src/AppBundle/DataFixtures/References/ipac2016.csv" beforeDir="false" afterPath="$PROJECT_DIR$/../src/DataFixtures/References/ipac2016.csv" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../src/AppBundle/DataFixtures/References/ipac2017.csv" beforeDir="false" afterPath="$PROJECT_DIR$/../src/DataFixtures/References/ipac2017.csv" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../src/AppBundle/DataFixtures/References/ipac2018.csv" beforeDir="false" afterPath="$PROJECT_DIR$/../src/DataFixtures/References/ipac2018.csv" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../src/AppBundle/DataFixtures/References/l00.csv" beforeDir="false" afterPath="$PROJECT_DIR$/../src/DataFixtures/References/l00.csv" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../src/AppBundle/DataFixtures/References/l02.csv" beforeDir="false" afterPath="$PROJECT_DIR$/../src/DataFixtures/References/l02.csv" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../src/AppBundle/DataFixtures/References/l04.csv" beforeDir="false" afterPath="$PROJECT_DIR$/../src/DataFixtures/References/l04.csv" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../src/AppBundle/DataFixtures/References/l06.csv" beforeDir="false" afterPath="$PROJECT_DIR$/../src/DataFixtures/References/l06.csv" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../src/AppBundle/DataFixtures/References/l61.csv" beforeDir="false" afterPath="$PROJECT_DIR$/../src/DataFixtures/References/l61.csv" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../src/AppBundle/DataFixtures/References/l62.csv" beforeDir="false" afterPath="$PROJECT_DIR$/../src/DataFixtures/References/l62.csv" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../src/AppBundle/DataFixtures/References/l63.csv" beforeDir="false" afterPath="$PROJECT_DIR$/../src/DataFixtures/References/l63.csv" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../src/AppBundle/DataFixtures/References/l64.csv" beforeDir="false" afterPath="$PROJECT_DIR$/../src/DataFixtures/References/l64.csv" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../src/AppBundle/DataFixtures/References/l66.csv" beforeDir="false" afterPath="$PROJECT_DIR$/../src/DataFixtures/References/l66.csv" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../src/AppBundle/DataFixtures/References/l68.csv" beforeDir="false" afterPath="$PROJECT_DIR$/../src/DataFixtures/References/l68.csv" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../src/AppBundle/DataFixtures/References/l70.csv" beforeDir="false" afterPath="$PROJECT_DIR$/../src/DataFixtures/References/l70.csv" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../src/AppBundle/DataFixtures/References/l72.csv" beforeDir="false" afterPath="$PROJECT_DIR$/../src/DataFixtures/References/l72.csv" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../src/AppBundle/DataFixtures/References/l76.csv" beforeDir="false" afterPath="$PROJECT_DIR$/../src/DataFixtures/References/l76.csv" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../src/AppBundle/DataFixtures/References/l79.csv" beforeDir="false" afterPath="$PROJECT_DIR$/../src/DataFixtures/References/l79.csv" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../src/AppBundle/DataFixtures/References/l81.csv" beforeDir="false" afterPath="$PROJECT_DIR$/../src/DataFixtures/References/l81.csv" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../src/AppBundle/DataFixtures/References/l84.csv" beforeDir="false" afterPath="$PROJECT_DIR$/../src/DataFixtures/References/l84.csv" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../src/AppBundle/DataFixtures/References/l86.csv" beforeDir="false" afterPath="$PROJECT_DIR$/../src/DataFixtures/References/l86.csv" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../src/AppBundle/DataFixtures/References/l88.csv" beforeDir="false" afterPath="$PROJECT_DIR$/../src/DataFixtures/References/l88.csv" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../src/AppBundle/DataFixtures/References/l90.csv" beforeDir="false" afterPath="$PROJECT_DIR$/../src/DataFixtures/References/l90.csv" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../src/AppBundle/DataFixtures/References/l92.csv" beforeDir="false" afterPath="$PROJECT_DIR$/../src/DataFixtures/References/l92.csv" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../src/AppBundle/DataFixtures/References/l94.csv" beforeDir="false" afterPath="$PROJECT_DIR$/../src/DataFixtures/References/l94.csv" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../src/AppBundle/DataFixtures/References/l96.csv" beforeDir="false" afterPath="$PROJECT_DIR$/../src/DataFixtures/References/l96.csv" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../src/AppBundle/DataFixtures/References/l98.csv" beforeDir="false" afterPath="$PROJECT_DIR$/../src/DataFixtures/References/l98.csv" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../src/AppBundle/DataFixtures/References/linac2016.csv" beforeDir="false" afterPath="$PROJECT_DIR$/../src/DataFixtures/References/linac2016.csv" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../src/AppBundle/DataFixtures/References/linac2018.csv" beforeDir="false" afterPath="$PROJECT_DIR$/../src/DataFixtures/References/linac2018.csv" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../src/AppBundle/DataFixtures/References/medsi2016.csv" beforeDir="false" afterPath="$PROJECT_DIR$/../src/DataFixtures/References/medsi2016.csv" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../src/AppBundle/DataFixtures/References/medsi2018.csv" beforeDir="false" afterPath="$PROJECT_DIR$/../src/DataFixtures/References/medsi2018.csv" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../src/AppBundle/DataFixtures/References/napac2016.csv" beforeDir="false" afterPath="$PROJECT_DIR$/../src/DataFixtures/References/napac2016.csv" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../src/AppBundle/DataFixtures/References/p01.csv" beforeDir="false" afterPath="$PROJECT_DIR$/../src/DataFixtures/References/p01.csv" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../src/AppBundle/DataFixtures/References/p03.csv" beforeDir="false" afterPath="$PROJECT_DIR$/../src/DataFixtures/References/p03.csv" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../src/AppBundle/DataFixtures/References/p05.csv" beforeDir="false" afterPath="$PROJECT_DIR$/../src/DataFixtures/References/p05.csv" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../src/AppBundle/DataFixtures/References/p07.csv" beforeDir="false" afterPath="$PROJECT_DIR$/../src/DataFixtures/References/p07.csv" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../src/AppBundle/DataFixtures/References/p65.csv" beforeDir="false" afterPath="$PROJECT_DIR$/../src/DataFixtures/References/p65.csv" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../src/AppBundle/DataFixtures/References/p67.csv" beforeDir="false" afterPath="$PROJECT_DIR$/../src/DataFixtures/References/p67.csv" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../src/AppBundle/DataFixtures/References/p69.csv" beforeDir="false" afterPath="$PROJECT_DIR$/../src/DataFixtures/References/p69.csv" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../src/AppBundle/DataFixtures/References/p71.csv" beforeDir="false" afterPath="$PROJECT_DIR$/../src/DataFixtures/References/p71.csv" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../src/AppBundle/DataFixtures/References/p73.csv" beforeDir="false" afterPath="$PROJECT_DIR$/../src/DataFixtures/References/p73.csv" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../src/AppBundle/DataFixtures/References/p75.csv" beforeDir="false" afterPath="$PROJECT_DIR$/../src/DataFixtures/References/p75.csv" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../src/AppBundle/DataFixtures/References/p77.csv" beforeDir="false" afterPath="$PROJECT_DIR$/../src/DataFixtures/References/p77.csv" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../src/AppBundle/DataFixtures/References/p79.csv" beforeDir="false" afterPath="$PROJECT_DIR$/../src/DataFixtures/References/p79.csv" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../src/AppBundle/DataFixtures/References/p81.csv" beforeDir="false" afterPath="$PROJECT_DIR$/../src/DataFixtures/References/p81.csv" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../src/AppBundle/DataFixtures/References/p83.csv" beforeDir="false" afterPath="$PROJECT_DIR$/../src/DataFixtures/References/p83.csv" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../src/AppBundle/DataFixtures/References/p85.csv" beforeDir="false" afterPath="$PROJECT_DIR$/../src/DataFixtures/References/p85.csv" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../src/AppBundle/DataFixtures/References/p87.csv" beforeDir="false" afterPath="$PROJECT_DIR$/../src/DataFixtures/References/p87.csv" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../src/AppBundle/DataFixtures/References/p89.csv" beforeDir="false" afterPath="$PROJECT_DIR$/../src/DataFixtures/References/p89.csv" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../src/AppBundle/DataFixtures/References/p91.csv" beforeDir="false" afterPath="$PROJECT_DIR$/../src/DataFixtures/References/p91.csv" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../src/AppBundle/DataFixtures/References/p93.csv" beforeDir="false" afterPath="$PROJECT_DIR$/../src/DataFixtures/References/p93.csv" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../src/AppBundle/DataFixtures/References/p95.csv" beforeDir="false" afterPath="$PROJECT_DIR$/../src/DataFixtures/References/p95.csv" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../src/AppBundle/DataFixtures/References/p99.csv" beforeDir="false" afterPath="$PROJECT_DIR$/../src/DataFixtures/References/p99.csv" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../src/AppBundle/DataFixtures/References/pac97.csv" beforeDir="false" afterPath="$PROJECT_DIR$/../src/DataFixtures/References/pac97.csv" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../src/AppBundle/DataFixtures/References/pc08.csv" beforeDir="false" afterPath="$PROJECT_DIR$/../src/DataFixtures/References/pc08.csv" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../src/AppBundle/DataFixtures/References/pcapac2010.csv" beforeDir="false" afterPath="$PROJECT_DIR$/../src/DataFixtures/References/pcapac2010.csv" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../src/AppBundle/DataFixtures/References/pcapac2012.csv" beforeDir="false" afterPath="$PROJECT_DIR$/../src/DataFixtures/References/pcapac2012.csv" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../src/AppBundle/DataFixtures/References/pcapac2016.csv" beforeDir="false" afterPath="$PROJECT_DIR$/../src/DataFixtures/References/pcapac2016.csv" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../src/AppBundle/DataFixtures/References/r04.csv" beforeDir="false" afterPath="$PROJECT_DIR$/../src/DataFixtures/References/r04.csv" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../src/AppBundle/DataFixtures/References/r06.csv" beforeDir="false" afterPath="$PROJECT_DIR$/../src/DataFixtures/References/r06.csv" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../src/AppBundle/DataFixtures/References/r08.csv" beforeDir="false" afterPath="$PROJECT_DIR$/../src/DataFixtures/References/r08.csv" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../src/AppBundle/DataFixtures/References/r10.csv" beforeDir="false" afterPath="$PROJECT_DIR$/../src/DataFixtures/References/r10.csv" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../src/AppBundle/DataFixtures/References/rupac2012.csv" beforeDir="false" afterPath="$PROJECT_DIR$/../src/DataFixtures/References/rupac2012.csv" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../src/AppBundle/DataFixtures/References/rupac2014.csv" beforeDir="false" afterPath="$PROJECT_DIR$/../src/DataFixtures/References/rupac2014.csv" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../src/AppBundle/DataFixtures/References/rupac2016.csv" beforeDir="false" afterPath="$PROJECT_DIR$/../src/DataFixtures/References/rupac2016.csv" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../src/AppBundle/DataFixtures/References/rupac2018.csv" beforeDir="false" afterPath="$PROJECT_DIR$/../src/DataFixtures/References/rupac2018.csv" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../src/AppBundle/DataFixtures/References/sap2017.csv" beforeDir="false" afterPath="$PROJECT_DIR$/../src/DataFixtures/References/sap2017.csv" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../src/AppBundle/DataFixtures/References/srf01.csv" beforeDir="false" afterPath="$PROJECT_DIR$/../src/DataFixtures/References/srf01.csv" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../src/AppBundle/DataFixtures/References/srf2007.csv" beforeDir="false" afterPath="$PROJECT_DIR$/../src/DataFixtures/References/srf2007.csv" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../src/AppBundle/DataFixtures/References/srf2017.csv" beforeDir="false" afterPath="$PROJECT_DIR$/../src/DataFixtures/References/srf2017.csv" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../src/AppBundle/DataFixtures/References/srf80.csv" beforeDir="false" afterPath="$PROJECT_DIR$/../src/DataFixtures/References/srf80.csv" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../src/AppBundle/DataFixtures/References/srf84.csv" beforeDir="false" afterPath="$PROJECT_DIR$/../src/DataFixtures/References/srf84.csv" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../src/AppBundle/DataFixtures/References/srf87.csv" beforeDir="false" afterPath="$PROJECT_DIR$/../src/DataFixtures/References/srf87.csv" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../src/AppBundle/Entity/Author.php" beforeDir="false" afterPath="$PROJECT_DIR$/../src/Entity/Author.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../src/AppBundle/Entity/Conference.php" beforeDir="false" afterPath="$PROJECT_DIR$/../src/Entity/Conference.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../src/AppBundle/Entity/Favourite.php" beforeDir="false" afterPath="$PROJECT_DIR$/../src/Entity/Favourite.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../src/AppBundle/Entity/Feedback.php" beforeDir="false" afterPath="$PROJECT_DIR$/../src/Entity/Feedback.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../src/AppBundle/Entity/Reference.php" beforeDir="false" afterPath="$PROJECT_DIR$/../src/Entity/Reference.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../src/AppBundle/Entity/Search.php" beforeDir="false" afterPath="$PROJECT_DIR$/../src/Entity/Search.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../src/AppBundle/Entity/User.php" beforeDir="false" afterPath="$PROJECT_DIR$/../src/Entity/User.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../src/AppBundle/EventSubscriber/ConferenceSubscriber.php" beforeDir="false" afterPath="$PROJECT_DIR$/../src/EventSubscriber/ConferenceSubscriber.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../src/AppBundle/EventSubscriber/ReferenceSubscriber.php" beforeDir="false" afterPath="$PROJECT_DIR$/../src/EventSubscriber/ReferenceSubscriber.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../src/AppBundle/Form/AuthorType.php" beforeDir="false" afterPath="$PROJECT_DIR$/../src/Form/AuthorType.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../src/AppBundle/Form/BasicSearchType.php" beforeDir="false" afterPath="$PROJECT_DIR$/../src/Form/BasicSearchType.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../src/AppBundle/Form/ConferenceType.php" beforeDir="false" afterPath="$PROJECT_DIR$/../src/Form/ConferenceType.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../src/AppBundle/Form/DataTransformer/TagTransformer.php" beforeDir="false" afterPath="$PROJECT_DIR$/../src/Form/DataTransformer/TagTransformer.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../src/AppBundle/Form/FeedbackType.php" beforeDir="false" afterPath="$PROJECT_DIR$/../src/Form/FeedbackType.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../src/AppBundle/Form/ReferenceType.php" beforeDir="false" afterPath="$PROJECT_DIR$/../src/Form/ReferenceType.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../src/AppBundle/Form/SearchType.php" beforeDir="false" afterPath="$PROJECT_DIR$/../src/Form/SearchType.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../src/AppBundle/Form/SwitchConferenceType.php" beforeDir="false" afterPath="$PROJECT_DIR$/../src/Form/SwitchConferenceType.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../src/AppBundle/Form/Type/TagsAsInputType.php" beforeDir="false" afterPath="$PROJECT_DIR$/../src/Form/Type/TagsAsInputType.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../src/AppBundle/Form/UserType.php" beforeDir="false" afterPath="$PROJECT_DIR$/../src/Form/UserType.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../src/AppBundle/Http/CsvResponse.php" beforeDir="false" afterPath="$PROJECT_DIR$/../src/Http/CsvResponse.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../src/AppBundle/Repository/AuthorRepository.php" beforeDir="false" afterPath="$PROJECT_DIR$/../src/Repository/AuthorRepository.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../src/AppBundle/Repository/ConferenceRepository.php" beforeDir="false" afterPath="$PROJECT_DIR$/../src/Repository/ConferenceRepository.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../src/AppBundle/Repository/FavouriteRepository.php" beforeDir="false" afterPath="$PROJECT_DIR$/../src/Repository/FavouriteRepository.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../src/AppBundle/Repository/FeedbackRepository.php" beforeDir="false" afterPath="$PROJECT_DIR$/../src/Repository/FeedbackRepository.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../src/AppBundle/Repository/ReferenceRepository.php" beforeDir="false" afterPath="$PROJECT_DIR$/../src/Repository/ReferenceRepository.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../src/AppBundle/Repository/UserRepository.php" beforeDir="false" afterPath="$PROJECT_DIR$/../src/Repository/UserRepository.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../src/AppBundle/Service/AdminNotifyService.php" beforeDir="false" afterPath="$PROJECT_DIR$/../src/Service/AdminNotifyService.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../src/AppBundle/Service/AuthorService.php" beforeDir="false" afterPath="$PROJECT_DIR$/../src/Service/AuthorService.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../src/AppBundle/Service/CsvService.php" beforeDir="false" afterPath="$PROJECT_DIR$/../src/Service/CsvService.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../src/AppBundle/Service/CurrentConferenceService.php" beforeDir="false" afterPath="$PROJECT_DIR$/../src/Service/CurrentConferenceService.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../src/AppBundle/Service/DoiService.php" beforeDir="false" afterPath="$PROJECT_DIR$/../src/Service/DoiService.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../src/AppBundle/Service/FavouriteService.php" beforeDir="false" afterPath="$PROJECT_DIR$/../src/Service/FavouriteService.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../src/AppBundle/Service/FormService.php" beforeDir="false" afterPath="$PROJECT_DIR$/../src/Service/FormService.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../src/AppBundle/Service/ImportService.php" beforeDir="false" afterPath="$PROJECT_DIR$/../src/Service/ImportService.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../src/AppBundle/Twig/AppExtension.php" beforeDir="false" afterPath="$PROJECT_DIR$/../src/Twig/AppExtension.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../web/app.php" beforeDir="false" afterPath="$PROJECT_DIR$/../web/app.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../web/app_dev.php" beforeDir="false" afterPath="$PROJECT_DIR$/../web/app_dev.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../web/css/bootstrap-tagsinput.css" beforeDir="false" afterPath="$PROJECT_DIR$/../public/css/bootstrap-tagsinput.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../web/css/typeaheadjs.css" beforeDir="false" afterPath="$PROJECT_DIR$/../public/css/typeaheadjs.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../web/css/typeaheadjs.css.map" beforeDir="false" afterPath="$PROJECT_DIR$/../public/css/typeaheadjs.css.map" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../web/css/typeaheadjs.scss" beforeDir="false" afterPath="$PROJECT_DIR$/../public/css/typeaheadjs.scss" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../web/css/website.css" beforeDir="false" afterPath="$PROJECT_DIR$/../public/css/website.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../web/css/website.css.map" beforeDir="false" afterPath="$PROJECT_DIR$/../public/css/website.css.map" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../web/css/website.scss" beforeDir="false" afterPath="$PROJECT_DIR$/../public/css/website.scss" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../web/fonts/liberation-mono.ttf.woff" beforeDir="false" afterPath="$PROJECT_DIR$/../public/fonts/liberation-mono.ttf.woff" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../web/holding.html" beforeDir="false" afterPath="$PROJECT_DIR$/../web/holding.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../web/images/ansto_logo.jpg" beforeDir="false" afterPath="$PROJECT_DIR$/../public/images/ansto_logo.jpg" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../web/images/ipac_logo.jpg" beforeDir="false" afterPath="$PROJECT_DIR$/../public/images/ipac_logo.jpg" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../web/images/jacow_image.png" beforeDir="false" afterPath="$PROJECT_DIR$/../public/images/jacow_image.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../web/js/bootstrap-tagsinput.js" beforeDir="false" afterPath="$PROJECT_DIR$/../public/js/bootstrap-tagsinput.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../web/js/favourite.js" beforeDir="false" afterPath="$PROJECT_DIR$/../public/js/favourite.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../web/js/fos_js_routes.json" beforeDir="false" afterPath="$PROJECT_DIR$/../public/js/fos_js_routes.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../web/js/global.js" beforeDir="false" afterPath="$PROJECT_DIR$/../public/js/global.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../web/js/search.js" beforeDir="false" afterPath="$PROJECT_DIR$/../public/js/search.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../web/js/tags.js" beforeDir="false" afterPath="$PROJECT_DIR$/../public/js/tags.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../web/js/typeahead.bundle.min.js" beforeDir="false" afterPath="$PROJECT_DIR$/../public/js/typeahead.bundle.min.js" afterDir="false" />
+    </list>
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="ComposerSettings">
+    <execution>
+      <executable />
+    </execution>
+  </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$/.." />
+  </component>
+  <component name="ProjectId" id="1ozlpCO2bf8SEud0MBFKRfafCVQ" />
+  <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
+  <component name="ProjectViewState">
+    <option name="hideEmptyMiddlePackages" value="true" />
+    <option name="showExcludedFiles" value="true" />
+    <option name="showLibraryContents" value="true" />
+  </component>
+  <component name="PropertiesComponent">
+    <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
+    <property name="WebServerToolWindowFactoryState" value="false" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/../../eddb" />
+  </component>
+  <component name="SvnConfiguration">
+    <configuration />
+  </component>
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="d309faad-1f3e-4f88-a96a-b2d90c93b59a" name="Default Changelist" comment="" />
+      <created>1614297480777</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1614297480777</updated>
+      <workItem from="1614297482800" duration="643000" />
+      <workItem from="1614640553962" duration="598000" />
+    </task>
+    <servers />
+  </component>
+  <component name="TypeScriptGeneratedFilesManager">
+    <option name="version" value="1" />
+  </component>
+  <component name="WindowStateProjectService">
+    <state x="919" y="168" key="FileChooserDialogImpl" timestamp="1614297532720">
+      <screen x="0" y="0" width="2278" height="822" />
+    </state>
+    <state x="919" y="168" key="FileChooserDialogImpl/0.0.2278.822@0.0.2278.822" timestamp="1614297532720" />
+  </component>
+</project>

@@ -1,0 +1,8 @@
+sentry:
+  dsn: "%env(resolve:SENTRY_DSN)%"
+  options:
+    environment: "%env(resolve:APP_ENV)%"
+    send_default_pii: true
+    excluded_exceptions:
+      - 'Symfony\Component\Security\Core\Exception\AccessDeniedException'
+      - 'Symfony\Component\HttpKernel\Exception\NotFoundHttpException'

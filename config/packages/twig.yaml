@@ -1,0 +1,10 @@
+twig:
+    default_path: '%kernel.project_dir%/templates'
+    debug: '%kernel.debug%'
+    strict_variables: '%kernel.debug%'
+    exception_controller: ~
+    form_themes: ['template/forms.html.twig']
+    globals:
+        form_service: '@App\Service\FormService'
+        favourite_service: '@App\Service\FavouriteService'
+        current_conference: '@App\Service\CurrentConferenceService'

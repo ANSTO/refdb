@@ -1,0 +1,85 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+
+    {% if warning != "" %}
+        <div class="text-center alert alert-danger">
+            {% if warning != "" %}
+                <strong>Warning</strong><br />
+                {{ warning|trim|nl2br }}
+            {% endif %}
+        </div>
+    {% endif %}
+
+    {% set found = false %}
+    {% for reference in references %}
+        {% if not reference.conference.published and found == false %}
+            {% if current_conference.hasCurrent and current_conference.current == reference.conference %}
+                {% if not current_conference.understand %}
+                    {% set found = true %}
+                    <div class="text-center alert alert-info alert-dismissible">
+                        <a href="{{ path('conference_dismiss', {"ref": path("favourite_show")}) }}" class="close">&times;</a>
+                        You have indicated that you are creating references for {{ reference.conference.code }}. <br />If this is no longer the case, please indicate this by selecting the "Not for use for this conference", on the individual reference's page.
+                    </div>
+                {% endif %}
+            {% else %}
+                {% if not current_conference.understand %}
+                    {% set found = true %}
+                    <div class="text-center alert alert-warning alert-dismissible">
+                        <a href="{{ path('conference_dismiss', {"ref": path("favourite_show")}) }}" class="close">&times;</a>
+                        Please indicate if you are using any of the references below at the same conference, by selecting the "For use at same conference", on the individual reference's page.
+                    </div>
+                {% endif %}
+            {% endif %}
+        {% endif %}
+    {% endfor %}
+
+    <h2>Favourites</h2>
+    <br />
+
+    {% if references|length == 0 %}
+        <div class="alert alert-info">
+            You do not currently have any favourites.
+        </div>
+    {% else %}
+
+    <h3>For Word</h3>
+
+    <div class="card">
+        <div class="card-body">
+            {% for reference in references %}
+                {% include "reference/word.html.twig" %}
+            {% endfor %}
+        </div>
+    </div>
+    <br />
+    <h3>For LaTeX</h3>
+    <p>{% apply spaceless %}
+            <textarea class="form-control latex-ref">
+{% for reference in references -%}
+    {%- include "reference/latex.html.twig" %}{{ "\n" }}
+{% endfor %}</textarea>
+        {% endapply %}
+    </p>
+
+        <a class="btn btn-block" href="{{ path('conference_format', {"ref": path("favourite_show")}) }}">
+            {% if form_service.getForm == "long" %}
+                Use Abbreviated Form
+            {% else %}
+                Use Complete Form
+            {% endif %}
+        </a>
+
+    <br />
+    <h3>References</h3>
+
+    <ul id="results">
+        {% for reference in references %}
+            <li><a class="favourite active" href="{{ path("favourite_toggle_redirect", {"id": reference.id }) }}"><i class="far fa-star"></i></a><a class="item" href="{{ path("reference_show", {"id": reference.id }) }}">{{ reference.cache|latin }}</a></li>
+        {% endfor %}
+    </ul>
+    {% endif %}
+    <a class="btn btn-default" href="{{ path('homepage') }}"><i class="fas fa-arrow-left"></i> Back to search</a>
+
+
+{% endblock %}
