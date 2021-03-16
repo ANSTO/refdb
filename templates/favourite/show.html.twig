@@ -71,6 +71,16 @@
         </a>
 
     <br />
+
+    <h3>For BibTeX</h3>
+    <p>{% apply spaceless %}
+            <textarea class="form-control latex-ref">
+{% for reference in references -%}
+{%- include "reference/bibtex.html.twig" %}{{ "\n" }}
+{% endfor %}</textarea>
+        {% endapply %}
+    </p>
+
     <h3>References</h3>
 
     <ul id="results">

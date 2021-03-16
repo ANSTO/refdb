@@ -50,6 +50,16 @@ class ImportService
                     $reference->setContributionId($contributionId);
                 }
             }
+            if (isset($data[5])) {
+                $customDoi = trim($data[5]);
+                $reference->setCustomDoi($customDoi);
+            }
+            if (isset($data[6])) {
+                $paperUrl = trim($data[6]);
+                if (filter_var($paperUrl, FILTER_VALIDATE_URL)) {
+                    $reference->setPaperUrl($paperUrl);
+                }
+            }
             return $reference;
         }, $contents);
 

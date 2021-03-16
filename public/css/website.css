@@ -53,7 +53,7 @@ pre.wordbib {
   word-wrap: break-word;
 }
 
-.latex-ref {
+.latex-ref, .bibtex-ref {
   font-family: monospace;
   padding: 1.25rem;
 }

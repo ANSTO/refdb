@@ -113,6 +113,22 @@ class Reference implements \JsonSerializable
     private $doiVerified;
 
     /**
+     * URL To paper
+     * @var string
+     *
+     * @ORM\Column(type="string", length=1000, nullable=true)
+     */
+    private $customDoi;
+
+    /**
+     * URL To paper
+     * @var string
+     *
+     * @ORM\Column(type="string", length=1000, nullable=true)
+     */
+    private $paperUrl;
+
+    /**
      * Any associated issues will be logged here.
      *
      * @ORM\OneToMany(targetEntity="App\Entity\Feedback", mappedBy="reference", cascade={"remove"})
@@ -356,7 +372,9 @@ class Reference implements \JsonSerializable
     }
 
     public function doi() {
-        if ($this->getConference()->isUseDoi()) {
+        if ($this->getCustomDoi() !== null) {
+            return 'https://doi.org/' . $this->getCustomDoi();
+        } elseif ($this->getConference()->isUseDoi()) {
             return 'https://doi.org/10.18429/JACoW-' . $this->getConference()->getDoiCode() . '-' . $this->getPaperId();
         } else {
             return false;
@@ -364,7 +382,10 @@ class Reference implements \JsonSerializable
     }
 
     public function doiText() {
-        if ($this->getConference()->isUseDoi()) {
+        if ($this->getCustomDoi() !== null) {
+            return 'doi:' . $this->getCustomDoi();
+        }
+        elseif ($this->getConference()->isUseDoi()) {
             return 'doi:10.18429/JACoW-' . $this->getConference()->getDoiCode() . '-' . $this->getPaperId();
         }
         return "";
@@ -590,5 +611,37 @@ class Reference implements \JsonSerializable
     public function setContributionId($contributionId)
     {
         $this->contributionId = $contributionId;
+    }
+
+    /**
+     * @return string
+     */
+    public function getPaperUrl()
+    {
+        return $this->paperUrl;
+    }
+
+    /**
+     * @param string $paperUrl
+     */
+    public function setPaperUrl($paperUrl)
+    {
+        $this->paperUrl = $paperUrl;
+    }
+
+    /**
+     * @return string
+     */
+    public function getCustomDoi()
+    {
+        return $this->customDoi;
+    }
+
+    /**
+     * @param string $customDoi
+     */
+    public function setCustomDoi($customDoi)
+    {
+        $this->customDoi = $customDoi;
     }
 }

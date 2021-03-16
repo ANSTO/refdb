@@ -61,6 +61,13 @@ class Conference implements \JsonSerializable
     private $useDoi;
 
     /**
+     * @ORM\Column(type="string", nullable=true, length=1000)
+     * Path to conference website
+     * @var string
+     */
+    private $baseUrl;
+
+    /**
      * Location of the conference, eg. Sydney, Australia
      * @var string
      * Assert\Regex("/^([A-Za-zàèìòùÀÈÌÒÙáéíóúýÁÉÍÓÚÝâêîôûÂÊÎÔÛãñõÃÑÕäëïöüÿÄËÏÖÜŸçÇßØøÅåÆæœ '\-]+, (?!USA)[A-Za-zàèìòùÀÈÌÒÙáéíóúýÁÉÍÓÚÝâêîôûÂÊÎÔÛãñõÃÑÕäëïöüÿÄËÏÖÜŸçÇßØøÅåÆæœ '\-]+|[A-Za-zàèìòùÀÈÌÒÙáéíóúýÁÉÍÓÚÝâêîôûÂÊÎÔÛãñõÃÑÕäëïöüÿÄËÏÖÜŸçÇßØøÅåÆæœ '\-]+, [A-Za-zàèìòùÀÈÌÒÙáéíóúýÁÉÍÓÚÝâêîôûÂÊÎÔÛãñõÃÑÕäëïöüÿÄËÏÖÜŸçÇßØøÅåÆæœ '\-]+, USA)$/")
@@ -336,6 +343,23 @@ class Conference implements \JsonSerializable
             "code" => $this->getCode(),
             "location" => $this->getLocation(),
             "date" => $this->getYear(),
-            "id"=>$this->getId()];
+            "id"=>$this->getId(),
+            "url" => $this->getBasedUrl()];
+    }
+
+    /**
+     * @return string
+     */
+    public function getBaseUrl()
+    {
+        return $this->baseUrl;
+    }
+
+    /**
+     * @param string $basedUrl
+     */
+    public function setBaseUrl($basedUrl)
+    {
+        $this->baseUrl = $basedUrl;
     }
 }

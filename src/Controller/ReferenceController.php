@@ -9,6 +9,7 @@ use App\Form\BasicSearchType;
 use App\Form\Type\TagsAsInputType;
 use App\Service\DoiService;
 use App\Service\FormService;
+use App\Service\PaperService;
 use Knp\Component\Pager\PaginatorInterface;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\IsGranted;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
@@ -122,7 +123,11 @@ class ReferenceController extends AbstractController
             }
         }
 
-        if ($reference->__toString() !== $reference->getCache()) {
+        $paperService = new PaperService();
+        $update = $paperService->check($reference);
+
+
+        if ($update || $reference->__toString() !== $reference->getCache()) {
             $reference->setCache($reference->__toString());
             $this->getDoctrine()->getManager()->flush();
         }

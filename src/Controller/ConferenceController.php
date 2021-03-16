@@ -155,6 +155,9 @@ class ConferenceController extends AbstractController
             $item["title"] = $reference->getTitle();
             $item["position"] = $reference->getPosition();
             $item["contribution"] = $reference->getContributionId();
+            $item["doi"] = $reference->getCustomDoi();
+            $item["url"] = $reference->getPaperUrl();
+
             $output[] = $item;
         }
 
