@@ -113,7 +113,8 @@ class ReferenceController extends AbstractController
     {
         $warning = "";
 
-        if ($reference->getConference()->isUseDoi() && !$reference->isDoiVerified()) {
+        if (($reference->getConference()->isUseDoi() && !$reference->isDoiVerified()) ||
+            ($reference->getCustomDoi() !== null && !$reference->isDoiVerified())) {
             $doiService = new DoiService();
             $valid = $doiService->check($reference);
             if (!$valid) {
