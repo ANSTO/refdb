@@ -33,6 +33,7 @@ class PaperService
         curl_setopt($ch, CURLOPT_HEADER  , true);
         curl_setopt($ch, CURLOPT_NOBODY  , true);
         curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
+        curl_setopt($ch, CURLOPT_FOLLOWLOCATION, 1);
         curl_exec($ch);
         if (!curl_errno($ch)) {
             $http_code = curl_getinfo($ch, CURLINFO_HTTP_CODE);
