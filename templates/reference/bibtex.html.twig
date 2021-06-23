@@ -12,7 +12,8 @@
     {{ "paper = {" ~ reference.paperId ~ "}," }}
     {{ "venue = {" ~ reference.conference.location ~ "}," }}
     {{ "publisher = {JACoW Publishing}," }}
-
+    {{ "month = {" ~ reference.conference.year|split(" ")[0] ~ "}," }}
+    {{ "year = {" ~ reference.conference.year|split(" ")[1] ~ "}," }}
 {% if reference.doiVerified %}
     {{ "doi = {" ~ reference.doiText ~ "}," }}
     {{ "note = {" ~ reference.doi ~ "}," }}
