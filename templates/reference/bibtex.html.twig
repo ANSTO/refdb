@@ -1,13 +1,18 @@
 @InProceedings{{ '{' ~ reference.firstLastName ~ (reference.conference.code|replace({"'":""}) ~ '-' ~ reference.paperId)|trim(" -") ~ ',' }}
     {{ "author = {" ~ reference.author ~ "}," }}
     {{ "title = {" ~ reference.title ~ "}," }}
+{% if reference.conference.published -%}
     {{ "booktitle = {Proc. " ~ reference.conference.name ~ " (" ~ reference.conference.code ~ ")}," }}
+{%- else -%}
+    {{ "booktitle = {presented at the " ~ reference.conference.name ~ " (" ~ reference.conference.code ~ ")}," }}
+{%- endif -%}
 {% if reference.position is not null and reference.position != "99-98" and reference.position != "na" %}
     {{ "pages = {" ~ reference.position|replace({"-": "--"}) ~ "}," }}
 {% endif %}
     {{ "paper = {" ~ reference.paperId ~ "}," }}
     {{ "venue = {" ~ reference.conference.location ~ "}," }}
     {{ "publisher = {JACoW Publishing}," }}
+
 {% if reference.doiVerified %}
     {{ "doi = {" ~ reference.doiText ~ "}," }}
     {{ "note = {" ~ reference.doi ~ "}," }}
