@@ -1,5 +1,5 @@
 @InProceedings{{ '{' ~ reference.firstLastName ~ (reference.conference.code|replace({"'":""}) ~ '-' ~ reference.paperId)|trim(" -") ~ ',' }}
-    {{ "author = {" ~ reference.author ~ "}," }}
+    {{ "author = {" ~ reference.author|replace({", and ":" and ",", ": " and ", " et al.": " and others"}) ~ "}," }}
     {{ "title = {" ~ reference.title ~ "}," }}
 {% if reference.conference.published %}
     {{ "booktitle = {Proc. " ~ reference.conference.name ~ " (" ~ reference.conference.code ~ ")}," }}
