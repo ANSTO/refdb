@@ -18,10 +18,38 @@
     {% endif %}
     <h2>{{ conference|latin }}</h2>
 
+    
     <p>
-        {{ conference.location }}, {{ conference.year }}
-
+        {% if conference.seriesNumber %}
+            {{ conference.seriesNumber | ordinal }}
+        {% endif %}
+        {% if conference.series %}
+            {{ conference.series }}<br />
+        {% endif %}
+        {{ conference.location }}, {{ conference.year }}        
     </p>
+    {% if conference.isPublished %}
+    <p>
+        {% if conference.pubYear and conference.pubMonth %}
+            {% if conference.baseUrl %}
+            <a href="{{ conference.baseUrl }}" target="_blank">
+            {% endif %}
+                Published {{ date(conference.pubYear ~ '-' ~ conference.pubMonth ~ '-01') | date("M Y") }}<br />
+            {% if conference.baseUrl %}
+            </a>
+            {% endif %}
+        {% endif %}
+        <span class="text-muted small">
+        {% if conference.isbn %}
+            ISBN {{ conference.isbn[0:3] ~ '-' ~ conference.isbn[3:1] ~ '-' ~ conference.isbn[4:2] ~ '-' ~ conference.isbn[6:6] ~ '-' ~ conference.isbn[12:1] }}<br />
+        {% endif %}
+        {% if conference.issn %}
+            ISSN {{ conference.issn[0:4] ~ '-' ~ conference.issn[4:4] }}<br />
+        {% endif %}
+        </span>
+    </p>
+    {% endif %}
+    
     <br />
     <h3>References </h3>
     {% if conference.references|length == 0 %}

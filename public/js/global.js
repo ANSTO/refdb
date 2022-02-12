@@ -129,3 +129,8 @@ $(document).ready(function(){
         this.style.height = (this.scrollHeight) + 'px';
     });
 });
+
+$('input[type=file]').on('change',function(e){
+    var fileName = e.target.files[0].name;
+    $(this).closest(".custom-file").find('.custom-file-label').html(fileName);
+});

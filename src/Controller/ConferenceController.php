@@ -243,7 +243,7 @@ class ConferenceController extends AbstractController
 
         if ($editForm->isSubmitted() && $editForm->isValid()) {
             $this->getDoctrine()->getManager()->flush();
-
+            $this->addFlash("success", "Conference settings saved!");
             return $this->redirectToRoute('conference_edit', array('id' => $conference->getId()));
         }
 
