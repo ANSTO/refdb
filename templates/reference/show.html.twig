@@ -101,7 +101,7 @@
                 {% endif %}
                 Conference: <a href="{{ path("conference_show", {"id": reference.conference.id }) }}">{{ reference.conference }}</a><br />
                 Paper ID: {{ reference.paperId }}<br />
-                {% if reference.conference.published %}
+                {% if reference.conference.published and reference.inProc %}
                     Location in proceedings: {{ reference.position }}<br />
                 {% endif %}
                 {% if reference.originalAuthors is not null %}

@@ -51,11 +51,15 @@ class ImportService
                 }
             }
             if (isset($data[5])) {
-                $customDoi = trim($data[5]);
-                $reference->setCustomDoi($customDoi);
+                $inProc = !in_array(trim($data[5]),["no", "3", "4", "5"]);
+                $reference->setInProc($inProc);
             }
             if (isset($data[6])) {
-                $paperUrl = trim($data[6]);
+                $customDoi = trim($data[6]);
+                $reference->setCustomDoi($customDoi);
+            }
+            if (isset($data[7])) {
+                $paperUrl = trim($data[7]);
                 if (filter_var($paperUrl, FILTER_VALIDATE_URL)) {
                     $reference->setPaperUrl($paperUrl);
                 }
@@ -106,10 +110,11 @@ class ImportService
                     $dbReference->setPaperId($fileReference->getPaperId());
                     $dbReference->setPosition($fileReference->getPosition());
                     $dbReference->setTitle($fileReference->getTitle());
+                    $dbReference->setInProc($fileReference->getInProc());
                     if ($dbReference->getOriginalAuthors() !== $fileReference->getOriginalAuthors()) {
                         $dbReference->setOriginalAuthors($fileReference->getOriginalAuthors());
                         $dbReference->setAuthor($fileReference->getAuthor());
-
+                        
                         // Clear Authors
 
                         /** @var Author $author */

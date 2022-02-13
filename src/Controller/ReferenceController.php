@@ -112,10 +112,10 @@ class ReferenceController extends AbstractController
     public function showAction(Reference $reference)
     {
         $warning = "";
-
-        if (($reference->getConference()->isUseDoi() && !$reference->isDoiVerified()) ||
-            ($reference->getCustomDoi() !== null && !$reference->isDoiVerified())) {
+        if (($reference->getInProc() && $reference->getConference()->isUseDoi() && !$reference->isDoiVerified()) ||
+            ($reference->getCustomDoi() !== null && $reference->getCustomDoi() !== "" && !$reference->isDoiVerified())) {
             $doiService = new DoiService();
+            
             $valid = $doiService->check($reference);
             if (!$valid) {
                 $warning = "This references DOI could not be verified, so it has been removed.";

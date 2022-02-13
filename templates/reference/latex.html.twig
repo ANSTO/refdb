@@ -1,7 +1,7 @@
 %\cite{{ '{' ~ reference.firstLastName ~ (reference.conference.code|replace({"'":""}) ~ '-' ~ reference.paperId)|trim(" -") ~ '}' }}
 \bibitem{{ '{' ~ reference.firstLastName ~ (reference.conference.code|replace({"'":""}) ~ '-' ~ reference.paperId)|trim(" -") ~ '}' }}{{ "\n   " ~ reference.author|replace({"et al.": "\\emph{et al.}"}) }},
    \textquotedblleft{{ '{' ~ reference.titleCaseCorrected ~ '}' }}\textquotedblright,
-   {% if reference.conference.published -%}
+   {% if reference.conference.published and reference.inProc -%}
         in \emph{{ '{Proc. ' ~ reference.conference.form(form_service.getForm())|replace({"'":"’"}) ~ '}' }}
     {%- else -%}
         {{ 'presented at the ' ~ reference.conference.form(form_service.getForm())|replace({"'":"’"}) }}

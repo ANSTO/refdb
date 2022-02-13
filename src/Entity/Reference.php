@@ -325,6 +325,10 @@ class Reference implements \JsonSerializable
             $output .= "," . $this->getPaperSection();
         }
 
+        if ($this->getInProc() == false || $this->getConference()->isPublished() == false) {
+            $output .= ", unpublished";
+        }
+
         $output .= ".";
 
         return $output;
@@ -372,9 +376,9 @@ class Reference implements \JsonSerializable
     }
 
     public function doi() {
-        if ($this->getCustomDoi() !== null) {
+        if ($this->getCustomDoi() !== null && $this->getCustomDoi() !== "") {
             return 'https://doi.org/' . $this->getCustomDoi();
-        } elseif ($this->getConference()->isUseDoi()) {
+        } elseif ($this->getInProc() && $this->getConference()->isUseDoi()) {
             return 'https://doi.org/10.18429/JACoW-' . $this->getConference()->getDoiCode() . '-' . $this->getPaperId();
         } else {
             return false;
@@ -382,10 +386,10 @@ class Reference implements \JsonSerializable
     }
 
     public function doiText() {
-        if ($this->getCustomDoi() !== null) {
+        if ($this->getCustomDoi() !== null && $this->getCustomDoi() !== "") {
             return 'doi:' . $this->getCustomDoi();
         }
-        elseif ($this->getConference()->isUseDoi()) {
+        elseif ($this->getConference()->isUseDoi() && $this->getInProc()) {
             return 'doi:10.18429/JACoW-' . $this->getConference()->getDoiCode() . '-' . $this->getPaperId();
         }
         return "";
