@@ -69,14 +69,12 @@
         {% endspaceless %}
     </p>
 
-    {% if reference.inProc %}
-        <h3>For BibTeX</h3>
-        <p>{% spaceless %}
-                <textarea class="form-control bibtex-ref">
+    <h3>For BibTeX</h3>
+    <p>{% spaceless %}
+            <textarea class="form-control bibtex-ref">
 {% include "reference/bibtex.html.twig" %}</textarea>
-            {% endspaceless %}
-        </p>
-    {% endif %}
+        {% endspaceless %}
+    </p>
 
     <a class="btn btn-block" href="{{ path('conference_format', {"ref": path("reference_show", {"id": reference.id })}) }}">
         {% if form_service.getForm == "long" %}

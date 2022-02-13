@@ -385,12 +385,20 @@ class Reference implements \JsonSerializable
         }
     }
 
-    public function doiText() {
+    public function doiOnly() {
         if ($this->getCustomDoi() !== null && $this->getCustomDoi() !== "") {
-            return 'doi:' . $this->getCustomDoi();
+            return '' . $this->getCustomDoi();
         }
         elseif ($this->getConference()->isUseDoi() && $this->getInProc()) {
-            return 'doi:10.18429/JACoW-' . $this->getConference()->getDoiCode() . '-' . $this->getPaperId();
+            return '10.18429/JACoW-' . $this->getConference()->getDoiCode() . '-' . $this->getPaperId();
+        }
+        return "";
+    }
+
+    public function doiText() {
+        $doi = $this->doiOnly();
+        if ($doi !== "") {
+            return "doi:" . $doi;
         }
         return "";
     }

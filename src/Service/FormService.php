@@ -41,7 +41,7 @@ class FormService
 
     public function getForm() {
         if (!$this->getSession()->has("form")) {
-            return "long";
+            return "short";
         }
         else {
             return $this->getSession()->get("form");
