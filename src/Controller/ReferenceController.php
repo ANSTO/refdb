@@ -127,13 +127,10 @@ class ReferenceController extends AbstractController
         $paperService = new PaperService();
         $update = $paperService->check($reference);
 
-        $reference->setHits(($reference->getHits() ?? 0) + 1);
-
-        if ($reference->__toString() !== $reference->getCache()) {
+        if ($update || $reference->__toString() !== $reference->getCache()) {
             $reference->setCache($reference->__toString());
+            $this->getDoctrine()->getManager()->flush();
         }
-
-        $this->getDoctrine()->getManager()->flush();
 
         if ($reference->hasTitleIssue()) {
             $warning .= "This papers title is all uppercase, you must correct this before using this reference.\n\n";
