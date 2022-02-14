@@ -51,7 +51,7 @@ class ReferenceController extends AbstractController
 
         $manager = $this->getDoctrine()->getManager();
         $search = $manager->getRepository(Reference::class)
-            ->createQueryBuilder("r");
+            ->createQueryBuilder("r")->orderBy("r.hits", "DESC");
 
         if ($form->isSubmitted() && $form->isValid()) {
             $terms = mb_strtolower($form->get('terms')->getData());
@@ -127,11 +127,13 @@ class ReferenceController extends AbstractController
         $paperService = new PaperService();
         $update = $paperService->check($reference);
 
+        $reference->setHits(($reference->getHits() ?? 0) + 1);
 
-        if ($update || $reference->__toString() !== $reference->getCache()) {
+        if ($reference->__toString() !== $reference->getCache()) {
             $reference->setCache($reference->__toString());
-            $this->getDoctrine()->getManager()->flush();
         }
+
+        $this->getDoctrine()->getManager()->flush();
 
         if ($reference->hasTitleIssue()) {
             $warning .= "This papers title is all uppercase, you must correct this before using this reference.\n\n";

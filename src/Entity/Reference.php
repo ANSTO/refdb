@@ -24,6 +24,13 @@ class Reference implements \JsonSerializable
     private $id;
 
     /**
+     * Numbers of hits a reference has
+     * @var int
+     * @ORM\Column(type="integer", nullable=true)
+     */
+    private $hits;
+
+    /**
      * The original imported author string to help aid with correcting errors.
      * @var string
      * @ORM\Column(type="string", length=4000, nullable=true)
@@ -655,5 +662,13 @@ class Reference implements \JsonSerializable
     public function setCustomDoi($customDoi)
     {
         $this->customDoi = $customDoi;
+    }
+
+    public function getHits() {
+        return $this->hits;
+    }
+
+    public function setHits($hits) {
+        $this->hits = $hits;
     }
 }
