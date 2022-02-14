@@ -14,6 +14,9 @@ class ConferenceFixtures extends Fixture
     public function __construct($rootDir)
     {
         $this->documentRoot = $rootDir;
+        if ($rootDir == "") {
+            $this->documentRoot = getcwd();
+        }
     }
 
     public function load($manager)
@@ -21,7 +24,7 @@ class ConferenceFixtures extends Fixture
         ini_set('memory_limit','2G');
         ini_set('max_execution_time', 600);
 
-        $path = $this->documentRoot. "/../src/App/DataFixtures/Import/";
+        $path = $this->documentRoot. "/src/DataFixtures/Import/";
         $filename = $path . "conferences.csv";
 
         if (($handle = fopen($filename, "r")) !== FALSE) {
