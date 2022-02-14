@@ -78,7 +78,7 @@ class ConferenceController extends AbstractController
 
         $manager = $this->getDoctrine()->getManager();
         $search = $manager->getRepository(Conference::class)
-            ->createQueryBuilder("c");
+            ->createQueryBuilder("c")->orderBy("c.id", "DESC");
 
         if ($form->isSubmitted() && $form->isValid()) {
             $terms = mb_strtolower($form->get('terms')->getData());
