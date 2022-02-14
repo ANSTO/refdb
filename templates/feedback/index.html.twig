@@ -1,9 +1,6 @@
 {% extends 'base.html.twig' %}
 
 {% block body %}
-    {% if is_granted("ROLE_ADMIN") %}
-        <a class="float-right btn btn-success" href="{{ path('reference_new') }}"><i class="fas fa-plus"></i> Add Reference</a>
-    {% endif %}
     <h2>Feedback</h2>
     <br />
     {% set filters = {'f.email': 'Contact','f.feedback': 'Feedback'} %}

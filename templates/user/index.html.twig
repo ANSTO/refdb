@@ -1,63 +1,53 @@
 {% extends 'base.html.twig' %}
 
 {% block body %}
-    <h2>User Administration</h2>
-
+    <h2>Users</h2>
     <br />
-    {% if pending|length != 0 %}
-        <h3>Pending Promotion</h3>
+    {% set filters = {'u.email': 'Email'} %}
 
-        <p>Below are a list of users pending promotion.</p>
+    {{ knp_pagination_filter(pagination, filters) }}
 
-        <div class="card">
-            <table class="table table-striped">
-                <thead>
-                <tr>
-                    <th>Email</th>
-                    <th width="100">Actions</th>
-                </tr>
-                </thead>
-                <tbody>
-                {% for user in pending %}
-                    <tr>
-                        <td>{{ user.email }}</td>
-                        <td>
-
-                            <div class="btn-group">
-                                <a class="btn btn-success btn-modal" href="{{ path('user_promote', { 'id': user.id }) }}">Promote</a>
-
-                                <button class="btn btn-danger btn-modal" data-href="{{ path('user_delete', { 'id': user.id }) }}">Reject</button>
-                            </div>
-                        </td>
-                    </tr>
-                {% endfor %}
-                </tbody>
-            </table>
-        </div>
-        <br />
+    {% set filtered = 0 %}
+    {% if pagination.params.filterField is defined and pagination.params.filterField in filters|keys %}
+        {% set filtered = 1 %}
+        {% set label = filters[pagination.params.filterField] %}
+        {% set field = pagination.params.filterField|slice(2) %}
     {% endif %}
+    <br />
 
-    <h3>Current Admins</h3>
-    <div class="card">
-        <table class="table table-striped">
-            <thead>
+    <table class="table table-striped">
+        <thead>
+        <tr>
+            <th>Email</th>
+            <th width="200" class="text-center">Actions</th>
+        </tr>
+        </thead>
+        <tbody>
+        {% for user in pagination %}
             <tr>
-                <th>Email</th>
-                <th width="100">Actions</th>
+                <td>{{ user.email }}</td>
+                <td class="text-center">
+                    <div class="btn-group">
+                    {% if 'ROLE_ADMIN' in user.roles %}
+                        Adminstrator
+                    {% else %}
+                        <a class="btn btn-success btn-modal" href="{{ path('user_promote', { 'id': user.id }) }}">Promote</a>
+                    {% endif %} 
+                    </div>
+                </td>
             </tr>
-            </thead>
-            <tbody>
-            {% for user in admins %}
-                <tr>
-                    <td>{{ user.email }}</td>
-                    <td>
-                        <div class="btn-group">
-                            <button class="btn btn-danger btn-modal" data-href="{{ path('user_delete', { 'id': user.id }) }}">Delete</button>
-                        </div>
-                    </td>
-                </tr>
-            {% endfor %}
-            </tbody>
-        </table>
+        {% endfor %}
+        </tbody>
+    </table>
+    <br />
+        <div class="d-flex justify-content-between">
+        <div class="p-2 total align-self-center">
+            {{ pagination.getTotalItemCount }} results
+        </div>
+
+        <div class="navigation p-2 align-self-center">
+            {{ knp_pagination_render(pagination) }}
+        </div>
     </div>
+
 {% endblock %}
