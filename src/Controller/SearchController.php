@@ -69,12 +69,12 @@ class SearchController extends AbstractController
     /**
      * Search page
      * JSON results only of page
-     * @Route("/search", name="search", options={"expose"=true})
+     * @Route("/search/{page}", name="search", options={"expose"=true}, requirements={"page"="\d+"})
      * @param Request $request
      * @return JsonResponse
      * @throws \Doctrine\ORM\NonUniqueResultException
      */
-    public function searchAction(Request $request, FavouriteService $favouriteService, CurrentConferenceService $currentConferenceService) {
+    public function searchAction(int $page = 0, Request $request, FavouriteService $favouriteService, CurrentConferenceService $currentConferenceService) {
 
         $response = ["favourites" => $favouriteService->getFavourites()];
         $search = new Search();
@@ -91,7 +91,9 @@ class SearchController extends AbstractController
                 $response["total"] = $query->select("COUNT(r)")->getQuery()->getSingleScalarResult();
                 $query = $this->getDoctrine()->getManager()
                     ->getRepository(Reference::class)->search($search);
-                $results = $query->setMaxResults(5)
+                $results = $query
+                    ->setFirstResult($page)
+                    ->setMaxResults(5)
                     ->getQuery()
                     ->getResult();
 

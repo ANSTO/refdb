@@ -41,8 +41,15 @@
                {% endfor %}
             </ul>
 
-
-            <p class="show-total" style="{% if references|length >= total %}display:none{% endif %}"><em>Showing <span id="current-total">{{ references|length }}</span> results of total <span id="overall-total">{{ total }}</span></em></p>
+            
+            <p class="show-total" style="{% if references|length >= total %}display:none{% endif %}">
+            
+            <em>Showing <span id="current-total">{{ references|length }}</span> results of total <span id="overall-total">{{ total }}</span></em>
+            <br /><br />
+            <a href="javascript:prevPage()" style='display:none;' class='prev-page'>&laquo; Previous</a>
+            <span>Page <span class='page-number'>1</span></span>
+            <a href="javascript:nextPage()" class='next-page'>Next &raquo;</a>
+            </p>
 
 
          </div>
