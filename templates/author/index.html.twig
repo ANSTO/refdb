@@ -11,7 +11,8 @@
     <table class="table table-striped">
         <thead>
         <tr>
-            <th{% if pagination.isSorted('a.name') %} class="sorted"{% endif %}>{{ knp_pagination_sortable(pagination, 'Name', 'a.name') }}</th>
+            <th width="50%" {% if pagination.isSorted('a.name') %} class="sorted"{% endif %}>{{ knp_pagination_sortable(pagination, 'Name', 'a.name') }}</th>
+            <th{% if pagination.isSorted('total') %} class="sorted"{% endif %}>{{ knp_pagination_sortable(pagination, 'References (Included in reference)', 'total') }}</th>
             {% if is_granted("ROLE_ADMIN") %}
                 <th class="text-center">Actions</th>
             {% endif %}
@@ -21,6 +22,17 @@
         {% for author in pagination %}
             <tr>
                 <td><a href="{{ path('author_show', { 'id': author.id }) }}">{{ author.name }}</a></td>
+                <td>
+
+                    {% set primary = 0 %}
+                    {% for reference in author.references %}
+                        {% if author.name in reference.author %}
+                            {% set primary = primary + 1 %}
+                        {% endif %}
+                    {% endfor %}
+                    {{ author.references|length }} ({{ primary }})
+                
+                </td>
                 {% if is_granted("ROLE_ADMIN") %}
                     <td class="text-center" width="150">
                         <a href="{{ path('author_edit', { 'id': author.id }) }}"><i class="fas fa-edit"></i> Edit</a>

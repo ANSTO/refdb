@@ -33,7 +33,7 @@ class SearchController extends AbstractController
         $references = [];
         if ($form->isSubmitted() && $form->isValid()) {
             $query = $this->getDoctrine()->getManager()
-                ->getRepository(Reference::class)->search($search);
+                ->getRepository(Reference::class)->search($search)->orderBy('r.author', 'ASC');
 
             if ($query !== false) {
                 $references = $query->setMaxResults(5)
@@ -90,7 +90,7 @@ class SearchController extends AbstractController
             if ($query !== false) {
                 $response["total"] = $query->select("COUNT(r)")->getQuery()->getSingleScalarResult();
                 $query = $this->getDoctrine()->getManager()
-                    ->getRepository(Reference::class)->search($search);
+                    ->getRepository(Reference::class)->search($search)->orderBy('r.author', 'ASC');
                 $results = $query
                     ->setFirstResult($page)
                     ->setMaxResults(5)

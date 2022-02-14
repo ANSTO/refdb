@@ -31,10 +31,11 @@ class AuthorController extends AbstractController
         $manager = $this->getDoctrine()->getManager();
         $search = $manager->getRepository(Author::class)
             ->createQueryBuilder("a");
-
+        $search->addSelect('SIZE(a.references) as HIDDEN total');
         if ($form->isSubmitted() && $form->isValid()) {
+            
             $terms = $form->get('terms')->getData();
-
+            
             $parts = explode(".", $terms);
 
             // get initials
@@ -68,9 +69,9 @@ class AuthorController extends AbstractController
                 $search->orWhere("LOWER(a.name) LIKE :terms")
                     ->setParameter("terms", '%' . mb_strtolower($lastName) . '%');
             }
+            
 
         }
-
 
         $pagination = $paginator->paginate(
             $search->getQuery(),
