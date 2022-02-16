@@ -134,3 +134,44 @@ $('input[type=file]').on('change',function(e){
     var fileName = e.target.files[0].name;
     $(this).closest(".custom-file").find('.custom-file-label').html(fileName);
 });
+
+$('.js-datepicker').datepicker({
+    format: 'dd/mm/yyyy'
+});
+
+function toDate(dateString) {
+    var dateParts = dateString.split("/");
+    return new Date(+dateParts[2], dateParts[1] - 1, +dateParts[0]); 
+}
+
+function monthYear(date) {
+    month = date.toLocaleString('default', { month: 'long' });
+    year = date.getFullYear();
+
+    if (month.length > 3) {
+        month = month.substring(0, 3) + ".";
+    }
+    return {
+        month: month, 
+        year: year 
+    };
+}
+
+$(".conference-date").blur(function(){ 
+    start = monthYear(toDate($(".conference-date-start").val()));
+    end = monthYear(toDate($(".conference-date-end").val()));
+    
+    if (!isNaN(end.year) && !isNaN(start.year)) {
+        newDate = "";
+        if (start.month != end.month) {
+            if (start.year != end.year) {
+                newDate = start.month + " " + start.year + "-" + end.month + " " + end.year
+            } else {
+                newDate = start.month + "-" + end.month + " " + end.year
+            }
+        } else {
+            newDate = end.month + " " + end.year
+        }
+        $(".conference-date-formatted").val(newDate);
+    }
+});

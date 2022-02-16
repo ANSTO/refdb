@@ -150,6 +150,11 @@ class Reference implements \JsonSerializable
      */
     private $favourites;
 
+    /** 
+     * @ORM\Column(type="boolean", nullable=true)
+     */
+    public $confirmedInProc;
+
     /**
      * Constructor
      */
@@ -670,5 +675,13 @@ class Reference implements \JsonSerializable
 
     public function setHits($hits) {
         $this->hits = $hits;
+    }
+
+    public function getConfirmedInProc() {
+        return $this->confirmedInProc;
+    }
+
+    public function setConfirmedInProc($confirmed) {
+        $this->confirmedInProc = $confirmed;
     }
 }

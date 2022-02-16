@@ -1,4 +1,4 @@
-{%- if reference.conference.isPublished -%}
+{%- if reference.conference.isPublished and reference.inProc -%}
 @inproceedings
 {%- elseif current_conference.hasCurrent and current_conference.current == reference.conference -%}
 {% set this_conference = true %}
@@ -20,7 +20,7 @@
 {% else %}
     {{ "venue = {" ~ reference.conference.location ~ "}," }}
 {% endif %}
-{% if not reference.conference.isPublished %}
+{% if not reference.conference.isPublished or not reference.inProc %}
     {{ "intype = {presented at the},"}}
 {% endif %}
 {% if reference.conference.series %}
@@ -48,7 +48,7 @@
 {% if reference.paperUrl is not null %}
     {{ "url = {" ~ reference.paperUrl ~ "}," }}
 {% endif %}
-{% if not reference.conference.isPublished %}
+{% if not reference.conference.isPublished or not reference.inProc %}
     {{ "note = {presented at " ~ reference.conference.code ~ ", " ~ reference.conference.location ~ ", " ~ reference.conference.year ~ ", paper " ~ reference.paperId ~ ", " ~ (this_conference is defined ? "this conference" : "unpublished") ~ "}," }}
 {% endif %}
     {{ "language = {english}" }}

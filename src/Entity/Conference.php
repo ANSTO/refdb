@@ -38,6 +38,19 @@ class Conference implements \JsonSerializable
     private $code;
 
     /**
+     * Start of conference (e.g. 18 March 2018)
+     * @var DateTime
+     * @ORM\Column(type="date", nullable=true)
+     */
+    private $conferenceStart;
+
+    /**
+     * Last day of conference (e.g. 21 March 2018)
+     * @var DateTime
+     * @ORM\Column(type="date", nullable=true)
+     */
+    private $conferenceEnd;
+    /**
      * This is the date of the conference, Eg. May 2018
      * @var string
      * @ORM\Column(name="year", type="string", length=255, nullable=true)
@@ -465,5 +478,21 @@ class Conference implements \JsonSerializable
 
     public function setPubYear($pubYear){
         $this->pubYear = $pubYear;
+    }
+
+    public function getConferenceStart(){
+        return $this->conferenceStart;
+    }
+
+    public function setConferenceStart($conferenceStart){
+        $this->conferenceStart = $conferenceStart;
+    }
+
+    public function getConferenceEnd(){
+        return $this->conferenceEnd;
+    }
+
+    public function setConferenceEnd($conferenceEnd){
+        $this->conferenceEnd = $conferenceEnd;
     }
 }

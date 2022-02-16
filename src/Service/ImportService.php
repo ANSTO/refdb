@@ -33,6 +33,10 @@ class ImportService
     private function findReferences($filename) {
         $contents = $this->csvService->open($filename);
 
+        $contentsWithoutExcluded = array_filter($contents, function ($data) {
+            return !in_array(trim($data[5]),["4","5"]);
+        });
+
         /** @var Reference[] $references */
         $references = array_map(function ($data) {
             $reference = new Reference();
@@ -51,7 +55,7 @@ class ImportService
                 }
             }
             if (isset($data[5])) {
-                $inProc = !in_array(trim($data[5]),["no", "3", "4", "5"]);
+                $inProc = !in_array(trim($data[5]),["no", "3"]);
                 $reference->setInProc($inProc);
             }
             if (isset($data[6])) {
@@ -65,7 +69,7 @@ class ImportService
                 }
             }
             return $reference;
-        }, $contents);
+        }, $contentsWithoutExcluded);
 
         // filter out header rows
         $references = array_filter($references, function(Reference $reference) {
@@ -91,7 +95,8 @@ class ImportService
         foreach ($dbReferences as $dbReference) {
             $found = false;
             foreach ($fileReferences as $fileReference) {
-                if ($dbReference->getContributionId() == $fileReference->getContributionId()) {
+                if ($dbReference->getContributionId() !== null && 
+                    $dbReference->getContributionId() == $fileReference->getContributionId()) {
                     $found = true;
                 }
             }
@@ -105,7 +110,8 @@ class ImportService
         foreach ($fileReferences as $fileReference) {
             $found = false;
             foreach ($dbReferences as $dbReference) {
-                if ($dbReference->getContributionId() == $fileReference->getContributionId()) {
+                if ($dbReference->getContributionId() !== null && 
+                    $dbReference->getContributionId() == $fileReference->getContributionId()) {
                     $found = true;
                     $dbReference->setPaperId($fileReference->getPaperId());
                     $dbReference->setPosition($fileReference->getPosition());
@@ -128,7 +134,6 @@ class ImportService
                 }
             }
             if (!$found) {
-
                 $calculateAuthors[] = $fileReference;
                 $this->manager->persist($fileReference);
             }

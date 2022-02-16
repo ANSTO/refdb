@@ -11,6 +11,9 @@
                     {{ reference.paperSection ~ ", this conference" }}
                 {%- else -%}
                     {{ reference.paperSection|replace({"-": "--"}) }}
+                    {%- if not reference.conference.isPublished or not reference.inProc -%}
+                        , unpublished
+                    {%- endif -%}
                 {%- endif -%}.
                 {%- if reference.doi and reference.doiVerified -%}
                     {{ '\n   \\url{' ~ reference.doiText ~ '}' -}}

@@ -23,8 +23,23 @@ class ConferenceType extends AbstractType
             ->add('code', null, array("label"=>"Conference Code (format ACRONYM'YY)"))
             ->add('series', null, ["label"=>"Series (e.g. International Beam Instrumentation Conference)", "required"=>false])
             ->add('seriesNumber', null, ["label"=>"Series Number (e.g. 12)", "required"=>false])
+            ->add('conferenceStart', null, [
+                'widget' => 'single_text',
+                "label"=>"First day of conference", 
+                'html5' => false,
+                'attr' => ['class' => 'js-datepicker conference-date conference-date-start'],
+                'format' => 'dd/MM/yyyy',
+                "required"=>false])
+            ->add('conferenceEnd', null, [
+                'widget' => 'single_text',
+                'html5' => false,
+                'attr' => ['class' => 'js-datepicker conference-date conference-date-end'],
+                'format' => 'dd/MM/yyyy',
+                "label"=>"Last day of conference",
+                "required"=>false])
             ->add('year',null,array(
-                "label"=>"Month Year of Conference (format May 2018, Jun.-Jul. 2019 or Jun. 2019)"))
+                "label"=>"Month Year of Conference (format May 2018, Jun.-Jul. 2019 or Jun. 2019)",
+                'attr' => ['class' => 'conference-date-formatted'],))
             ->add('location', null, array("label"=>"City, State (if USA), Country"))
             ->add("useDoi", ChoiceType::class, ["choices"=>[ "No"=>0,"Yes"=>1]])
             ->add("doiCode", TextType::class, ["label"=>"Doi Code: IPAC2017 (from 10.18429/JACoW-THISCODE-PAPERID)", "required"=>false])
