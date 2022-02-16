@@ -25,7 +25,11 @@
     <h2>Possible Talk</h2>
     <br />
 
-    {{ reference.cache|latin }}
+    {{ reference|latin }}<br />
+
+    {% if reference.paperUrl is not null %}
+        <br /><p>Paper URL: <a href="{{ reference.paperUrl }}" target="_blank">{{ reference.paperUrl }}</a></p>
+    {% endif %}
 
     <br /><br />
 
