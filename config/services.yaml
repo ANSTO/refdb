@@ -4,42 +4,54 @@
 # Put parameters here that don't need to change on each machine where the app is deployed
 # https://symfony.com/doc/current/best_practices/configuration.html#application-related-configuration
 parameters:
-    locale: en
-    cache_type: file_system
+  locale: en
+  cache_type: file_system
 
 services:
-    # default configuration for services in *this* file
-    _defaults:
-        autowire: true      # Automatically injects dependencies in your services.
-        autoconfigure: true # Automatically registers your services as commands, event subscribers, etc.
-        bind:
-            $rootDir: '%env(DOCUMENT_ROOT)%'
-            $fromAddress: '%env(FROM_ADDRESS)%'
-            $defaultConference: '%env(DEFAULT_CONFERENCE)%'
-    # makes classes in src/ available to be used as services
-    # this creates a service per class whose id is the fully-qualified class name
-    App\:
-        resource: '../src/'
-        exclude:
-            - '../src/DependencyInjection/'
-            - '../src/Entity/'
-            - '../src/Kernel.php'
-            - '../src/Tests/'
+  # default configuration for services in *this* file
+  _defaults:
+    autowire: true # Automatically injects dependencies in your services.
+    autoconfigure: true # Automatically registers your services as commands, event subscribers, etc.
+    bind:
+      $rootDir: "%env(DOCUMENT_ROOT)%"
+      $fromAddress: "%env(FROM_ADDRESS)%"
+      $defaultConference: "%env(DEFAULT_CONFERENCE)%"
+  # makes classes in src/ available to be used as services
+  # this creates a service per class whose id is the fully-qualified class name
+  App\:
+    resource: "../src/"
+    exclude:
+      - "../src/DependencyInjection/"
+      - "../src/Entity/"
+      - "../src/Kernel.php"
+      - "../src/Tests/"
 
-    # controllers are imported separately to make sure services can be injected
-    # as action arguments even if you don't extend any base controller class
-    App\Controller\:
-        resource: '../src/Controller/'
-        tags: ['controller.service_arguments']
+  # controllers are imported separately to make sure services can be injected
+  # as action arguments even if you don't extend any base controller class
+  App\Controller\:
+    resource: "../src/Controller/"
+    tags: ["controller.service_arguments"]
 
-    Doctrine\DBAL\Event\Listeners\OracleSessionInit:
-        tags:
-            - { name: 'doctrine.event_listener', event: postConnect}
+  Doctrine\DBAL\Event\Listeners\OracleSessionInit:
+    tags:
+      - { name: "doctrine.event_listener", event: postConnect }
 
-    App\EventSubscriber\ConferenceSubscriber:
-        tags:
-            - { name: 'doctrine.event_subscriber', connection: 'default', priority: 2 }
+  Fvozar\Twig\OrdinalNumberExtension:
+    tags:
+      - { name: twig.extension }
 
-    App\EventSubscriber\ReferenceSubscriber:
-        tags:
-            - { name: 'doctrine.event_subscriber', connection: 'default', priority: 10 }
+  App\EventSubscriber\ConferenceSubscriber:
+    tags:
+      - {
+          name: "doctrine.event_subscriber",
+          connection: "default",
+          priority: 2,
+        }
+
+  App\EventSubscriber\ReferenceSubscriber:
+    tags:
+      - {
+          name: "doctrine.event_subscriber",
+          connection: "default",
+          priority: 10,
+        }

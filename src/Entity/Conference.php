@@ -38,12 +38,64 @@ class Conference implements \JsonSerializable
     private $code;
 
     /**
+     * Start of conference (e.g. 18 March 2018)
+     * @var DateTime
+     * @ORM\Column(type="date", nullable=true)
+     */
+    private $conferenceStart;
+
+    /**
+     * Last day of conference (e.g. 21 March 2018)
+     * @var DateTime
+     * @ORM\Column(type="date", nullable=true)
+     */
+    private $conferenceEnd;
+    /**
      * This is the date of the conference, Eg. May 2018
      * @var string
-     * @Assert\Regex("/^((?!May. )(May|[A-Z]{1}[a-z]{2}\.)(\-(?!May. )(May|[A-Z]{1}[a-z]{2}\.))?) [0-9]{4}$/", message="Please the correct format the date held in the format MMM YYYY")
      * @ORM\Column(name="year", type="string", length=255, nullable=true)
      */
     private $year;
+
+    /**
+     * @var string
+     * eg. International Beam Instrumentation Conference
+     * @ORM\Column(name="series", type="string", length=150, nullable=true)
+     */
+    private $series;
+
+    /**
+     * @var int
+     * eg. 9
+     * @ORM\Column(name="series_number", type="integer", nullable=true)
+     */
+    private $seriesNumber;
+    
+    /**
+     * eg. 2673-5350 (stored without dashes)
+     * @ORM\Column(name="issn", type="string", length=8, nullable=true)
+     */
+    private $issn;
+    
+    /**
+     * e.g. 978-3-95450-222-6 (stored without dashes)
+     * @ORM\Column(name="isbn", type="string", length=13, nullable=true)
+     */
+    private $isbn;
+    
+    /**
+     * @var int
+     * eg. 12
+     * @ORM\Column(name="pub_month", type="integer", nullable=true)
+     */
+    private $pubMonth;
+    
+    /**
+     * @var int
+     * eg. 2022
+     * @ORM\Column(name="pub_year", type="integer", nullable=true)
+     */
+    private $pubYear;
 
     /**
      * Conference component of the DOIs
@@ -361,5 +413,86 @@ class Conference implements \JsonSerializable
     public function setBaseUrl($basedUrl)
     {
         $this->baseUrl = $basedUrl;
+    }
+
+    public function getSeries(){
+        return $this->series;
+    }
+
+    public function setSeries($series){
+        $this->series = $series;
+    }
+
+    public function getSeriesNumber(){
+        return $this->seriesNumber;
+    }
+
+    public function setSeriesNumber($seriesNumber){
+        $this->seriesNumber = $seriesNumber;
+    }
+
+    public function getIssn(){
+        return $this->issn;
+    }
+
+    public function getIssnFormatted() {
+        $issn = $this->getIssn();
+        $result = substr($issn, 0, 4) . "-";
+        $result .= substr($issn, 4, 8);
+        return $result;
+    }
+
+    public function setIssn($issn){
+        $this->issn = $issn;
+    }
+
+    public function getIsbn(){
+        return $this->isbn;
+    }
+
+    public function getIsbnFormatted() {
+        $isbn = $this->getIsbn();
+        $result = substr($isbn, 0, 3) . "-";
+        $result .= substr($isbn, 3, 1) . "-";
+        $result .= substr($isbn, 4, 2) . "-";
+        $result .= substr($isbn, 6, 6) . "-";
+        $result .= substr($isbn, 12, 1);
+        return $result;
+    }
+
+    public function setIsbn($isbn){
+        $this->isbn = $isbn;
+    }
+
+    public function getPubMonth(){
+        return $this->pubMonth;
+    }
+
+    public function setPubMonth($pubMonth){
+        $this->pubMonth = $pubMonth;
+    }
+
+    public function getPubYear(){
+        return $this->pubYear;
+    }
+
+    public function setPubYear($pubYear){
+        $this->pubYear = $pubYear;
+    }
+
+    public function getConferenceStart(){
+        return $this->conferenceStart;
+    }
+
+    public function setConferenceStart($conferenceStart){
+        $this->conferenceStart = $conferenceStart;
+    }
+
+    public function getConferenceEnd(){
+        return $this->conferenceEnd;
+    }
+
+    public function setConferenceEnd($conferenceEnd){
+        $this->conferenceEnd = $conferenceEnd;
     }
 }

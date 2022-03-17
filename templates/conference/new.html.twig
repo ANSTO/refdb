@@ -1,5 +1,15 @@
 {% extends 'base.html.twig' %}
 
+{% block javascripts %}
+    {{ parent() }}
+    <script src="{{ asset("js/jquery.mask.min.js") }}"></script>
+    <script>
+    $(document).ready(function(){
+    $(":input").inputmask();
+    });
+    </script>
+{% endblock %}
+
 {% block body %}
     <h2>Add Conference</h2>
 

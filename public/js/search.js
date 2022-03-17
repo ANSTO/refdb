@@ -102,22 +102,27 @@ $(".conference-location-typeahead").typeahead({
 $("form input").on("keyup", function(){
     if ($("form").serialize() !== searchContent) {
         adjustedText = true;
+        currentPage = 0;
     }
     date = new Date();
     lastInput = date.getTime();
 }).on("change", function(){
     if ($("form").serialize() !== searchContent) {
         adjustedText = true;
+        currentPage = 0;
     }
     date = new Date();
     lastInput = date.getTime();
 }).on("blur", function(){
     if ($("form").serialize() !== searchContent) {
         adjustedText = true;
+        currentPage = 0;
     }
     date = new Date();
     lastInput = date.getTime();
 });
+
+var currentPage = 0;
 
 setInterval(function() {
     date = new Date();
@@ -126,14 +131,26 @@ setInterval(function() {
     }
 },200);
 
+
+function prevPage() {
+    currentPage -= 5;
+    triggerSearch();
+}
+
+function nextPage() {
+    currentPage += 5;
+    triggerSearch();
+}
+
 function triggerSearch() {
+
     adjustedText = false;
     lastSearch = date.getTime();
     $("#searching").toggle(true);
     $("#no-results").toggle(false);
     $("#results").empty();
     searchContent = $("form").serialize();
-    $.post(Routing.generate('search'), searchContent, function(content){
+    $.post(Routing.generate('search', { page: currentPage }), searchContent, function(content){
         $("#searching").toggle(false);
         var results = $("#results");
         favourites = content.favourites;
@@ -149,6 +166,10 @@ function triggerSearch() {
         $(".show-total #current-total").text(content.results.length);
         $(".show-total #overall-total").text(content.total);
 
+        let total = parseInt($("#overall-total").text());
+        $('.prev-page').toggle(currentPage > 0);
+        $('.next-page').toggle((currentPage + 5) <= total);
+        $('.page-number').text((currentPage / 5) + 1);
 
     },"json");
 

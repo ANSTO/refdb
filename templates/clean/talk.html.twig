@@ -1,0 +1,44 @@
+{% extends 'base.html.twig' %}
+
+{% block javascripts %}
+    {{ parent() }}
+    <script>
+        function update(element, isTalk) {
+            $.get(Routing.generate('talk_update', { 'id': element.data("id"), 'talk': isTalk ? "true" : "false" }))
+                .fail(function() {
+                    element.removeClass("disabled");
+                })
+                .done(function() {
+                    location.reload();
+            });
+        }
+        $(".btn-to-talk").click(function(){
+            update($(this), true);
+        });
+
+        $(".btn-not-talk").click(function(){
+            update($(this), false);  
+        });
+    </script>
+{% endblock %}
+{% block body %}
+    <h2>Possible Talk</h2>
+    <br />
+
+    {{ reference|latin }}<br />
+
+    {% if reference.paperUrl is not null %}
+        <br /><p>Paper URL: <a href="{{ reference.paperUrl }}" target="_blank">{{ reference.paperUrl }}</a></p>
+    {% endif %}
+
+    <br /><br />
+
+    <div class="text-center">
+    <a class="btn btn-warning btn-not-talk" data-id="{{ reference.id }}">Not Talk</a>
+    <a class="btn btn-primary btn-skip" href="javascript:location.reload()">Skip</a>
+    <a class="btn btn-success btn-to-talk" data-id="{{ reference.id }}">Change to Talk</a>
+
+    <br /><br />
+    Well done, only {{ count }} more possible talks!
+    </div>
+{% endblock %}

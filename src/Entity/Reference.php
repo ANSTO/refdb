@@ -24,6 +24,13 @@ class Reference implements \JsonSerializable
     private $id;
 
     /**
+     * Numbers of hits a reference has
+     * @var int
+     * @ORM\Column(type="integer", nullable=true)
+     */
+    private $hits;
+
+    /**
      * The original imported author string to help aid with correcting errors.
      * @var string
      * @ORM\Column(type="string", length=4000, nullable=true)
@@ -142,6 +149,11 @@ class Reference implements \JsonSerializable
      * @ORM\OneToMany(targetEntity="App\Entity\Favourite", mappedBy="reference", cascade={"remove"})
      */
     private $favourites;
+
+    /** 
+     * @ORM\Column(type="boolean", nullable=true)
+     */
+    public $confirmedInProc;
 
     /**
      * Constructor
@@ -325,6 +337,10 @@ class Reference implements \JsonSerializable
             $output .= "," . $this->getPaperSection();
         }
 
+        if ($this->getInProc() == false || $this->getConference()->isPublished() == false) {
+            $output .= ", unpublished";
+        }
+
         $output .= ".";
 
         return $output;
@@ -372,21 +388,29 @@ class Reference implements \JsonSerializable
     }
 
     public function doi() {
-        if ($this->getCustomDoi() !== null) {
+        if ($this->getCustomDoi() !== null && $this->getCustomDoi() !== "") {
             return 'https://doi.org/' . $this->getCustomDoi();
-        } elseif ($this->getConference()->isUseDoi()) {
+        } elseif ($this->getInProc() && $this->getConference()->isUseDoi()) {
             return 'https://doi.org/10.18429/JACoW-' . $this->getConference()->getDoiCode() . '-' . $this->getPaperId();
         } else {
             return false;
         }
     }
 
-    public function doiText() {
-        if ($this->getCustomDoi() !== null) {
-            return 'doi:' . $this->getCustomDoi();
+    public function doiOnly() {
+        if ($this->getCustomDoi() !== null && $this->getCustomDoi() !== "") {
+            return '' . $this->getCustomDoi();
         }
-        elseif ($this->getConference()->isUseDoi()) {
-            return 'doi:10.18429/JACoW-' . $this->getConference()->getDoiCode() . '-' . $this->getPaperId();
+        elseif ($this->getConference()->isUseDoi() && $this->getInProc()) {
+            return '10.18429/JACoW-' . $this->getConference()->getDoiCode() . '-' . $this->getPaperId();
+        }
+        return "";
+    }
+
+    public function doiText() {
+        $doi = $this->doiOnly();
+        if ($doi !== "") {
+            return "doi:" . $doi;
         }
         return "";
     }
@@ -643,5 +667,21 @@ class Reference implements \JsonSerializable
     public function setCustomDoi($customDoi)
     {
         $this->customDoi = $customDoi;
+    }
+
+    public function getHits() {
+        return $this->hits;
+    }
+
+    public function setHits($hits) {
+        $this->hits = $hits;
+    }
+
+    public function getConfirmedInProc() {
+        return $this->confirmedInProc;
+    }
+
+    public function setConfirmedInProc($confirmed) {
+        $this->confirmedInProc = $confirmed;
     }
 }

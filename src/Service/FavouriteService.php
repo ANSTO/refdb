@@ -104,6 +104,7 @@ class FavouriteService {
                     $newFav->setUser($user);
                     $reference = $this->manager->getRepository(Reference::class)->find($fav);
                     $newFav->setReference($reference);
+                    $reference->setHits(($reference->getHits() ?? 0) + 1);
                     $this->manager->persist($newFav);
                 }
             }

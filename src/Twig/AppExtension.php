@@ -40,7 +40,7 @@ class AppExtension extends AbstractExtension
             // confirm its not just a conference text
             if ($current !== null && $current->__toString() !== $text && $this->endsWith($text, ".") !== false) {
                 if (strpos($text, $current->getCode()) !== false) {
-                    $text = substr($text, 0, -1)  . ", this conference.";
+                    $text = str_replace(", unpublished", ", this conference", $text);
                 }
             }
         }

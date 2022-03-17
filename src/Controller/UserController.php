@@ -9,6 +9,7 @@ use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\Routing\Annotation\Route;
+use Knp\Component\Pager\PaginatorInterface;
 
 /**
  * User controller.
@@ -22,26 +23,22 @@ class UserController extends AbstractController
      * @IsGranted("ROLE_ADMIN")
      * @Route("/", name="user_index")
      */
-    public function indexAction(EntityManagerInterface $em)
+    public function indexAction(Request $request, PaginatorInterface $paginator)
     {
-        /** @var User[] $pending */
-        $pending = $em->getRepository('App:User')->findBy(["enabled"=>true]);
+        $manager = $this->getDoctrine()->getManager();
+        $query = $manager->getRepository(User::class)
+            ->createQueryBuilder("u")
+            ->where("u.enabled = 1")
+            ->getQuery();
 
-        $pending = array_filter($pending, function(User $user) {
-            return !$user->hasRole("ROLE_ADMIN");
-        });
+        $pagination = $paginator->paginate(
+            $query,
+            $request->query->getInt('page', 10),
+            10
+        );
 
-        $users = $em->getRepository('App:User')->findBy(["enabled"=>true]);
-
-        $current = $this->getUser();
-        $admins = array_filter($users, function(User $user) use ($current) {
-           return $user->hasRole("ROLE_ADMIN") && $user != $current;
-        });
-
-        return $this->render('user/index.html.twig', array(
-            'pending' => $pending,
-            'admins' => $admins,
-        ));
+        // parameters to template
+        return $this->render('user/index.html.twig', array('pagination' => $pagination));
     }
 
 

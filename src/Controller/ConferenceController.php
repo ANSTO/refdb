@@ -78,7 +78,7 @@ class ConferenceController extends AbstractController
 
         $manager = $this->getDoctrine()->getManager();
         $search = $manager->getRepository(Conference::class)
-            ->createQueryBuilder("c");
+            ->createQueryBuilder("c")->orderBy("c.id", "DESC");
 
         if ($form->isSubmitted() && $form->isValid()) {
             $terms = mb_strtolower($form->get('terms')->getData());
@@ -155,6 +155,7 @@ class ConferenceController extends AbstractController
             $item["title"] = $reference->getTitle();
             $item["position"] = $reference->getPosition();
             $item["contribution"] = $reference->getContributionId();
+            $item['inproceedings'] = $reference->getInProc() ? "yes" : "no";
             $item["doi"] = $reference->getCustomDoi();
             $item["url"] = $reference->getPaperUrl();
 
@@ -243,7 +244,7 @@ class ConferenceController extends AbstractController
 
         if ($editForm->isSubmitted() && $editForm->isValid()) {
             $this->getDoctrine()->getManager()->flush();
-
+            $this->addFlash("success", "Conference settings saved!");
             return $this->redirectToRoute('conference_edit', array('id' => $conference->getId()));
         }
 

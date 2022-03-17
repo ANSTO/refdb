@@ -51,7 +51,7 @@ class ReferenceController extends AbstractController
 
         $manager = $this->getDoctrine()->getManager();
         $search = $manager->getRepository(Reference::class)
-            ->createQueryBuilder("r");
+            ->createQueryBuilder("r")->orderBy("r.hits", "DESC");
 
         if ($form->isSubmitted() && $form->isValid()) {
             $terms = mb_strtolower($form->get('terms')->getData());
@@ -112,10 +112,10 @@ class ReferenceController extends AbstractController
     public function showAction(Reference $reference)
     {
         $warning = "";
-
-        if (($reference->getConference()->isUseDoi() && !$reference->isDoiVerified()) ||
-            ($reference->getCustomDoi() !== null && !$reference->isDoiVerified())) {
+        if (($reference->getInProc() && $reference->getConference()->isUseDoi() && !$reference->isDoiVerified()) ||
+            ($reference->getCustomDoi() !== null && $reference->getCustomDoi() !== "" && !$reference->isDoiVerified())) {
             $doiService = new DoiService();
+            
             $valid = $doiService->check($reference);
             if (!$valid) {
                 $warning = "This references DOI could not be verified, so it has been removed.";
@@ -126,7 +126,6 @@ class ReferenceController extends AbstractController
 
         $paperService = new PaperService();
         $update = $paperService->check($reference);
-
 
         if ($update || $reference->__toString() !== $reference->getCache()) {
             $reference->setCache($reference->__toString());

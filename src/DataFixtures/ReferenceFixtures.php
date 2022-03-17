@@ -17,22 +17,27 @@ class ReferenceFixtures extends Fixture implements DependentFixtureInterface
     public function __construct($rootDir, ImportService $importService)
     {
         $this->documentRoot = $rootDir;
+        if ($rootDir == "") {
+            $this->documentRoot = getcwd();
+        }
+        $this->importService = $importService;
     }
 
     public function load($manager)
     {
-        $path = $this->documentRoot . "/../src/App/DataFixtures/";
+        $path = $this->documentRoot . "/src/DataFixtures/";
         $conferences = $path . "Import/conferences.csv";
 
         if (($handle = fopen($conferences, "r")) !== FALSE) {
             while (($data = fgetcsv($handle, 4000, ",")) !== FALSE) {
-                $filename = $path . "/References/" . $data[4] . ".csv";
+                $filename = $path . "References/" . $data[4] . ".csv";
                 if (file_exists($filename)) {
                     $conference = $manager->getRepository(Conference::class)->findOneBy(["code"=>$data[1]]);
 
                     if ($conference) {
                         try {
                             $file = file($filename);
+                            dump($filename, file_exists($filename));
                             echo "Importing " . count($file) . " reference for " . $conference . "\n";
                             $references = $this->importService->import($filename, $conference);
                             echo "Successfully imported: " . $references . "\n";

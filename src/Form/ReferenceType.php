@@ -22,7 +22,7 @@ class ReferenceType extends AbstractType
         $builder
             ->add('author')
             ->add('title')
-            ->add('inProc', ChoiceType::class, array("label"=>"Presented as","choices"=>["Unpublished"=>0,"Published"=>1]))
+            ->add('inProc', ChoiceType::class, array("label"=>"Inclusion in conference","choices"=>["Presented At"=>0,"In Proceedings"=>1]))
             ->add('conference', EntityType::class,array("choice_label"=>"getPlain","class"=>Conference::class))
             ->add("paperId", null, array("label"=>"Paper ID"))
             ->add('position', null, array("label"=>"pp."))

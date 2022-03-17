@@ -1,25 +1,55 @@
-@InProceedings{{ '{' ~ reference.firstLastName ~ (reference.conference.code|replace({"'":""}) ~ '-' ~ reference.paperId)|trim(" -") ~ ',' }}
+{%- if reference.conference.isPublished and reference.inProc -%}
+@inproceedings
+{%- elseif current_conference.hasCurrent and current_conference.current == reference.conference -%}
+{% set this_conference = true %}
+@conference
+{%- else -%}
+@unpublished
+{%- endif -%}{{ '{' ~ (reference.firstLastName ~ (reference.conference.code|replace({"'":""}) ~ '-' ~ reference.paperId)|trim(" -"))|lower ~ ',' }}
     {{ "author = {" ~ reference.author|replace({", and ":" and ",", ": " and ", " et al.": " and others"}) ~ "}," }}
-    {{ "title = {" ~ reference.title ~ "}," }}
-{% if reference.conference.published %}
-    {{ "booktitle = {Proc. " ~ reference.conference.name ~ " (" ~ reference.conference.code ~ ")}," }}
-{% else %}
-    {{ "booktitle = {presented at the " ~ reference.conference.name ~ " (" ~ reference.conference.code ~ ")}," }}
+    {{ "title = {{" ~ reference.title ~ "}}," }}
+{% if reference.conference.isPublished %}
+    {{ "booktitle = {Proc. " ~ reference.conference.code ~ "}," }}
 {% endif %}
 {% if reference.position is not null and reference.position != "99-98" and reference.position != "na" %}
     {{ "pages = {" ~ reference.position|replace({"-": "--"}) ~ "}," }}
 {% endif %}
     {{ "paper = {" ~ reference.paperId ~ "}," }}
+{% if reference.conference.pubYear is null and reference.conference.pubMonth is null %}
+    {{ "venue = {" ~ reference.conference.location ~ ", " ~ reference.conference.year ~ "}," }}
+{% else %}
     {{ "venue = {" ~ reference.conference.location ~ "}," }}
-    {{ "publisher = {JACoW Publishing}," }}
-    {{ "month = {" ~ reference.conference.year|split(" ")[0] ~ "}," }}
-    {{ "year = {" ~ reference.conference.year|split(" ")[1] ~ "}," }}
+{% endif %}
+{% if not reference.conference.isPublished or not reference.inProc %}
+    {{ "intype = {presented at the},"}}
+{% endif %}
+{% if reference.conference.series %}
+    {{ "series = {" ~ reference.conference.series ~ "}," }}
+{% endif %}
+{% if reference.conference.seriesNumber %}
+    {{ "number = {" ~ reference.conference.seriesNumber ~ "}," }}
+{% endif %}
+    {{ "publisher = {JACoW Publishing, Geneva, Switzerland}," }}
+{% if reference.conference.pubMonth %}
+    {{ "month = {" ~ reference.conference.pubMonth ~ "}," }}
+{% endif %}
+{% if reference.conference.pubYear %}
+    {{ "year = {" ~ reference.conference.pubYear ~ "}," }}
+{% endif %}
+{% if reference.conference.issn %}
+    {{ "issn = {" ~ reference.conference.issnFormatted ~ "}," }}
+{% endif %}
+{% if reference.conference.isbn %}
+    {{ "isbn = {" ~ reference.conference.isbnFormatted ~ "}," }}
+{% endif %}
 {% if reference.doiVerified %}
-    {{ "doi = {" ~ reference.doiText ~ "}," }}
-    {{ "note = {" ~ reference.doi ~ "}," }}
+    {{ "doi = {" ~ reference.doiOnly ~ "}," }}
 {% endif %}
 {% if reference.paperUrl is not null %}
     {{ "url = {" ~ reference.paperUrl ~ "}," }}
+{% endif %}
+{% if not reference.conference.isPublished or not reference.inProc %}
+    {{ "note = {presented at " ~ reference.conference.code ~ ", " ~ reference.conference.location ~ ", " ~ reference.conference.year ~ ", paper " ~ reference.paperId ~ ", " ~ (this_conference is defined ? "this conference" : "unpublished") ~ "}," }}
 {% endif %}
     {{ "language = {english}" }}
 {{ "}" -}}
